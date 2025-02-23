@@ -1,6 +1,10 @@
 import pandas as pd
 import json
 import requests
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 # Load CSV
 df = pd.read_csv('goodreads_library_export.csv')
@@ -27,49 +31,70 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
         if not identifier or identifier == '':
             continue
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{identifier}"
+        logging.info(f"Trying ISBN: {url}")
         try:
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
-                    return book.get('imageLinks', {}).get('thumbnail')
-        except:
-            pass
+                    cover = book.get('imageLinks', {}).get('thumbnail')
+                    logging.info(f"Found cover for ISBN {identifier}: {cover}")
+                    return cover
+                else:
+                    logging.info(f"No results for ISBN {identifier}")
+            else:
+                logging.info(f"Failed ISBN request: {response.status_code}")
+        except Exception as e:
+            logging.error(f"Error with ISBN {identifier}: {e}")
 
     # Step 2: Fallback to title + primary author (English)
     if title and author:
         title_clean = title.split(':')[0].strip().replace(' ', '+')
-        author_clean = author.split(',')[0].strip().replace(' ', '+')  # Use English name
+        author_clean = author.split(',')[0].strip().replace(' ', '+')
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
+        logging.info(f"Trying English author: {url}")
         try:
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
-                    return book.get('imageLinks', {}).get('thumbnail')
-        except:
-            pass
+                    cover = book.get('imageLinks', {}).get('thumbnail')
+                    logging.info(f"Found cover for {title} by {author}: {cover}")
+                    return cover
+                else:
+                    logging.info(f"No results for {title} by {author}")
+            else:
+                logging.info(f"Failed English author request: {response.status_code}")
+        except Exception as e:
+            logging.error(f"Error with English author {author}: {e}")
 
     # Step 3: Fallback to title + additional authors (Russian)
     if title and additional_authors:
         title_clean = title.split(':')[0].strip().replace(' ', '+')
-        # Extract first additional author (e.g., "Сергей Лукьяненко")
         add_author = additional_authors.split(',')[0].strip()
         if add_author:
             add_author_clean = add_author.replace(' ', '+')
             url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
+            logging.info(f"Trying Russian author: {url}")
             try:
                 response = requests.get(url)
                 if response.status_code == 200:
                     data = response.json()
                     if data.get('totalItems', 0) > 0:
                         book = data['items'][0]['volumeInfo']
-                        return book.get('imageLinks', {}).get('thumbnail')
-            except:
-                pass
+                        cover = book.get('imageLinks', {}).get('thumbnail')
+                        logging.info(f"Found cover for {title} by {add_author}: {cover}")
+                        return cover
+                    else:
+                        logging.info(f"No results for {title} by {add_author}")
+                else:
+                    logging.info(f"Failed Russian author request: {response.status_code}")
+            except Exception as e:
+                logging.error(f"Error with Russian author {add_author}: {e}")
     
+    logging.info(f"No cover found for {title}")
     return None
 
 # Apply cover URL fetch
