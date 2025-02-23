@@ -22,7 +22,7 @@ df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
 
 # Filter for 'read' books
-books_read = df[df['Exclusive Shelf'] == 'read']
+books_read = df[df['Exclusive Shelf'] == 'read'].copy()
 
 # Fetch cover URLs from Google Books API
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
@@ -38,9 +38,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 data = response.json()
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
-                    cover = book.get('imageLinks', {}).get('thumbnail')
+                    cover = book.get('imageLinks', {}).get('thumbnail', None)
                     logging.info(f"Found cover for ISBN {identifier}: {cover}")
-                    return cover
+                    return cover if cover else None
                 else:
                     logging.info(f"No results for ISBN {identifier}")
             else:
@@ -60,9 +60,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 data = response.json()
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
-                    cover = book.get('imageLinks', {}).get('thumbnail')
+                    cover = book.get('imageLinks', {}).get('thumbnail', None)
                     logging.info(f"Found cover for {title} by {author}: {cover}")
-                    return cover
+                    return cover if cover else None
                 else:
                     logging.info(f"No results for {title} by {author}")
             else:
@@ -84,9 +84,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                     data = response.json()
                     if data.get('totalItems', 0) > 0:
                         book = data['items'][0]['volumeInfo']
-                        cover = book.get('imageLinks', {}).get('thumbnail')
+                        cover = book.get('imageLinks', {}).get('thumbnail', None)
                         logging.info(f"Found cover for {title} by {add_author}: {cover}")
-                        return cover
+                        return cover if cover else None
                     else:
                         logging.info(f"No results for {title} by {add_author}")
                 else:
@@ -98,7 +98,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     return None
 
 # Apply cover URL fetch
-books_read['Cover URL'] = books_read.apply(
+books_read.loc[:, 'Cover URL'] = books_read.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
