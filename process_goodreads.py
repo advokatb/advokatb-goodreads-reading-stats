@@ -3,10 +3,10 @@ import json
 import requests
 import logging
 
-# Simple transliteration dictionary (Russian to English)
+# Corrected transliteration table (33 Russian chars -> 33 English chars)
 TRANS_TABLE = str.maketrans(
     "абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
-    "abvgdeezhziyklmnoprstufkhcchshschyeyuya"
+    "abvgdeezhziyklmnoprstufkhtschshchyuya"
 )
 
 def transliterate(text):
@@ -106,14 +106,24 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                             title_trans = transliterate(title.split(':')[0].strip())
                             url_trans = f"https://www.googleapis.com/books/v1/volumes?q={title_trans}+inauthor:{author_clean}"
                             logging.info(f"Trying transliterated title: {url_trans}")
-                            response_trans = requests.get(url_trans)
-                            if response_trans.status_code == 200:
-                                data_trans = response_trans.json()
-                                if data_trans.get('totalItems', 0) > 0:
-                                    book_trans = data_trans['items'][0]['volumeInfo']
-                                    cover = book_trans.get('imageLinks', {}).get('thumbnail', None)
-                                    logging.info(f"Found cover for {title} (transliterated): {cover}")
-                                    return cover
+                            try:
+                                response_trans = requests.get(url_trans)
+                                if response_trans.status_code == 200:
+                                    data_trans = response_trans.json()
+                                    if data_trans.get('totalItems', 0) > 0:
+                                        book_trans = data_trans['items'][0]['volumeInfo']
+                                        cover = book_trans.get('imageLinks', {}).get('thumbnail', None)
+                                        if cover:
+                                            logging.info(f"Found cover for {title} (transliterated): {cover}")
+                                            return cover
+                                        else:
+                                            logging.info(f"No thumbnail for {title} (transliterated) by {author}: {json.dumps(book_trans.get('imageLinks', {}))}")
+                                    else:
+                                        logging.info(f"No results for {title} (transliterated) by {author}")
+                                else:
+                                    logging.info(f"Failed transliterated request: {response_trans.status_code}")
+                            except Exception as e:
+                                logging.error(f"Error with transliterated title {title_trans}: {e}")
                             logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                         else:
                             logging.info(f"Found cover for {title} by {add_author}: {cover}")
