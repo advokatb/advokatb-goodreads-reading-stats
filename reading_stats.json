@@ -8,6 +8,7 @@
     "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438": 2,
     "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435": 2
   },
+  "books_2025": 9,
   "book_list": [
     {
       "Title": "\u0412\u0442\u043e\u0440\u0430\u044f \u0441\u0435\u0441\u0442\u0440\u0430",
@@ -229,6 +230,23 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=fsoOzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "40536979"
+    }
+  ],
+  "current_list": [
+    {
+      "Title": "\u0426\u0432\u0435\u0442\u044b \u0434\u043b\u044f \u042d\u043b\u0434\u0436\u0435\u0440\u043d\u043e\u043d\u0430",
+      "Author": "Daniel Keyes",
+      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u0428\u0430\u0440\u043e\u0432, \u0414\u044d\u043d\u0438\u0435\u043b \u041a\u0438\u0437",
+      "Number of Pages": 320,
+      "Estimated Word Count": 88000,
+      "Date Added": "2025-02-20",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "currently-reading",
+      "ISBN": "5699157441",
+      "ISBN13": "9785699157440",
+      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Book Id": "6139677"
     }
   ],
   "timeline": [
