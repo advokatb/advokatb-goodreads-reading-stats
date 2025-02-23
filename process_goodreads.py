@@ -24,12 +24,14 @@ total_read = len(books_read)
 avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = df[df['Series'].notna()].groupby('Series').size().to_dict()
 
-# Prepare book list with relevant details
-book_list = df[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves']].replace({pd.NaT: None}).to_dict(orient='records')
+# Prepare book list with relevant details, converting Timestamp to string
+book_list = df[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves']].copy()
+book_list['Date Read'] = book_list['Date Read'].dt.strftime('%Y-%m-%d').replace('NaT', None)  # Convert to string or None
+book_list = book_list.to_dict(orient='records')
 
-# Reading timeline for chart
+# Reading timeline for chart, converting Period to string
 timeline = books_read.groupby(df['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
-timeline['Date'] = timeline['Date Read'].dt.strftime('%Y-%m')
+timeline['Date'] = timeline['Date Read'].dt.strftime('%Y-%m')  # Already a string from previous step
 timeline_data = timeline[['Date', 'Books']].to_dict(orient='records')
 
 # Save to JSON
