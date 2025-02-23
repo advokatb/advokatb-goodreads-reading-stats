@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 # Load CSV (assuming it's saved as 'goodreads_library_export.csv')
-df = pd.read_csv('docs/goodreads_library_export.csv')
+df = pd.read_csv('goodreads_library_export.csv')
 
 # Clean and process data
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
@@ -43,7 +43,7 @@ stats = {
     'book_list': book_list,
     'timeline': timeline_data
 }
-with open('docs/reading_stats.json', 'w') as f:
+with open('reading_stats.json', 'w') as f:
     json.dump(stats, f, indent=2)
 
-print("Stats generated and saved to 'docs/reading_stats.json'")
+print("Stats generated and saved to 'reading_stats.json'")
