@@ -132,7 +132,7 @@ books_read.loc[:, 'Cover URL'] = books_read.apply(
 )
 books_read.loc[:, 'Days Spent'] = (books_read['Date Read'] - books_read['Date Added']).dt.days
 
-# Process currently-reading books
+# Process currently-reading books (no Days Spent)
 books_current.loc[:, 'Cover URL'] = books_current.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
@@ -145,17 +145,25 @@ avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 
-# Prepare book lists
-columns = [
+# Define columns for read and current books
+read_columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
     'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL'
 ]
-if 'Book Id' in books_read.columns:
-    columns.append('Book Id')
-if 'Author Id' in books_read.columns:
-    columns.append('Author Id')
+current_columns = [
+    'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Added', 
+    'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL'
+]
 
-book_list = books_read[columns].copy()
+# Add optional columns if they exist
+for col in ['Book Id', 'Author Id']:
+    if col in books_read.columns:
+        read_columns.append(col)
+    if col in books_current.columns:
+        current_columns.append(col)
+
+# Prepare book lists
+book_list = books_read[read_columns].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Date Added'] = book_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
@@ -164,25 +172,21 @@ book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
 book_list['Days Spent'] = book_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
-if 'Book Id' in book_list.columns:
-    book_list['Book Id'] = book_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
-if 'Author Id' in book_list.columns:
-    book_list['Author Id'] = book_list['Author Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+for col in ['Book Id', 'Author Id']:
+    if col in book_list.columns:
+        book_list[col] = book_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
 
-current_list = books_current[columns].copy()
-current_list['Date Read'] = current_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
+current_list = books_current[current_columns].copy()
 current_list['Date Added'] = current_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 current_list['Series'] = current_list['Series'].apply(lambda x: x if pd.notna(x) else None)
 current_list['Bookshelves'] = current_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 current_list['ISBN'] = current_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 current_list['ISBN13'] = current_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 current_list['Cover URL'] = current_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-current_list['Days Spent'] = current_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
-if 'Book Id' in current_list.columns:
-    current_list['Book Id'] = current_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
-if 'Author Id' in current_list.columns:
-    current_list['Author Id'] = current_list['Author Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+for col in ['Book Id', 'Author Id']:
+    if col in current_list.columns:
+        current_list[col] = current_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
 current_list = current_list.to_dict(orient='records')
 
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
