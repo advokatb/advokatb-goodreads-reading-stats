@@ -3,11 +3,10 @@ import json
 import requests
 import logging
 
-# Manual ISBN and ID corrections
-CORRECT_ISBNS = {
-    "Предел": "9785171377915"
-}
+# Manual ISBN and ID corrections (using IDs for precision)
 CORRECT_IDS = {
+    "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "Порог": "http://books.google.com/books/content?id=erqYDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "Семь дней до Мегиддо": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
 }
 
@@ -26,28 +25,9 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
-    # Check manual corrections first
-    corrected_isbn = CORRECT_ISBNS.get(title)
-    if corrected_isbn:
-        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{corrected_isbn}"
-        logging.info(f"Trying corrected ISBN for {title}: {url}")
-        try:
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                if data.get('totalItems', 0) > 0:
-                    book = data['items'][0]['volumeInfo']
-                    cover = book.get('imageLinks', {}).get('thumbnail', None)
-                    if cover:
-                        logging.info(f"Found cover for corrected ISBN {corrected_isbn}: {cover}")
-                        return cover
-                    else:
-                        logging.info(f"No thumbnail for corrected ISBN {corrected_isbn}: {json.dumps(book.get('imageLinks', {}))}")
-        except Exception as e:
-            logging.error(f"Error with corrected ISBN {corrected_isbn}: {e}")
-
-    # Manual ID for books without ISBN covers
+    # Check manual ID first and return immediately
     if title in CORRECT_IDS:
+        logging.info(f"Using manual ID for {title}: {CORRECT_IDS[title]}")
         return CORRECT_IDS[title]
 
     for identifier in [isbn13, isbn]:
