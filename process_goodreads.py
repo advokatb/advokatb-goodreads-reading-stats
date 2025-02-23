@@ -20,8 +20,9 @@ df['ISBN13'] = df['ISBN13'].str.strip('="')
 books_read = df[df['Exclusive Shelf'] == 'read']
 
 # Fetch cover URLs from Google Books API
-def get_cover_url(isbn, isbn13):
-    for identifier in [isbn13, isbn]:  # Try ISBN13 first, then ISBN
+def get_cover_url(isbn, isbn13, title, author):
+    # Step 1: Try ISBN13 and ISBN
+    for identifier in [isbn13, isbn]:
         if not identifier or identifier == '':
             continue
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{identifier}"
@@ -34,9 +35,30 @@ def get_cover_url(isbn, isbn13):
                     return book.get('imageLinks', {}).get('thumbnail')
         except:
             pass
+
+    # Step 2: Fallback to title + author
+    if title and author:
+        # Clean title and author for search (remove special chars, keep main part)
+        title_clean = title.split(':')[0].split('(')[0].strip().replace(' ', '+')
+        author_clean = author.split(',')[0].strip().replace(' ', '+')
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('totalItems', 0) > 0:
+                    book = data['items'][0]['volumeInfo']
+                    return book.get('imageLinks', {}).get('thumbnail')
+        except:
+            pass
+    
     return None
 
-books_read['Cover URL'] = books_read.apply(lambda row: get_cover_url(row['ISBN'], row['ISBN13']), axis=1)
+# Apply cover URL fetch
+books_read['Cover URL'] = books_read.apply(
+    lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author']), 
+    axis=1
+)
 
 # Calculate stats
 total_books = len(books_read)
