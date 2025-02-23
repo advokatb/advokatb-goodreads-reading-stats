@@ -12,7 +12,8 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False)
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
-df['ISBN'] = df['ISBN'].str.strip('="')  # Clean ISBN
+df['ISBN'] = df['ISBN'].str.strip('="')
+df['ISBN13'] = df['ISBN13'].str.strip('="')
 
 # Filter for 'read' books
 books_read = df[df['Exclusive Shelf'] == 'read']
@@ -25,12 +26,13 @@ avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean()
 avg_rating = 0 if pd.isna(avg_rating) else avg_rating
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 
-# Prepare book list with ISBN
-book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN']].copy()
+# Prepare book list with both ISBNs
+book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13']].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Bookshelves'] = book_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
+book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
 
 # Reading timeline
