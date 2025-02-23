@@ -57,6 +57,48 @@
     </div>
 
     <script>
+        // Bookshelf.js-like Model
+        class Book {
+            constructor(attributes) {
+                Object.assign(this, attributes);
+            }
+            getCoverUrl() {
+                return this.ISBN && this.ISBN !== '' ? 
+                    `https://covers.openlibrary.org/b/isbn/${this.ISBN}-M.jpg` : 
+                    'https://placehold.co/100x150?text=Нет+обложки';
+            }
+            render() {
+                const div = document.createElement('div');
+                div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
+                div.innerHTML = `
+                    <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4" 
+                         onerror="this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">${this.Title}</h3>
+                        <p class="text-gray-600">Автор: ${this.Author}</p>
+                        <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
+                        ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
+                        ${this['Date Read'] ? `<p class="text-gray-500">Прочитано: ${this['Date Read']}</p>` : ''}
+                        ${this['My Rating'] > 0 ? `<p class="text-yellow-500">Оценка: ${'★'.repeat(this['My Rating'])}</p>` : ''}
+                        <p class="text-gray-500 italic">${this.Bookshelves || 'Без полки'}</p>
+                    </div>
+                `;
+                return div;
+            }
+        }
+
+        // Bookshelf.js-like Collection
+        class BookCollection {
+            constructor(books) {
+                this.models = books.map(book => new Book(book));
+            }
+            render(containerId) {
+                const container = document.getElementById(containerId);
+                this.models.forEach(book => container.appendChild(book.render()));
+            }
+        }
+
+        // Fetch and Process Data
         fetch('reading_stats.json')
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -76,36 +118,13 @@
                     seriesList.appendChild(li);
                 }
 
-                // Book List with Covers
-                const bookList = document.getElementById('book-list');
-                data.book_list.forEach(book => {
-                    const div = document.createElement('div');
-                    div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
-                    const coverUrl = book.ISBN && book.ISBN !== '' ? 
-                        `https://covers.openlibrary.org/b/isbn/${book.ISBN}-M.jpg` : 
-                        'https://placehold.co/100x150?text=Нет+обложки';
-                    div.innerHTML = `
-                        <img src="${coverUrl}" alt="${book.Title}" class="book-cover mr-4" 
-                             onerror="this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800">${book.Title}</h3>
-                            <p class="text-gray-600">Автор: ${book.Author}</p>
-                            <p class="text-gray-500">Страниц: ${book['Number of Pages']}</p>
-                            ${book.Series ? `<p class="text-gray-500">Серия: ${book.Series}</p>` : ''}
-                            ${book['Date Read'] ? `<p class="text-gray-500">Прочитано: ${book['Date Read']}</p>` : ''}
-                            ${book['My Rating'] > 0 ? `<p class="text-yellow-500">Оценка: ${'★'.repeat(book['My Rating'])}</p>` : ''}
-                            <p class="text-gray-500 italic">${book.Bookshelves || 'Без полки'}</p>
-                        </div>
-                    `;
-                    bookList.appendChild(div);
-                });
+                // Book List with Collection
+                const books = new BookCollection(data.book_list);
+                books.render('book-list');
 
                 // ApexCharts Timeline
                 const options = {
-                    series: [{
-                        name: 'Книги',
-                        data: data.timeline.map(t => t.Books)
-                    }],
+                    series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
                     chart: { type: 'bar', height: 350 },
                     plotOptions: { bar: { horizontal: false, columnWidth: '55%' } },
                     dataLabels: { enabled: true },
