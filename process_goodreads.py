@@ -5,11 +5,10 @@ import logging
 
 # Manual ISBN and ID corrections
 CORRECT_ISBNS = {
-    "Предел": "9785171377915",  # Correct ISBN for Предел
-    "Порог": "9785041719814"   # Alternative ISBN for Порог
+    "Предел": "9785171377915"
 }
 CORRECT_IDS = {
-    "Семь дней до Мегиддо": "http://books.google.com/books/content?id=???&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"  # Placeholder, needs ID
+    "Семь дней до Мегиддо": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
 }
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
