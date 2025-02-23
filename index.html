@@ -98,7 +98,7 @@
             }
             getCoverUrl() {
                 return this.ISBN && this.ISBN !== '' ? 
-                    `https://books.google.com/books/content?id=${this.ISBN}&printsec=frontcover&img=1&zoom=1&source=gbs_api` : 
+                    `https://covers.openlibrary.org/b/isbn/${this.ISBN}-M.jpg` : 
                     'https://placehold.co/100x150?text=Нет+обложки';
             }
             render() {
