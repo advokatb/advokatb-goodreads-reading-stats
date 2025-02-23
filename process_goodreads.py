@@ -3,14 +3,15 @@ import json
 import requests
 import logging
 
-# Corrected transliteration table (33 Russian chars -> 33 English chars)
-TRANS_TABLE = str.maketrans(
-    "абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
-    "abvgdezhziyklmnoprstufkhcchsyeuya"
-)
+# Manual English title mappings for Lukyanenko books
+ENGLISH_TITLES = {
+    "Предел": "Limit",
+    "Порог": "Threshold",
+    "Семь дней до Мегиддо": "Seven Days to Megiddo"
+}
 
-def transliterate(text):
-    return text.lower().translate(TRANS_TABLE).replace(' ', '+')
+def transliterate(title):
+    return ENGLISH_TITLES.get(title, title.lower().replace(' ', '+'))
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 df = pd.read_csv('goodreads_library_export.csv')
@@ -39,11 +40,11 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
                     cover = book.get('imageLinks', {}).get('thumbnail', None)
-                    if not cover:
-                        logging.info(f"No thumbnail for ISBN {identifier}: {json.dumps(book.get('imageLinks', {}))}")
-                    else:
+                    if cover:
                         logging.info(f"Found cover for ISBN {identifier}: {cover}")
-                    return cover
+                        return cover
+                    else:
+                        logging.info(f"No thumbnail for ISBN {identifier}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
                     logging.info(f"No results for ISBN {identifier}")
             else:
@@ -63,11 +64,11 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
                     cover = book.get('imageLinks', {}).get('thumbnail', None)
-                    if not cover:
-                        logging.info(f"No thumbnail for {title} by {author}: {json.dumps(book.get('imageLinks', {}))}")
-                    else:
+                    if cover:
                         logging.info(f"Found cover for {title} by {author}: {cover}")
-                    return cover
+                        return cover
+                    else:
+                        logging.info(f"No thumbnail for {title} by {author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
                     logging.info(f"No results for {title} by {author}")
             else:
@@ -89,47 +90,45 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                     if data.get('totalItems', 0) > 0:
                         book = data['items'][0]['volumeInfo']
                         cover = book.get('imageLinks', {}).get('thumbnail', None)
-                        if not cover:
-                            # Try broad title search
-                            url_broad = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}"
-                            logging.info(f"Trying broad title: {url_broad}")
-                            response_broad = requests.get(url_broad)
-                            if response_broad.status_code == 200:
-                                data_broad = response_broad.json()
-                                if data_broad.get('totalItems', 0) > 0:
-                                    book_broad = data_broad['items'][0]['volumeInfo']
-                                    cover = book_broad.get('imageLinks', {}).get('thumbnail', None)
-                                    if cover:
-                                        logging.info(f"Found cover for {title} (broad): {cover}")
-                                        return cover
-                            # Try transliterated title with English author
-                            title_trans = transliterate(title.split(':')[0].strip())
-                            url_trans = f"https://www.googleapis.com/books/v1/volumes?q={title_trans}+inauthor:{author_clean}"
-                            logging.info(f"Trying transliterated title: {url_trans}")
-                            try:
-                                response_trans = requests.get(url_trans)
-                                if response_trans.status_code == 200:
-                                    data_trans = response_trans.json()
-                                    if data_trans.get('totalItems', 0) > 0:
-                                        book_trans = data_trans['items'][0]['volumeInfo']
-                                        cover = book_trans.get('imageLinks', {}).get('thumbnail', None)
-                                        if cover:
-                                            logging.info(f"Found cover for {title} (transliterated): {cover}")
-                                            return cover
-                                        else:
-                                            logging.info(f"No thumbnail for {title} (transliterated) by {author}: {json.dumps(book_trans.get('imageLinks', {}))}")
-                                    else:
-                                        logging.info(f"No results for {title} (transliterated) by {author}")
-                                else:
-                                    logging.info(f"Failed transliterated request: {response_trans.status_code}")
-                            except Exception as e:
-                                logging.error(f"Error with transliterated title {title_trans}: {e}")
-                            logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
-                        else:
+                        if cover:
                             logging.info(f"Found cover for {title} by {add_author}: {cover}")
-                        return cover
-                    else:
-                        logging.info(f"No results for {title} by {add_author}")
+                            return cover
+                    # Try broad title search
+                    url_broad = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}"
+                    logging.info(f"Trying broad title: {url_broad}")
+                    response_broad = requests.get(url_broad)
+                    if response_broad.status_code == 200:
+                        data_broad = response_broad.json()
+                        if data_broad.get('totalItems', 0) > 0:
+                            book_broad = data_broad['items'][0]['volumeInfo']
+                            cover = book_broad.get('imageLinks', {}).get('thumbnail', None)
+                            if cover:
+                                logging.info(f"Found cover for {title} (broad): {cover}")
+                                return cover
+                    # Try transliterated title with English author
+                    title_trans = transliterate(title.split(':')[0].strip())
+                    author_clean = author.split(',')[0].strip().replace(' ', '+')
+                    url_trans = f"https://www.googleapis.com/books/v1/volumes?q={title_trans}+inauthor:{author_clean}"
+                    logging.info(f"Trying transliterated title: {url_trans}")
+                    try:
+                        response_trans = requests.get(url_trans)
+                        if response_trans.status_code == 200:
+                            data_trans = response_trans.json()
+                            if data_trans.get('totalItems', 0) > 0:
+                                book_trans = data_trans['items'][0]['volumeInfo']
+                                cover = book_trans.get('imageLinks', {}).get('thumbnail', None)
+                                if cover:
+                                    logging.info(f"Found cover for {title} (transliterated): {cover}")
+                                    return cover
+                                else:
+                                    logging.info(f"No thumbnail for {title} (transliterated) by {author}: {json.dumps(book_trans.get('imageLinks', {}))}")
+                            else:
+                                logging.info(f"No results for {title} (transliterated) by {author}")
+                        else:
+                            logging.info(f"Failed transliterated request: {response_trans.status_code}")
+                    except Exception as e:
+                        logging.error(f"Error with transliterated title {title_trans}: {e}")
+                    logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
                     logging.info(f"Failed Russian author request: {response.status_code}")
             except Exception as e:
@@ -145,9 +144,8 @@ books_read.loc[:, 'Cover URL'] = books_read.apply(
 
 total_books = len(books_read)
 total_pages = books_read['Number of Pages'].sum()
-avg_pages = total_pages / total_books if total_books > 0 else 0
-avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean()
-avg_rating = 0 if pd.isna(avg_rating) else avg_rating
+avg_pages = total_books > 0 and total_pages / total_books or 0
+avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL']].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
