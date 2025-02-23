@@ -7,14 +7,11 @@ class Book {
         console.log(`Cover URL for ${this.Title}: ${url}`);
         return url.startsWith('http://books.google.com') ? url.replace('http://', 'https://') : url;
     }
-    getRussianAuthor() {
-        return this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim() || this.Author;
-    }
     formatDateRead() {
         if (!this['Date Read']) return '';
         const [year, month, day] = this['Date Read'].split('-');
         const days = this['Days Spent'];
-        const daysText = days === 1 ? '1 день' : `${days} дней`;
+        const daysText = days === 1 ? '1 день' : `${days} дня`;
         return `Прочитано: ${day}.${month}.${year} (${daysText})`;
     }
     getGoodreadsBookLink() {
@@ -33,7 +30,7 @@ class Book {
                 <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
                     <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
                 </a>
-                <p class="text-gray-600">Автор: ${this.getRussianAuthor()}</p>
+                <p class="text-gray-600">Автор: ${this.Author}</p>
                 <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500">${this.formatDateRead()}</p>` : ''}
@@ -44,12 +41,21 @@ class Book {
     }
     renderCurrent() {
         const div = document.createElement('div');
+        div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
         div.innerHTML = `
-            <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
+            <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-            <h3 class="text-lg font-semibold text-gray-800">${this.Title}</h3>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
+                <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
+                    <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
+                </a>
+                <p class="text-gray-600 text-sm">Автор: ${this.Author}</p>
+                <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
+                ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
+            </div>
         `;
         return div;
     }
@@ -90,10 +96,26 @@ class BookCollection {
                 if (!seriesAuthors[book.Series]) {
                     seriesAuthors[book.Series] = new Set();
                 }
-                seriesAuthors[book.Series].add(book.getRussianAuthor());
+                seriesAuthors[book.Series].add(book.Author);
             }
         });
         return seriesAuthors;
+    }
+    getLongestBook() {
+        return this.allBooks.reduce((max, book) => 
+            book['Number of Pages'] > max['Number of Pages'] ? book : max, this.allBooks[0]);
+    }
+    getShortestBook() {
+        return this.allBooks.reduce((min, book) => 
+            book['Number of Pages'] < min['Number of Pages'] ? book : min, this.allBooks[0]);
+    }
+    getMostProlificAuthor() {
+        const authorCounts = {};
+        this.allBooks.forEach(book => {
+            authorCounts[book.Author] = (authorCounts[book.Author] || 0) + 1;
+        });
+        return Object.entries(authorCounts).reduce((max, [author, count]) => 
+            count > max[1] ? [author, count] : max, ['', 0]);
     }
     render(containerId) {
         const container = document.getElementById(containerId);
@@ -110,7 +132,6 @@ fetch('reading_stats.json')
     .then(data => {
         document.getElementById('total-books').textContent = data.total_books;
         document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
-        document.getElementById('avg-pages').textContent = data.avg_pages;
         document.getElementById('books-2025').textContent = data.books_2025;
 
         const books = new BookCollection(data.book_list);
@@ -120,6 +141,14 @@ fetch('reading_stats.json')
         } else {
             document.getElementById('current-book').innerHTML = '<p class="text-gray-600">Ничего не читаю сейчас</p>';
         }
+
+        // New stats
+        const longestBook = books.getLongestBook();
+        const shortestBook = books.getShortestBook();
+        const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
+        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
+        document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
+        document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
         const seriesAuthors = books.getSeriesWithAuthors();
         const seriesList = document.getElementById('series-list');
