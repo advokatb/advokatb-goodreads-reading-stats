@@ -39,8 +39,11 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
                     cover = book.get('imageLinks', {}).get('thumbnail', None)
-                    logging.info(f"Found cover for ISBN {identifier}: {cover}")
-                    return cover if cover else None
+                    if not cover:
+                        logging.info(f"No thumbnail for ISBN {identifier}: {json.dumps(book.get('imageLinks', {}))}")
+                    else:
+                        logging.info(f"Found cover for ISBN {identifier}: {cover}")
+                    return cover
                 else:
                     logging.info(f"No results for ISBN {identifier}")
             else:
@@ -61,8 +64,11 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 if data.get('totalItems', 0) > 0:
                     book = data['items'][0]['volumeInfo']
                     cover = book.get('imageLinks', {}).get('thumbnail', None)
-                    logging.info(f"Found cover for {title} by {author}: {cover}")
-                    return cover if cover else None
+                    if not cover:
+                        logging.info(f"No thumbnail for {title} by {author}: {json.dumps(book.get('imageLinks', {}))}")
+                    else:
+                        logging.info(f"Found cover for {title} by {author}: {cover}")
+                    return cover
                 else:
                     logging.info(f"No results for {title} by {author}")
             else:
@@ -85,8 +91,11 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                     if data.get('totalItems', 0) > 0:
                         book = data['items'][0]['volumeInfo']
                         cover = book.get('imageLinks', {}).get('thumbnail', None)
-                        logging.info(f"Found cover for {title} by {add_author}: {cover}")
-                        return cover if cover else None
+                        if not cover:
+                            logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
+                        else:
+                            logging.info(f"Found cover for {title} by {add_author}: {cover}")
+                        return cover
                     else:
                         logging.info(f"No results for {title} by {add_author}")
                 else:
@@ -118,7 +127,7 @@ book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else 
 book_list['Bookshelves'] = book_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
-book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) else None)
+book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)  # Ensure 'None' string is treated as None
 book_list = book_list.to_dict(orient='records')
 
 # Reading timeline
