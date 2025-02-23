@@ -1,0 +1,17 @@
+name: Scrape Goodreads
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: { python-version: '3.x' }
+      - run: pip install requests beautifulsoup4
+      - run: python scrape_goodreads.py
+      - run: |
+          git add reading_stats.json
+          git commit -m "Update stats from scrape" || echo "No changes"
+          git push

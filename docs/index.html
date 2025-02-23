@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reading Stats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .book-card { transition: transform 0.2s; }
+        .book-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">My Reading Journey</h1>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h2 class="text-xl font-semibold text-gray-700">Total Books</h2>
+                <p id="total-books" class="text-3xl font-bold text-blue-600">-</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h2 class="text-xl font-semibold text-gray-700">Total Pages</h2>
+                <p id="total-pages" class="text-3xl font-bold text-blue-600">-</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h2 class="text-xl font-semibold text-gray-700">Total Words</h2>
+                <p id="total-words" class="text-3xl font-bold text-blue-600">-</p>
+            </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Books Read Over Time</h2>
+            <canvas id="readingChart"></canvas>
+        </div>
+
+        <!-- Series Breakdown -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Books by Series</h2>
+            <ul id="series-list" class="list-disc pl-6 text-gray-600"></ul>
+        </div>
+
+        <!-- Book List -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">My Books</h2>
+            <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+    </div>
+
+    <script>
+        fetch('reading_stats.json')
+            .then(response => response.json())
+            .then(data => {
+                // Summary Stats
+                document.getElementById('total-books').textContent = data.total_books;
+                document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
+                document.getElementById('total-words').textContent = data.total_words.toLocaleString();
+
+                // Series List
+                const seriesList = document.getElementById('series-list');
+                for (const [series, count] of Object.entries(data.series_counts)) {
+                    const li = document.createElement('li');
+                    li.textContent = `${series}: ${count} book${count > 1 ? 's' : ''}`;
+                    seriesList.appendChild(li);
+                }
+
+                // Book List
+                const bookList = document.getElementById('book-list');
+                data.book_list.forEach(book => {
+                    const div = document.createElement('div');
+                    div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow';
+                    div.innerHTML = `
+                        <h3 class="text-lg font-semibold text-gray-800">${book.Title}</h3>
+                        <p class="text-gray-600">by ${book.Author}</p>
+                        <p class="text-gray-500">Pages: ${book['Number of Pages']}</p>
+                        <p class="text-gray-500">Words: ${book['Estimated Word Count'].toLocaleString()}</p>
+                        ${book.Series ? `<p class="text-gray-500">Series: ${book.Series}</p>` : ''}
+                        ${book['Date Read'] ? `<p class="text-gray-500">Read: ${book['Date Read']}</p>` : ''}
+                        ${book['My Rating'] > 0 ? `<p class="text-yellow-500">Rating: ${'★'.repeat(book['My Rating'])}</p>` : ''}
+                        <p class="text-gray-500 italic">${book.Bookshelves}</p>
+                    `;
+                    bookList.appendChild(div);
+                });
+
+                // Chart
+                const ctx = document.getElementById('readingChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.timeline.map(t => t.Date),
+                        datasets: [{
+                            label: 'Books Read',
+                            data: data.timeline.map(t => t.Books),
+                            borderColor: '#2563eb',
+                            fill: false,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Books' } },
+                            x: { title: { display: true, text: 'Month' } }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
