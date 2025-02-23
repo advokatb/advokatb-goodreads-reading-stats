@@ -7,17 +7,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
+        body { background: linear-gradient(to bottom, #f0f4f8, #e0e7ff); }
         .fade-in { animation: fadeIn 1s ease-in; }
-        .book-card { transition: transform 0.3s ease; }
-        .book-card:hover { transform: scale(1.05) translateY(-5px); }
+        .book-card { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background: linear-gradient(135deg, #ffffff, #f9fafb); 
+            border-radius: 12px; 
+        }
+        .book-card:hover { 
+            transform: scale(1.05) translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .book-cover { width: 100px; height: 150px; object-fit: cover; }
+        .book-cover { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; }
+        .btn { 
+            transition: all 0.3s ease; 
+            background: linear-gradient(to right, #4f46e5, #7c3aed); 
+            color: white; 
+            padding: 8px 16px; 
+            border-radius: 8px; 
+        }
+        .btn:hover { background: linear-gradient(to right, #3b82f6, #9333ea); }
+        h1, h2 { font-family: 'Arial', sans-serif; font-weight: 700; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="font-sans">
     <div class="container mx-auto p-6">
         <h1 class="text-4xl font-bold text-center text-gray-800 mb-8 fade-in">Моё путешествие по книгам</h1>
 
@@ -25,15 +42,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in">
                 <h2 class="text-xl font-semibold text-gray-700">Всего книг</h2>
-                <p id="total-books" class="text-3xl font-bold text-blue-600">-</p>
+                <p id="total-books" class="text-3xl font-bold text-indigo-600">-</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in">
                 <h2 class="text-xl font-semibold text-gray-700">Всего страниц</h2>
-                <p id="total-pages" class="text-3xl font-bold text-blue-600">-</p>
+                <p id="total-pages" class="text-3xl font-bold text-indigo-600">-</p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in">
                 <h2 class="text-xl font-semibold text-gray-700">Среднее страниц в книге</h2>
-                <p id="avg-pages" class="text-3xl font-bold text-blue-600">-</p>
+                <p id="avg-pages" class="text-3xl font-bold text-indigo-600">-</p>
             </div>
         </div>
 
@@ -49,9 +66,24 @@
             <ul id="series-list" class="list-disc pl-6 text-gray-600"></ul>
         </div>
 
-        <!-- Book List -->
+        <!-- Book List with Filters -->
         <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
             <h2 class="text-2xl font-semibold text-gray-700 mb-4">Мои книги</h2>
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <select id="series-filter" class="btn">
+                    <option value="">Все серии</option>
+                </select>
+                <select id="sort-by" class="btn">
+                    <option value="title-asc">Название (А-Я)</option>
+                    <option value="title-desc">Название (Я-А)</option>
+                    <option value="pages-asc">Страниц (возр.)</option>
+                    <option value="pages-desc">Страниц (убыв.)</option>
+                    <option value="date-asc">Дата (старая-новая)</option>
+                    <option value="date-desc">Дата (новая-старая)</option>
+                    <option value="rating-asc">Оценка (низкая-высокая)</option>
+                    <option value="rating-desc">Оценка (высокая-низкая)</option>
+                </select>
+            </div>
             <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
     </div>
@@ -91,9 +123,34 @@
         class BookCollection {
             constructor(books) {
                 this.models = books.map(book => new Book(book));
+                this.allBooks = [...this.models]; // Store original list
+            }
+            filterBySeries(series) {
+                this.models = series ? 
+                    this.allBooks.filter(book => book.Series === series) : 
+                    [...this.allBooks];
+                return this;
+            }
+            sortBy(field) {
+                const [key, direction] = field.split('-');
+                this.models.sort((a, b) => {
+                    let valA = a[key === 'date' ? 'Date Read' : key === 'pages' ? 'Number of Pages' : key === 'rating' ? 'My Rating' : 'Title'];
+                    let valB = b[key === 'date' ? 'Date Read' : key === 'pages' ? 'Number of Pages' : key === 'rating' ? 'My Rating' : 'Title'];
+                    if (key === 'date') {
+                        valA = valA || '9999-12-31'; // Push null dates to end
+                        valB = valB || '9999-12-31';
+                    }
+                    if (direction === 'asc') {
+                        return valA < valB ? -1 : valA > valB ? 1 : 0;
+                    } else {
+                        return valA > valB ? -1 : valA < valB ? 1 : 0;
+                    }
+                });
+                return this;
             }
             render(containerId) {
                 const container = document.getElementById(containerId);
+                container.innerHTML = ''; // Clear previous content
                 this.models.forEach(book => container.appendChild(book.render()));
             }
         }
@@ -118,9 +175,26 @@
                     seriesList.appendChild(li);
                 }
 
-                // Book List with Collection
+                // Populate Series Filter
+                const seriesFilter = document.getElementById('series-filter');
+                Object.keys(data.series_counts).forEach(series => {
+                    const option = document.createElement('option');
+                    option.value = series;
+                    option.textContent = series;
+                    seriesFilter.appendChild(option);
+                });
+
+                // Book Collection
                 const books = new BookCollection(data.book_list);
                 books.render('book-list');
+
+                // Filter and Sort Event Listeners
+                seriesFilter.addEventListener('change', () => {
+                    books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
+                });
+                document.getElementById('sort-by').addEventListener('change', () => {
+                    books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
+                });
 
                 // ApexCharts Timeline
                 const options = {
