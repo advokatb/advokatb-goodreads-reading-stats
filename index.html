@@ -31,6 +31,8 @@
             border-radius: 8px; 
         }
         .btn:hover { background: linear-gradient(to right, #3b82f6, #9333ea); }
+        select.btn { color: #ffffff; background: linear-gradient(to right, #4f46e5, #7c3aed); }
+        select.btn option { color: #000000; background: #ffffff; }
         h1, h2 { font-family: 'Arial', sans-serif; font-weight: 700; }
     </style>
 </head>
@@ -96,7 +98,7 @@
             }
             getCoverUrl() {
                 return this.ISBN && this.ISBN !== '' ? 
-                    `https://covers.openlibrary.org/b/isbn/${this.ISBN}-M.jpg` : 
+                    `https://books.google.com/books/content?id=${this.ISBN}&printsec=frontcover&img=1&zoom=1&source=gbs_api` : 
                     'https://placehold.co/100x150?text=Нет+обложки';
             }
             render() {
@@ -123,7 +125,7 @@
         class BookCollection {
             constructor(books) {
                 this.models = books.map(book => new Book(book));
-                this.allBooks = [...this.models]; // Store original list
+                this.allBooks = [...this.models];
             }
             filterBySeries(series) {
                 this.models = series ? 
@@ -137,7 +139,7 @@
                     let valA = a[key === 'date' ? 'Date Read' : key === 'pages' ? 'Number of Pages' : key === 'rating' ? 'My Rating' : 'Title'];
                     let valB = b[key === 'date' ? 'Date Read' : key === 'pages' ? 'Number of Pages' : key === 'rating' ? 'My Rating' : 'Title'];
                     if (key === 'date') {
-                        valA = valA || '9999-12-31'; // Push null dates to end
+                        valA = valA || '9999-12-31';
                         valB = valB || '9999-12-31';
                     }
                     if (direction === 'asc') {
@@ -148,9 +150,21 @@
                 });
                 return this;
             }
+            getSeriesWithAuthors() {
+                const seriesAuthors = {};
+                this.allBooks.forEach(book => {
+                    if (book.Series) {
+                        if (!seriesAuthors[book.Series]) {
+                            seriesAuthors[book.Series] = new Set();
+                        }
+                        seriesAuthors[book.Series].add(book.Author);
+                    }
+                });
+                return seriesAuthors;
+            }
             render(containerId) {
                 const container = document.getElementById(containerId);
-                container.innerHTML = ''; // Clear previous content
+                container.innerHTML = '';
                 this.models.forEach(book => container.appendChild(book.render()));
             }
         }
@@ -167,11 +181,14 @@
                 document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
                 document.getElementById('avg-pages').textContent = data.avg_pages;
 
-                // Series List
+                // Series List with Authors
+                const books = new BookCollection(data.book_list);
+                const seriesAuthors = books.getSeriesWithAuthors();
                 const seriesList = document.getElementById('series-list');
                 for (const [series, count] of Object.entries(data.series_counts)) {
+                    const authors = Array.from(seriesAuthors[series] || []).join(', ');
                     const li = document.createElement('li');
-                    li.textContent = `${series}: ${count} книг${count > 1 ? 'и' : 'а'}`;
+                    li.textContent = `${series}: ${count} книг${count > 1 ? 'и' : 'а'} (${authors})`;
                     seriesList.appendChild(li);
                 }
 
@@ -184,8 +201,7 @@
                     seriesFilter.appendChild(option);
                 });
 
-                // Book Collection
-                const books = new BookCollection(data.book_list);
+                // Render Books
                 books.render('book-list');
 
                 // Filter and Sort Event Listeners
