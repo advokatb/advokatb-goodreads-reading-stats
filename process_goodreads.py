@@ -30,9 +30,10 @@ df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
 
-# Filter read books
+# Filter read and currently-reading books
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
-logging.info(f"Filtered {len(books_read)} read books")
+books_current = df[df['Exclusive Shelf'] == 'currently-reading'].copy()
+logging.info(f"Filtered {len(books_read)} read books, {len(books_current)} currently-reading books")
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
     if title in CORRECT_IDS:
@@ -124,34 +125,37 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     logging.info(f"No cover found for {title}")
     return None
 
-# Apply cover URL fetch and calculate days spent
+# Process read books
 books_read.loc[:, 'Cover URL'] = books_read.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
 books_read.loc[:, 'Days Spent'] = (books_read['Date Read'] - books_read['Date Added']).dt.days
 
+# Process currently-reading books
+books_current.loc[:, 'Cover URL'] = books_current.apply(
+    lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
+    axis=1
+)
+
 total_books = len(books_read)
 total_pages = books_read['Number of Pages'].sum()
 avg_pages = total_books > 0 and total_pages / total_books or 0
 avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
+books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 
-# Log available columns for debugging
-logging.info(f"Columns in books_read: {list(books_read.columns)}")
-
-book_list = books_read[[
+# Prepare book lists
+columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
     'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL'
-]].copy()
-
-# Add 'Book Id' if it exists, otherwise use a placeholder
+]
 if 'Book Id' in books_read.columns:
-    book_list['Book Id'] = books_read['Book Id']
-else:
-    book_list['Book Id'] = None
-    logging.warning("'Book Id' column not found in CSV")
+    columns.append('Book Id')
+if 'Author Id' in books_read.columns:
+    columns.append('Author Id')
 
+book_list = books_read[columns].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Date Added'] = book_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
@@ -160,20 +164,41 @@ book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
 book_list['Days Spent'] = book_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
-book_list['Book Id'] = book_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+if 'Book Id' in book_list.columns:
+    book_list['Book Id'] = book_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+if 'Author Id' in book_list.columns:
+    book_list['Author Id'] = book_list['Author Id'].apply(lambda x: str(x) if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
+
+current_list = books_current[columns].copy()
+current_list['Date Read'] = current_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
+current_list['Date Added'] = current_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
+current_list['Series'] = current_list['Series'].apply(lambda x: x if pd.notna(x) else None)
+current_list['Bookshelves'] = current_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
+current_list['ISBN'] = current_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
+current_list['ISBN13'] = current_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
+current_list['Cover URL'] = current_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
+current_list['Days Spent'] = current_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
+if 'Book Id' in current_list.columns:
+    current_list['Book Id'] = current_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+if 'Author Id' in current_list.columns:
+    current_list['Author Id'] = current_list['Author Id'].apply(lambda x: str(x) if pd.notna(x) else None)
+current_list = current_list.to_dict(orient='records')
 
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
 timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
 timeline = timeline.dropna(subset=['Date'])
 timeline_data = timeline[['Date', 'Books']].to_dict(orient='records')
+
 stats = {
     'total_books': int(total_books),
     'total_pages': int(total_pages),
     'avg_pages': round(float(avg_pages), 1),
     'avg_rating': round(float(avg_rating), 2),
     'series_counts': {k: int(v) for k, v in series_counts.items()},
+    'books_2025': int(books_2025),
     'book_list': book_list,
+    'current_list': current_list,
     'timeline': timeline_data
 }
 with open('reading_stats.json', 'w') as f:
