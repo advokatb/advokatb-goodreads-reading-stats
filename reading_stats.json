@@ -2,7 +2,7 @@
   "total_books": 13,
   "total_pages": 5422,
   "avg_pages": 417.1,
-  "avg_rating": 4.67,
+  "avg_rating": 4.69,
   "series_counts": {
     "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435": 1,
     "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438": 2,
@@ -10,6 +10,23 @@
   },
   "books_2025": 9,
   "book_list": [
+    {
+      "Title": "\u0414\u0436\u0435\u0439\u043d \u042d\u0439\u0440",
+      "Author": "Charlotte Bront\u00eb",
+      "Additional Authors": "\u0418\u0440\u0438\u043d\u0430 \u0413\u0443\u0440\u043e\u0432\u0430",
+      "Number of Pages": 666,
+      "Estimated Word Count": 183150,
+      "Date Read": "2024-12-07",
+      "Date Added": "2024-12-17",
+      "Days Spent": -10,
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "ISBN": "5448470971",
+      "ISBN13": "9785448470974",
+      "Cover URL": "http://books.google.com/books/content?id=fsoOzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Book Id": "40536979"
+    },
     {
       "Title": "\u0412\u0442\u043e\u0440\u0430\u044f \u0441\u0435\u0441\u0442\u0440\u0430",
       "Author": "Chan Ho-Kei",
@@ -19,7 +36,7 @@
       "Date Read": "2025-02-19",
       "Date Added": "2025-02-12",
       "Days Spent": 7,
-      "My Rating": 0,
+      "My Rating": 5,
       "Series": null,
       "Bookshelves": "",
       "ISBN": "5386145401",
@@ -213,23 +230,6 @@
       "ISBN13": "9785171389888",
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "58688819"
-    },
-    {
-      "Title": "\u0414\u0436\u0435\u0439\u043d \u042d\u0439\u0440",
-      "Author": "Charlotte Bront\u00eb",
-      "Additional Authors": "\u0418\u0440\u0438\u043d\u0430 \u0413\u0443\u0440\u043e\u0432\u0430",
-      "Number of Pages": 666,
-      "Estimated Word Count": 183150,
-      "Date Read": "2024-12-17",
-      "Date Added": "2024-12-17",
-      "Days Spent": 0,
-      "My Rating": 5,
-      "Series": null,
-      "Bookshelves": "",
-      "ISBN": "5448470971",
-      "ISBN13": "9785448470974",
-      "Cover URL": "http://books.google.com/books/content?id=fsoOzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "Book Id": "40536979"
     }
   ],
   "current_list": [
