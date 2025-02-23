@@ -97,7 +97,9 @@
             Object.assign(this, attributes);
         }
         getCoverUrl() {
-            return this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
+            const url = this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
+            console.log(`Cover URL for ${this.Title}: ${url}`);
+            return url;
         }
         render() {
             const div = document.createElement('div');
