@@ -21,17 +21,19 @@ total_words = df['Estimated Word Count'].sum()
 books_read = df[df['Bookshelves'].str.contains('read', na=False)]
 total_read = len(books_read)
 avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean()
-avg_rating = 0 if pd.isna(avg_rating) else avg_rating  # Replace NaN with 0
+avg_rating = 0 if pd.isna(avg_rating) else avg_rating
+
 series_counts = df[df['Series'].notna()].groupby('Series').size().to_dict()
 
-# Prepare book list, converting Timestamp to string
+# Prepare book list, ensuring Date Read is string or null
 book_list = df[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves']].copy()
-book_list['Date Read'] = book_list['Date Read'].dt.strftime('%Y-%m-%d').replace('NaT', None)
+book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
 
-# Reading timeline
+# Reading timeline, ensuring no NaN in dates
 timeline = books_read.groupby(df['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
-timeline['Date'] = timeline['Date Read'].dt.strftime('%Y-%m')
+timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
+timeline = timeline.dropna(subset=['Date'])  # Drop any rows with invalid dates
 timeline_data = timeline[['Date', 'Books']].to_dict(orient='records')
 
 # Save to JSON
