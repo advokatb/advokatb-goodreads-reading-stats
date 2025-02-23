@@ -3,15 +3,14 @@ import json
 import requests
 import logging
 
-# Manual English title mappings for Lukyanenko books
-ENGLISH_TITLES = {
-    "Предел": "Limit",
-    "Порог": "Threshold",
-    "Семь дней до Мегиддо": "Seven Days to Megiddo"
+# Manual ISBN and ID corrections
+CORRECT_ISBNS = {
+    "Предел": "9785171377915",  # Correct ISBN for Предел
+    "Порог": "9785041719814"   # Alternative ISBN for Порог
 }
-
-def transliterate(title):
-    return ENGLISH_TITLES.get(title, title.lower().replace(' ', '+'))
+CORRECT_IDS = {
+    "Семь дней до Мегиддо": "http://books.google.com/books/content?id=???&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"  # Placeholder, needs ID
+}
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 df = pd.read_csv('goodreads_library_export.csv')
@@ -28,6 +27,30 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
+    # Check manual corrections first
+    corrected_isbn = CORRECT_ISBNS.get(title)
+    if corrected_isbn:
+        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{corrected_isbn}"
+        logging.info(f"Trying corrected ISBN for {title}: {url}")
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('totalItems', 0) > 0:
+                    book = data['items'][0]['volumeInfo']
+                    cover = book.get('imageLinks', {}).get('thumbnail', None)
+                    if cover:
+                        logging.info(f"Found cover for corrected ISBN {corrected_isbn}: {cover}")
+                        return cover
+                    else:
+                        logging.info(f"No thumbnail for corrected ISBN {corrected_isbn}: {json.dumps(book.get('imageLinks', {}))}")
+        except Exception as e:
+            logging.error(f"Error with corrected ISBN {corrected_isbn}: {e}")
+
+    # Manual ID for books without ISBN covers
+    if title in CORRECT_IDS:
+        return CORRECT_IDS[title]
+
     for identifier in [isbn13, isbn]:
         if not identifier or identifier == '':
             continue
@@ -105,29 +128,6 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                             if cover:
                                 logging.info(f"Found cover for {title} (broad): {cover}")
                                 return cover
-                    # Try transliterated title with English author
-                    title_trans = transliterate(title.split(':')[0].strip())
-                    author_clean = author.split(',')[0].strip().replace(' ', '+')
-                    url_trans = f"https://www.googleapis.com/books/v1/volumes?q={title_trans}+inauthor:{author_clean}"
-                    logging.info(f"Trying transliterated title: {url_trans}")
-                    try:
-                        response_trans = requests.get(url_trans)
-                        if response_trans.status_code == 200:
-                            data_trans = response_trans.json()
-                            if data_trans.get('totalItems', 0) > 0:
-                                book_trans = data_trans['items'][0]['volumeInfo']
-                                cover = book_trans.get('imageLinks', {}).get('thumbnail', None)
-                                if cover:
-                                    logging.info(f"Found cover for {title} (transliterated): {cover}")
-                                    return cover
-                                else:
-                                    logging.info(f"No thumbnail for {title} (transliterated) by {author}: {json.dumps(book_trans.get('imageLinks', {}))}")
-                            else:
-                                logging.info(f"No results for {title} (transliterated) by {author}")
-                        else:
-                            logging.info(f"Failed transliterated request: {response_trans.status_code}")
-                    except Exception as e:
-                        logging.error(f"Error with transliterated title {title_trans}: {e}")
                     logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
                     logging.info(f"Failed Russian author request: {response.status_code}")
