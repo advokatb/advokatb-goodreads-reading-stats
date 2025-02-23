@@ -11,11 +11,17 @@ CORRECT_IDS = {
 }
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
-df = pd.read_csv('goodreads_library_export.csv')
+try:
+    df = pd.read_csv('goodreads_library_export.csv')
+    logging.info(f"CSV loaded with {len(df)} rows")
+except Exception as e:
+    logging.error(f"Failed to load CSV: {e}")
+    raise
+
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
-df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')  # Add Date Added
+df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False)
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -23,7 +29,10 @@ df['Bookshelves'] = df['Bookshelves'].fillna('')
 df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
+
+# Filter read books
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
+logging.info(f"Filtered {len(books_read)} read books")
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
     if title in CORRECT_IDS:
@@ -127,10 +136,22 @@ total_pages = books_read['Number of Pages'].sum()
 avg_pages = total_books > 0 and total_pages / total_books or 0
 avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
+
+# Log available columns for debugging
+logging.info(f"Columns in books_read: {list(books_read.columns)}")
+
 book_list = books_read[[
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
-    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL', 'Book Id'
+    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL'
 ]].copy()
+
+# Add 'Book Id' if it exists, otherwise use a placeholder
+if 'Book Id' in books_read.columns:
+    book_list['Book Id'] = books_read['Book Id']
+else:
+    book_list['Book Id'] = None
+    logging.warning("'Book Id' column not found in CSV")
+
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Date Added'] = book_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
@@ -141,6 +162,7 @@ book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x)
 book_list['Days Spent'] = book_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
 book_list['Book Id'] = book_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
+
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
 timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
 timeline = timeline.dropna(subset=['Date'])
@@ -157,4 +179,4 @@ stats = {
 with open('reading_stats.json', 'w') as f:
     json.dump(stats, f, indent=2)
 
-print("Stats generated and saved to 'reading_stats.json'")
+logging.info("Stats generated and saved to 'reading_stats.json'")

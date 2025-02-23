@@ -91,79 +91,74 @@
     </div>
 
     <script>
-        // Bookshelf.js-like Model
-		class Book {
-			class Book {
-        constructor(attributes) {
-            Object.assign(this, attributes);
-        }
-        getCoverUrl() {
-            const url = this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
-            console.log(`Cover URL for ${this.Title}: ${url}`);
-            return url.startsWith('http://books.google.com') ? url.replace('http://', 'https://') : url;
-        }
-        getRussianAuthor() {
-            return this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim() || this.Author;
-        }
-        formatDateRead() {
-            if (!this['Date Read']) return '';
-            const [year, month, day] = this['Date Read'].split('-');
-            const days = this['Days Spent'];
-            const daysText = days === 1 ? '1 день' : `${days} дней`;
-            return `Прочитано: ${day}.${month}.${year} (${daysText})`;
-        }
-        getLitresBookLink() {
-            // Placeholder - ideally fetch from an API or CSV
-            const author_slug = this.getRussianAuthor().toLowerCase().replace(' ', '-');
-            const title_slug = this.Title.toLowerCase().replace(' ', '-');
-            return `https://www.litres.ru/${author_slug}/${title_slug}/`;
-        }
-        getGoodreadsBookLink() {
-            return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
-        }
-        getLitresAuthorLink() {
-            const author_slug = this.getRussianAuthor().toLowerCase().replace(' ', '-');
-            return `https://www.litres.ru/${author_slug}/`;
-        }
-        getGoodreadsAuthorLink() {
-            // Placeholder - needs Author Id from CSV or API
-            return '#'; // Replace with actual logic if Author Id available
-        }
-        render() {
-            const div = document.createElement('div');
-            div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
-            const imgSrc = this.getCoverUrl();
-            div.innerHTML = `
-                <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
-                     onload="console.log('Loaded cover for ${this.Title}')"
-                     onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
-                    <a href="${this.getLitresBookLink()}" target="_blank" class="ml-2">
-                        <img src="https://www.litres.ru/favicon.ico" alt="Litres" class="inline w-4 h-4">
-                    </a>
-                    <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
-                        <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
-                    </a>
-                    <p class="text-gray-600">Автор: ${this.getRussianAuthor()}
-                        <a href="${this.getLitresAuthorLink()}" target="_blank" class="ml-2">
+        class Book {
+            constructor(attributes) {
+                Object.assign(this, attributes);
+            }
+            getCoverUrl() {
+                const url = this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
+                console.log(`Cover URL for ${this.Title}: ${url}`);
+                return url.startsWith('http://books.google.com') ? url.replace('http://', 'https://') : url;
+            }
+            getRussianAuthor() {
+                return this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim() || this.Author;
+            }
+            formatDateRead() {
+                if (!this['Date Read']) return '';
+                const [year, month, day] = this['Date Read'].split('-');
+                const days = this['Days Spent'];
+                const daysText = days === 1 ? '1 день' : `${days} дней`;
+                return `Прочитано: ${day}.${month}.${year} (${daysText})`;
+            }
+            getLitresBookLink() {
+                const author_slug = this.getRussianAuthor().toLowerCase().replace(' ', '-');
+                const title_slug = this.Title.toLowerCase().replace(' ', '-');
+                return `https://www.litres.ru/${author_slug}/${title_slug}/`;
+            }
+            getGoodreadsBookLink() {
+                return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
+            }
+            getLitresAuthorLink() {
+                const author_slug = this.getRussianAuthor().toLowerCase().replace(' ', '-');
+                return `https://www.litres.ru/${author_slug}/`;
+            }
+            getGoodreadsAuthorLink() {
+                return '#'; // Placeholder - needs Author Id
+            }
+            render() {
+                const div = document.createElement('div');
+                div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
+                const imgSrc = this.getCoverUrl();
+                div.innerHTML = `
+                    <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
+                         onload="console.log('Loaded cover for ${this.Title}')"
+                         onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
+                        <a href="${this.getLitresBookLink()}" target="_blank" class="ml-2">
                             <img src="https://www.litres.ru/favicon.ico" alt="Litres" class="inline w-4 h-4">
                         </a>
-                        <a href="${this.getGoodreadsAuthorLink()}" target="_blank" class="ml-2">
+                        <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
                             <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
                         </a>
-                    </p>
-                    <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
-                    ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
-                    ${this['Date Read'] ? `<p class="text-gray-500">${this.formatDateRead()}</p>` : ''}
-                    ${this['My Rating'] > 0 ? `<p class="text-yellow-500">Оценка: ${'★'.repeat(this['My Rating'])}</p>` : ''}
-                </div>
-            `;
-            return div;
+                        <p class="text-gray-600">Автор: ${this.getRussianAuthor()}
+                            <a href="${this.getLitresAuthorLink()}" target="_blank" class="ml-2">
+                                <img src="https://www.litres.ru/favicon.ico" alt="Litres" class="inline w-4 h-4">
+                            </a>
+                            <a href="${this.getGoodreadsAuthorLink()}" target="_blank" class="ml-2">
+                                <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
+                            </a>
+                        </p>
+                        <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
+                        ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
+                        ${this['Date Read'] ? `<p class="text-gray-500">${this.formatDateRead()}</p>` : ''}
+                        ${this['My Rating'] > 0 ? `<p class="text-yellow-500">Оценка: ${'★'.repeat(this['My Rating'])}</p>` : ''}
+                    </div>
+                `;
+                return div;
+            }
         }
-    }
 
-        // Bookshelf.js-like Collection
         class BookCollection {
             constructor(books) {
                 this.models = books.map(book => new Book(book));
@@ -199,7 +194,7 @@
                         if (!seriesAuthors[book.Series]) {
                             seriesAuthors[book.Series] = new Set();
                         }
-                        seriesAuthors[book.Series].add(book.Author);
+                        seriesAuthors[book.Series].add(book.getRussianAuthor());
                     }
                 });
                 return seriesAuthors;
@@ -211,19 +206,16 @@
             }
         }
 
-        // Fetch and Process Data
         fetch('reading_stats.json')
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then(data => {
-                // Summary Stats
                 document.getElementById('total-books').textContent = data.total_books;
                 document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
                 document.getElementById('avg-pages').textContent = data.avg_pages;
 
-                // Series List with Authors
                 const books = new BookCollection(data.book_list);
                 const seriesAuthors = books.getSeriesWithAuthors();
                 const seriesList = document.getElementById('series-list');
@@ -234,7 +226,6 @@
                     seriesList.appendChild(li);
                 }
 
-                // Populate Series Filter
                 const seriesFilter = document.getElementById('series-filter');
                 Object.keys(data.series_counts).forEach(series => {
                     const option = document.createElement('option');
@@ -243,10 +234,8 @@
                     seriesFilter.appendChild(option);
                 });
 
-                // Render Books
                 books.render('book-list');
 
-                // Filter and Sort Event Listeners
                 seriesFilter.addEventListener('change', () => {
                     books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
                 });
@@ -254,7 +243,6 @@
                     books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
                 });
 
-                // ApexCharts Timeline
                 const options = {
                     series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
                     chart: { type: 'bar', height: 350 },
