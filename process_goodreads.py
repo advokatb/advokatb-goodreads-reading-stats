@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import requests
 
 # Load CSV
 df = pd.read_csv('goodreads_library_export.csv')
@@ -18,6 +19,25 @@ df['ISBN13'] = df['ISBN13'].str.strip('="')
 # Filter for 'read' books
 books_read = df[df['Exclusive Shelf'] == 'read']
 
+# Fetch cover URLs from Google Books API
+def get_cover_url(isbn, isbn13):
+    for identifier in [isbn13, isbn]:  # Try ISBN13 first, then ISBN
+        if not identifier or identifier == '':
+            continue
+        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{identifier}"
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('totalItems', 0) > 0:
+                    book = data['items'][0]['volumeInfo']
+                    return book.get('imageLinks', {}).get('thumbnail')
+        except:
+            pass
+    return None
+
+books_read['Cover URL'] = books_read.apply(lambda row: get_cover_url(row['ISBN'], row['ISBN13']), axis=1)
+
 # Calculate stats
 total_books = len(books_read)
 total_pages = books_read['Number of Pages'].sum()
@@ -26,13 +46,14 @@ avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean()
 avg_rating = 0 if pd.isna(avg_rating) else avg_rating
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 
-# Prepare book list with both ISBNs
-book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13']].copy()
+# Prepare book list with cover URLs
+book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL']].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Bookshelves'] = book_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
+book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
 
 # Reading timeline

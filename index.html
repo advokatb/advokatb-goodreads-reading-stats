@@ -97,14 +97,8 @@
             Object.assign(this, attributes);
         }
         getCoverUrl() {
-    const key = '3faf620736b205aacbea21512b17d5af';
-    if (this.ISBN13 && this.ISBN13 !== '') {
-        return `https://www.librarything.com/devkey/${key}/medium/isbn/${this.ISBN13}`;
-    } else if (this.ISBN && this.ISBN !== '') {
-        return `https://www.librarything.com/devkey/${key}/medium/isbn/${this.ISBN}`;
-    }
-    return 'https://placehold.co/100x150?text=Нет+обложки';
-}
+            return this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
+        }
         render() {
             const div = document.createElement('div');
             div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
