@@ -1,7 +1,7 @@
 name: Update Reading Stats
 on:
   push:
-    paths: ['goodreads_library_export.csv']
+    branches: [main]  # Or your default branch
 jobs:
   process:
     runs-on: ubuntu-latest
