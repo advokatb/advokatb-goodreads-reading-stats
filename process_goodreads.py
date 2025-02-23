@@ -6,7 +6,7 @@ import logging
 # Corrected transliteration table (33 Russian chars -> 33 English chars)
 TRANS_TABLE = str.maketrans(
     "абвгдеёжзийклмнопрстуфхцчшщъыьэюя",
-    "abvgdeezhziyklmnoprstufkhcchsyeuya"
+    "abvgdezhziyklmnoprstufkhcchsyeuya"
 )
 
 def transliterate(text):
