@@ -1,7 +1,12 @@
 name: Update Reading Stats
+# on:
+#   push:
+#     paths: ['goodreads_library_export.csv']
 on:
   push:
-    branches: [main]  # Or your default branch
+    branches: [main]
+permissions:
+  contents: write  # Grant write access to repository contents    
 jobs:
   process:
     runs-on: ubuntu-latest
