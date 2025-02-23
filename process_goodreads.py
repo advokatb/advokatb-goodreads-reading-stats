@@ -15,12 +15,13 @@ df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip
 df['Bookshelves'] = df['Bookshelves'].fillna('')
 df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
+df['Additional Authors'] = df['Additional Authors'].fillna('')
 
 # Filter for 'read' books
 books_read = df[df['Exclusive Shelf'] == 'read']
 
 # Fetch cover URLs from Google Books API
-def get_cover_url(isbn, isbn13, title, author):
+def get_cover_url(isbn, isbn13, title, author, additional_authors):
     # Step 1: Try ISBN13 and ISBN
     for identifier in [isbn13, isbn]:
         if not identifier or identifier == '':
@@ -36,11 +37,10 @@ def get_cover_url(isbn, isbn13, title, author):
         except:
             pass
 
-    # Step 2: Fallback to title + author
+    # Step 2: Fallback to title + primary author (English)
     if title and author:
-        # Clean title and author for search (remove special chars, keep main part)
-        title_clean = title.split(':')[0].split('(')[0].strip().replace(' ', '+')
-        author_clean = author.split(',')[0].strip().replace(' ', '+')
+        title_clean = title.split(':')[0].strip().replace(' ', '+')
+        author_clean = author.split(',')[0].strip().replace(' ', '+')  # Use English name
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
         try:
             response = requests.get(url)
@@ -51,12 +51,30 @@ def get_cover_url(isbn, isbn13, title, author):
                     return book.get('imageLinks', {}).get('thumbnail')
         except:
             pass
+
+    # Step 3: Fallback to title + additional authors (Russian)
+    if title and additional_authors:
+        title_clean = title.split(':')[0].strip().replace(' ', '+')
+        # Extract first additional author (e.g., "Сергей Лукьяненко")
+        add_author = additional_authors.split(',')[0].strip()
+        if add_author:
+            add_author_clean = add_author.replace(' ', '+')
+            url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
+            try:
+                response = requests.get(url)
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get('totalItems', 0) > 0:
+                        book = data['items'][0]['volumeInfo']
+                        return book.get('imageLinks', {}).get('thumbnail')
+            except:
+                pass
     
     return None
 
 # Apply cover URL fetch
 books_read['Cover URL'] = books_read.apply(
-    lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author']), 
+    lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
 
