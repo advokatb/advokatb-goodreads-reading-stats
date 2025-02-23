@@ -3,10 +3,10 @@ import json
 import requests
 import logging
 
-# Manual ISBN and ID corrections (using IDs for precision)
+# Manual ID corrections for covers
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-    "Порог": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "Порог": "http://books.google.com/books/content?id=erqYDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "Семь дней до Мегиддо": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
 }
 
@@ -15,6 +15,7 @@ df = pd.read_csv('goodreads_library_export.csv')
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
+df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')  # Add Date Added
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False)
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -25,7 +26,6 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
-    # Check manual ID first and return immediately
     if title in CORRECT_IDS:
         logging.info(f"Using manual ID for {title}: {CORRECT_IDS[title]}")
         return CORRECT_IDS[title]
@@ -95,7 +95,6 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                         if cover:
                             logging.info(f"Found cover for {title} by {add_author}: {cover}")
                             return cover
-                    # Try broad title search
                     url_broad = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}"
                     logging.info(f"Trying broad title: {url_broad}")
                     response_broad = requests.get(url_broad)
@@ -116,23 +115,31 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     logging.info(f"No cover found for {title}")
     return None
 
+# Apply cover URL fetch and calculate days spent
 books_read.loc[:, 'Cover URL'] = books_read.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
+books_read.loc[:, 'Days Spent'] = (books_read['Date Read'] - books_read['Date Added']).dt.days
 
 total_books = len(books_read)
 total_pages = books_read['Number of Pages'].sum()
 avg_pages = total_books > 0 and total_pages / total_books or 0
 avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
-book_list = books_read[['Title', 'Author', 'Number of Pages', 'Estimated Word Count', 'Date Read', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL']].copy()
+book_list = books_read[[
+    'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
+    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'ISBN', 'ISBN13', 'Cover URL', 'Book Id'
+]].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
+book_list['Date Added'] = book_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Bookshelves'] = book_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
+book_list['Days Spent'] = book_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
+book_list['Book Id'] = book_list['Book Id'].apply(lambda x: str(x) if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
 timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
