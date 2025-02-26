@@ -26,6 +26,7 @@
       "ISBN": "",
       "ISBN13": "9785170166282",
       "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "17566513",
       "Days Spent": null
     },
@@ -45,6 +46,7 @@
       "ISBN": "",
       "ISBN13": "9785170835201",
       "Cover URL": "http://books.google.com/books/content?id=YQ6XoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Genres": null,
       "Book Id": "13410173",
       "Days Spent": null
     },
@@ -64,6 +66,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "6967700",
       "Days Spent": null
     },
@@ -83,6 +86,7 @@
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
       "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "7769068",
       "Days Spent": null
     },
@@ -102,6 +106,7 @@
       "ISBN": "",
       "ISBN13": "9785171125844",
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "43195781",
       "Days Spent": null
     },
@@ -121,6 +126,7 @@
       "ISBN": "5170981317",
       "ISBN13": "9785170981311",
       "Cover URL": "http://books.google.com/books/content?id=yhAsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "31327431",
       "Days Spent": null
     },
@@ -140,6 +146,7 @@
       "ISBN": "5353113179",
       "ISBN13": "9785353113171",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg",
+      "Genres": null,
       "Book Id": "223689131",
       "Days Spent": null
     },
@@ -159,6 +166,7 @@
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
       "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "6139677",
       "Days Spent": 5.0
     },
@@ -178,6 +186,7 @@
       "ISBN": "5448470971",
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Genres": null,
       "Book Id": "40536979",
       "Days Spent": 3.0
     },
@@ -197,6 +206,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "220278968",
       "Days Spent": 2.0
     },
@@ -216,6 +226,7 @@
       "ISBN": "5386145401",
       "ISBN13": "9785386145408",
       "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "59222769",
       "Days Spent": 7.0
     },
@@ -235,6 +246,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=inK3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "201229523",
       "Days Spent": 1.0
     },
@@ -254,6 +266,7 @@
       "ISBN": "5171233055",
       "ISBN13": "9785171233051",
       "Cover URL": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "58210523",
       "Days Spent": 4.0
     },
@@ -273,6 +286,7 @@
       "ISBN": "5171163014",
       "ISBN13": "9785171163013",
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "46067196",
       "Days Spent": 9.0
     },
@@ -292,6 +306,7 @@
       "ISBN": "535310899X",
       "ISBN13": "9785353108993",
       "Cover URL": "http://books.google.com/books/content?id=BqkzEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "218689887",
       "Days Spent": 3.0
     },
@@ -311,6 +326,7 @@
       "ISBN": "535310823X",
       "ISBN13": "9785353108238",
       "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "201959407",
       "Days Spent": 2.0
     },
@@ -330,6 +346,7 @@
       "ISBN": "5864717312",
       "ISBN13": "9785864717318",
       "Cover URL": "http://books.google.com/books/content?id=BaQwDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "45238710",
       "Days Spent": 14.0
     },
@@ -349,6 +366,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=l4mREAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "201229151",
       "Days Spent": 5.0
     },
@@ -368,6 +386,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=N99jEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "201276201",
       "Days Spent": 3.0
     },
@@ -387,6 +406,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=e3tSEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "59529747",
       "Days Spent": 5.0
     },
@@ -406,6 +426,7 @@
       "ISBN": "5171389888",
       "ISBN13": "9785171389888",
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": null,
       "Book Id": "58688819",
       "Days Spent": 3.0
     }
