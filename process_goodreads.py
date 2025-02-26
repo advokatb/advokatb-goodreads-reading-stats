@@ -26,7 +26,6 @@ SERIES_MAPPING = {
 
 GENRE_TRANSLATION = {
     "Mystery": "Детектив",
-    # "Fiction": "Художественная литература" excluded
     "Thriller": "Триллер",
     "Crime": "Криминал",
     "Detective": "Детектив",
@@ -41,7 +40,9 @@ GENRE_TRANSLATION = {
     "Dystopia": "Дистопия",
     "Biography": "Биография",
     "Comedy": "Комедия",
-    "Classics": "Классика"
+    "Classics": "Классика",
+    "Magical Realism": "Магический реализм",
+    "Young Adult": "Молодёжная литература"
 }
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
@@ -82,7 +83,6 @@ def fetch_goodreads_genres(book_id):
             if genres_div:
                 genre_buttons = genres_div.find_all('a', class_='Button--tag')
                 genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
-                # Filter out excluded genres and translate
                 filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
                 logging.info(f"Fetched genres for Book ID {book_id}: {translated_genres}")

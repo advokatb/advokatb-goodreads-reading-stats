@@ -39,7 +39,7 @@ class Book {
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
-                <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
+                <h3 class="text-md font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
                 <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
@@ -177,9 +177,9 @@ class BookCollection {
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
-                        <img src="${imgSrc}" alt="${book.Title}" 
+                        <img src="${book.getCoverUrl()}" alt="${book.Title}" 
                              onload="console.log('Loaded cover for ${book.Title}')"
-                             onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
+                             onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
                 rowDiv.appendChild(bookDiv);
@@ -208,7 +208,7 @@ class BookCollection {
                      onload="console.log('Loaded cover for ${book.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
+                    <h3 class="text-md font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
@@ -256,16 +256,16 @@ fetch('reading_stats.json')
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
         const challengeGoal = 50;
-        const booksRead = data.total_books;
+        const booksRead2025 = data.books_2025;  // Use books read in 2025, not total_books
         const startDate = new Date('2025-01-01');
         const endDate = new Date('2025-12-31');
         const today = new Date('2025-02-26');
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
         const daysPassed = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
         const daysLeft = totalDays - daysPassed;
-        const progressPercent = Math.min((booksRead / challengeGoal) * 100, 100).toFixed(0);
+        const progressPercent = Math.min((booksRead2025 / challengeGoal) * 100, 100).toFixed(0);
 
-        document.getElementById('challenge-progress').innerHTML = `<strong>${booksRead} из ${challengeGoal} книг прочитано</strong>`;
+        document.getElementById('challenge-progress').innerHTML = `<strong>${booksRead2025} из ${challengeGoal} книг прочитано</strong>`;
         document.getElementById('challenge-days').textContent = `Осталось ${daysLeft} дней`;
         document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
         document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
