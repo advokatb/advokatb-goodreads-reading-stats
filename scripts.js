@@ -19,7 +19,7 @@ class Book {
         } else {
             daysText = `${days} дней`;
         }
-        return `${day}.${month}.${year} (${daysText})`; // Removed "Прочитано:"
+        return `${day}.${month}.${year} (${daysText})`;
     }
     getGoodreadsBookLink() {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
@@ -119,14 +119,17 @@ class BookCollection {
         return seriesAuthors;
     }
     getLongestBook() {
+        if (!this.allBooks.length) return { Title: 'Нет данных', 'Number of Pages': 0 };
         return this.allBooks.reduce((max, book) => 
             book['Number of Pages'] > max['Number of Pages'] ? book : max, this.allBooks[0]);
     }
     getShortestBook() {
+        if (!this.allBooks.length) return { Title: 'Нет данных', 'Number of Pages': 0 };
         return this.allBooks.reduce((min, book) => 
             book['Number of Pages'] < min['Number of Pages'] ? book : min, this.allBooks[0]);
     }
     getMostProlificAuthor() {
+        if (!this.allBooks.length) return ['Нет данных', 0];
         const authorCounts = {};
         this.allBooks.forEach(book => {
             const displayAuthor = book.getDisplayAuthor();
@@ -136,6 +139,7 @@ class BookCollection {
             count > max[1] ? [author, count] : max, ['', 0]);
     }
     getLastReadBook() {
+        if (!this.allBooks.length) return null;
         return this.allBooks.reduce((latest, book) => 
             new Date(book['Date Read']) > new Date(latest['Date Read']) ? book : latest, this.allBooks[0]);
     }
