@@ -166,8 +166,8 @@ class BookCollection {
             books.forEach((book, index) => {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'series-book';
-                bookDiv.style.left = `${index * 60}px`; // Overlap with 60px offset
-                bookDiv.style.zIndex = `${books.length - index}`; // Stack order
+                bookDiv.style.left = `${index * 60}px`;
+                bookDiv.style.zIndex = `${books.length - index}`;
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
@@ -217,6 +217,22 @@ fetch('reading_stats.json')
         document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
+
+        // 2025 Reading Challenge
+        const challengeGoal = 50;
+        const booksRead = data.total_books; // Currently 13
+        const startDate = new Date('2025-01-01');
+        const endDate = new Date('2025-12-31');
+        const today = new Date('2025-02-26'); // Current date
+        const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+        const daysPassed = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
+        const daysLeft = totalDays - daysPassed;
+        const progressPercent = Math.min((booksRead / challengeGoal) * 100, 100).toFixed(0);
+
+        document.getElementById('challenge-progress').innerHTML = `<strong>${booksRead} of ${challengeGoal} books read</strong>`;
+        document.getElementById('challenge-days').textContent = `${daysLeft} days left`;
+        document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
+        document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
 
         books.renderSeriesShelf('series-shelf');
 
