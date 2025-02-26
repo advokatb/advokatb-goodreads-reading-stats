@@ -19,7 +19,7 @@ class Book {
         } else {
             daysText = `${days} дней`;
         }
-        return `Прочитано: ${day}.${month}.${year} (${daysText})`;
+        return `${day}.${month}.${year} (${daysText})`; // Removed "Прочитано:"
     }
     getGoodreadsBookLink() {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
@@ -192,8 +192,10 @@ class BookCollection {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
         this.models.sort((a, b) => {
-            const posA = a['Bookshelves with positions'] ? parseInt(a['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
-            const posB = b['Bookshelves with positions'] ? parseInt(b['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
+            const posA = a['Bookshelves with positions'] && a['Bookshelves with positions'].includes('to-read') ? 
+                parseInt(a['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
+            const posB = b['Bookshelves with positions'] && b['Bookshelves with positions'].includes('to-read') ? 
+                parseInt(b['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
             return posA - posB;
         });
         this.models.forEach(book => {
@@ -229,8 +231,9 @@ fetch('reading_stats.json')
         document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
         document.getElementById('books-2025').textContent = data.books_2025;
 
-        const books = new BookCollection(data.book_list);
-        const currentBooks = new BookCollection(data.current_list);
+        const allBooks = new BookCollection(data.book_list);
+        const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
+        const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
         const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
         
         if (currentBooks.models.length > 0) {
@@ -249,16 +252,15 @@ fetch('reading_stats.json')
         const longestBook = books.getLongestBook();
         const shortestBook = books.getShortestBook();
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
-        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`; 
+        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
-        // 2025 Reading Challenge (Translated to Russian)
         const challengeGoal = 50;
-        const booksRead = data.total_books; // Currently 13
+        const booksRead = data.total_books;
         const startDate = new Date('2025-01-01');
         const endDate = new Date('2025-12-31');
-        const today = new Date('2025-02-26'); // Current date
+        const today = new Date('2025-02-26');
         const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
         const daysPassed = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24));
         const daysLeft = totalDays - daysPassed;

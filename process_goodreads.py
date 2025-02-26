@@ -3,7 +3,6 @@ import json
 import requests
 import logging
 
-# Updated manual ID corrections for covers
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "Порог": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
@@ -11,15 +10,14 @@ CORRECT_IDS = {
     "Ресторан 06:06:06": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg"
 }
 
-# Manual series mapping for Sergei Lukyanenko books
 SERIES_MAPPING = {
-    "Семь дней до Мегиддо": "Изменённые",
-    "Три дня Индиго": "Изменённые",
-    "Месяц за Рубиконом": "Изменённые",
-    "Лето волонтёра": "Изменённые",
+    "Семь дней до Мегиддо": "Соглашение",
+    "Три дня Индиго": "Соглашение",
+    "Месяц за Рубиконом": "Соглашение",
+    "Лето волонтёра": "Соглашение",
     "Прыжок": "Соглашение",
-    "Порог": "Соглашение",
-    "Предел": "Соглашение"
+    "Порог": "Порог",
+    "Предел": "Порог"
 }
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -38,6 +36,8 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False)
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
+df['Bookshelves with positions'] = df['Bookshelves with positions'].fillna('')
+df['Exclusive Shelf'] = df['Exclusive Shelf'].fillna('')
 df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
@@ -45,7 +45,7 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
 
-# Filter read and currently-reading books
+# Filter read and currently-reading books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
 books_current = df[df['Exclusive Shelf'] == 'currently-reading'].copy()
 logging.info(f"Filtered {len(books_read)} read books, {len(books_current)} currently-reading books")
@@ -140,18 +140,12 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     logging.info(f"No cover found for {title}")
     return None
 
-# Process read books
-books_read.loc[:, 'Cover URL'] = books_read.apply(
+# Process all books for covers
+df.loc[:, 'Cover URL'] = df.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
 books_read.loc[:, 'Days Spent'] = (books_read['Date Read'] - books_read['Date Added']).dt.days
-
-# Process currently-reading books (no Days Spent)
-books_current.loc[:, 'Cover URL'] = books_current.apply(
-    lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
-    axis=1
-)
 
 total_books = len(books_read)
 total_pages = books_read['Number of Pages'].sum()
@@ -160,30 +154,26 @@ avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 
-# Define columns for read and future reads
-read_columns = [
+# Define columns for all books
+columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
-    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 'ISBN', 'ISBN13', 'Cover URL'
-]
-current_columns = [
-    'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Added', 
-    'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 'ISBN', 'ISBN13', 'Cover URL'
+    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
+    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL'
 ]
 
 # Add optional columns if they exist
 for col in ['Book Id', 'Author Id']:
-    if col in books_read.columns:
-        read_columns.append(col)
-    if col in books_current.columns:
-        current_columns.append(col)
+    if col in df.columns:
+        columns.append(col)
 
-# Prepare book lists (unchanged except ensuring all books are processed)
-book_list = books_read[read_columns].copy()
+# Prepare full book list
+book_list = df[columns].copy()
 book_list['Date Read'] = book_list['Date Read'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Date Added'] = book_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
 book_list['Series'] = book_list['Series'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Bookshelves'] = book_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Bookshelves with positions'] = book_list['Bookshelves with positions'].apply(lambda x: x if pd.notna(x) else None)
+book_list['Exclusive Shelf'] = book_list['Exclusive Shelf'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
@@ -192,19 +182,6 @@ for col in ['Book Id', 'Author Id']:
     if col in book_list.columns:
         book_list[col] = book_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
 book_list = book_list.to_dict(orient='records')
-
-current_list = books_current[current_columns].copy()
-current_list['Date Added'] = current_list['Date Added'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None)
-current_list['Series'] = current_list['Series'].apply(lambda x: x if pd.notna(x) else None)
-current_list['Bookshelves'] = current_list['Bookshelves'].apply(lambda x: x if pd.notna(x) else None)
-current_list['Bookshelves with positions'] = current_list['Bookshelves with positions'].apply(lambda x: x if pd.notna(x) else None)
-current_list['ISBN'] = current_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
-current_list['ISBN13'] = current_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
-current_list['Cover URL'] = current_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-for col in ['Book Id', 'Author Id']:
-    if col in current_list.columns:
-        current_list[col] = current_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
-current_list = current_list.to_dict(orient='records')
 
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
 timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
@@ -219,7 +196,6 @@ stats = {
     'series_counts': {k: int(v) for k, v in series_counts.items()},
     'books_2025': int(books_2025),
     'book_list': book_list,
-    'current_list': current_list,
     'timeline': timeline_data
 }
 with open('reading_stats.json', 'w') as f:
