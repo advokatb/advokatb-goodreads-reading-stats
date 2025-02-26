@@ -178,7 +178,9 @@ fetch('reading_stats.json')
             seriesFilter.appendChild(option);
         });
 
-        books.render('book-list');
+        // Set default sorting to "date-desc" (Дата: Новая-старая)
+        books.sortBy('date-desc').render('book-list');
+        document.getElementById('sort-by').value = 'date-desc';
 
         seriesFilter.addEventListener('change', () => {
             books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
