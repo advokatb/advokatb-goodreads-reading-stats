@@ -178,12 +178,17 @@ book_list['Exclusive Shelf'] = book_list['Exclusive Shelf'].apply(lambda x: x if
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-# Add Days Spent only for read books
-book_list['Days Spent'] = book_list.apply(lambda row: int((pd.to_datetime(row['Date Read']) - pd.to_datetime(row['Date Added'])).days) if pd.notna(row['Date Read']) and pd.notna(row['Date Added']) else None, axis=1)
+# Add Days Spent only for read books, ensuring null for others
+book_list['Days Spent'] = book_list.apply(
+    lambda row: int((pd.to_datetime(row['Date Read']) - pd.to_datetime(row['Date Added'])).days) 
+    if pd.notna(row['Date Read']) and pd.notna(row['Date Added']) else None, 
+    axis=1
+)
 for col in ['Book Id', 'Author Id']:
     if col in book_list.columns:
         book_list[col] = book_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
-book_list = book_list.to_dict(orient='records')
+# Convert DataFrame to dict, ensuring NaN becomes null
+book_list = book_list.replace({pd.NA: None, float('nan'): None}).to_dict(orient='records')
 
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')
 timeline['Date'] = timeline['Date Read'].apply(lambda x: x.strftime('%Y-%m') if pd.notna(x) else None)
