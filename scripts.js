@@ -117,6 +117,10 @@ class BookCollection {
         return Object.entries(authorCounts).reduce((max, [author, count]) => 
             count > max[1] ? [author, count] : max, ['', 0]);
     }
+    getLastReadBook() {
+        return this.allBooks.reduce((latest, book) => 
+            new Date(book['Date Read']) > new Date(latest['Date Read']) ? book : latest, this.allBooks[0]);
+    }
     render(containerId) {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
@@ -136,13 +140,20 @@ fetch('reading_stats.json')
 
         const books = new BookCollection(data.book_list);
         const currentBooks = new BookCollection(data.current_list);
+        
         if (currentBooks.models.length > 0) {
             document.getElementById('current-book').appendChild(currentBooks.models[0].renderCurrent());
         } else {
             document.getElementById('current-book').innerHTML = '<p class="text-gray-600">Ничего не читаю сейчас</p>';
         }
 
-        // New stats
+        const lastReadBook = books.getLastReadBook();
+        if (lastReadBook) {
+            document.getElementById('last-read-book').appendChild(lastReadBook.renderCurrent());
+        } else {
+            document.getElementById('last-read-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
+        }
+
         const longestBook = books.getLongestBook();
         const shortestBook = books.getShortestBook();
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
