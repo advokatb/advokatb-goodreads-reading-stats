@@ -218,7 +218,7 @@ fetch('reading_stats.json')
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
-        // 2025 Reading Challenge
+        // 2025 Reading Challenge (Translated to Russian)
         const challengeGoal = 50;
         const booksRead = data.total_books; // Currently 13
         const startDate = new Date('2025-01-01');
@@ -229,8 +229,8 @@ fetch('reading_stats.json')
         const daysLeft = totalDays - daysPassed;
         const progressPercent = Math.min((booksRead / challengeGoal) * 100, 100).toFixed(0);
 
-        document.getElementById('challenge-progress').innerHTML = `<strong>${booksRead} of ${challengeGoal} books read</strong>`;
-        document.getElementById('challenge-days').textContent = `${daysLeft} days left`;
+        document.getElementById('challenge-progress').innerHTML = `<strong>${booksRead} из ${challengeGoal} книг прочитано</strong>`;
+        document.getElementById('challenge-days').textContent = `Осталось ${daysLeft} дней`;
         document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
         document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
 
