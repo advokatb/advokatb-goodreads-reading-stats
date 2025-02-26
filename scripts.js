@@ -286,7 +286,16 @@ fetch('reading_stats.json')
         });
 
         books.sortBy('date-desc').render('book-list');
-        toReadBooks.renderFutureReads('future-reads');
+        
+        // Conditionally render Future Reads block
+        const futureReadsBlock = document.getElementById('future-reads-block');
+        if (toReadBooks.models.length > 0) {
+            futureReadsBlock.style.display = 'block';
+            toReadBooks.renderFutureReads('future-reads');
+        } else {
+            futureReadsBlock.style.display = 'none';
+        }
+        
         document.getElementById('sort-by').value = 'date-desc';
 
         seriesFilter.addEventListener('change', () => {
