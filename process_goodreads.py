@@ -1,7 +1,9 @@
 import pandas as pd
 import json
 import requests
+from bs4 import BeautifulSoup
 import logging
+import time
 
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
@@ -22,23 +24,24 @@ SERIES_MAPPING = {
     "Предел": "Порог"
 }
 
-# Genre mapping for local tags and Open Library subjects
-GENRE_MAPPING = {
-    "fantasy": "Фэнтези",
-    "sci-fi": "Научная фантастика",
-    "science-fiction": "Научная фантастика",
-    "mystery": "Детектив",
-    "thriller": "Триллер",
-    "romance": "Романтика",
-    "historical": "Исторический",
-    "fiction": "Художественная литература",
-    "non-fiction": "Нехудожественная литература",
-    "horror": "Ужасы",
-    "adventure": "Приключения",
-    "drama": "Драма",
-    "dystopia": "Дистопия",
-    "biography": "Биография",
-    "comedy": "Комедия"
+# Translate English genres to Russian
+GENRE_TRANSLATION = {
+    "Mystery": "Детектив",
+    "Fiction": "Художественная литература",
+    "Thriller": "Триллер",
+    "Crime": "Криминал",
+    "Detective": "Детектив",
+    "Mystery Thriller": "Детективный триллер",
+    "Novels": "Романы",
+    "Fantasy": "Фэнтези",
+    "Science Fiction": "Научная фантастика",
+    "Romance": "Романтика",
+    "Historical Fiction": "Историческая проза",
+    "Horror": "Ужасы",
+    "Adventure": "Приключения",
+    "Dystopia": "Дистопия",
+    "Biography": "Биография",
+    "Comedy": "Комедия"
 }
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -63,51 +66,31 @@ df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
 
-# Extract genres from Bookshelves column
-def extract_genres(bookshelves):
-    shelves = [s.strip() for s in bookshelves.split(',') if s.strip()]
-    genres = set()
-    for shelf in shelves:
-        shelf_lower = shelf.lower()
-        for tag, genre in GENRE_MAPPING.items():
-            if tag in shelf_lower and len(genres) < 3:
-                genres.add(genre)
-    return list(genres) if genres else []
+# Fetch genres from Goodreads book page
+def fetch_goodreads_genres(book_id):
+    if not book_id or book_id == '':
+        return None
+    url = f"https://www.goodreads.com/book/show/{book_id}"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            genres_div = soup.find('div', {'data-testid': 'genresList'})
+            if genres_div:
+                genre_buttons = genres_div.find_all('a', class_='Button--tag')
+                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons[:3]]
+                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres]
+                logging.info(f"Fetched genres for Book ID {book_id}: {translated_genres}")
+                return translated_genres if translated_genres else None
+        logging.warning(f"No genres found or failed request for Book ID {book_id}: {response.status_code}")
+        return None
+    except Exception as e:
+        logging.error(f"Error fetching genres for Book ID {book_id}: {e}")
+        return None
 
-# Fetch genres from Open Library if local tags fail
-def fetch_openlibrary_genres(isbn, isbn13):
-    for identifier in [isbn13, isbn]:
-        if not identifier or identifier == '':
-            continue
-        url = f"https://openlibrary.org/api/books?bibkeys=ISBN:{identifier}&jscmd=data&format=json"
-        try:
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                book_key = f"ISBN:{identifier}"
-                if book_key in data and 'subjects' in data[book_key]:
-                    subjects = data[book_key]['subjects']
-                    genres = set()
-                    for subject in subjects:
-                        subject_lower = subject.lower()
-                        for tag, genre in GENRE_MAPPING.items():
-                            if tag in subject_lower and len(genres) < 3:
-                                genres.add(genre)
-                    if genres:
-                        logging.info(f"Fetched genres for ISBN {identifier}: {genres}")
-                        return list(genres)
-        except Exception as e:
-            logging.error(f"Error fetching Open Library genres for ISBN {identifier}: {e}")
-    return []
-
-# Combine local and Open Library genres
-def get_genres(row):
-    local_genres = extract_genres(row['Bookshelves'])
-    if local_genres:
-        return local_genres[:3]
-    return fetch_openlibrary_genres(row['ISBN'], row['ISBN13'])[:3] or None
-
-df['Genres'] = df.apply(get_genres, axis=1)
+df['Genres'] = df['Book Id'].apply(fetch_goodreads_genres)
+time.sleep(1)  # Basic rate limiting to avoid overloading Goodreads
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -124,7 +107,6 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
         if not identifier or identifier == '':
             continue
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{identifier}"
-        logging.info(f"Trying ISBN: {url}")
         try:
             response = requests.get(url)
             if response.status_code == 200:
@@ -133,11 +115,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                     book = data['items'][0]['volumeInfo']
                     cover = book.get('imageLinks', {}).get('thumbnail', None)
                     if cover:
-                        logging.info(f"Found cover for ISBN {identifier}: {cover}")
                         return cover
-        except Exception as e:
-            logging.error(f"Error with ISBN {identifier}: {e}")
-    logging.info(f"No cover found for {title}")
+        except Exception:
+            pass
     return None
 
 # Process all books for covers
