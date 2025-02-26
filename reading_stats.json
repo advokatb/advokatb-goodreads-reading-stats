@@ -27,8 +27,9 @@
       "ISBN13": "9785170166282",
       "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430"
+        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "Historical",
+        "Literature"
       ],
       "Book Id": "17566513",
       "Days Spent": null
@@ -50,8 +51,9 @@
       "ISBN13": "9785170835201",
       "Cover URL": "http://books.google.com/books/content?id=YQ6XoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430"
+        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "School",
+        "Literature"
       ],
       "Book Id": "13410173",
       "Days Spent": null
@@ -73,8 +75,9 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "Magical Realism"
+        "Magical Realism",
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Literature"
       ],
       "Book Id": "6967700",
       "Days Spent": null
@@ -97,7 +100,8 @@
       "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Young Adult",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
       ],
       "Book Id": "7769068",
       "Days Spent": null
@@ -120,7 +124,8 @@
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Russia"
       ],
       "Book Id": "43195781",
       "Days Spent": null
@@ -143,7 +148,8 @@
       "Cover URL": "http://books.google.com/books/content?id=yhAsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Russia"
       ],
       "Book Id": "31327431",
       "Days Spent": null
@@ -185,8 +191,9 @@
       "ISBN13": "9785699157440",
       "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "Classics"
+        "\u041a\u043b\u0430\u0441\u0441\u0438\u043a\u0430",
+        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "Young Adult"
       ],
       "Book Id": "6139677",
       "Days Spent": 5.0
@@ -208,7 +215,7 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Classics",
+        "\u041a\u043b\u0430\u0441\u0441\u0438\u043a\u0430",
         "\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u043a\u0430"
       ],
       "Book Id": "40536979",
@@ -252,7 +259,8 @@
       "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u0414\u0435\u0442\u0435\u043a\u0442\u0438\u0432",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "\u0422\u0440\u0438\u043b\u043b\u0435\u0440",
+        "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b"
       ],
       "Book Id": "59222769",
       "Days Spent": 7.0
@@ -297,8 +305,7 @@
       "ISBN13": "9785171233051",
       "Cover URL": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
       ],
       "Book Id": "58210523",
       "Days Spent": 4.0
@@ -321,7 +328,8 @@
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "Russia",
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
       ],
       "Book Id": "46067196",
       "Days Spent": 9.0
@@ -364,7 +372,8 @@
       "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u0423\u0436\u0430\u0441\u044b",
-        "Rus"
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Paranormal"
       ],
       "Book Id": "201959407",
       "Days Spent": 2.0
@@ -386,8 +395,9 @@
       "ISBN13": "9785864717318",
       "Cover URL": "http://books.google.com/books/content?id=BaQwDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430"
+        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "Africa",
+        "Book Club"
       ],
       "Book Id": "45238710",
       "Days Spent": 14.0
@@ -429,8 +439,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=N99jEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "Audiobook"
+        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
       ],
       "Book Id": "201276201",
       "Days Spent": 3.0
@@ -453,7 +462,7 @@
       "Cover URL": "http://books.google.com/books/content?id=e3tSEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "Russia"
       ],
       "Book Id": "59529747",
       "Days Spent": 5.0
@@ -476,7 +485,8 @@
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0425\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "Russia",
+        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
       ],
       "Book Id": "58688819",
       "Days Spent": 3.0
