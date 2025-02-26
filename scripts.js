@@ -70,7 +70,6 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
-                ${this['Date Added'] ? `<p class="text-gray-500 text-sm">Начало чтения: ${startDay}.${startMonth}.${startYear}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
             </div>
         `;
@@ -287,7 +286,6 @@ fetch('reading_stats.json')
 
         books.sortBy('date-desc').render('book-list');
         
-        // Conditionally render Future Reads block
         const futureReadsBlock = document.getElementById('future-reads-block');
         if (toReadBooks.models.length > 0) {
             futureReadsBlock.style.display = 'block';
