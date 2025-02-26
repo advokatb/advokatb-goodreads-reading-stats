@@ -27,7 +27,7 @@
       "ISBN13": "9785353113171",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg",
       "Book Id": "223689131",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "\u0426\u0432\u0435\u0442\u044b \u0434\u043b\u044f \u042d\u043b\u0434\u0436\u0435\u0440\u043d\u043e\u043d\u0430",
@@ -122,7 +122,7 @@
       "ISBN13": "9781250035608",
       "Cover URL": "http://books.google.com/books/content?id=ZGBnBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "20613611",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "The Shining",
@@ -141,7 +141,7 @@
       "ISBN13": "9780450040184",
       "Cover URL": "http://books.google.com/books/content?id=tVt-uQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "11588",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "It",
@@ -160,7 +160,7 @@
       "ISBN13": "9780450411434",
       "Cover URL": "http://books.google.com/books/content?id=ZVzRcQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "830502",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "The Adventures of Sherlock Holmes",
@@ -179,7 +179,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=buc0AAAAMAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "3590",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "Harry Potter and the Sorcerer\u2019s Stone",
@@ -198,7 +198,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=wrOQLV6xB-wC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "42844155",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "One Hundred Years of Solitude",
@@ -217,7 +217,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=AfB8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "320",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "Ender\u2019s Game",
@@ -236,7 +236,7 @@
       "ISBN13": "9780812550702",
       "Cover URL": "http://books.google.com/books/content?id=5tCSc9pZPBwC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "375802",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "Crime and Punishment",
@@ -255,7 +255,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=U5NhxE67JjMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "7144",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "The Picture of Dorian Gray",
@@ -274,7 +274,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=iOheSL_H3hEC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "5297",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "Animal Farm",
@@ -293,7 +293,7 @@
       "ISBN13": "9780451526342",
       "Cover URL": "http://books.google.com/books/content?id=Q8eNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "170448",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "The Hunger Games",
@@ -312,7 +312,7 @@
       "ISBN13": "9780439023481",
       "Cover URL": "http://books.google.com/books/content?id=sJdUAzLUNyAC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "2767052",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "To Kill a Mockingbird",
@@ -331,7 +331,7 @@
       "ISBN13": "9780060935467",
       "Cover URL": "http://books.google.com/books/content?id=LaMTiorjM9cC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "2657",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "Pride and Prejudice",
@@ -350,7 +350,7 @@
       "ISBN13": "9781441341709",
       "Cover URL": "http://books.google.com/books/content?id=TlW-zwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "1885",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "1984",
@@ -369,7 +369,7 @@
       "ISBN13": "9780452284234",
       "Cover URL": "http://books.google.com/books/content?id=kotPYEqx7kMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Book Id": "61439040",
-      "Days Spent": NaN
+      "Days Spent": null
     },
     {
       "Title": "\u041f\u0440\u044b\u0436\u043e\u043a",
