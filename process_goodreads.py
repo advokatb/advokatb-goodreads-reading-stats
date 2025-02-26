@@ -3,7 +3,7 @@ import json
 import requests
 import logging
 
-# Manual ID corrections for covers
+# Updated manual ID corrections for covers
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "Порог": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",

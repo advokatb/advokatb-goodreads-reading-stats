@@ -11,7 +11,14 @@ class Book {
         if (!this['Date Read']) return '';
         const [year, month, day] = this['Date Read'].split('-');
         const days = this['Days Spent'];
-        const daysText = days === 1 ? '1 день' : `${days} дня`;
+        let daysText;
+        if (days === 1) {
+            daysText = '1 день';
+        } else if (days >= 2 && days <= 4) {
+            daysText = `${days} дня`;
+        } else {
+            daysText = `${days} дней`;
+        }
         return `Прочитано: ${day}.${month}.${year} (${daysText})`;
     }
     getGoodreadsBookLink() {
@@ -43,6 +50,7 @@ class Book {
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
+        const [year, month, day] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -55,6 +63,7 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.Author}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
+                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${day}.${month}.${year}</p>` : ''}
             </div>
         `;
         return div;
@@ -178,7 +187,6 @@ fetch('reading_stats.json')
             seriesFilter.appendChild(option);
         });
 
-        // Set default sorting to "date-desc" (Дата: Новая-старая)
         books.sortBy('date-desc').render('book-list');
         document.getElementById('sort-by').value = 'date-desc';
 
