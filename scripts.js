@@ -24,6 +24,12 @@ class Book {
     getGoodreadsBookLink() {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
     }
+    getDisplayAuthor() {
+        if (this.Author === "Sergei Lukyanenko" && this['Additional Authors']) {
+            return this['Additional Authors'].split(',')[0].trim();
+        }
+        return this.Author;
+    }
     render() {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
@@ -37,7 +43,7 @@ class Book {
                 <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
                     <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
                 </a>
-                <p class="text-gray-600">Автор: ${this.Author}</p>
+                <p class="text-gray-600">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500">${this.formatDateRead()}</p>` : ''}
@@ -60,7 +66,7 @@ class Book {
                 <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
                     <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
                 </a>
-                <p class="text-gray-600 text-sm">Автор: ${this.Author}</p>
+                <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${day}.${month}.${year}</p>` : ''}
@@ -105,7 +111,7 @@ class BookCollection {
                 if (!seriesAuthors[book.Series]) {
                     seriesAuthors[book.Series] = new Set();
                 }
-                seriesAuthors[book.Series].add(book.Author);
+                seriesAuthors[book.Series].add(book.getDisplayAuthor());
             }
         });
         return seriesAuthors;
@@ -121,7 +127,8 @@ class BookCollection {
     getMostProlificAuthor() {
         const authorCounts = {};
         this.allBooks.forEach(book => {
-            authorCounts[book.Author] = (authorCounts[book.Author] || 0) + 1;
+            const displayAuthor = book.getDisplayAuthor();
+            authorCounts[displayAuthor] = (authorCounts[displayAuthor] || 0) + 1;
         });
         return Object.entries(authorCounts).reduce((max, [author, count]) => 
             count > max[1] ? [author, count] : max, ['', 0]);
