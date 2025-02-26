@@ -1,15 +1,32 @@
 {
-  "total_books": 13,
-  "total_pages": 5422,
-  "avg_pages": 417.1,
-  "avg_rating": 4.69,
+  "total_books": 14,
+  "total_pages": 5742,
+  "avg_pages": 410.1,
+  "avg_rating": 4.71,
   "series_counts": {
     "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435": 1,
     "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438": 2,
     "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435": 2
   },
-  "books_2025": 9,
+  "books_2025": 10,
   "book_list": [
+    {
+      "Title": "\u0426\u0432\u0435\u0442\u044b \u0434\u043b\u044f \u042d\u043b\u0434\u0436\u0435\u0440\u043d\u043e\u043d\u0430",
+      "Author": "Daniel Keyes",
+      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u0428\u0430\u0440\u043e\u0432, \u0414\u044d\u043d\u0438\u0435\u043b \u041a\u0438\u0437",
+      "Number of Pages": 320,
+      "Estimated Word Count": 88000,
+      "Date Read": "2025-02-25",
+      "Date Added": "2025-02-20",
+      "Days Spent": 5,
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "ISBN": "5699157441",
+      "ISBN13": "9785699157440",
+      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Book Id": "6139677"
+    },
     {
       "Title": "\u0414\u0436\u0435\u0439\u043d \u042d\u0439\u0440",
       "Author": "Charlotte Bront\u00eb",
@@ -24,7 +41,7 @@
       "Bookshelves": "",
       "ISBN": "5448470971",
       "ISBN13": "9785448470974",
-      "Cover URL": "http://books.google.com/books/content?id=fsoOzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Book Id": "40536979"
     },
     {
@@ -234,19 +251,19 @@
   ],
   "current_list": [
     {
-      "Title": "\u0426\u0432\u0435\u0442\u044b \u0434\u043b\u044f \u042d\u043b\u0434\u0436\u0435\u0440\u043d\u043e\u043d\u0430",
-      "Author": "Daniel Keyes",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u0428\u0430\u0440\u043e\u0432, \u0414\u044d\u043d\u0438\u0435\u043b \u041a\u0438\u0437",
-      "Number of Pages": 320,
-      "Estimated Word Count": 88000,
-      "Date Added": "2025-02-20",
+      "Title": "\u0420\u0435\u0441\u0442\u043e\u0440\u0430\u043d 06:06:06",
+      "Author": "\u041f\u043e\u043c \u042e \u0414\u0436\u0438\u043d",
+      "Additional Authors": "chaerimi",
+      "Number of Pages": 242,
+      "Estimated Word Count": 66550,
+      "Date Added": "2025-02-25",
       "My Rating": 0,
       "Series": null,
       "Bookshelves": "currently-reading",
-      "ISBN": "5699157441",
-      "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Book Id": "6139677"
+      "ISBN": "5353113179",
+      "ISBN13": "9785353113171",
+      "Cover URL": "http://books.google.com/books/content?id=Ws-XR36NtAsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Book Id": "223689131"
     }
   ],
   "timeline": [
@@ -260,7 +277,7 @@
     },
     {
       "Date": "2025-02",
-      "Books": 5
+      "Books": 6
     }
   ]
 }
