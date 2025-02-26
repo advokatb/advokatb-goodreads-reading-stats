@@ -43,11 +43,11 @@ class Book {
                 <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
                     <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
                 </a>
-                <p class="text-gray-600">Автор: ${this.getDisplayAuthor()}</p>
-                <p class="text-gray-500">Страниц: ${this['Number of Pages']}</p>
-                ${this.Series ? `<p class="text-gray-500">Серия: ${this.Series}</p>` : ''}
-                ${this['Date Read'] ? `<p class="text-gray-500">${this.formatDateRead()}</p>` : ''}
-                ${this['My Rating'] > 0 ? `<p class="text-yellow-500">Оценка: ${'★'.repeat(this['My Rating'])}</p>` : ''}
+                <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
+                <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
+                ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
+                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+                ${this['My Rating'] > 0 ? `<p class="text-yellow-500 text-sm">⭐ ${'★'.repeat(this['My Rating'])}</p>` : ''}
             </div>
         `;
         return div;
@@ -188,6 +188,35 @@ class BookCollection {
             container.appendChild(seriesDiv);
         }
     }
+    renderFutureReads(containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        this.models.sort((a, b) => {
+            const posA = a['Bookshelves with positions'] ? parseInt(a['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
+            const posB = b['Bookshelves with positions'] ? parseInt(b['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
+            return posA - posB;
+        });
+        this.models.forEach(book => {
+            const div = document.createElement('div');
+            div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
+            const imgSrc = book.getCoverUrl();
+            div.innerHTML = `
+                <img src="${imgSrc}" alt="${book.Title}" class="book-cover mr-4" 
+                     onload="console.log('Loaded cover for ${book.Title}')"
+                     onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 inline">${book.Title}</h3>
+                    <a href="${book.getGoodreadsBookLink()}" target="_blank" class="ml-2">
+                        <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
+                    </a>
+                    <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
+                    <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
+                    ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
 }
 
 fetch('reading_stats.json')
@@ -202,6 +231,7 @@ fetch('reading_stats.json')
 
         const books = new BookCollection(data.book_list);
         const currentBooks = new BookCollection(data.current_list);
+        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
         
         if (currentBooks.models.length > 0) {
             document.getElementById('current-book').appendChild(currentBooks.models[0].renderCurrent());
@@ -250,6 +280,7 @@ fetch('reading_stats.json')
         });
 
         books.sortBy('date-desc').render('book-list');
+        toReadBooks.renderFutureReads('future-reads');
         document.getElementById('sort-by').value = 'date-desc';
 
         seriesFilter.addEventListener('change', () => {
