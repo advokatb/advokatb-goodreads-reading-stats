@@ -11,6 +11,17 @@ CORRECT_IDS = {
     "Ресторан 06:06:06": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg"
 }
 
+# Manual series mapping for Sergei Lukyanenko books
+SERIES_MAPPING = {
+    "Семь дней до Мегиддо": "Изменённые",
+    "Три дня Индиго": "Изменённые",
+    "Месяц за Рубиконом": "Изменённые",
+    "Лето волонтёра": "Изменённые",
+    "Прыжок": "Соглашение",
+    "Порог": "Соглашение",
+    "Предел": "Соглашение"
+}
+
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 try:
     df = pd.read_csv('goodreads_library_export.csv')
@@ -30,6 +41,9 @@ df['Bookshelves'] = df['Bookshelves'].fillna('')
 df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
+
+# Assign manual series for Sergei Lukyanenko books
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
 
 # Filter read and currently-reading books
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
