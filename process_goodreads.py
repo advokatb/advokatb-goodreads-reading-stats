@@ -26,7 +26,7 @@ SERIES_MAPPING = {
 
 GENRE_TRANSLATION = {
     "Mystery": "Детектив",
-    "Fiction": "Художественная литература",
+    # "Fiction": "Художественная литература" excluded
     "Thriller": "Триллер",
     "Crime": "Криминал",
     "Detective": "Детектив",
@@ -40,8 +40,11 @@ GENRE_TRANSLATION = {
     "Adventure": "Приключения",
     "Dystopia": "Дистопия",
     "Biography": "Биография",
-    "Comedy": "Комедия"
+    "Comedy": "Комедия",
+    "Classics": "Классика"
 }
+
+EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 try:
@@ -78,8 +81,10 @@ def fetch_goodreads_genres(book_id):
             genres_div = soup.find('div', {'data-testid': 'genresList'})
             if genres_div:
                 genre_buttons = genres_div.find_all('a', class_='Button--tag')
-                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons[:2]]  # Limit to 2
-                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres]
+                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
+                # Filter out excluded genres and translate
+                filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
+                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
                 logging.info(f"Fetched genres for Book ID {book_id}: {translated_genres}")
                 return translated_genres if translated_genres else None
         logging.warning(f"No genres found or failed request for Book ID {book_id}: {response.status_code}")
@@ -89,7 +94,7 @@ def fetch_goodreads_genres(book_id):
         return None
 
 df['Genres'] = df['Book Id'].apply(fetch_goodreads_genres)
-time.sleep(1)  # Rate limiting
+time.sleep(1)
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -179,7 +184,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                             if cover:
                                 logging.info(f"Found cover for {title} (broad): {cover}")
                                 return cover
-                    logging.info(f"No thumbnail for {title} by {add_author}")
+                    logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
                     logging.info(f"Failed Russian author request: {response.status_code}")
             except Exception as e:
