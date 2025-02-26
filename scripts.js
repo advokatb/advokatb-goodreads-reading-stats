@@ -249,7 +249,7 @@ fetch('reading_stats.json')
         const longestBook = books.getLongestBook();
         const shortestBook = books.getShortestBook();
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
-        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
+        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`; 
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
