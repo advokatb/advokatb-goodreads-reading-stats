@@ -161,7 +161,10 @@ class BookCollection {
             const { books, author } = data;
             const seriesDiv = document.createElement('div');
             seriesDiv.className = 'series-box';
-            seriesDiv.innerHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-2">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'}, ${author})</h3>`;
+            seriesDiv.innerHTML = `
+                <p class="text-lg font-semibold text-gray-700">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'})</p>
+                <p class="text-gray-600 text-sm mb-2">${author}</p>
+            `;
             const rowDiv = document.createElement('div');
             rowDiv.className = 'series-row';
             
