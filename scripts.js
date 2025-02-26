@@ -142,6 +142,44 @@ class BookCollection {
         container.innerHTML = '';
         this.models.forEach(book => container.appendChild(book.render()));
     }
+    renderSeriesShelf(containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        const seriesBooks = {};
+        this.allBooks.forEach(book => {
+            if (book.Series) {
+                if (!seriesBooks[book.Series]) {
+                    seriesBooks[book.Series] = [];
+                }
+                seriesBooks[book.Series].push(book);
+            }
+        });
+
+        for (const [series, books] of Object.entries(seriesBooks)) {
+            const seriesDiv = document.createElement('div');
+            seriesDiv.className = 'mb-4';
+            seriesDiv.innerHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-2">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'})</h3>`;
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'series-row';
+            
+            books.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'series-book';
+                const imgSrc = book.getCoverUrl();
+                bookDiv.innerHTML = `
+                    <a href="${book.getGoodreadsBookLink()}" target="_blank">
+                        <img src="${imgSrc}" alt="${book.Title}" 
+                             onload="console.log('Loaded cover for ${book.Title}')"
+                             onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
+                    </a>
+                `;
+                rowDiv.appendChild(bookDiv);
+            });
+
+            seriesDiv.appendChild(rowDiv);
+            container.appendChild(seriesDiv);
+        }
+    }
 }
 
 fetch('reading_stats.json')
@@ -177,14 +215,7 @@ fetch('reading_stats.json')
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
         document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
 
-        const seriesAuthors = books.getSeriesWithAuthors();
-        const seriesList = document.getElementById('series-list');
-        for (const [series, count] of Object.entries(data.series_counts)) {
-            const authors = Array.from(seriesAuthors[series] || []).join(', ');
-            const li = document.createElement('li');
-            li.textContent = `${series}: ${count} книг${count > 1 ? 'и' : 'а'} (${authors})`;
-            seriesList.appendChild(li);
-        }
+        books.renderSeriesShelf('series-shelf');
 
         const seriesFilter = document.getElementById('series-filter');
         Object.keys(data.series_counts).forEach(series => {

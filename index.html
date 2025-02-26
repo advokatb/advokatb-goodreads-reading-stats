@@ -35,6 +35,11 @@
         select.btn { color: #ffffff; background: linear-gradient(to right, #4f46e5, #7c3aed); }
         select.btn option { color: #000000; background: #ffffff; }
         h1, h2 { font-family: 'Arial', sans-serif; font-weight: 700; }
+        .series-shelf { display: flex; flex-direction: column; gap: 1rem; }
+        .series-row { overflow-x: auto; white-space: nowrap; padding: 0.5rem 0; }
+        .series-book { display: inline-block; margin-right: 1rem; }
+        .series-book img { width: 80px; height: 120px; object-fit: cover; border-radius: 4px; transition: transform 0.3s ease; }
+        .series-book img:hover { transform: scale(1.1); }
     </style>
 </head>
 <body class="font-sans">
@@ -91,10 +96,10 @@
             <div id="timelineChart" style="height: 200px;"></div>
         </div>
 
-        <!-- Series Breakdown -->
+        <!-- Series Shelf -->
         <div class="bg-white p-6 rounded-lg shadow-lg mb-12 fade-in">
             <h2 class="text-2xl font-semibold text-gray-700 mb-4">Книги по сериям</h2>
-            <ul id="series-list" class="list-disc pl-6 text-gray-600"></ul>
+            <div id="series-shelf" class="series-shelf"></div>
         </div>
 
         <!-- Book List with Filters -->
