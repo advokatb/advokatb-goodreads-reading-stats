@@ -39,10 +39,7 @@ class Book {
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
-                <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
-                <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
-                    <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
-                </a>
+                <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="text-indigo-600 hover:underline">${this.Title}</a></h3>
                 <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
@@ -182,7 +179,7 @@ class BookCollection {
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${imgSrc}" alt="${book.Title}" 
                              onload="console.log('Loaded cover for ${book.Title}')"
-                             onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
+                             onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
                 rowDiv.appendChild(bookDiv);
@@ -211,10 +208,7 @@ class BookCollection {
                      onload="console.log('Loaded cover for ${book.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800 inline">${book.Title}</h3>
-                    <a href="${book.getGoodreadsBookLink()}" target="_blank" class="ml-2">
-                        <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
-                    </a>
+                    <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="text-indigo-600 hover:underline">${book.Title}</a></h3>
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
