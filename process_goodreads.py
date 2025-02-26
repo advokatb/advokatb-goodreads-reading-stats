@@ -45,10 +45,9 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
 
-# Filter read and currently-reading books for stats
+# Filter read books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
-books_current = df[df['Exclusive Shelf'] == 'currently-reading'].copy()
-logging.info(f"Filtered {len(books_read)} read books, {len(books_current)} currently-reading books")
+logging.info(f"Filtered {len(books_read)} read books")
 
 def get_cover_url(isbn, isbn13, title, author, additional_authors):
     if title in CORRECT_IDS:
@@ -145,6 +144,8 @@ df.loc[:, 'Cover URL'] = df.apply(
     lambda row: get_cover_url(row['ISBN'], row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']), 
     axis=1
 )
+
+# Calculate Days Spent only for read books
 books_read.loc[:, 'Days Spent'] = (books_read['Date Read'] - books_read['Date Added']).dt.days
 
 total_books = len(books_read)
@@ -154,10 +155,10 @@ avg_rating = books_read['My Rating'][books_read['My Rating'] > 0].mean() or 0
 series_counts = books_read[books_read['Series'].notna()].groupby('Series').size().to_dict()
 books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 
-# Define columns for all books
+# Define columns for all books (excluding Days Spent initially)
 columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
-    'Date Added', 'Days Spent', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
+    'Date Added', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
     'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL'
 ]
 
@@ -177,7 +178,8 @@ book_list['Exclusive Shelf'] = book_list['Exclusive Shelf'].apply(lambda x: x if
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-book_list['Days Spent'] = book_list['Days Spent'].apply(lambda x: int(x) if pd.notna(x) else None)
+# Add Days Spent only for read books
+book_list['Days Spent'] = book_list.apply(lambda row: int((pd.to_datetime(row['Date Read']) - pd.to_datetime(row['Date Added'])).days) if pd.notna(row['Date Read']) and pd.notna(row['Date Added']) else None, axis=1)
 for col in ['Book Id', 'Author Id']:
     if col in book_list.columns:
         book_list[col] = book_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
