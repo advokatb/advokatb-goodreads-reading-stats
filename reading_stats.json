@@ -4,9 +4,9 @@
   "avg_pages": 410.1,
   "avg_rating": 4.71,
   "series_counts": {
-    "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435": 1,
+    "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435": 4,
     "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438": 2,
-    "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435": 2
+    "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435": 3
   },
   "books_2025": 10,
   "book_list": [
@@ -88,7 +88,7 @@
       "Date Added": "2025-02-05",
       "Days Spent": 1,
       "My Rating": 5,
-      "Series": null,
+      "Series": "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
       "Bookshelves": "",
       "ISBN": "",
       "ISBN13": "",
@@ -207,7 +207,7 @@
       "Date Added": "2024-12-25",
       "Days Spent": 3,
       "My Rating": 4,
-      "Series": null,
+      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
       "Bookshelves": "",
       "ISBN": "",
       "ISBN13": "",
@@ -224,7 +224,7 @@
       "Date Added": "2024-12-20",
       "Days Spent": 5,
       "My Rating": 4,
-      "Series": null,
+      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
       "Bookshelves": "",
       "ISBN": "",
       "ISBN13": "",
@@ -241,7 +241,7 @@
       "Date Added": "2024-12-17",
       "Days Spent": 3,
       "My Rating": 4,
-      "Series": null,
+      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
       "Bookshelves": "",
       "ISBN": "5171389888",
       "ISBN13": "9785171389888",
