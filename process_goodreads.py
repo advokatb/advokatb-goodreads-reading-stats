@@ -24,7 +24,6 @@ SERIES_MAPPING = {
     "Предел": "Порог"
 }
 
-# Translate English genres to Russian
 GENRE_TRANSLATION = {
     "Mystery": "Детектив",
     "Fiction": "Художественная литература",
@@ -79,7 +78,7 @@ def fetch_goodreads_genres(book_id):
             genres_div = soup.find('div', {'data-testid': 'genresList'})
             if genres_div:
                 genre_buttons = genres_div.find_all('a', class_='Button--tag')
-                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons[:3]]
+                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons[:2]]  # Limit to 2
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres]
                 logging.info(f"Fetched genres for Book ID {book_id}: {translated_genres}")
                 return translated_genres if translated_genres else None
@@ -90,7 +89,7 @@ def fetch_goodreads_genres(book_id):
         return None
 
 df['Genres'] = df['Book Id'].apply(fetch_goodreads_genres)
-time.sleep(1)  # Basic rate limiting to avoid overloading Goodreads
+time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -180,7 +179,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                             if cover:
                                 logging.info(f"Found cover for {title} (broad): {cover}")
                                 return cover
-                    logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
+                    logging.info(f"No thumbnail for {title} by {add_author}")
                 else:
                     logging.info(f"Failed Russian author request: {response.status_code}")
             except Exception as e:
