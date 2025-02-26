@@ -56,7 +56,8 @@ class Book {
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
-        const [year, month, day] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
+        const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
+        const [startYear, startMonth, startDay] = this['Date Added'] ? this['Date Added'].split('-') : ['', '', ''];
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -69,7 +70,8 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
-                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${day}.${month}.${year}</p>` : ''}
+                ${this['Date Added'] ? `<p class="text-gray-500 text-sm">Начало чтения: ${startDay}.${startMonth}.${startYear}</p>` : ''}
+                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
             </div>
         `;
         return div;
