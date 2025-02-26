@@ -22,6 +22,22 @@ SERIES_MAPPING = {
     "Предел": "Порог"
 }
 
+# Simple genre mapping based on common Goodreads tags
+GENRE_MAPPING = {
+    "fantasy": "Фэнтези",
+    "sci-fi": "Научная фантастика",
+    "science-fiction": "Научная фантастика",
+    "mystery": "Детектив",
+    "thriller": "Триллер",
+    "romance": "Романтика",
+    "historical": "Исторический",
+    "fiction": "Художественная литература",
+    "non-fiction": "Нехудожественная литература",
+    "horror": "Ужасы",
+    "adventure": "Приключения",
+    "drama": "Драма"
+}
+
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 try:
     df = pd.read_csv('goodreads_library_export.csv')
@@ -43,6 +59,19 @@ df['Exclusive Shelf'] = df['Exclusive Shelf'].fillna('')
 df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
+
+# Extract genres from Bookshelves column
+def extract_genres(bookshelves):
+    shelves = [s.strip() for s in bookshelves.split(',') if s.strip()]
+    genres = set()
+    for shelf in shelves:
+        shelf_lower = shelf.lower()
+        for tag, genre in GENRE_MAPPING.items():
+            if tag in shelf_lower and len(genres) < 3:
+                genres.add(genre)
+    return list(genres) if genres else None
+
+df['Genres'] = df['Bookshelves'].apply(extract_genres)
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -161,7 +190,7 @@ books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
     'Date Added', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
-    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL'
+    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL', 'Genres'
 ]
 
 # Add optional columns if they exist
@@ -180,7 +209,7 @@ book_list['Exclusive Shelf'] = book_list['Exclusive Shelf'].apply(lambda x: x if
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-# Add Days Spent only for read books, ensuring null for others
+book_list['Genres'] = book_list['Genres'].apply(lambda x: x if x is not None else None)
 book_list['Days Spent'] = book_list.apply(
     lambda row: int((pd.to_datetime(row['Date Read']) - pd.to_datetime(row['Date Added'])).days) 
     if pd.notna(row['Date Read']) and pd.notna(row['Date Added']) else None, 
@@ -189,7 +218,6 @@ book_list['Days Spent'] = book_list.apply(
 for col in ['Book Id', 'Author Id']:
     if col in book_list.columns:
         book_list[col] = book_list[col].apply(lambda x: str(x) if pd.notna(x) else None)
-# Convert DataFrame to dict, ensuring NaN becomes null
 book_list = book_list.replace({pd.NA: None, float('nan'): None}).to_dict(orient='records')
 
 timeline = books_read.groupby(books_read['Date Read'].dt.to_period('M')).size().reset_index(name='Books')

@@ -48,6 +48,7 @@ class Book {
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
                 ${this['My Rating'] > 0 ? `<p class="text-yellow-500 text-sm">⭐ ${'★'.repeat(this['My Rating'])}</p>` : ''}
+                ${this.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${this.Genres.join(', ')}</p>` : ''}
             </div>
         `;
         return div;
@@ -217,6 +218,7 @@ class BookCollection {
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
+                    ${book.Genres && book.Genres.length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${book.Genres.join(', ')}</p>` : ''}
                 </div>
             `;
             container.appendChild(div);
