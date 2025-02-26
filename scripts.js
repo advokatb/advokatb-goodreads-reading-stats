@@ -158,21 +158,20 @@ class BookCollection {
         for (const [series, data] of Object.entries(seriesBooks)) {
             const { books, author } = data;
             const seriesDiv = document.createElement('div');
-            seriesDiv.className = 'mb-6';
+            seriesDiv.className = 'series-box';
             seriesDiv.innerHTML = `<h3 class="text-lg font-semibold text-gray-700 mb-2">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'}, ${author})</h3>`;
             const rowDiv = document.createElement('div');
-            rowDiv.className = 'relative h-32'; // Fixed height for overlap
+            rowDiv.className = 'series-row';
             
             books.forEach((book, index) => {
                 const bookDiv = document.createElement('div');
-                bookDiv.className = 'series-book absolute';
+                bookDiv.className = 'series-book';
                 bookDiv.style.left = `${index * 60}px`; // Overlap with 60px offset
                 bookDiv.style.zIndex = `${books.length - index}`; // Stack order
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${imgSrc}" alt="${book.Title}" 
-                             class="w-80 h-120 transform transition-transform hover:scale-110 hover:z-10"
                              onload="console.log('Loaded cover for ${book.Title}')"
                              onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>

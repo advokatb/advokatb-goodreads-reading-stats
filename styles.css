@@ -1,0 +1,98 @@
+body {
+    background: linear-gradient(to bottom, #f0f4f8, #e0e7ff);
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.book-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #ffffff, #f9fafb);
+    border-radius: 12px;
+}
+
+.book-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.btn {
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #3b82f6, #9333ea);
+}
+
+select.btn {
+    color: #ffffff;
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+}
+
+select.btn option {
+    color: #000000;
+    background: #ffffff;
+}
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+}
+
+.series-shelf {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.series-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.series-row {
+    position: relative;
+    height: 130px;
+    white-space: nowrap;
+}
+
+.series-book {
+    position: absolute;
+    top: 0;
+}
+
+.series-book img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.series-book img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
