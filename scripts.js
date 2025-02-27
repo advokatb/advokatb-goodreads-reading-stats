@@ -269,7 +269,7 @@ fetch('reading_stats.json')
             console.error('Total book container not found');
             return;
         }
-        const totalContainer = totalBookDiv.querySelector('.text-right');
+        const totalContainer = totalBookDiv.querySelector('.text-left');
         if (!totalContainer) {
             console.error('Text container in "Всего" block not found');
             return;
