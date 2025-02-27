@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Cache Python dependencies (if any)
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Install dependencies (if any)
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Run Python script only if CSV or Python files change
+      - name: Run Python script for data generation
+        id: generate_data
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep -E "^(process_goodreads\.py|.*\.csv)$"; then
+            echo "Generating data from CSV..."
+            python process_goodreads.py
+            echo "DATA_GENERATED=true" >> $GITHUB_ENV
+          else
+            echo "No CSV or Python changes detected, skipping data generation."
+            echo "DATA_GENERATED=false" >> $GITHUB_ENV
+          fi
+
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }} # Optional: Use a personal access token for faster deployment
+          publish_dir: ./ # Publish the entire repository root
+          force_orphan: true # Create a new orphan branch for each deploy to avoid history
+          commit_message: "Deploy: Update GitHub Pages [skip ci]"
+
+      # Optional: Clear cache if data was generated to ensure fresh build
+      - name: Clear cache on data change
+        if: env.DATA_GENERATED == 'true'
+        run: rm -rf ~/.cache/pip
