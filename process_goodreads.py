@@ -91,7 +91,7 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
 # Enhanced Series extraction before title cleanup
 df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
-df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
 logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -198,7 +198,7 @@ df['Genres'] = df.apply(
 time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
-df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
 logging.info(f"Series data after mapping: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats

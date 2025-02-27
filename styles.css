@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to-bottom, #f0f4f8, #e0e7ff); /* Fallback if bg.webp fails */
+    background: linear-gradient(to bottom, #f0f4f8, #e0e7ff);
 }
 
 .fade-in {
