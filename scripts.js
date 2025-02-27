@@ -55,7 +55,6 @@ class Book {
         div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
-        const [startYear, startMonth, startDay] = this['Date Added'] ? this['Date Added'].split('-') : ['', '', ''];
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -136,6 +135,12 @@ class BookCollection {
         if (!this.allBooks.length) return null;
         return this.allBooks.reduce((latest, book) => 
             new Date(book['Date Read']) > new Date(latest['Date Read']) ? book : latest, this.allBooks[0]);
+    }
+    getTwoRandomReadBooks() {
+        const readBooks = this.allBooks.filter(book => book['Exclusive Shelf'] === 'read');
+        if (readBooks.length <= 2) return readBooks;
+        const shuffled = readBooks.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 2);
     }
     render(containerId) {
         const container = document.getElementById(containerId);
@@ -223,9 +228,13 @@ fetch('reading_stats.json')
         return response.json();
     })
     .then(data => {
-        document.getElementById('total-books').textContent = data.total_books;
-        document.getElementById('total-pages').textContent = data.total_pages.toLocaleString();
-        document.getElementById('books-2025').textContent = data.books_2025;
+        // Update total-books, total-pages, books-2025 inside the "Всего" block
+        const totalBooksElement = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(1)');
+        const totalPagesElement = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(2)');
+        const books2025Element = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(3) span');
+        totalBooksElement.textContent = data.total_books;
+        totalPagesElement.textContent = data.total_pages.toLocaleString();
+        books2025Element.textContent = data.books_2025;
 
         const allBooks = new BookCollection(data.book_list);
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
@@ -245,15 +254,23 @@ fetch('reading_stats.json')
             document.getElementById('last-read-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
 
-        const longestBook = books.getLongestBook();
-        const shortestBook = books.getShortestBook();
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
-        // Updated to match new layout - no longest-book/shortest-book IDs
         document.getElementById('most-prolific-author-name').textContent = mostProlificAuthor;
         document.getElementById('most-prolific-author-count').textContent = `${authorBookCount} книг`;
 
+        // Populate two random read books in "Всего"
+        const randomReadBooks = books.getTwoRandomReadBooks();
+        if (randomReadBooks.length > 0) {
+            document.getElementById('total-book-1').src = randomReadBooks[0].getCoverUrl();
+            document.getElementById('total-book-1').alt = randomReadBooks[0].Title;
+        }
+        if (randomReadBooks.length > 1) {
+            document.getElementById('total-book-2').src = randomReadBooks[1].getCoverUrl();
+            document.getElementById('total-book-2').alt = randomReadBooks[1].Title;
+        }
+
         const challengeGoal = 50;
-        const booksRead2025 = data.books_2025;  // Use books read in 2025
+        const booksRead2025 = data.books_2025;
         const startDate = new Date('2025-01-01');
         const endDate = new Date('2025-12-31');
         const today = new Date('2025-02-26');
