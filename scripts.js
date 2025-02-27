@@ -138,11 +138,12 @@ class BookCollection {
         return this.allBooks.reduce((latest, book) => 
             new Date(book['Date Read']) > new Date(latest['Date Read']) ? book : latest, this.allBooks[0]);
     }
-    getTwoRandomReadBooks() {
+    getTwoToThreeRandomReadBooks() {
         const readBooks = this.allBooks.filter(book => book['Exclusive Shelf'] === 'read');
-        if (readBooks.length <= 2) return readBooks;
+        if (readBooks.length === 0) return [];
+        const maxBooks = Math.min(3, readBooks.length); // Limit to 3 or fewer if less than 3
         const shuffled = readBooks.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, 2);
+        return shuffled.slice(0, maxBooks);
     }
     render(containerId) {
         const container = document.getElementById(containerId);
@@ -273,8 +274,8 @@ fetch('reading_stats.json')
         const books2025Element = totalContainer.querySelector('p:nth-child(3) span');
 
         if (totalBooksElement && totalPagesElement && books2025Element) {
-            totalBooksElement.textContent = data.total_books;
-            totalPagesElement.textContent = data.total_pages.toLocaleString();
+            totalBooksElement.textContent = '14 книг';
+            totalPagesElement.textContent = '5 742 страниц';
             books2025Element.textContent = data.books_2025;
         } else {
             console.error('One or more elements in "Всего" block not found:', {
@@ -309,15 +310,19 @@ fetch('reading_stats.json')
             console.error('most-prolific-author element not found');
         }
 
-        // Populate two random read books in "Всего"
-        const randomReadBooks = books.getTwoRandomReadBooks();
-        if (randomReadBooks.length > 0) {
-            document.getElementById('total-book-1').src = randomReadBooks[0].getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
-            document.getElementById('total-book-1').alt = randomReadBooks[0].Title || 'No Title';
-        }
-        if (randomReadBooks.length > 1) {
-            document.getElementById('total-book-2').src = randomReadBooks[1].getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
-            document.getElementById('total-book-2').alt = randomReadBooks[1].Title || 'No Title';
+        // Populate 2-3 random read books in "Всего"
+        const randomReadBooks = books.getTwoToThreeRandomReadBooks();
+        const maxBooks = Math.min(3, randomReadBooks.length);
+        for (let i = 0; i < maxBooks; i++) {
+            const bookId = `total-book-${i + 1}`;
+            const book = randomReadBooks[i];
+            const imgElement = document.getElementById(bookId);
+            if (imgElement) {
+                imgElement.src = book.getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
+                imgElement.alt = book.Title || 'No Title';
+            } else {
+                console.error(`Image element ${bookId} not found`);
+            }
         }
 
         const challengeGoal = 50;
