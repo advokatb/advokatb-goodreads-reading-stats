@@ -1,9 +1,5 @@
 body {
     background: linear-gradient(to-bottom, #f0f4f8, #e0e7ff); /* Fallback if bg.webp fails */
-    background-image: url('/advokatb-goodreads-reading-stats/bg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .fade-in {
@@ -14,7 +10,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
-    position: relative; /* For tooltip positioning */
+    position: relative; /* For rating and tooltip positioning */
 }
 
 .book-card:hover {
@@ -23,10 +19,11 @@ body {
 }
 
 .rating {
-    display: inline-block; /* Changed from absolute to inline-block */
+    position: absolute; /* Restored to original position */
+    bottom: 5px;
+    right: 5px;
     color: #f59e0b; /* Tailwind amber-500 */
     font-size: 1.5rem; /* text-xl */
-    vertical-align: middle; /* Align with text */
 }
 
 .rating::before {
@@ -143,23 +140,7 @@ select.btn {
     background-color: #4b5563; /* Fallback solid color if gradient issues persist */
 }
 
-/* Tooltip for annotation and "Всего" hover */
-.annotation-tooltip {
-    display: none;
-    position: absolute;
-    background-color: #4b5563;
-    color: white;
-    padding: 8px;
-    border-radius: 4px;
-    z-index: 10;
-    max-width: 300px;
-    word-wrap: break-word;
-}
-
-.book-card:hover .annotation-tooltip {
-    display: block;
-}
-
+/* Tooltip for "Всего" hover */
 .tooltip {
     display: none;
     position: absolute;

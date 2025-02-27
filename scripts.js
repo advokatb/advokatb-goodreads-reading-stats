@@ -30,16 +30,12 @@ class Book {
     getDisplayGenres() {
         return this.Genres?.slice(0, 3) || [];
     }
-    getAnnotation() {
-        return this.Annotation || 'Нет аннотации';
-    }
     render() {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group';
         const imgSrc = this.getCoverUrl();
         const genres = this.getDisplayGenres();
         const author = this.getDisplayAuthor();
-        const annotation = this.getAnnotation();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -51,25 +47,14 @@ class Book {
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
                 ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
-                <div class="annotation-tooltip hidden absolute bg-gray-800 text-white p-2 rounded text-sm w-64 z-10" style="top: -100%; left: 50%; transform: translateX(-50%)">
-                    ${annotation}
-                </div>
             </div>
-            ${this['My Rating'] > 0 ? `<div class="rating inline-block" data-rating="${this['My Rating']}"></div>` : ''}
+            ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
         `;
-        div.addEventListener('mouseover', () => {
-            const tooltip = div.querySelector('.annotation-tooltip');
-            if (tooltip) tooltip.classList.remove('hidden');
-        });
-        div.addEventListener('mouseout', () => {
-            const tooltip = div.querySelector('.annotation-tooltip');
-            if (tooltip) tooltip.classList.add('hidden');
-        });
         return div;
     }
     renderCurrent() {
         const div = document.createElement('div');
-        div.className = 'flex space-x-4 relative';
+        div.className = 'flex space-x-4';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
         const author = this.getDisplayAuthor();
@@ -83,7 +68,6 @@ class Book {
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
-                ${this['My Rating'] > 0 ? `<div class="rating inline-block" data-rating="${this['My Rating']}"></div>` : ''}
             </div>
         `;
         return div;
