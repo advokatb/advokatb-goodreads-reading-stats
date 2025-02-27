@@ -25,10 +25,8 @@ class Book {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
     }
     getDisplayAuthor() {
-        if (this.Author === "Sergei Lukyanenko" && this['Additional Authors']) {
-            return this['Additional Authors'].split(',')[0].trim();
-        }
-        return this.Author;
+        // Use original author name, no transliteration
+        return this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
     }
     getDisplayGenres() {
         return this.Genres?.slice(0, 3) || []; // Use precomputed genres from JSON
@@ -38,13 +36,14 @@ class Book {
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
         const imgSrc = this.getCoverUrl();
         const genres = this.getDisplayGenres();
+        const author = this.getDisplayAuthor();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
-                <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
+                <p class="text-gray-600 text-sm">👤 ${author}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
                 ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
@@ -59,13 +58,14 @@ class Book {
         div.className = 'flex space-x-4'; // No items-center, no genres
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
+        const author = this.getDisplayAuthor();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
-                <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
+                <p class="text-gray-600 text-sm">Автор: ${author}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
@@ -152,9 +152,9 @@ class BookCollection {
     // Hardcoded author photos (extend as needed)
     getAuthorPhoto(authorName) {
         const authorPhotos = {
-            'sergei lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            'сергеи лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
             'сергей лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
-            // Add more authors and photos here if needed, e.g., 'another author': 'https://example.com/photo.jpg'
+            // Add more authors in Russian, e.g., 'чан хо-кей': 'https://example.com/chan.jpg'
         };
         const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
         console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`); // Debug log
@@ -186,12 +186,12 @@ class BookCollection {
         container.innerHTML = '';
         const seriesBooks = {};
         this.allBooks.forEach(book => {
-            if (book.Series) { // Include all books with series, not just read
+            if (book.Series) { // Include all books with series
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
                 seriesBooks[book.Series].books.push(book);
-                console.log(`Added book to series ${book.Series}: ${book.Title}`); // Debug log
+                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`); // Debug log
             }
         });
 
@@ -219,7 +219,7 @@ class BookCollection {
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${book.getCoverUrl()}" alt="${book.Title}" 
-                             onload="console.log('Loaded cover for ${book.Title}')"
+                             onload="console.log('Loaded cover for ${book.Title} by ${book.getDisplayAuthor()}')"
                              onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
@@ -296,7 +296,7 @@ fetch('reading_stats.json')
         const allBooks = new BookCollection(data.book_list);
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
         const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
-        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] == 'to-read'));
+        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
         
         if (currentBooks.models.length > 0) {
             document.getElementById('current-book').appendChild(currentBooks.models[0].renderCurrent());

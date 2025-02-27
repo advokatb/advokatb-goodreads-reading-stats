@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import logging
 import time
 import os
+import urllib.parse
 
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
@@ -45,7 +46,9 @@ GENRE_TRANSLATION = {
     "Magical Realism": "Магический реализм",
     "Young Adult": "Молодёжная литература",
     "Literary Collections": "Литературные сборники",
-    "Fathers and daughters": "Отцы и дочери"
+    "Fathers and daughters": "Отцы и дочери",
+    "Colombian fiction": "Колумбийская художественная литература",
+    "Psychology": "Психология"
 }
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
@@ -78,7 +81,7 @@ def fetch_genres_from_google_books(isbn):
     if not isbn or not isinstance(isbn, str) or len(isbn.replace('-', '')) not in [10, 13]:
         logging.info(f"Invalid ISBN: {isbn}, skipping Google Books fetch")
         return None
-    api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')  # Fallback for local testing
+    api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')
     logging.info(f"Using API Key: {api_key}")  # Debug log (remove in production)
     url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
     try:
@@ -86,7 +89,7 @@ def fetch_genres_from_google_books(isbn):
         if response.status_code == 200:
             data = response.json()
             if data.get('items') and data['items'][0].get('volumeInfo', {}).get('categories'):
-                genres = data['items'][0]['volumeInfo']['categories'][:3]  # Limit to 3 genres
+                genres = data['items'][0]['volumeInfo']['categories'][:3]
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
                 logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {translated_genres}")
                 return translated_genres if translated_genres else None
@@ -100,13 +103,19 @@ def fetch_genres_from_google_books(isbn):
         return None
 
 def fetch_genres_from_google_books_by_title_author(title, author, additional_authors):
-    """Fetch genres from Google Books API using title and author as a fallback."""
+    """Fetch genres from Google Books API using full title and Russian author name."""
     if not title or not author:
         logging.info(f"Missing title or author for genre fetch: {title}, {author}")
         return None
-    title_clean = title.split(':')[0].strip().replace(' ', '+')
-    author_clean = author.split(',')[0].strip().replace(' ', '+')
-    url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
+    # Use full title without stripping and Russian author name
+    title_encoded = urllib.parse.quote(title)
+    author_encoded = urllib.parse.quote(author) if author else None
+    if not author_encoded and additional_authors:
+        author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())
+    if not author_encoded:
+        logging.info(f"No valid author for {title}")
+        return None
+    url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
     logging.info(f"Trying title+author search: {url}")
     try:
         response = requests.get(url, timeout=10)
@@ -162,7 +171,7 @@ df['Genres'] = df.apply(
 time.sleep(1)  # Rate limiting to avoid overwhelming APIs
 
 # Assign manual series for Sergei Lukyanenko books
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Use Russian name
 
 # Filter read books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
@@ -198,8 +207,8 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
             logging.error(f"Error with ISBN {identifier}: {e}")
 
     if title and author:
-        title_clean = title.split(':')[0].strip().replace(' ', '+')
-        author_clean = author.split(',')[0].strip().replace(' ', '+')
+        title_clean = urllib.parse.quote(title)  # Use full title
+        author_clean = urllib.parse.quote(author.split(',')[0].strip())  # Use Russian author
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
         logging.info(f"Trying English author: {url}")
         try:
@@ -222,10 +231,10 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
             logging.error(f"Error with English author {author}: {e}")
 
     if title and additional_authors:
-        title_clean = title.split(':')[0].strip().replace(' ', '+')
+        title_clean = urllib.parse.quote(title)  # Use full title
         add_author = additional_authors.split(',')[0].strip()
         if add_author:
-            add_author_clean = add_author.replace(' ', '+')
+            add_author_clean = urllib.parse.quote(add_author)  # Use Russian additional author
             url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
             logging.info(f"Trying Russian author: {url}")
             try:
