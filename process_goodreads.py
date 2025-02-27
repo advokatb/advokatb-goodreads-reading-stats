@@ -53,13 +53,32 @@ GENRE_TRANSLATION = {
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
 
+# Mapping of English to Russian author names
+AUTHOR_MAPPING = {
+    "Sergei Lukyanenko": "Сергей Лукьяненко",
+    "Daniel Keyes": "Дэниел Киз",
+    "Gabriel García Márquez": "Габриэль Гарсиа Маркес",
+    "Charlotte Brontë": "Шарлотта Бронте",
+    "Pom Yu Jin": "Пом Ю Джин",
+    "Chan Ho-Kei": "Чан Хо-Кей",
+    "Abraham Verghese": "Абрахам Вергисе",
+    "Gary Chapman": "Гэри Чепмен",
+    "Veronika i Angelina Shen": "Вероника и Ангелина Шэн"
+    # Add more mappings as needed based on your CSV
+}
+
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 try:
-    df = pd.read_csv('goodreads_library_export.csv')
+    df = pd.read_csv('goodreads_library_export.csv', encoding='utf-8')
     logging.info(f"CSV loaded with {len(df)} rows")
+    logging.info(f"Sample Author data: {df['Author'].head().to_string()}")  # Debug: Check initial author values
 except Exception as e:
     logging.error(f"Failed to load CSV: {e}")
     raise
+
+# Map English author names to Russian
+df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x, x) if pd.notna(x) else x)
+logging.info(f"Processed Author data sample: {df[['Title', 'Author', 'Additional Authors']].head().to_string()}")  # Debug
 
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
@@ -107,12 +126,14 @@ def fetch_genres_from_google_books_by_title_author(title, author, additional_aut
     if not title or not author:
         logging.info(f"Missing title or author for genre fetch: {title}, {author}")
         return None
-    # Use full title and original Russian author name
+    # Use full title and original author name (should be Russian from CSV or mapped)
     title_encoded = urllib.parse.quote(title)
-    author_encoded = urllib.parse.quote(author)  # Use the original author name (e.g., Сергей Лукьяненко)
+    author_encoded = urllib.parse.quote(author.strip())  # Use mapped Russian author
+    logging.info(f"Debug: Title={title}, Author={author}, Encoded Author={author_encoded}")  # Debug log
     if not author_encoded or author_encoded == urllib.parse.quote(''):
         if additional_authors and additional_authors.strip():
             author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())  # Fallback to additional author
+            logging.info(f"Fallback to additional author: {additional_authors}")
         else:
             logging.info(f"No valid author for {title}")
             return None
@@ -209,7 +230,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
 
     if title and author:
         title_clean = urllib.parse.quote(title)  # Use full title
-        author_clean = urllib.parse.quote(author.split(',')[0].strip())  # Use Russian author
+        author_clean = urllib.parse.quote(author.strip())  # Use Russian author
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
         logging.info(f"Trying Russian author: {url}")
         try:
