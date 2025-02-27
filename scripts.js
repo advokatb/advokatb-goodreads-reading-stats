@@ -62,9 +62,6 @@ class Book {
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
-                <a href="${this.getGoodreadsBookLink()}" target="_blank" class="ml-2">
-                    <img src="https://www.goodreads.com/favicon.ico" alt="Goodreads" class="inline w-4 h-4">
-                </a>
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
@@ -251,11 +248,9 @@ fetch('reading_stats.json')
         const longestBook = books.getLongestBook();
         const shortestBook = books.getShortestBook();
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
-        document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
-        document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
+        // Updated to match new layout - no longest-book/shortest-book IDs
         document.getElementById('most-prolific-author-name').textContent = mostProlificAuthor;
         document.getElementById('most-prolific-author-count').textContent = `${authorBookCount} книг`;
-        document.getElementById('books-2025-label').textContent = 'В этом году:';
 
         const challengeGoal = 50;
         const booksRead2025 = data.books_2025;  // Use books read in 2025
