@@ -84,6 +84,8 @@ h1, h2 {
     position: relative;
     height: 120px;
     white-space: nowrap;
+    width: 240px; /* Adjust to fit 3 books with 80px width and overlap */
+    overflow: visible; /* Ensure images are not clipped */
 }
 
 .series-book {

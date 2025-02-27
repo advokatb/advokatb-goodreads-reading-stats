@@ -173,7 +173,7 @@ class BookCollection {
                 }
                 seriesBooks[book.Series].books.push(book);
             }
-       });
+        });
 
         for (const [series, data] of Object.entries(seriesBooks)) {
             const { books, author } = data;
