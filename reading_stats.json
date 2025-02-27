@@ -4,9 +4,9 @@
   "avg_pages": 410.1,
   "avg_rating": 4.71,
   "series_counts": {
-    "Изменённые": 4,
+    "Изменённые": 1,
     "Канашибари": 2,
-    "Соглашение": 3
+    "Соглашение": 2
   },
   "books_2025": 10,
   "book_list": [
@@ -71,7 +71,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Colombian fiction"
+        "Колумбийская художественная литература"
       ],
       "Book Id": "6967700",
       "Days Spent": null
@@ -230,7 +230,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Psychology"
+        "Психология"
       ],
       "Book Id": "220278968",
       "Days Spent": 2.0
@@ -268,7 +268,7 @@
       "Date Read": "2025-02-06",
       "Date Added": "2025-02-05",
       "My Rating": 5,
-      "Series": "Соглашение",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -425,7 +425,7 @@
       "Date Read": "2024-12-28",
       "Date Added": "2024-12-25",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -447,7 +447,7 @@
       "Date Read": "2024-12-25",
       "Date Added": "2024-12-20",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -470,7 +470,7 @@
       "Date Read": "2024-12-20",
       "Date Added": "2024-12-17",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
