@@ -14,11 +14,20 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
+    position: relative; /* For absolute positioning of rating */
 }
 
 .book-card:hover {
     transform: scale(1.05) translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.rating {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #f59e0b; /* Tailwind amber-500 */
+    font-size: 0.75rem;
 }
 
 @keyframes fadeIn {
