@@ -152,10 +152,14 @@ class BookCollection {
     // Hardcoded author photos (extend as needed)
     getAuthorPhoto(authorName) {
         const authorPhotos = {
-            'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg'
+            'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
             // Add more authors and photos here if needed, e.g., 'Another Author': 'https://example.com/photo.jpg'
         };
-        return authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
+        const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
+        console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`); // Debug log
+        const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
+        console.log(`Selected photo URL: ${photoUrl}`); // Debug log
+        return photoUrl;
     }
     render(containerId) {
         const container = document.getElementById(containerId);
@@ -235,7 +239,7 @@ class BookCollection {
             const imgSrc = book.getCoverUrl();
             div.innerHTML = `
                 <img src="${imgSrc}" alt="${book.Title}" class="book-cover mr-4" 
-                     onload="console.log('Loaded cover for ${book.Title}')"
+                     onload="console.log('Loaded cover for ${this.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
                     <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
