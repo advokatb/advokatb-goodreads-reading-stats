@@ -39,7 +39,7 @@ class Book {
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div>
-                <h3 class="text-md font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
+                <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
                 <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
@@ -149,6 +149,14 @@ class BookCollection {
         const randomIndex = Math.floor(Math.random() * readBooks.length);
         return readBooks[randomIndex];
     }
+    // Hardcoded author photos (extend as needed)
+    getAuthorPhoto(authorName) {
+        const authorPhotos = {
+            'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg'
+            // Add more authors and photos here if needed, e.g., 'Another Author': 'https://example.com/photo.jpg'
+        };
+        return authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
+    }
     render(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
@@ -230,7 +238,7 @@ class BookCollection {
                      onload="console.log('Loaded cover for ${book.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
-                    <h3 class="text-md font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
+                    <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
@@ -245,9 +253,9 @@ class BookCollection {
         const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
-        const imgSrc = 'https://picsum.photos/50'; // Placeholder
+        const photoUrl = this.getAuthorPhoto(mostProlificAuthor);
         div.innerHTML = `
-            <img src="${imgSrc}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
+            <img src="${photoUrl}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
             <div>
                 <h3 class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</h3>
                 <p class="text-gray-600 text-sm">${authorBookCount} книг</p>
