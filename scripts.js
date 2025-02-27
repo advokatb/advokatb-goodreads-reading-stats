@@ -69,20 +69,6 @@ class Book {
         `;
         return div;
     }
-    renderMostProlificAuthor() {
-        const div = document.createElement('div');
-        div.className = 'flex items-center space-x-4';
-        const imgSrc = 'https://picsum.photos/50'; // Placeholder for author photo
-        const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor(); // This should be called on a BookCollection instance
-        div.innerHTML = `
-            <img src="${imgSrc}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</h3>
-                <p class="text-gray-600 text-sm">${authorBookCount} книг</p>
-            </div>
-        `;
-        return div;
-    }
 }
 
 class BookCollection {
@@ -191,7 +177,7 @@ class BookCollection {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'series-book';
                 bookDiv.style.left = `${index * 60}px`;
-                bookDiv.style.zIndex = (books.length - index).toString(); // Corrected syntax
+                bookDiv.style.zIndex = (books.length - index).toString();
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
@@ -236,7 +222,6 @@ class BookCollection {
             container.appendChild(div);
         });
     }
-    // Method to render "Любимый автор" content
     renderMostProlificAuthor() {
         const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
         const div = document.createElement('div');
@@ -260,7 +245,16 @@ fetch('reading_stats.json')
     })
     .then(data => {
         // Safely update total-books, total-pages, books-2025 inside the "Всего" block
-        const totalContainer = document.querySelector('#total-book-1').closest('div').querySelector('.text-left');
+        const totalBookDiv = document.getElementById('total-book-1')?.closest('div.w-full');
+        if (!totalBookDiv) {
+            console.error('Total book container not found');
+            return;
+        }
+        const totalContainer = totalBookDiv.querySelector('.text-left');
+        if (!totalContainer) {
+            console.error('Text container in "Всего" block not found');
+            return;
+        }
         const totalBooksElement = totalContainer.querySelector('p:nth-child(1)');
         const totalPagesElement = totalContainer.querySelector('p:nth-child(2)');
         const books2025Element = totalContainer.querySelector('p:nth-child(3) span');
@@ -296,7 +290,11 @@ fetch('reading_stats.json')
         }
 
         // Populate "Любимый автор" with consistent layout
-        document.getElementById('most-prolific-author').appendChild(books.renderMostProlificAuthor());
+        if (document.getElementById('most-prolific-author')) {
+            document.getElementById('most-prolific-author').appendChild(books.renderMostProlificAuthor());
+        } else {
+            console.error('most-prolific-author element not found');
+        }
 
         // Populate two random read books in "Всего"
         const randomReadBooks = books.getTwoRandomReadBooks();
