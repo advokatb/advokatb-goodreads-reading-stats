@@ -46,7 +46,7 @@ class Book {
                 ${this.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres()}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
             </div>
-            ${this['My Rating'] > 0 ? `<div class="rating">${this['My Rating']}</div>` : ''}
+            ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
         `;
         return div;
     }
@@ -65,7 +65,7 @@ class Book {
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
-                ${this['My Rating'] > 0 ? `<div class="rating">${this['My Rating']}</div>` : ''}
+                ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
             </div>
         `;
         return div;
@@ -236,7 +236,7 @@ class BookCollection {
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
                     ${book['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${book.formatDateRead()}</p>` : ''}
                 </div>
-                ${book['My Rating'] > 0 ? `<div class="rating">${book['My Rating']}</div>` : ''}
+                ${book['My Rating'] > 0 ? `<div class="rating" data-rating="${book['My Rating']}"></div>` : ''}
             `;
             container.appendChild(div);
         });
