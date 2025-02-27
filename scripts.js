@@ -138,12 +138,11 @@ class BookCollection {
         return this.allBooks.reduce((latest, book) => 
             new Date(book['Date Read']) > new Date(latest['Date Read']) ? book : latest, this.allBooks[0]);
     }
-    getTwoToThreeRandomReadBooks() {
+    getRandomReadBook() {
         const readBooks = this.allBooks.filter(book => book['Exclusive Shelf'] === 'read');
-        if (readBooks.length === 0) return [];
-        const maxBooks = Math.min(3, readBooks.length); // Limit to 3 or fewer if less than 3
-        const shuffled = readBooks.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, maxBooks);
+        if (readBooks.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * readBooks.length);
+        return readBooks[randomIndex];
     }
     render(containerId) {
         const container = document.getElementById(containerId);
@@ -196,7 +195,7 @@ class BookCollection {
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${book.getCoverUrl()}" alt="${book.Title}" 
                              onload="console.log('Loaded cover for ${book.Title}')"
-                             onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
+                             onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
                 rowDiv.appendChild(bookDiv);
@@ -259,7 +258,7 @@ fetch('reading_stats.json')
     })
     .then(data => {
         // Safely update total-books, total-pages, books-2025 inside the "Всего" block
-        const totalBookDiv = document.getElementById('total-book-1')?.closest('div.w-full');
+        const totalBookDiv = document.getElementById('total-book')?.closest('div.w-full');
         if (!totalBookDiv) {
             console.error('Total book container not found');
             return;
@@ -310,19 +309,12 @@ fetch('reading_stats.json')
             console.error('most-prolific-author element not found');
         }
 
-        // Populate 2-3 random read books in "Всего"
-        const randomReadBooks = books.getTwoToThreeRandomReadBooks();
-        const maxBooks = Math.min(3, randomReadBooks.length);
-        for (let i = 0; i < maxBooks; i++) {
-            const bookId = `total-book-${i + 1}`;
-            const book = randomReadBooks[i];
-            const imgElement = document.getElementById(bookId);
-            if (imgElement) {
-                imgElement.src = book.getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
-                imgElement.alt = book.Title || 'No Title';
-            } else {
-                console.error(`Image element ${bookId} not found`);
-            }
+        // Populate one random read book in "Всего"
+        const randomReadBook = books.getRandomReadBook();
+        if (randomReadBook) {
+            document.getElementById('total-book').appendChild(randomReadBook.renderCurrent());
+        } else {
+            document.getElementById('total-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
 
         const challengeGoal = 50;
