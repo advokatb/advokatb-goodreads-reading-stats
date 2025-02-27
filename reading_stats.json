@@ -12,7 +12,7 @@
   "book_list": [
     {
       "Title": "Гордость и предубеждение",
-      "Author": "Jane Austen",
+      "Author": "Джейн Остин",
       "Additional Authors": "Джейн Остен, Иммануэль Маршак",
       "Number of Pages": 382,
       "Estimated Word Count": 105050,
@@ -25,7 +25,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "9785170166282",
-      "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=MXS-AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
@@ -34,7 +34,7 @@
     },
     {
       "Title": "Убить пересмешника",
-      "Author": "Harper Lee",
+      "Author": "Харпер Ли",
       "Additional Authors": "Нора Галь, Раиса Облонская",
       "Number of Pages": 416,
       "Estimated Word Count": 114400,
@@ -80,7 +80,7 @@
     },
     {
       "Title": "Голодные игры",
-      "Author": "Suzanne Collins",
+      "Author": "Сюзанна Коллинз",
       "Additional Authors": "Alexey Shipulin",
       "Number of Pages": 384,
       "Estimated Word Count": 105600,
@@ -93,7 +93,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=vNyuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
