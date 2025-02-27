@@ -79,6 +79,9 @@ except Exception as e:
     logging.error(f"Failed to load CSV: {e}")
     raise
 
+# Store original titles for series mapping
+df['Original Title'] = df['Title'].copy()
+
 # Map English author names to Russian before series processing
 df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x.lower(), x) if pd.notna(x) else x)  # Case-insensitive mapping
 logging.info(f"Processed Author data sample: {df['Author'].head().to_string()}")  # Debug after Author mapping
@@ -89,10 +92,10 @@ df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
 df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
-# Enhanced Series extraction before title cleanup
-df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
-logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
+# Enhanced Series extraction using original title
+df['Series'] = df['Original Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Original Title'].map(SERIES_MAPPING)
+logging.info(f"Processed Series data sample before cleanup: {df[['Original Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
@@ -198,8 +201,8 @@ df['Genres'] = df.apply(
 time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
-logging.info(f"Series data after mapping: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Original Title'].map(SERIES_MAPPING)
+logging.info(f"Series data after mapping: {df[['Original Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
@@ -315,7 +318,7 @@ books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
     'Date Added', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
-    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL', 'Genres', 'Annotation'
+    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL', 'Genres', 'Annotation', 'Original Title'
 ]
 
 for col in ['Book Id', 'Author Id']:
