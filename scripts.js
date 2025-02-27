@@ -191,7 +191,7 @@ class BookCollection {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'series-book';
                 bookDiv.style.left = `${index * 60}px`;
-                bookDiv.style.zIndex = `${books.length - index}`; // Fixed syntax
+                bookDiv.style.zIndex = (books.length - index).toString(); // Fixed syntax
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
@@ -226,7 +226,7 @@ class BookCollection {
                      onload="console.log('Loaded cover for ${book.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
-                    <h3 class="text-md font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
+                    <h3 class="text-md font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
@@ -244,13 +244,23 @@ fetch('reading_stats.json')
         return response.json();
     })
     .then(data => {
-        // Update total-books, total-pages, books-2025 inside the "Всего" block
-        const totalBooksElement = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(1)');
-        const totalPagesElement = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(2)');
-        const books2025Element = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(3) span');
-        totalBooksElement.textContent = data.total_books;
-        totalPagesElement.textContent = data.total_pages.toLocaleString();
-        books2025Element.textContent = data.books_2025;
+        // Safely update total-books, total-pages, books-2025 inside the "Всего" block
+        const totalBooksContainer = document.querySelector('#total-book-1').closest('div').nextElementSibling;
+        const totalBooksElement = totalBooksContainer.querySelector('p:nth-child(1)');
+        const totalPagesElement = totalBooksContainer.querySelector('p:nth-child(2)');
+        const books2025Element = totalBooksContainer.querySelector('p:nth-child(3) span');
+
+        if (totalBooksElement && totalPagesElement && books2025Element) {
+            totalBooksElement.textContent = data.total_books;
+            totalPagesElement.textContent = data.total_pages.toLocaleString();
+            books2025Element.textContent = data.books_2025;
+        } else {
+            console.error('One or more elements in "Всего" block not found:', {
+                totalBooksElement,
+                totalPagesElement,
+                books2025Element
+            });
+        }
 
         const allBooks = new BookCollection(data.book_list);
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
@@ -277,12 +287,12 @@ fetch('reading_stats.json')
         // Populate two random read books in "Всего"
         const randomReadBooks = books.getTwoRandomReadBooks();
         if (randomReadBooks.length > 0) {
-            document.getElementById('total-book-1').src = randomReadBooks[0].getCoverUrl();
-            document.getElementById('total-book-1').alt = randomReadBooks[0].Title;
+            document.getElementById('total-book-1').src = randomReadBooks[0].getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
+            document.getElementById('total-book-1').alt = randomReadBooks[0].Title || 'No Title';
         }
         if (randomReadBooks.length > 1) {
-            document.getElementById('total-book-2').src = randomReadBooks[1].getCoverUrl();
-            document.getElementById('total-book-2').alt = randomReadBooks[1].Title;
+            document.getElementById('total-book-2').src = randomReadBooks[1].getCoverUrl() || 'https://placehold.co/80x120?text=Нет обложки';
+            document.getElementById('total-book-2').alt = randomReadBooks[1].Title || 'No Title';
         }
 
         const challengeGoal = 50;
