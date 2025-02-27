@@ -27,7 +27,7 @@
       "ISBN13": "9785170166282",
       "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Literary Collections"
+        "Литературные сборники"
       ],
       "Book Id": "17566513",
       "Days Spent": null
@@ -49,7 +49,7 @@
       "ISBN13": "9785170835201",
       "Cover URL": "http://books.google.com/books/content?id=YQ6XoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Fathers and daughters"
+        "Отцы и дочери"
       ],
       "Book Id": "13410173",
       "Days Spent": null
@@ -71,9 +71,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Магический реализм",
-        "Фэнтези",
-        "Literature"
+        "Colombian fiction"
       ],
       "Book Id": "6967700",
       "Days Spent": null
@@ -95,7 +93,7 @@
       "ISBN13": "9785170624638",
       "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Literary Collections"
+        "Литературные сборники"
       ],
       "Book Id": "7769068",
       "Days Spent": null
@@ -231,7 +229,9 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": null,
+      "Genres": [
+        "Psychology"
+      ],
       "Book Id": "220278968",
       "Days Spent": 2.0
     },
