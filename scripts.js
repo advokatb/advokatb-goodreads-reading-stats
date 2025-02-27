@@ -73,7 +73,7 @@ class Book {
 
 class BookCollection {
     constructor(books) {
-        this.models = books.map(book => new Book(book));
+        this.models = books ? books.map(book => new Book(book)) : []; // Ensure models is always an array
         this.allBooks = [...this.models];
     }
     filterBySeries(series) {
@@ -125,7 +125,7 @@ class BookCollection {
         if (!this.allBooks.length) return ['Нет данных', 0];
         const authorCounts = {};
         this.allBooks.forEach(book => {
-            if (book['Exclusive Shelf'] === 'read') { // Count only read books
+            if (book['Exclusive Shelf'] === 'read') {
                 const displayAuthor = book.getDisplayAuthor();
                 authorCounts[displayAuthor] = (authorCounts[displayAuthor] || 0) + 1;
             }
@@ -146,11 +146,23 @@ class BookCollection {
     }
     render(containerId) {
         const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container ${containerId} not found`);
+            return;
+        }
         container.innerHTML = '';
-        this.models.forEach(book => container.appendChild(book.render()));
+        if (this.models) {
+            this.models.forEach(book => container.appendChild(book.render()));
+        } else {
+            console.error('models is undefined in render');
+        }
     }
     renderSeriesShelf(containerId) {
         const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container ${containerId} not found`);
+            return;
+        }
         container.innerHTML = '';
         const seriesBooks = {};
         this.allBooks.forEach(book => {
@@ -195,14 +207,15 @@ class BookCollection {
     }
     renderFutureReads(containerId) {
         const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container ${containerId} not found`);
+            return;
+        }
         container.innerHTML = '';
-        this.models.sort((a, b) => {
-            const posA = a['Bookshelves with positions'] && a['Bookshelves with positions'].includes('to-read') ? 
-                parseInt(a['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
-            const posB = b['Bookshelves with positions'] && b['Bookshelves with positions'].includes('to-read') ? 
-                parseInt(b['Bookshelves with positions'].match(/#(\d+)/)?.[1] || 9999) : 9999;
-            return posA - posB;
-        });
+        if (!this.models || !Array.isArray(this.models)) {
+            console.error('models is not an array or is undefined in renderFutureReads');
+            return;
+        }
         this.models.forEach(book => {
             const div = document.createElement('div');
             div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
@@ -216,7 +229,7 @@ class BookCollection {
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
-                    ${book.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.Genres[0]}</p>` : ''}
+                    ${book.Genres && book.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${book.Genres[0]}</p>` : ''}
                 </div>
             `;
             container.appendChild(div);
@@ -335,11 +348,12 @@ fetch('reading_stats.json')
         books.sortBy('date-desc').render('book-list');
         
         const futureReadsBlock = document.getElementById('future-reads-block');
-        if (toReadBooks.models.length > 0) {
+        if (toReadBooks && toReadBooks.models && toReadBooks.models.length > 0) {
             futureReadsBlock.style.display = 'block';
             toReadBooks.renderFutureReads('future-reads');
         } else {
             futureReadsBlock.style.display = 'none';
+            console.warn('No to-read books found or models is invalid');
         }
         
         document.getElementById('sort-by').value = 'date-desc';
