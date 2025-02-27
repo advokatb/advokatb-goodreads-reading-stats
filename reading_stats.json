@@ -71,7 +71,9 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=AfB8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Foreign Language Study"
+        "Магический реализм",
+        "Фэнтези",
+        "Literature"
       ],
       "Book Id": "6967700",
       "Days Spent": null
@@ -116,8 +118,7 @@
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Научная фантастика",
-        "Фэнтези",
-        "Russia"
+        "Фэнтези"
       ],
       "Book Id": "43195781",
       "Days Spent": null
@@ -141,7 +142,7 @@
       "Genres": [
         "Научная фантастика",
         "Фэнтези",
-        "Russia"
+        "Zombies"
       ],
       "Book Id": "31327431",
       "Days Spent": null
@@ -207,7 +208,8 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Foreign Language Study"
+        "Классика",
+        "Романтика"
       ],
       "Book Id": "40536979",
       "Days Spent": 3.0
@@ -275,8 +277,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=inK3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Научная фантастика",
-        "Russia"
+        "Научная фантастика"
       ],
       "Book Id": "201229523",
       "Days Spent": 1.0
@@ -321,7 +322,6 @@
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Научная фантастика",
-        "Russia",
         "Фэнтези"
       ],
       "Book Id": "46067196",
@@ -454,8 +454,7 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=e3tSEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Научная фантастика",
-        "Russia"
+        "Научная фантастика"
       ],
       "Book Id": "59529747",
       "Days Spent": 5.0
@@ -478,8 +477,8 @@
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Научная фантастика",
-        "Russia",
-        "Фэнтези"
+        "Фэнтези",
+        "Science Fiction Fantasy"
       ],
       "Book Id": "58688819",
       "Days Spent": 3.0
