@@ -153,6 +153,7 @@ class BookCollection {
     getAuthorPhoto(authorName) {
         const authorPhotos = {
             'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            'Сергей Лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
             // Add more authors and photos here if needed, e.g., 'Another Author': 'https://example.com/photo.jpg'
         };
         const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
