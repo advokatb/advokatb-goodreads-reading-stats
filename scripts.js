@@ -309,10 +309,16 @@ fetch('reading_stats.json')
             console.error('most-prolific-author element not found');
         }
 
-        // Populate one random read book in "Всего"
+        // Populate one random read book cover in "Всего"
         const randomReadBook = books.getRandomReadBook();
         if (randomReadBook) {
-            document.getElementById('total-book').appendChild(randomReadBook.renderCurrent());
+            const imgElement = document.getElementById('total-book-image');
+            if (imgElement) {
+                imgElement.src = randomReadBook.getCoverUrl() || 'https://placehold.co/100x150?text=Нет+обложки';
+                imgElement.alt = randomReadBook.Title || 'No Title';
+            } else {
+                console.error('total-book-image element not found');
+            }
         } else {
             document.getElementById('total-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
