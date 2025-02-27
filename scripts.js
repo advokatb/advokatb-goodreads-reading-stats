@@ -80,6 +80,7 @@ class BookCollection {
     constructor(books) {
         this.models = books ? books.map(book => new Book(book)) : []; // Ensure models is always an array
         this.allBooks = [...this.models];
+        console.log(`BookCollection initialized with ${this.allBooks.length} books`); // Debug initialization
     }
     filterBySeries(series) {
         this.models = series ? 
@@ -158,7 +159,7 @@ class BookCollection {
         };
         const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
         console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`); // Debug log
-        const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
+        const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.co/64?text=${encodeURIComponent(authorName)}`;
         console.log(`Selected photo URL: ${photoUrl}`); // Debug log
         return photoUrl;
     }
@@ -184,18 +185,26 @@ class BookCollection {
             return;
         }
         container.innerHTML = '';
+        console.log(`Rendering series shelf with ${this.allBooks.length} total books`); // Debug start
         const seriesBooks = {};
         this.allBooks.forEach(book => {
+            console.log(`Processing book: ${book.Title}, Series: ${book.Series}, Author: ${book.getDisplayAuthor()}`); // Debug each book
             if (book.Series && book.Series.trim()) { // Ensure Series is not empty
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
                 seriesBooks[book.Series].books.push(book);
-                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`); // Debug log
+                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`); // Debug addition
             } else {
                 console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`); // Debug empty Series
             }
         });
+
+        if (Object.keys(seriesBooks).length === 0) {
+            console.warn('No series found in allBooks');
+            container.innerHTML = '<p class="text-gray-600">Нет серий для отображения</p>';
+            return;
+        }
 
         for (const [series, data] of Object.entries(seriesBooks)) {
             const { books, author } = data;
@@ -369,6 +378,8 @@ fetch('reading_stats.json')
         document.getElementById('sort-by').addEventListener('change', () => {
             books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
+
+        allBooks.renderSeriesShelf('series-shelf'); // Explicitly call renderSeriesShelf
 
         const options = {
             series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],

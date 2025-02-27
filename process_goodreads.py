@@ -78,14 +78,16 @@ except Exception as e:
 
 # Map English author names to Russian
 df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x, x) if pd.notna(x) else x)
-logging.info(f"Processed Author data sample: {df[['Title', 'Author', 'Additional Authors']].head().to_string()}")  # Debug
+logging.info(f"Processed Author data sample: {df[['Title', 'Author', 'Additional Authors', 'Series']].head().to_string()}")  # Debug with Series
 
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
 df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
-df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False)
+df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False).fillna(df['Series'])  # Preserve existing Series
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Manual mapping
+logging.info(f"Final Series data sample: {df[['Title', 'Series']].head().to_string()}")  # Debug Series
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
 df['Bookshelves with positions'] = df['Bookshelves with positions'].fillna('')
@@ -194,6 +196,7 @@ time.sleep(1)  # Rate limiting to avoid overwhelming APIs
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Use Russian name
+logging.info(f"Series data after mapping: {df[['Title', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
