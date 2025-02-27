@@ -4,16 +4,16 @@
   "avg_pages": 410.1,
   "avg_rating": 4.71,
   "series_counts": {
-    "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435": 4,
-    "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438": 2,
-    "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435": 3
+    "Изменённые": 4,
+    "Канашибари": 2,
+    "Соглашение": 3
   },
   "books_2025": 10,
   "book_list": [
     {
-      "Title": "\u0413\u043e\u0440\u0434\u043e\u0441\u0442\u044c \u0438 \u043f\u0440\u0435\u0434\u0443\u0431\u0435\u0436\u0434\u0435\u043d\u0438\u0435",
+      "Title": "Гордость и предубеждение",
       "Author": "Jane Austen",
-      "Additional Authors": "\u0414\u0436\u0435\u0439\u043d \u041e\u0441\u0442\u0435\u043d, \u0418\u043c\u043c\u0430\u043d\u0443\u044d\u043b\u044c \u041c\u0430\u0440\u0448\u0430\u043a",
+      "Additional Authors": "Джейн Остен, Иммануэль Маршак",
       "Number of Pages": 382,
       "Estimated Word Count": 105050,
       "Date Read": null,
@@ -27,7 +27,7 @@
       "ISBN13": "9785170166282",
       "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "Историческая проза",
         "Historical",
         "Literature"
       ],
@@ -35,9 +35,9 @@
       "Days Spent": null
     },
     {
-      "Title": "\u0423\u0431\u0438\u0442\u044c \u043f\u0435\u0440\u0435\u0441\u043c\u0435\u0448\u043d\u0438\u043a\u0430",
+      "Title": "Убить пересмешника",
       "Author": "Harper Lee",
-      "Additional Authors": "\u041d\u043e\u0440\u0430 \u0413\u0430\u043b\u044c, \u0420\u0430\u0438\u0441\u0430 \u041e\u0431\u043b\u043e\u043d\u0441\u043a\u0430\u044f",
+      "Additional Authors": "Нора Галь, Раиса Облонская",
       "Number of Pages": 416,
       "Estimated Word Count": 114400,
       "Date Read": null,
@@ -51,7 +51,7 @@
       "ISBN13": "9785170835201",
       "Cover URL": "http://books.google.com/books/content?id=YQ6XoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "Историческая проза",
         "School",
         "Literature"
       ],
@@ -59,9 +59,9 @@
       "Days Spent": null
     },
     {
-      "Title": "\u0421\u0442\u043e \u043b\u0435\u0442 \u043e\u0434\u0438\u043d\u043e\u0447\u0435\u0441\u0442\u0432\u0430",
-      "Author": "Gabriel Garc\u00eda M\u00e1rquez",
-      "Additional Authors": "\u0413\u0430\u0431\u0440\u0438\u044d\u043b\u044c \u0413\u0430\u0440\u0441\u0438\u0430 \u041c\u0430\u0440\u043a\u0435\u0441",
+      "Title": "Сто лет одиночества",
+      "Author": "Gabriel García Márquez",
+      "Additional Authors": "Габриэль Гарсиа Маркес",
       "Number of Pages": 414,
       "Estimated Word Count": 113850,
       "Date Read": null,
@@ -75,15 +75,15 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041c\u0430\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0440\u0435\u0430\u043b\u0438\u0437\u043c",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Магический реализм",
+        "Фэнтези",
         "Literature"
       ],
       "Book Id": "6967700",
       "Days Spent": null
     },
     {
-      "Title": "\u0413\u043e\u043b\u043e\u0434\u043d\u044b\u0435 \u0438\u0433\u0440\u044b",
+      "Title": "Голодные игры",
       "Author": "Suzanne Collins",
       "Additional Authors": "Alexey Shipulin",
       "Number of Pages": 384,
@@ -99,17 +99,17 @@
       "ISBN13": "9785170624638",
       "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041c\u043e\u043b\u043e\u0434\u0451\u0436\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
+        "Молодёжная литература",
+        "Фэнтези",
+        "Научная фантастика"
       ],
       "Book Id": "7769068",
       "Days Spent": null
     },
     {
-      "Title": "\u041a\u0430\u0439\u043d\u043ez\u043e\u0439",
+      "Title": "Кайноzой",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
       "Date Read": null,
@@ -123,17 +123,17 @@
       "ISBN13": "9785171125844",
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Научная фантастика",
+        "Фэнтези",
         "Russia"
       ],
       "Book Id": "43195781",
       "Days Spent": null
     },
     {
-      "Title": "\u041a\u0412\u0410Z\u0418",
+      "Title": "КВАZИ",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
       "Date Read": null,
@@ -147,16 +147,16 @@
       "ISBN13": "9785170981311",
       "Cover URL": "http://books.google.com/books/content?id=yhAsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Научная фантастика",
+        "Фэнтези",
         "Russia"
       ],
       "Book Id": "31327431",
       "Days Spent": null
     },
     {
-      "Title": "\u0420\u0435\u0441\u0442\u043e\u0440\u0430\u043d 06:06:06",
-      "Author": "\u041f\u043e\u043c \u042e \u0414\u0436\u0438\u043d",
+      "Title": "Ресторан 06:06:06",
+      "Author": "Пом Ю Джин",
       "Additional Authors": "chaerimi",
       "Number of Pages": 242,
       "Estimated Word Count": 66550,
@@ -175,9 +175,9 @@
       "Days Spent": null
     },
     {
-      "Title": "\u0426\u0432\u0435\u0442\u044b \u0434\u043b\u044f \u042d\u043b\u0434\u0436\u0435\u0440\u043d\u043e\u043d\u0430",
+      "Title": "Цветы для Элджернона",
       "Author": "Daniel Keyes",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u0428\u0430\u0440\u043e\u0432, \u0414\u044d\u043d\u0438\u0435\u043b \u041a\u0438\u0437",
+      "Additional Authors": "Сергей Шаров, Дэниел Киз",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
       "Date Read": "2025-02-25",
@@ -191,17 +191,17 @@
       "ISBN13": "9785699157440",
       "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041a\u043b\u0430\u0441\u0441\u0438\u043a\u0430",
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
-        "\u041c\u043e\u043b\u043e\u0434\u0451\u0436\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"
+        "Классика",
+        "Научная фантастика",
+        "Молодёжная литература"
       ],
       "Book Id": "6139677",
       "Days Spent": 5.0
     },
     {
-      "Title": "\u0414\u0436\u0435\u0439\u043d \u042d\u0439\u0440",
-      "Author": "Charlotte Bront\u00eb",
-      "Additional Authors": "\u0418\u0440\u0438\u043d\u0430 \u0413\u0443\u0440\u043e\u0432\u0430",
+      "Title": "Джейн Эйр",
+      "Author": "Charlotte Brontë",
+      "Additional Authors": "Ирина Гурова",
       "Number of Pages": 666,
       "Estimated Word Count": 183150,
       "Date Read": "2024-12-20",
@@ -215,15 +215,15 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "\u041a\u043b\u0430\u0441\u0441\u0438\u043a\u0430",
-        "\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u043a\u0430"
+        "Классика",
+        "Романтика"
       ],
       "Book Id": "40536979",
       "Days Spent": 3.0
     },
     {
-      "Title": "\u041f\u044f\u0442\u044c \u044f\u0437\u044b\u043a\u043e\u0432 \u043b\u044e\u0431\u0432\u0438",
-      "Author": "\u0413\u044d\u0440\u0438 \u0427\u0435\u043f\u043c\u0435\u043d",
+      "Title": "Пять языков любви",
+      "Author": "Гэри Чепмен",
       "Additional Authors": "",
       "Number of Pages": 168,
       "Estimated Word Count": 46200,
@@ -242,9 +242,9 @@
       "Days Spent": 2.0
     },
     {
-      "Title": "\u0412\u0442\u043e\u0440\u0430\u044f \u0441\u0435\u0441\u0442\u0440\u0430",
+      "Title": "Вторая сестра",
       "Author": "Chan Ho-Kei",
-      "Additional Authors": "\u0427\u0430\u043d \u0425\u043e-\u041a\u0435\u0439",
+      "Additional Authors": "Чан Хо-Кей",
       "Number of Pages": 512,
       "Estimated Word Count": 140800,
       "Date Read": "2025-02-19",
@@ -258,23 +258,23 @@
       "ISBN13": "9785386145408",
       "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0414\u0435\u0442\u0435\u043a\u0442\u0438\u0432",
-        "\u0422\u0440\u0438\u043b\u043b\u0435\u0440",
-        "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b"
+        "Детектив",
+        "Триллер",
+        "Криминал"
       ],
       "Book Id": "59222769",
       "Days Spent": 7.0
     },
     {
-      "Title": "\u041f\u0440\u044b\u0436\u043e\u043a",
+      "Title": "Прыжок",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 425,
       "Estimated Word Count": 116875,
       "Date Read": "2025-02-06",
       "Date Added": "2025-02-05",
       "My Rating": 5,
-      "Series": "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
+      "Series": "Соглашение",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -282,22 +282,22 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=inK3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "Научная фантастика",
         "Russia"
       ],
       "Book Id": "201229523",
       "Days Spent": 1.0
     },
     {
-      "Title": "\u041f\u0440\u0435\u0434\u0435\u043b",
+      "Title": "Предел",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 370,
       "Estimated Word Count": 101750,
       "Date Read": "2025-02-04",
       "Date Added": "2025-01-31",
       "My Rating": 5,
-      "Series": "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
+      "Series": "Соглашение",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -305,21 +305,21 @@
       "ISBN13": "9785171233051",
       "Cover URL": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
+        "Научная фантастика"
       ],
       "Book Id": "58210523",
       "Days Spent": 4.0
     },
     {
-      "Title": "\u041f\u043e\u0440\u043e\u0433",
+      "Title": "Порог",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
       "Date Read": "2025-02-01",
       "Date Added": "2025-01-23",
       "My Rating": 5,
-      "Series": "\u0421\u043e\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u0435",
+      "Series": "Соглашение",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -327,23 +327,23 @@
       "ISBN13": "9785171163013",
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "Научная фантастика",
         "Russia",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
+        "Фэнтези"
       ],
       "Book Id": "46067196",
       "Days Spent": 9.0
     },
     {
-      "Title": "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438. \u0422\u043e\u043c 2",
-      "Author": "\u0412\u0435\u0440\u043e\u043d\u0438\u043a\u0430 \u0438 \u0410\u043d\u0433\u0435\u043b\u0438\u043d\u0430 \u0428\u044d\u043d",
+      "Title": "Канашибари. Том 2",
+      "Author": "Вероника и Ангелина Шэн",
       "Additional Authors": "",
       "Number of Pages": 384,
       "Estimated Word Count": 105600,
       "Date Read": "2025-01-22",
       "Date Added": "2025-01-19",
       "My Rating": 5,
-      "Series": "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438",
+      "Series": "Канашибари",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -355,15 +355,15 @@
       "Days Spent": 3.0
     },
     {
-      "Title": "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438. \u0422\u043e\u043c 1",
-      "Author": "\u0412\u0435\u0440\u043e\u043d\u0438\u043a\u0430 \u0438 \u0410\u043d\u0433\u0435\u043b\u0438\u043d\u0430 \u0428\u044d\u043d",
+      "Title": "Канашибари. Том 1",
+      "Author": "Вероника и Ангелина Шэн",
       "Additional Authors": "",
       "Number of Pages": 392,
       "Estimated Word Count": 107800,
       "Date Read": "2025-01-19",
       "Date Added": "2025-01-17",
       "My Rating": 5,
-      "Series": "\u041a\u0430\u043d\u0430\u0448\u0438\u0431\u0430\u0440\u0438",
+      "Series": "Канашибари",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -371,17 +371,17 @@
       "ISBN13": "9785353108238",
       "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0423\u0436\u0430\u0441\u044b",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
+        "Ужасы",
+        "Фэнтези",
         "Paranormal"
       ],
       "Book Id": "201959407",
       "Days Spent": 2.0
     },
     {
-      "Title": "\u0420\u0430\u0441\u0441\u0435\u0447\u0435\u043d\u0438\u0435 \u0421\u0442\u043e\u0443\u043d\u0430",
+      "Title": "Рассечение Стоуна",
       "Author": "Abraham   Verghese",
-      "Additional Authors": "\u0410\u0431\u0440\u0430\u0445\u0430\u043c \u0412\u0435\u0440\u0433\u0435\u0437\u0435, \u0421\u0435\u0440\u0433\u0435\u0439 \u0421\u043e\u043a\u043e\u043b\u043e\u0432",
+      "Additional Authors": "Абрахам Вергезе, Сергей Соколов",
       "Number of Pages": 604,
       "Estimated Word Count": 166100,
       "Date Read": "2025-01-16",
@@ -395,7 +395,7 @@
       "ISBN13": "9785864717318",
       "Cover URL": "http://books.google.com/books/content?id=BaQwDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u0418\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u0440\u043e\u0437\u0430",
+        "Историческая проза",
         "Africa",
         "Book Club"
       ],
@@ -403,15 +403,15 @@
       "Days Spent": 14.0
     },
     {
-      "Title": "\u041b\u0435\u0442\u043e \u0432\u043e\u043b\u043e\u043d\u0442\u0451\u0440\u0430",
+      "Title": "Лето волонтёра",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 413,
       "Estimated Word Count": 113575,
       "Date Read": "2025-01-02",
       "Date Added": "2024-12-28",
       "My Rating": 4,
-      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -423,15 +423,15 @@
       "Days Spent": 5.0
     },
     {
-      "Title": "\u041c\u0435\u0441\u044f\u0446 \u0437\u0430 \u0420\u0443\u0431\u0438\u043a\u043e\u043d\u043e\u043c",
+      "Title": "Месяц за Рубиконом",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 434,
       "Estimated Word Count": 119350,
       "Date Read": "2024-12-28",
       "Date Added": "2024-12-25",
       "My Rating": 4,
-      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -439,21 +439,21 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=N99jEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
+        "Научная фантастика"
       ],
       "Book Id": "201276201",
       "Days Spent": 3.0
     },
     {
-      "Title": "\u0422\u0440\u0438 \u0434\u043d\u044f \u0418\u043d\u0434\u0438\u0433\u043e",
+      "Title": "Три дня Индиго",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 350,
       "Estimated Word Count": 96250,
       "Date Read": "2024-12-25",
       "Date Added": "2024-12-20",
       "My Rating": 4,
-      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -461,22 +461,22 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=e3tSEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "Научная фантастика",
         "Russia"
       ],
       "Book Id": "59529747",
       "Days Spent": 5.0
     },
     {
-      "Title": "\u0421\u0435\u043c\u044c \u0434\u043d\u0435\u0439 \u0434\u043e \u041c\u0435\u0433\u0438\u0434\u0434\u043e",
+      "Title": "Семь дней до Мегиддо",
       "Author": "Sergei Lukyanenko",
-      "Additional Authors": "\u0421\u0435\u0440\u0433\u0435\u0439 \u041b\u0443\u043a\u044c\u044f\u043d\u0435\u043d\u043a\u043e",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
       "Date Read": "2024-12-20",
       "Date Added": "2024-12-17",
       "My Rating": 4,
-      "Series": "\u0418\u0437\u043c\u0435\u043d\u0451\u043d\u043d\u044b\u0435",
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -484,9 +484,9 @@
       "ISBN13": "9785171389888",
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+        "Научная фантастика",
         "Russia",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438"
+        "Фэнтези"
       ],
       "Book Id": "58688819",
       "Days Spent": 3.0
