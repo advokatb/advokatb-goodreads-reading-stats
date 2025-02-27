@@ -75,11 +75,12 @@ class Book {
         `;
         return div;
     }
-    renderCurrent() {
+    async renderCurrent() {
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
+        const genres = this['ISBN'] ? await this.getDisplayGenres(this['ISBN']) : [];
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -89,6 +90,7 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
+                ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
                 ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
             </div>
@@ -173,9 +175,9 @@ class BookCollection {
     // Hardcoded author photos (extend as needed)
     getAuthorPhoto(authorName) {
         const authorPhotos = {
-            'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
-            'Сергей Лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
-            // Add more authors and photos here if needed, e.g., 'Another Author': 'https://example.com/photo.jpg'
+            'sergei lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            'сергей лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            // Add more authors and photos here if needed, e.g., 'another author': 'https://example.com/photo.jpg'
         };
         const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
         console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`); // Debug log
@@ -191,7 +193,12 @@ class BookCollection {
         }
         container.innerHTML = '';
         if (this.models) {
-            this.models.forEach(book => container.appendChild(book.render()));
+            (async () => {
+                for (const book of this.models) {
+                    const div = await book.render();
+                    container.appendChild(div);
+                }
+            })();
         } else {
             console.error('models is undefined in render');
         }
@@ -255,27 +262,12 @@ class BookCollection {
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
-        this.models.forEach(async (book) => {
-            const div = document.createElement('div');
-            div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
-            const imgSrc = book.getCoverUrl();
-            const genres = await book.getDisplayGenres(book['ISBN'] || '');
-            div.innerHTML = `
-                <img src="${imgSrc}" alt="${book.Title}" class="book-cover mr-4" 
-                     onload="console.log('Loaded cover for ${book.Title}')"
-                     onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
-                    <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
-                    <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
-                    ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
-                    ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
-                    ${book['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${book.formatDateRead()}</p>` : ''}
-                </div>
-                ${book['My Rating'] > 0 ? `<div class="rating" data-rating="${book['My Rating']}"></div>` : ''}
-            `;
-            container.appendChild(div);
-        });
+        (async () => {
+            for (const book of this.models) {
+                const div = await book.render();
+                container.appendChild(div);
+            }
+        })();
     }
     renderMostProlificAuthor() {
         const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
@@ -390,7 +382,7 @@ fetch('reading_stats.json')
             seriesFilter.appendChild(option);
         });
 
-        books.sortBy('date-desc').render('book-list');
+        books.render('book-list');
         
         const futureReadsBlock = document.getElementById('future-reads-block');
         if (toReadBooks && toReadBooks.models && toReadBooks.models.length > 0) {
@@ -404,10 +396,10 @@ fetch('reading_stats.json')
         document.getElementById('sort-by').value = 'date-desc';
 
         seriesFilter.addEventListener('change', () => {
-            books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
+            books.filterBySeries(seriesFilter.value).render('book-list');
         });
         document.getElementById('sort-by').addEventListener('change', () => {
-            books.filterBySeries(seriesFilter.value).sortBy(document.getElementById('sort-by').value).render('book-list');
+            books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
 
         const options = {
