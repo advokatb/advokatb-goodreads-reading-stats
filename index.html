@@ -59,21 +59,23 @@
 
         <!-- Book List with Filters -->
         <div class="bg-white p-6 rounded-lg shadow-lg mb-12 fade-in">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Мои книги</h2>
-            <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                <select id="series-filter" class="btn">
-                    <option value="">Все серии</option>
-                </select>
-                <select id="sort-by" class="btn">
-                    <option value="title-asc">Название (А-Я)</option>
-                    <option value="title-desc">Название (Я-А)</option>
-                    <option value="pages-asc">Страниц (возр.)</option>
-                    <option value="pages-desc">Страниц (убыв.)</option>
-                    <option value="date-asc">Дата (старая-новая)</option>
-                    <option value="date-desc">Дата (новая-старая)</option>
-                    <option value="rating-asc">Оценка (низкая-высокая)</option>
-                    <option value="rating-desc">Оценка (высокая-низкая)</option>
-                </select>
+            <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
+                <h2 class="text-2xl font-semibold text-gray-700">Прочитанные книги</h2>
+                <div class="flex gap-4 mt-4 sm:mt-0">
+                    <select id="series-filter" class="btn">
+                        <option value="">Все серии</option>
+                    </select>
+                    <select id="sort-by" class="btn">
+                        <option value="title-asc">Название (А-Я)</option>
+                        <option value="title-desc">Название (Я-А)</option>
+                        <option value="pages-asc">Страниц (возр.)</option>
+                        <option value="pages-desc">Страниц (убыв.)</option>
+                        <option value="date-asc">Дата (старая-новая)</option>
+                        <option value="date-desc">Дата (новая-старая)</option>
+                        <option value="rating-asc">Оценка (низкая-высокая)</option>
+                        <option value="rating-desc">Оценка (высокая-низкая)</option>
+                    </select>
+                </div>
             </div>
             <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </div>

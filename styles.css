@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #f0f4f8, #e0e7ff);
+    background: linear-gradient(to-bottom, #f0f4f8, #e0e7ff);
 }
 
 .fade-in {
@@ -31,19 +31,22 @@ body {
 
 .btn {
     transition: all 0.3s ease;
-    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    background: linear-gradient(to-right, #4b5563, #1f2937); /* Updated gradient: gray-600 to gray-800 */
     color: white;
-    padding: 8px 16px;
+    padding: 8px 16px; /* Equal padding on left/right */
     border-radius: 8px;
+    text-align: center; /* Center text */
 }
 
 .btn:hover {
-    background: linear-gradient(to right, #3b82f6, #9333ea);
+    background: linear-gradient(to-right, #6b7280, #374151); /* Hover: gray-500 to gray-700 */
 }
 
 select.btn {
     color: #ffffff;
-    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    background: linear-gradient(to-right, #4b5563, #1f2937);
+    appearance: none; /* Remove default arrow styling for custom control */
+    padding-right: 16px; /* Consistent padding with text */
 }
 
 select.btn option {
