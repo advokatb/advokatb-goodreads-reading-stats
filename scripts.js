@@ -64,10 +64,9 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
-                ${this.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres()}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
+                ${this['My Rating'] > 0 ? `<div class="rating">${this['My Rating']}</div>` : ''}
             </div>
-            ${this['My Rating'] > 0 ? `<div class="rating">${this['My Rating']}</div>` : ''}
         `;
         return div;
     }
@@ -235,7 +234,6 @@ class BookCollection {
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
-                    ${book.Genres && book.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${book.getDisplayGenres()}</p>` : ''}
                     ${book['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${book.formatDateRead()}</p>` : ''}
                 </div>
                 ${book['My Rating'] > 0 ? `<div class="rating">${book['My Rating']}</div>` : ''}
