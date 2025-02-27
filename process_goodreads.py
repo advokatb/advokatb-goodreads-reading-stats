@@ -107,14 +107,15 @@ def fetch_genres_from_google_books_by_title_author(title, author, additional_aut
     if not title or not author:
         logging.info(f"Missing title or author for genre fetch: {title}, {author}")
         return None
-    # Use full title without stripping and Russian author name
+    # Use full title and original Russian author name
     title_encoded = urllib.parse.quote(title)
-    author_encoded = urllib.parse.quote(author) if author else None
-    if not author_encoded and additional_authors:
-        author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())
-    if not author_encoded:
-        logging.info(f"No valid author for {title}")
-        return None
+    author_encoded = urllib.parse.quote(author)  # Use the original author name (e.g., Сергей Лукьяненко)
+    if not author_encoded or author_encoded == urllib.parse.quote(''):
+        if additional_authors and additional_authors.strip():
+            author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())  # Fallback to additional author
+        else:
+            logging.info(f"No valid author for {title}")
+            return None
     url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
     logging.info(f"Trying title+author search: {url}")
     try:
@@ -210,7 +211,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
         title_clean = urllib.parse.quote(title)  # Use full title
         author_clean = urllib.parse.quote(author.split(',')[0].strip())  # Use Russian author
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
-        logging.info(f"Trying English author: {url}")
+        logging.info(f"Trying Russian author: {url}")
         try:
             response = requests.get(url)
             if response.status_code == 200:
@@ -226,9 +227,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 else:
                     logging.info(f"No results for {title} by {author}")
             else:
-                logging.info(f"Failed English author request: {response.status_code}")
+                logging.info(f"Failed Russian author request: {response.status_code}")
         except Exception as e:
-            logging.error(f"Error with English author {author}: {e}")
+            logging.error(f"Error with Russian author {author}: {e}")
 
     if title and additional_authors:
         title_clean = urllib.parse.quote(title)  # Use full title
@@ -236,7 +237,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
         if add_author:
             add_author_clean = urllib.parse.quote(add_author)  # Use Russian additional author
             url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
-            logging.info(f"Trying Russian author: {url}")
+            logging.info(f"Trying additional Russian author: {url}")
             try:
                 response = requests.get(url)
                 if response.status_code == 200:
@@ -260,9 +261,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                                 return cover
                     logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
-                    logging.info(f"Failed Russian author request: {response.status_code}")
+                    logging.info(f"Failed additional Russian author request: {response.status_code}")
             except Exception as e:
-                logging.error(f"Error with Russian author {add_author}: {e}")
+                logging.error(f"Error with additional Russian author {add_author}: {e}")
     
     logging.info(f"No cover found for {title}")
     return None

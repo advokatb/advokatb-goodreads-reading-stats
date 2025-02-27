@@ -152,8 +152,8 @@ class BookCollection {
     // Hardcoded author photos (extend as needed)
     getAuthorPhoto(authorName) {
         const authorPhotos = {
-            'сергеи лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
-            'сергей лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            'Sergei Lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
+            'Сергей Лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
             // Add more authors in Russian, e.g., 'чан хо-кей': 'https://example.com/chan.jpg'
         };
         const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
