@@ -4,15 +4,15 @@
   "avg_pages": 410.1,
   "avg_rating": 4.71,
   "series_counts": {
-    "Изменённые": 4,
+    "Изменённые": 1,
     "Канашибари": 2,
-    "Соглашение": 3
+    "Соглашение": 2
   },
   "books_2025": 10,
   "book_list": [
     {
       "Title": "Гордость и предубеждение",
-      "Author": "Джейн Остин",
+      "Author": "Jane Austen",
       "Additional Authors": "Джейн Остен, Иммануэль Маршак",
       "Number of Pages": 382,
       "Estimated Word Count": 105050,
@@ -25,16 +25,17 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "9785170166282",
-      "Cover URL": "http://books.google.com/books/content?id=MXS-AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
+      "Annotation": "\"Гордость и предубеждение\" Джейн Остен - роман, неподвластный ходу времени. Поразительное по глубине, психологизму и изящному, прозрачному лиризму повествование о судьбе молодой женщины и ее нелегкой, полной неуверенности, ошибок и сомнений любви",
       "Book Id": "17566513",
       "Days Spent": null
     },
     {
       "Title": "Убить пересмешника",
-      "Author": "Харпер Ли",
+      "Author": "Harper Lee",
       "Additional Authors": "Нора Галь, Раиса Облонская",
       "Number of Pages": 416,
       "Estimated Word Count": 114400,
@@ -51,12 +52,13 @@
       "Genres": [
         "Отцы и дочери"
       ],
+      "Annotation": null,
       "Book Id": "13410173",
       "Days Spent": null
     },
     {
       "Title": "Сто лет одиночества",
-      "Author": "Габриэль Гарсиа Маркес",
+      "Author": "Gabriel García Márquez",
       "Additional Authors": "Габриэль Гарсиа Маркес",
       "Number of Pages": 414,
       "Estimated Word Count": 113850,
@@ -69,18 +71,17 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=AfB8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Магический реализм",
-        "Фэнтези",
-        "Literature"
+        "Колумбийская художественная литература"
       ],
+      "Annotation": null,
       "Book Id": "6967700",
       "Days Spent": null
     },
     {
       "Title": "Голодные игры",
-      "Author": "Сюзанна Коллинз",
+      "Author": "Suzanne Collins",
       "Additional Authors": "Alexey Shipulin",
       "Number of Pages": 384,
       "Estimated Word Count": 105600,
@@ -93,16 +94,17 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=vNyuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
+      "Annotation": "\"Голодные игры\" - жестокий, талантливый, написанный с колоссальным драйвом роман, в котором напряжение нарастает с каждой страницей",
       "Book Id": "7769068",
       "Days Spent": null
     },
     {
       "Title": "Кайноzой",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
@@ -120,12 +122,13 @@
         "Научная фантастика",
         "Фэнтези"
       ],
+      "Annotation": null,
       "Book Id": "43195781",
       "Days Spent": null
     },
     {
       "Title": "КВАZИ",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
@@ -144,6 +147,7 @@
         "Фэнтези",
         "Zombies"
       ],
+      "Annotation": null,
       "Book Id": "31327431",
       "Days Spent": null
     },
@@ -163,13 +167,14 @@
       "ISBN": "5353113179",
       "ISBN13": "9785353113171",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg",
-      "Genres": null,
+      "Genres": [],
+      "Annotation": null,
       "Book Id": "223689131",
       "Days Spent": null
     },
     {
       "Title": "Цветы для Элджернона",
-      "Author": "Дэниел Киз",
+      "Author": "Daniel Keyes",
       "Additional Authors": "Сергей Шаров, Дэниел Киз",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
@@ -182,18 +187,19 @@
       "Exclusive Shelf": "read",
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=KuEWEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Классика",
         "Научная фантастика",
         "Молодёжная литература"
       ],
+      "Annotation": null,
       "Book Id": "6139677",
       "Days Spent": 5.0
     },
     {
       "Title": "Джейн Эйр",
-      "Author": "Шарлотта Бронте",
+      "Author": "Charlotte Brontë",
       "Additional Authors": "Ирина Гурова",
       "Number of Pages": 666,
       "Estimated Word Count": 183150,
@@ -211,6 +217,7 @@
         "Классика",
         "Романтика"
       ],
+      "Annotation": "Бронте, Ш. Джейн Эйр / Шарлотта Бронте ; [пер. с англ. И.Г. Гуровой]. — М. : Издательство Вече, 2017. — 576 с. — (100 великих романов). Знак информационной продукции 12+ Самый знаменитый роман английской писательницы Шарлотты Бронте (1816—1865) продолжает и в наше время волновать сердца миллионов. Умная и образованная героиня стала примером для многих поколений юных читательниц. События романа происходят в мрачном готическом замке в поместье Торнфильд, где раскрываются страшные тайны, а страстная любовь героев встречает на своем пути множество непреодолимых препятствий.",
       "Book Id": "40536979",
       "Days Spent": 3.0
     },
@@ -233,12 +240,13 @@
       "Genres": [
         "Психология"
       ],
+      "Annotation": "Как выразить любовь вашему спутнику. Любовь можно проявлять по-разному. Доктор Гэри Чепмен утверждает, что существует пять языков любви: Слова поощрения; Время; Подарки; Помощь; Прикосновения.Вы стараетесь показать супругу, что любите его, а он как будто ничего не замечает. Может быть, вы просто говорите на разных языках? Возможно, ваш муж хочет, чтобы вы ему посочувствовали, а вы вместо этого готовите вкусный ужин. Возможно, вашей жене хочется проводить с вами побольше времени, а роскошные букеты, которые вы преподносите каждый вечер, ей не нужны.В конце книги вы найдете руководство по обсуждению, которое поможет вам лучше разобраться в прочитанном. Вы и заметить не успеете, как научитесь понимать язык другого, выражать ему любовь, и вскоре почувствуете, что и вас любят.",
       "Book Id": "220278968",
       "Days Spent": 2.0
     },
     {
       "Title": "Вторая сестра",
-      "Author": "Чан Хо-Кей",
+      "Author": "Chan Ho-Kei",
       "Additional Authors": "Чан Хо-Кей",
       "Number of Pages": 512,
       "Estimated Word Count": 140800,
@@ -257,19 +265,20 @@
         "Триллер",
         "Криминал"
       ],
+      "Annotation": "Школьница - Сиу-Ман - покончила с собой, выпрыгнув из окна двадцать второго этажа. Сиу-Ман - сирота, и старшая сестра-библиотекарь, которая воспитывала ее, отказывается верить в версию о самоубийстве. Она связывается с человеком, известным только как Н. - хакер, специалист по кибербезопасности и манипулированию человеческим поведением. Но может ли Нга-Йи заинтересовать его настолько, чтобы взяться за ее дело?",
       "Book Id": "59222769",
       "Days Spent": 7.0
     },
     {
       "Title": "Прыжок",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 425,
       "Estimated Word Count": 116875,
       "Date Read": "2025-02-06",
       "Date Added": "2025-02-05",
       "My Rating": 5,
-      "Series": "Соглашение",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -279,12 +288,13 @@
       "Genres": [
         "Научная фантастика"
       ],
+      "Annotation": null,
       "Book Id": "201229523",
       "Days Spent": 1.0
     },
     {
       "Title": "Предел",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 370,
       "Estimated Word Count": 101750,
@@ -301,12 +311,13 @@
       "Genres": [
         "Научная фантастика"
       ],
+      "Annotation": null,
       "Book Id": "58210523",
       "Days Spent": 4.0
     },
     {
       "Title": "Порог",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
@@ -324,6 +335,7 @@
         "Научная фантастика",
         "Фэнтези"
       ],
+      "Annotation": null,
       "Book Id": "46067196",
       "Days Spent": 9.0
     },
@@ -343,7 +355,8 @@
       "ISBN": "535310899X",
       "ISBN13": "9785353108993",
       "Cover URL": "http://books.google.com/books/content?id=BqkzEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": null,
+      "Genres": [],
+      "Annotation": null,
       "Book Id": "218689887",
       "Days Spent": 3.0
     },
@@ -368,6 +381,7 @@
         "Фэнтези",
         "Paranormal"
       ],
+      "Annotation": null,
       "Book Id": "201959407",
       "Days Spent": 2.0
     },
@@ -392,12 +406,13 @@
         "Africa",
         "Book Club"
       ],
+      "Annotation": "Эпический роман, написанный одним из самых авторитетных врачей мира «Рассечение Стоуна» – история любви длиною в жизнь, предательства и искупления, человеческой слабости и силы духа, изгнания и долгого возвращения к корням. В миссионерской больнице Адис-Абебы при трагических, истинно шекспировских, обстоятельствах рождаются два мальчика, два близнеца, сросшихся затылками, Мэрион и Шива. Рожденные прекрасной индийской монахиней от хирурга-англичанина, мальчики осиротели в первые часы жизни. Искусство и мужество врачей, разделивших их сразу после рождения, определило их жизнь и судьбу. Мэрион и Шива свяжут свою жизнь с медициной, но каждый пойдет своей дорогой. Их ждет удивительная, трагическая и полная невероятных событий судьба. Абсолютно счастливое детство и драматическая юность, поиски себя и своих корней, предательство и страстное желание искупить вину, любовь, похожая на наваждение, и ревность, изъедающая душу. И все это под сенью медицины. Что бы не происходило в жизни героев этого воистину большого романа, как бы не терзала их судьба, главным для них всегда оставалась хирургия – дело, ради которого они пришли в этот мир. Абрахам Вергезе – выдающийся доктор, светило в области физиотерапии, один из самых авторитетных врачей Америки. Его первый роман стал большим событием, удивительная проникновенность и достоверность, глубочайшее знание профессии и великолепный литературный стиль позволяют назвать книгу Вергезе одним из самых значительных медицинских романов последнего столетия.",
       "Book Id": "45238710",
       "Days Spent": 14.0
     },
     {
       "Title": "Лето волонтёра",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 413,
       "Estimated Word Count": 113575,
@@ -411,20 +426,21 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=l4mREAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": null,
+      "Genres": [],
+      "Annotation": null,
       "Book Id": "201229151",
       "Days Spent": 5.0
     },
     {
       "Title": "Месяц за Рубиконом",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 434,
       "Estimated Word Count": 119350,
       "Date Read": "2024-12-28",
       "Date Added": "2024-12-25",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -434,19 +450,20 @@
       "Genres": [
         "Научная фантастика"
       ],
+      "Annotation": null,
       "Book Id": "201276201",
       "Days Spent": 3.0
     },
     {
       "Title": "Три дня Индиго",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 350,
       "Estimated Word Count": 96250,
       "Date Read": "2024-12-25",
       "Date Added": "2024-12-20",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -456,19 +473,20 @@
       "Genres": [
         "Научная фантастика"
       ],
+      "Annotation": null,
       "Book Id": "59529747",
       "Days Spent": 5.0
     },
     {
       "Title": "Семь дней до Мегиддо",
-      "Author": "Сергей Лукьяненко",
+      "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
       "Date Read": "2024-12-20",
       "Date Added": "2024-12-17",
       "My Rating": 4,
-      "Series": "Изменённые",
+      "Series": null,
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -480,6 +498,7 @@
         "Фэнтези",
         "Science Fiction Fantasy"
       ],
+      "Annotation": null,
       "Book Id": "58688819",
       "Days Spent": 3.0
     }
@@ -497,5 +516,13 @@
       "Date": "2025-02",
       "Books": 6
     }
-  ]
+  ],
+  "longest_book": {
+    "Title": "Джейн Эйр",
+    "Number of Pages": 666
+  },
+  "shortest_book": {
+    "Title": "Пять языков любви",
+    "Number of Pages": 168
+  }
 }
