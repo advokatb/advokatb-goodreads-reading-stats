@@ -79,18 +79,20 @@ except Exception as e:
     logging.error(f"Failed to load CSV: {e}")
     raise
 
-# Map English author names to Russian
+# Map English author names to Russian before series processing
 df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x.lower(), x) if pd.notna(x) else x)  # Case-insensitive mapping
+logging.info(f"Processed Author data sample: {df['Author'].head().to_string()}")  # Debug after Author mapping
+
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
 df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
-# Enhanced Series extraction
+# Enhanced Series extraction before title cleanup
 df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
-df['Series'] = df.apply(lambda row: SERIES_MAPPING.get(row['Title'], row['Series']) if pd.isna(row['Series']) and row['Author'] == 'Сергей Лукьяненко' else row['Series'], axis=1)
-logging.info(f"Processed Series data sample: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug after Series
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)
+logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
