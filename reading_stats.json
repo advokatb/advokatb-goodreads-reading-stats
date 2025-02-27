@@ -4,9 +4,9 @@
   "avg_pages": 410.1,
   "avg_rating": 4.71,
   "series_counts": {
-    "Изменённые": 1,
+    "Изменённые": 4,
     "Канашибари": 2,
-    "Соглашение": 2
+    "Соглашение": 3
   },
   "books_2025": 10,
   "book_list": [
@@ -56,7 +56,7 @@
     },
     {
       "Title": "Сто лет одиночества",
-      "Author": "Gabriel García Márquez",
+      "Author": "Габриэль Гарсиа Маркес",
       "Additional Authors": "Габриэль Гарсиа Маркес",
       "Number of Pages": 414,
       "Estimated Word Count": 113850,
@@ -69,9 +69,9 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=unIyeOAhwCoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=AfB8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Колумбийская художественная литература"
+        "Foreign Language Study"
       ],
       "Book Id": "6967700",
       "Days Spent": null
@@ -100,7 +100,7 @@
     },
     {
       "Title": "Кайноzой",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
@@ -124,7 +124,7 @@
     },
     {
       "Title": "КВАZИ",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
@@ -168,7 +168,7 @@
     },
     {
       "Title": "Цветы для Элджернона",
-      "Author": "Daniel Keyes",
+      "Author": "Дэниел Киз",
       "Additional Authors": "Сергей Шаров, Дэниел Киз",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
@@ -181,7 +181,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=KuEWEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Классика",
         "Научная фантастика",
@@ -192,7 +192,7 @@
     },
     {
       "Title": "Джейн Эйр",
-      "Author": "Charlotte Brontë",
+      "Author": "Шарлотта Бронте",
       "Additional Authors": "Ирина Гурова",
       "Number of Pages": 666,
       "Estimated Word Count": 183150,
@@ -207,8 +207,7 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Классика",
-        "Романтика"
+        "Foreign Language Study"
       ],
       "Book Id": "40536979",
       "Days Spent": 3.0
@@ -237,7 +236,7 @@
     },
     {
       "Title": "Вторая сестра",
-      "Author": "Chan Ho-Kei",
+      "Author": "Чан Хо-Кей",
       "Additional Authors": "Чан Хо-Кей",
       "Number of Pages": 512,
       "Estimated Word Count": 140800,
@@ -261,14 +260,14 @@
     },
     {
       "Title": "Прыжок",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 425,
       "Estimated Word Count": 116875,
       "Date Read": "2025-02-06",
       "Date Added": "2025-02-05",
       "My Rating": 5,
-      "Series": null,
+      "Series": "Соглашение",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -284,7 +283,7 @@
     },
     {
       "Title": "Предел",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 370,
       "Estimated Word Count": 101750,
@@ -306,7 +305,7 @@
     },
     {
       "Title": "Порог",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
@@ -398,7 +397,7 @@
     },
     {
       "Title": "Лето волонтёра",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 413,
       "Estimated Word Count": 113575,
@@ -418,14 +417,14 @@
     },
     {
       "Title": "Месяц за Рубиконом",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 434,
       "Estimated Word Count": 119350,
       "Date Read": "2024-12-28",
       "Date Added": "2024-12-25",
       "My Rating": 4,
-      "Series": null,
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -440,14 +439,14 @@
     },
     {
       "Title": "Три дня Индиго",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 350,
       "Estimated Word Count": 96250,
       "Date Read": "2024-12-25",
       "Date Added": "2024-12-20",
       "My Rating": 4,
-      "Series": null,
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
@@ -463,14 +462,14 @@
     },
     {
       "Title": "Семь дней до Мегиддо",
-      "Author": "Sergei Lukyanenko",
+      "Author": "Сергей Лукьяненко",
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 352,
       "Estimated Word Count": 96800,
       "Date Read": "2024-12-20",
       "Date Added": "2024-12-17",
       "My Rating": 4,
-      "Series": null,
+      "Series": "Изменённые",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
