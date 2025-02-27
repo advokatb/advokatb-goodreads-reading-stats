@@ -63,7 +63,10 @@ AUTHOR_MAPPING = {
     "Chan Ho-Kei": "Чан Хо-Кей",
     "Abraham Verghese": "Абрахам Вергисе",
     "Gary Chapman": "Гэри Чепмен",
-    "Veronika i Angelina Shen": "Вероника и Ангелина Шэн"
+    "Veronika i Angelina Shen": "Вероника и Ангелина Шэн",
+    "Jane Austen": "Джейн Остин",
+    "Harper Lee": "Харпер Ли",
+    "Suzanne Collins": "Сюзанна Коллинз"
     # Add more mappings as needed based on your CSV
 }
 
@@ -78,16 +81,17 @@ except Exception as e:
 
 # Map English author names to Russian
 df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x, x) if pd.notna(x) else x)
-logging.info(f"Processed Author data sample: {df[['Title', 'Author', 'Additional Authors', 'Series']].head().to_string()}")  # Debug with Series
-
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
 df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
-df['Series'] = df['Title'].str.extract(r'\(([^,]+), #\d+\)', expand=False).fillna(df['Series'])  # Preserve existing Series
-df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Manual mapping
-logging.info(f"Final Series data sample: {df[['Title', 'Series']].head().to_string()}")  # Debug Series
+
+# Enhanced Series extraction
+df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)  # Improved regex for series
+df['Series'] = df.apply(lambda row: SERIES_MAPPING.get(row['Title'], row['Series']) if pd.isna(row['Series']) and row['Author'] == 'Сергей Лукьяненко' else row['Series'], axis=1)
+logging.info(f"Processed Series data sample: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug after Series
+
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
 df['Bookshelves'] = df['Bookshelves'].fillna('')
 df['Bookshelves with positions'] = df['Bookshelves with positions'].fillna('')
@@ -128,13 +132,12 @@ def fetch_genres_from_google_books_by_title_author(title, author, additional_aut
     if not title or not author:
         logging.info(f"Missing title or author for genre fetch: {title}, {author}")
         return None
-    # Use full title and original author name (should be Russian from CSV or mapped)
     title_encoded = urllib.parse.quote(title)
-    author_encoded = urllib.parse.quote(author.strip())  # Use mapped Russian author
-    logging.info(f"Debug: Title={title}, Author={author}, Encoded Author={author_encoded}")  # Debug log
+    author_encoded = urllib.parse.quote(author.strip())
+    logging.info(f"Debug: Title={title}, Author={author}, Encoded Author={author_encoded}")
     if not author_encoded or author_encoded == urllib.parse.quote(''):
         if additional_authors and additional_authors.strip():
-            author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())  # Fallback to additional author
+            author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())
             logging.info(f"Fallback to additional author: {additional_authors}")
         else:
             logging.info(f"No valid author for {title}")
@@ -195,8 +198,8 @@ df['Genres'] = df.apply(
 time.sleep(1)  # Rate limiting to avoid overwhelming APIs
 
 # Assign manual series for Sergei Lukyanenko books
-df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Use Russian name
-logging.info(f"Series data after mapping: {df[['Title', 'Series']].head().to_string()}")  # Debug Series
+df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)
+logging.info(f"Series data after mapping: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats
 books_read = df[df['Exclusive Shelf'] == 'read'].copy()
@@ -232,8 +235,8 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
             logging.error(f"Error with ISBN {identifier}: {e}")
 
     if title and author:
-        title_clean = urllib.parse.quote(title)  # Use full title
-        author_clean = urllib.parse.quote(author.strip())  # Use Russian author
+        title_clean = urllib.parse.quote(title)
+        author_clean = urllib.parse.quote(author.strip())
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
         logging.info(f"Trying Russian author: {url}")
         try:
@@ -256,10 +259,10 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
             logging.error(f"Error with Russian author {author}: {e}")
 
     if title and additional_authors:
-        title_clean = urllib.parse.quote(title)  # Use full title
+        title_clean = urllib.parse.quote(title)
         add_author = additional_authors.split(',')[0].strip()
         if add_author:
-            add_author_clean = urllib.parse.quote(add_author)  # Use Russian additional author
+            add_author_clean = urllib.parse.quote(add_author)
             url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
             logging.info(f"Trying additional Russian author: {url}")
             try:

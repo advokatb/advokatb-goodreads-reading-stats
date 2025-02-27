@@ -81,6 +81,9 @@ class BookCollection {
         this.models = books ? books.map(book => new Book(book)) : []; // Ensure models is always an array
         this.allBooks = [...this.models];
         console.log(`BookCollection initialized with ${this.allBooks.length} books`); // Debug initialization
+        if (this.allBooks.length === 0) {
+            console.error('No books loaded in BookCollection');
+        }
     }
     filterBySeries(series) {
         this.models = series ? 
@@ -108,7 +111,7 @@ class BookCollection {
     getSeriesWithAuthors() {
         const seriesAuthors = {};
         this.allBooks.forEach(book => {
-            if (book.Series) {
+            if (book.Series && book.Series.trim()) {
                 if (!seriesAuthors[book.Series]) {
                     seriesAuthors[book.Series] = new Set();
                 }
@@ -150,17 +153,15 @@ class BookCollection {
         const randomIndex = Math.floor(Math.random() * readBooks.length);
         return readBooks[randomIndex];
     }
-    // Hardcoded author photos (extend as needed)
     getAuthorPhoto(authorName) {
         const authorPhotos = {
             'sergei lukyanenko': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
             'сергей лукьяненко': 'https://covers.openlibrary.org/a/id/14357752-M.jpg',
-            // Add more authors in Russian, e.g., 'чан хо-кей': 'https://example.com/chan.jpg'
         };
-        const normalizedAuthor = authorName.trim().toLowerCase(); // Normalize for consistency
-        console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`); // Debug log
-        const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.co/64?text=${encodeURIComponent(authorName)}`;
-        console.log(`Selected photo URL: ${photoUrl}`); // Debug log
+        const normalizedAuthor = authorName.trim().toLowerCase();
+        console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`);
+        const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
+        console.log(`Selected photo URL: ${photoUrl}`);
         return photoUrl;
     }
     render(containerId) {
@@ -171,7 +172,7 @@ class BookCollection {
         }
         container.innerHTML = '';
         if (this.models) {
-            this.sortBy('date-desc'); // Sort by read date latest to oldest by default
+            this.sortBy('date-desc');
             const renderedBooks = this.models.map(book => book.render());
             renderedBooks.forEach(div => container.appendChild(div));
         } else {
@@ -185,24 +186,29 @@ class BookCollection {
             return;
         }
         container.innerHTML = '';
-        console.log(`Rendering series shelf with ${this.allBooks.length} total books`); // Debug start
+        console.log(`Rendering series shelf with ${this.allBooks.length} total books`);
+        if (this.allBooks.length === 0) {
+            container.innerHTML = '<p class="text-gray-600">Нет данных о сериях</p>';
+            console.warn('No books available to render series');
+            return;
+        }
         const seriesBooks = {};
         this.allBooks.forEach(book => {
-            console.log(`Processing book: ${book.Title}, Series: ${book.Series}, Author: ${book.getDisplayAuthor()}`); // Debug each book
-            if (book.Series && book.Series.trim()) { // Ensure Series is not empty
+            console.log(`Processing book: ${book.Title}, Series: ${book.Series}, Author: ${book.getDisplayAuthor()}`);
+            if (book.Series && book.Series.trim()) {
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
                 seriesBooks[book.Series].books.push(book);
-                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`); // Debug addition
+                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`);
             } else {
-                console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`); // Debug empty Series
+                console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`);
             }
         });
 
         if (Object.keys(seriesBooks).length === 0) {
-            console.warn('No series found in allBooks');
             container.innerHTML = '<p class="text-gray-600">Нет серий для отображения</p>';
+            console.warn('No series found in allBooks');
             return;
         }
 
@@ -277,6 +283,7 @@ fetch('reading_stats.json')
         return response.json();
     })
     .then(data => {
+        console.log('Fetched data:', data.book_list.length); // Debug data fetch
         // Safely update total-books, total-pages, books-2025 inside the "Всего" block
         const totalBookDiv = document.getElementById('total-book')?.closest('div.w-full');
         if (!totalBookDiv) {
