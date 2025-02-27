@@ -30,6 +30,31 @@ class Book {
         }
         return this.Author;
     }
+    async getGenresFromGoogleBooks(isbn) {
+        try {
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=YOUR_GOOGLE_BOOKS_API_KEY`);
+            if (response.ok) {
+                const data = await response.json();
+                if (data.items && data.items.length > 0) {
+                    const genres = data.items[0].volumeInfo.categories || [];
+                    console.log(`Fetched genres for ISBN ${isbn}: ${genres}`);
+                    return genres.length > 0 ? genres.slice(0, 3) : null; // Return up to 3 genres
+                }
+            }
+            console.warn(`No genres found for ISBN ${isbn} from Google Books`);
+            return null;
+        } catch (error) {
+            console.error(`Error fetching genres for ISBN ${isbn} from Google Books:`, error);
+            return null;
+        }
+    }
+    async getDisplayGenres(isbn) {
+        if (this.Genres && this.Genres.length > 0) {
+            return this.Genres.slice(0, 3); // Use existing genres if available
+        }
+        const googleGenres = await this.getGenresFromGoogleBooks(isbn);
+        return googleGenres || this.Genres?.slice(0, 3) || []; // Fallback to existing genres or empty array
+    }
     render() {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
@@ -43,7 +68,7 @@ class Book {
                 <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
-                ${this.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres()}</p>` : ''}
+                ${this['ISBN'] ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres(this['ISBN']).join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
             </div>
             ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
@@ -69,10 +94,6 @@ class Book {
             </div>
         `;
         return div;
-    }
-    getDisplayGenres() {
-        if (!this.Genres || !Array.isArray(this.Genres)) return '';
-        return this.Genres.slice(0, 3).join(', '); // Display up to 3 genres
     }
 }
 
@@ -234,19 +255,21 @@ class BookCollection {
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
-        this.models.forEach(book => {
+        this.models.forEach(async (book) => {
             const div = document.createElement('div');
             div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
             const imgSrc = book.getCoverUrl();
+            const genres = await book.getDisplayGenres(book['ISBN'] || '');
             div.innerHTML = `
                 <img src="${imgSrc}" alt="${book.Title}" class="book-cover mr-4" 
-                     onload="console.log('Loaded cover for ${this.Title}')"
+                     onload="console.log('Loaded cover for ${book.Title}')"
                      onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                 <div>
                     <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${book.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${book.Title}</a></h3>
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
+                    ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                     ${book['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${book.formatDateRead()}</p>` : ''}
                 </div>
                 ${book['My Rating'] > 0 ? `<div class="rating" data-rating="${book['My Rating']}"></div>` : ''}
