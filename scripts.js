@@ -173,7 +173,7 @@ class BookCollection {
                 }
                 seriesBooks[book.Series].books.push(book);
             }
-        });
+       });
 
         for (const [series, data] of Object.entries(seriesBooks)) {
             const { books, author } = data;
@@ -264,7 +264,7 @@ fetch('reading_stats.json')
             console.error('Total book container not found');
             return;
         }
-        const totalContainer = totalBookDiv.querySelector('.text-left');
+        const totalContainer = totalBookDiv.querySelector('.text-right');
         if (!totalContainer) {
             console.error('Text container in "Всего" block not found');
             return;
