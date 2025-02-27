@@ -13,27 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Cache Python dependencies (if any)
-      - name: Cache Python dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      # Install dependencies (if any)
-      - name: Install dependencies
-        run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      # Run Python script only if CSV or Python files change
+      # Run Python script for data generation (if CSV or Python files change)
       - name: Run Python script for data generation
         id: generate_data
         run: |
@@ -45,17 +31,14 @@ jobs:
             echo "No CSV or Python changes detected, skipping data generation."
             echo "DATA_GENERATED=false" >> $GITHUB_ENV
           fi
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
 
       # Deploy to GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }} # Optional: Use a personal access token for faster deployment
+          personal_token: ${{ secrets.PERSONAL_TOKEN }} # Optional: Use a personal access token
           publish_dir: ./ # Publish the entire repository root
-          force_orphan: true # Create a new orphan branch for each deploy to avoid history
+          force_orphan: true # Create a new orphan branch for each deploy
           commit_message: "Deploy: Update GitHub Pages [skip ci]"
-
-      # Optional: Clear cache if data was generated to ensure fresh build
-      - name: Clear cache on data change
-        if: env.DATA_GENERATED == 'true'
-        run: rm -rf ~/.cache/pip

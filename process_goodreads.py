@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import logging
 import time
+import os
 
 CORRECT_IDS = {
     "Предел": "http://books.google.com/books/content?id=u5MwEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
@@ -69,8 +70,34 @@ df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
 
-# Fetch genres from Goodreads book page
+# Fetch genres from Google Books API with fallback to Goodreads
+def fetch_genres_from_google_books(isbn):
+    """Fetch genres from Google Books API using ISBN."""
+    if not isbn or not isinstance(isbn, str) or len(isbn.replace('-', '')) not in [10, 13]:
+        logging.info(f"Invalid ISBN: {isbn}, skipping Google Books fetch")
+        return None
+    api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')  # Fallback for local testing
+    url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('items') and data['items'][0].get('volumeInfo', {}).get('categories'):
+                genres = data['items'][0]['volumeInfo']['categories'][:3]  # Limit to 3 genres
+                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {translated_genres}")
+                return translated_genres if translated_genres else None
+            logging.warning(f"No genres found for ISBN {isbn} from Google Books")
+            return None
+        else:
+            logging.error(f"Google Books API error for ISBN {isbn}: {response.status_code} - {response.text}")
+            return None
+    except requests.RequestException as e:
+        logging.error(f"Error fetching genres from Google Books for ISBN {isbn}: {e}")
+        return None
+
 def fetch_goodreads_genres(book_id):
+    """Fetch genres from Goodreads book page as a fallback."""
     if not book_id or book_id == '':
         return None
     url = f"https://www.goodreads.com/book/show/{book_id}"
@@ -85,7 +112,7 @@ def fetch_goodreads_genres(book_id):
                 genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
                 filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
-                logging.info(f"Fetched genres for Book ID {book_id}: {translated_genres}")
+                logging.info(f"Fetched genres from Goodreads for Book ID {book_id}: {translated_genres}")
                 return translated_genres if translated_genres else None
         logging.warning(f"No genres found or failed request for Book ID {book_id}: {response.status_code}")
         return None
@@ -93,8 +120,12 @@ def fetch_goodreads_genres(book_id):
         logging.error(f"Error fetching genres for Book ID {book_id}: {e}")
         return None
 
-df['Genres'] = df['Book Id'].apply(fetch_goodreads_genres)
-time.sleep(1)
+# Apply genres with Google Books as primary and Goodreads as fallback
+df['Genres'] = df.apply(
+    lambda row: fetch_genres_from_google_books(row['ISBN'] or row['ISBN13']) or fetch_goodreads_genres(row['Book Id']),
+    axis=1
+)
+time.sleep(1)  # Rate limiting to avoid overwhelming APIs
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -257,7 +288,7 @@ stats = {
     'book_list': book_list,
     'timeline': timeline_data
 }
-with open('reading_stats.json', 'w') as f:
-    json.dump(stats, f, indent=2)
+with open('reading_stats.json', 'w', encoding='utf-8') as f:
+    json.dump(stats, f, indent=2, ensure_ascii=False)
 
 logging.info("Stats generated and saved to 'reading_stats.json'")

@@ -30,35 +30,14 @@ class Book {
         }
         return this.Author;
     }
-    async getGenresFromGoogleBooks(isbn) {
-        try {
-            const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=YOUR_GOOGLE_BOOKS_API_KEY`);
-            if (response.ok) {
-                const data = await response.json();
-                if (data.items && data.items.length > 0) {
-                    const genres = data.items[0].volumeInfo.categories || [];
-                    console.log(`Fetched genres for ISBN ${isbn}: ${genres}`);
-                    return genres.length > 0 ? genres.slice(0, 3) : null; // Return up to 3 genres
-                }
-            }
-            console.warn(`No genres found for ISBN ${isbn} from Google Books`);
-            return null;
-        } catch (error) {
-            console.error(`Error fetching genres for ISBN ${isbn} from Google Books:`, error);
-            return null;
-        }
-    }
-    async getDisplayGenres(isbn) {
-        if (this.Genres && this.Genres.length > 0) {
-            return this.Genres.slice(0, 3); // Use existing genres if available
-        }
-        const googleGenres = await this.getGenresFromGoogleBooks(isbn);
-        return googleGenres || this.Genres?.slice(0, 3) || []; // Fallback to existing genres or empty array
+    getDisplayGenres() {
+        return this.Genres?.slice(0, 3) || []; // Use precomputed genres from JSON
     }
     render() {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
         const imgSrc = this.getCoverUrl();
+        const genres = this.getDisplayGenres();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -68,19 +47,19 @@ class Book {
                 <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
-                ${this['ISBN'] ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres(this['ISBN']).join(', ')}</p>` : ''}
+                ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
             </div>
             ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
         `;
         return div;
     }
-    async renderCurrent() {
+    renderCurrent() {
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
-        const genres = this['ISBN'] ? await this.getDisplayGenres(this['ISBN']) : [];
+        const genres = this.getDisplayGenres();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -193,12 +172,8 @@ class BookCollection {
         }
         container.innerHTML = '';
         if (this.models) {
-            (async () => {
-                for (const book of this.models) {
-                    const div = await book.render();
-                    container.appendChild(div);
-                }
-            })();
+            const renderedBooks = this.models.map(book => book.render());
+            renderedBooks.forEach(div => container.appendChild(div));
         } else {
             console.error('models is undefined in render');
         }
@@ -262,12 +237,8 @@ class BookCollection {
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
-        (async () => {
-            for (const book of this.models) {
-                const div = await book.render();
-                container.appendChild(div);
-            }
-        })();
+        const renderedBooks = this.models.map(book => book.render());
+        renderedBooks.forEach(div => container.appendChild(div));
     }
     renderMostProlificAuthor() {
         const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
@@ -372,16 +343,6 @@ fetch('reading_stats.json')
         document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
         document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
 
-        books.renderSeriesShelf('series-shelf');
-
-        const seriesFilter = document.getElementById('series-filter');
-        Object.keys(data.series_counts).forEach(series => {
-            const option = document.createElement('option');
-            option.value = series;
-            option.textContent = series;
-            seriesFilter.appendChild(option);
-        });
-
         books.render('book-list');
         
         const futureReadsBlock = document.getElementById('future-reads-block');
@@ -395,6 +356,7 @@ fetch('reading_stats.json')
         
         document.getElementById('sort-by').value = 'date-desc';
 
+        const seriesFilter = document.getElementById('series-filter');
         seriesFilter.addEventListener('change', () => {
             books.filterBySeries(seriesFilter.value).render('book-list');
         });
