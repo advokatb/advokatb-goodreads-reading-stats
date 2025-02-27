@@ -27,7 +27,7 @@ body {
     bottom: 5px;
     right: 5px;
     color: #f59e0b; /* Tailwind amber-500 */
-    font-size: 1.5rem; /* text-xl, larger than text-lg */
+    font-size: 1.5rem; /* text-xl */
 }
 
 .rating::before {
