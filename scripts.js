@@ -253,10 +253,12 @@ fetch('reading_stats.json')
         const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
         document.getElementById('longest-book').textContent = `${longestBook.Title} (${longestBook['Number of Pages']})`;
         document.getElementById('shortest-book').textContent = `${shortestBook.Title} (${shortestBook['Number of Pages']})`;
-        document.getElementById('most-prolific-author').textContent = `${mostProlificAuthor} (${authorBookCount})`;
+        document.getElementById('most-prolific-author-name').textContent = mostProlificAuthor;
+        document.getElementById('most-prolific-author-count').textContent = `${authorBookCount} книг`;
+        document.getElementById('books-2025-label').textContent = 'В этом году:';
 
         const challengeGoal = 50;
-        const booksRead2025 = data.books_2025;  // Use books read in 2025, not total_books
+        const booksRead2025 = data.books_2025;  // Use books read in 2025
         const startDate = new Date('2025-01-01');
         const endDate = new Date('2025-12-31');
         const today = new Date('2025-02-26');
