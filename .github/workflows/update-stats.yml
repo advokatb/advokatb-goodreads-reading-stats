@@ -5,20 +5,34 @@ name: Update Reading Stats
 on:
   push:
     branches: [main]
+
 permissions:
   contents: write  # Grant write access to repository contents    
+
 jobs:
   process:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with: { python-version: '3.x' }
-      - run: pip install pandas requests beautifulsoup4
-      - run: python process_goodreads.py
-      - run: |
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install pandas requests beautifulsoup4
+
+      - name: Run Python script for data generation
+        run: python process_goodreads.py
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+
+      - name: Commit and push changes
+        run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
           git add reading_stats.json
           git commit -m "Update reading stats" || echo "No changes"
-          git push
+          git push          
