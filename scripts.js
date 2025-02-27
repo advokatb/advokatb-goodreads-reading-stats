@@ -56,10 +56,10 @@ class Book {
     }
     renderCurrent() {
         const div = document.createElement('div');
-        div.className = 'flex items-center space-x-4';
+        div.className = 'flex space-x-4'; // Removed items-center
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
-        const genres = this.getDisplayGenres();
+        // Removed genres from this block
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -69,7 +69,6 @@ class Book {
                 <p class="text-gray-600 text-sm">Автор: ${this.getDisplayAuthor()}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
-                ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
                 ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
             </div>
@@ -187,7 +186,7 @@ class BookCollection {
         container.innerHTML = '';
         const seriesBooks = {};
         this.allBooks.forEach(book => {
-            if (book.Series) {
+            if (book.Series && book['Exclusive Shelf'] === 'read') { // Filter for read books only
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
@@ -201,7 +200,7 @@ class BookCollection {
             seriesDiv.className = 'series-box';
             seriesDiv.innerHTML = `
                 <p class="text-lg font-semibold text-gray-700">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'})</p>
-                <p class="text-gray-500 text-sm mb-2">${author}</p>
+                <p class="text-gray-600 text-sm mb-2">Автор: ${author}</p>
             `;
             const rowDiv = document.createElement('div');
             rowDiv.className = 'series-row';
