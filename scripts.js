@@ -180,7 +180,7 @@ class BookCollection {
             seriesDiv.className = 'series-box';
             seriesDiv.innerHTML = `
                 <p class="text-lg font-semibold text-gray-700">${series} (${books.length} книг${books.length > 1 ? 'и' : 'а'})</p>
-                <p class="text-gray-600 text-sm mb-2">${author}</p>
+                <p class="text-gray-500 text-sm mb-2">${author}</p>
             `;
             const rowDiv = document.createElement('div');
             rowDiv.className = 'series-row';
@@ -195,7 +195,7 @@ class BookCollection {
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${book.getCoverUrl()}" alt="${book.Title}" 
                              onload="console.log('Loaded cover for ${book.Title}')"
-                             onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
+                             onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
                 rowDiv.appendChild(bookDiv);
