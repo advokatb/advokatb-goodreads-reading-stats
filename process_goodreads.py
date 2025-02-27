@@ -80,7 +80,7 @@ except Exception as e:
     raise
 
 # Map English author names to Russian
-df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x, x) if pd.notna(x) else x)
+df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x.lower(), x) if pd.notna(x) else x)  # Case-insensitive mapping
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
 df['Date Read'] = pd.to_datetime(df['Date Read'], errors='coerce')
@@ -88,7 +88,7 @@ df['Date Added'] = pd.to_datetime(df['Date Added'], errors='coerce')
 df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
 # Enhanced Series extraction
-df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)  # Improved regex for series
+df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
 df['Series'] = df.apply(lambda row: SERIES_MAPPING.get(row['Title'], row['Series']) if pd.isna(row['Series']) and row['Author'] == 'Сергей Лукьяненко' else row['Series'], axis=1)
 logging.info(f"Processed Series data sample: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug after Series
 
@@ -100,78 +100,71 @@ df['ISBN'] = df['ISBN'].str.strip('="')
 df['ISBN13'] = df['ISBN13'].str.strip('="')
 df['Additional Authors'] = df['Additional Authors'].fillna('')
 
-# Fetch genres from Google Books API with fallback to Goodreads
-def fetch_genres_from_google_books(isbn):
-    """Fetch genres from Google Books API using ISBN."""
-    if not isbn or not isinstance(isbn, str) or len(isbn.replace('-', '')) not in [10, 13]:
-        logging.info(f"Invalid ISBN: {isbn}, skipping Google Books fetch")
-        return None
-    api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')
-    logging.info(f"Using API Key: {api_key}")  # Debug log (remove in production)
-    url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
-    try:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            if data.get('items') and data['items'][0].get('volumeInfo', {}).get('categories'):
-                genres = data['items'][0]['volumeInfo']['categories'][:3]
-                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
-                logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {translated_genres}")
-                return translated_genres if translated_genres else None
-            logging.warning(f"No genres found for ISBN {isbn} from Google Books")
-            return None
-        else:
-            logging.error(f"Google Books API error for ISBN {isbn}: {response.status_code} - {response.text}")
-            return None
-    except requests.RequestException as e:
-        logging.error(f"Error fetching genres from Google Books for ISBN {isbn}: {e}")
-        return None
-
-def fetch_genres_from_google_books_by_title_author(title, author, additional_authors):
-    """Fetch genres from Google Books API using full title and Russian author name."""
-    if not title or not author:
-        logging.info(f"Missing title or author for genre fetch: {title}, {author}")
-        return None
-    title_encoded = urllib.parse.quote(title)
-    author_encoded = urllib.parse.quote(author.strip())
-    logging.info(f"Debug: Title={title}, Author={author}, Encoded Author={author_encoded}")
-    if not author_encoded or author_encoded == urllib.parse.quote(''):
-        if additional_authors and additional_authors.strip():
-            author_encoded = urllib.parse.quote(additional_authors.split(',')[0].strip())
-            logging.info(f"Fallback to additional author: {additional_authors}")
-        else:
-            logging.info(f"No valid author for {title}")
-            return None
-    url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
-    logging.info(f"Trying title+author search: {url}")
-    try:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            if data.get('totalItems', 0) > 0:
-                genres = data['items'][0].get('volumeInfo', {}).get('categories', [])[:3]
-                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
-                if translated_genres:
-                    logging.info(f"Fetched genres from Google Books for {title} by {author}: {translated_genres}")
-                    return translated_genres
-                logging.warning(f"No valid genres found for {title} by {author} from Google Books")
+# Fetch genres and annotations from Google Books
+def fetch_book_data(isbn, title, author, additional_authors):
+    """Fetch genres and annotation from Google Books API."""
+    if isbn and isinstance(isbn, str) and len(isbn.replace('-', '')) in [10, 13]:
+        api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')
+        url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('items') and data['items'][0].get('volumeInfo'):
+                    volume_info = data['items'][0]['volumeInfo']
+                    genres = volume_info.get('categories', [])[:3]
+                    translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                    annotation = volume_info.get('description', None)
+                    logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {translated_genres}")
+                    return translated_genres if translated_genres else None, annotation
+                logging.warning(f"No data found for ISBN {isbn} from Google Books")
+                return None, None
             else:
-                logging.info(f"No results for {title} by {author}")
-        else:
-            logging.error(f"Google Books API error for {title} by {author}: {response.status_code} - {response.text}")
-        return None
-    except requests.RequestException as e:
-        logging.error(f"Error fetching genres for {title} by {author}: {e}")
-        return None
+                logging.error(f"Google Books API error for ISBN {isbn}: {response.status_code} - {response.text}")
+                return None, None
+        except requests.RequestException as e:
+            logging.error(f"Error fetching data from Google Books for ISBN {isbn}: {e}")
+            return None, None
 
+    if title and author:
+        title_encoded = urllib.parse.quote(title)
+        author_encoded = urllib.parse.quote(author.strip())
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('totalItems', 0) > 0:
+                    volume_info = data['items'][0]['volumeInfo']
+                    genres = volume_info.get('categories', [])[:3]
+                    translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                    annotation = volume_info.get('description', None)
+                    logging.info(f"Fetched genres from Google Books for {title} by {author}: {translated_genres}")
+                    return translated_genres if translated_genres else None, annotation
+                logging.info(f"No results for {title} by {author}")
+            else:
+                logging.error(f"Google Books API error for {title} by {author}: {response.status_code} - {response.text}")
+        except requests.RequestException as e:
+            logging.error(f"Error fetching data for {title} by {author}: {e}")
+    return None, None
+
+# Apply genres and annotations
+df[['Genres', 'Annotation']] = df.apply(
+    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']),
+    axis=1, result_type='expand'
+)
+time.sleep(1)  # Rate limiting
+
+# Fetch genres from Goodreads as fallback
 def fetch_goodreads_genres(book_id):
-    """Fetch genres from Goodreads book page as a fallback."""
+    """Fetch genres from Goodreads book page as a fallback with error handling."""
     if not book_id or book_id == '':
-        return None
+        logging.warning(f"Invalid or empty Book ID: {book_id}, returning fallback")
+        return []  # Fallback for invalid ID
     url = f"https://www.goodreads.com/book/show/{book_id}"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             genres_div = soup.find('div', {'data-testid': 'genresList'})
@@ -180,22 +173,27 @@ def fetch_goodreads_genres(book_id):
                 genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
                 filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
-                logging.info(f"Fetched genres from Goodreads for Book ID {book_id}: {translated_genres}")
-                return translated_genres if translated_genres else None
-        logging.warning(f"No genres found or failed request for Book ID {book_id}: {response.status_code}")
-        return None
-    except Exception as e:
+                if translated_genres:
+                    logging.info(f"Fetched genres from Goodreads for Book ID {book_id}: {translated_genres}")
+                    return translated_genres
+                logging.warning(f"No valid genres found for Book ID {book_id}")
+            else:
+                logging.warning(f"No genres div found for Book ID {book_id}")
+        else:
+            logging.error(f"Goodreads API error for Book ID {book_id}: {response.status_code} - {response.text}")
+    except requests.RequestException as e:
         logging.error(f"Error fetching genres for Book ID {book_id}: {e}")
-        return None
+    except Exception as e:
+        logging.error(f"Unexpected error fetching genres for Book ID {book_id}: {e}")
+    logging.info(f"Fallback to empty genres list for Book ID {book_id}")
+    return []  # Fallback to empty list if all else fails
 
-# Apply genres with Google Books (ISBN and title+author) as primary and Goodreads as fallback
+# Apply Goodreads fallback if Genres is None
 df['Genres'] = df.apply(
-    lambda row: fetch_genres_from_google_books(row['ISBN'] or row['ISBN13']) or
-                fetch_genres_from_google_books_by_title_author(row['Title'], row['Author'], row['Additional Authors']) or
-                fetch_goodreads_genres(row['Book Id']),
+    lambda row: row['Genres'] if row['Genres'] is not None else fetch_goodreads_genres(row['Book Id']),
     axis=1
 )
-time.sleep(1)  # Rate limiting to avoid overwhelming APIs
+time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
 df.loc[df['Author'] == 'Сергей Лукьяненко', 'Series'] = df['Title'].map(SERIES_MAPPING)
@@ -315,7 +313,7 @@ books_2025 = len(books_read[books_read['Date Read'].dt.year == 2025])
 columns = [
     'Title', 'Author', 'Additional Authors', 'Number of Pages', 'Estimated Word Count', 'Date Read', 
     'Date Added', 'My Rating', 'Series', 'Bookshelves', 'Bookshelves with positions', 
-    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL', 'Genres'
+    'Exclusive Shelf', 'ISBN', 'ISBN13', 'Cover URL', 'Genres', 'Annotation'
 ]
 
 for col in ['Book Id', 'Author Id']:
@@ -333,7 +331,8 @@ book_list['Exclusive Shelf'] = book_list['Exclusive Shelf'].apply(lambda x: x if
 book_list['ISBN'] = book_list['ISBN'].apply(lambda x: x if pd.notna(x) else None)
 book_list['ISBN13'] = book_list['ISBN13'].apply(lambda x: x if pd.notna(x) else None)
 book_list['Cover URL'] = book_list['Cover URL'].apply(lambda x: x if pd.notna(x) and x != 'None' else None)
-book_list['Genres'] = book_list['Genres'].apply(lambda x: x if x is not None else None)
+book_list['Genres'] = book_list['Genres'].apply(lambda x: x if x is not None else [])
+book_list['Annotation'] = book_list['Annotation'].apply(lambda x: x if x is not None else None)
 book_list['Days Spent'] = book_list.apply(
     lambda row: int((pd.to_datetime(row['Date Read']) - pd.to_datetime(row['Date Added'])).days) 
     if pd.notna(row['Date Read']) and pd.notna(row['Date Added']) else None, 
@@ -357,7 +356,9 @@ stats = {
     'series_counts': {k: int(v) for k, v in series_counts.items()},
     'books_2025': int(books_2025),
     'book_list': book_list,
-    'timeline': timeline_data
+    'timeline': timeline_data,
+    'longest_book': books_read.loc[books_read['Number of Pages'].idxmax(), ['Title', 'Number of Pages']].to_dict() if not books_read.empty else {'Title': 'Нет данных', 'Number of Pages': 0},
+    'shortest_book': books_read.loc[books_read['Number of Pages'].idxmin(), ['Title', 'Number of Pages']].to_dict() if not books_read.empty else {'Title': 'Нет данных', 'Number of Pages': 0}
 }
 with open('reading_stats.json', 'w', encoding='utf-8') as f:
     json.dump(stats, f, indent=2, ensure_ascii=False)

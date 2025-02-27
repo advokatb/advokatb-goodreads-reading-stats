@@ -25,37 +25,51 @@ class Book {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
     }
     getDisplayAuthor() {
-        // Use original author name, no transliteration
         return this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
     }
     getDisplayGenres() {
-        return this.Genres?.slice(0, 3) || []; // Use precomputed genres from JSON
+        return this.Genres?.slice(0, 3) || [];
+    }
+    getAnnotation() {
+        return this.Annotation || 'Нет аннотации';
     }
     render() {
         const div = document.createElement('div');
-        div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow flex';
+        div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group';
         const imgSrc = this.getCoverUrl();
         const genres = this.getDisplayGenres();
         const author = this.getDisplayAuthor();
+        const annotation = this.getAnnotation();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-            <div>
+            <div class="flex-1">
                 <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
                 <p class="text-gray-600 text-sm">👤 ${author}</p>
                 <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
                 ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+                <div class="annotation-tooltip hidden absolute bg-gray-800 text-white p-2 rounded text-sm w-64 z-10" style="top: -100%; left: 50%; transform: translateX(-50%)">
+                    ${annotation}
+                </div>
             </div>
-            ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
+            ${this['My Rating'] > 0 ? `<div class="rating inline-block" data-rating="${this['My Rating']}"></div>` : ''}
         `;
+        div.addEventListener('mouseover', () => {
+            const tooltip = div.querySelector('.annotation-tooltip');
+            if (tooltip) tooltip.classList.remove('hidden');
+        });
+        div.addEventListener('mouseout', () => {
+            const tooltip = div.querySelector('.annotation-tooltip');
+            if (tooltip) tooltip.classList.add('hidden');
+        });
         return div;
     }
     renderCurrent() {
         const div = document.createElement('div');
-        div.className = 'flex space-x-4'; // No items-center, no genres
+        div.className = 'flex space-x-4 relative';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
         const author = this.getDisplayAuthor();
@@ -63,13 +77,13 @@ class Book {
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-            <div>
+            <div class="flex-1">
                 <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
                 <p class="text-gray-600 text-sm">Автор: ${author}</p>
                 <p class="text-gray-500 text-sm">Страниц: ${this['Number of Pages']}</p>
                 ${this.Series ? `<p class="text-gray-500 text-sm">Серия: ${this.Series}</p>` : ''}
                 ${this['Date Read'] ? `<p class="text-gray-500 text-sm">Прочитано: ${readDay}.${readMonth}.${readYear}</p>` : ''}
-                ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
+                ${this['My Rating'] > 0 ? `<div class="rating inline-block" data-rating="${this['My Rating']}"></div>` : ''}
             </div>
         `;
         return div;
@@ -78,9 +92,9 @@ class Book {
 
 class BookCollection {
     constructor(books) {
-        this.models = books ? books.map(book => new Book(book)) : []; // Ensure models is always an array
+        this.models = books ? books.map(book => new Book(book)) : [];
         this.allBooks = [...this.models];
-        console.log(`BookCollection initialized with ${this.allBooks.length} books`); // Debug initialization
+        console.log(`BookCollection initialized with ${this.allBooks.length} books`);
         if (this.allBooks.length === 0) {
             console.error('No books loaded in BookCollection');
         }
@@ -283,7 +297,7 @@ fetch('reading_stats.json')
         return response.json();
     })
     .then(data => {
-        console.log('Fetched data:', data.book_list.length); // Debug data fetch
+        console.log('Fetched data:', data.book_list.length);
         // Safely update total-books, total-pages, books-2025 inside the "Всего" block
         const totalBookDiv = document.getElementById('total-book')?.closest('div.w-full');
         if (!totalBookDiv) {
@@ -336,15 +350,32 @@ fetch('reading_stats.json')
             console.error('most-prolific-author element not found');
         }
 
-        // Populate one random read book cover in "Всего"
+        // Populate one random read book cover in "Всего" with hover info
         const randomReadBook = books.getRandomReadBook();
         if (randomReadBook) {
+            const totalBookDiv = document.getElementById('total-book');
             const imgElement = document.getElementById('total-book-image');
-            if (imgElement) {
+            if (imgElement && totalBookDiv) {
                 imgElement.src = randomReadBook.getCoverUrl() || 'https://placehold.co/100x150?text=Нет+обложки';
                 imgElement.alt = randomReadBook.Title || 'No Title';
+                totalBookDiv.addEventListener('mouseover', () => {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip absolute bg-gray-800 text-white p-2 rounded text-sm z-10';
+                    tooltip.innerHTML = `
+                        Долгожданная книга: ${data.longest_book.Title} (${data.longest_book['Number of Pages']} страниц)<br>
+                        Кратчайшая книга: ${data.shortest_book.Title} (${data.shortest_book['Number of Pages']} страниц)
+                    `;
+                    tooltip.style.left = '50%';
+                    tooltip.style.top = '-100px';
+                    tooltip.style.transform = 'translateX(-50%)';
+                    totalBookDiv.appendChild(tooltip);
+                });
+                totalBookDiv.addEventListener('mouseout', () => {
+                    const tooltip = totalBookDiv.querySelector('.tooltip');
+                    if (tooltip) totalBookDiv.removeChild(tooltip);
+                });
             } else {
-                console.error('total-book-image element not found');
+                console.error('total-book-image or total-book element not found');
             }
         } else {
             document.getElementById('total-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
@@ -386,7 +417,7 @@ fetch('reading_stats.json')
             books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
 
-        allBooks.renderSeriesShelf('series-shelf'); // Explicitly call renderSeriesShelf
+        allBooks.renderSeriesShelf('series-shelf');
 
         const options = {
             series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],

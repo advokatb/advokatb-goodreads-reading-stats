@@ -14,7 +14,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
-    position: relative; /* For absolute positioning of rating */
+    position: relative; /* For tooltip positioning */
 }
 
 .book-card:hover {
@@ -23,11 +23,10 @@ body {
 }
 
 .rating {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+    display: inline-block; /* Changed from absolute to inline-block */
     color: #f59e0b; /* Tailwind amber-500 */
     font-size: 1.5rem; /* text-xl */
+    vertical-align: middle; /* Align with text */
 }
 
 .rating::before {
@@ -142,4 +141,36 @@ h1, h2 {
 /* Fallback for filter visibility if gradient fails */
 select.btn {
     background-color: #4b5563; /* Fallback solid color if gradient issues persist */
+}
+
+/* Tooltip for annotation and "Всего" hover */
+.annotation-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #4b5563;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 10;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.book-card:hover .annotation-tooltip {
+    display: block;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #4b5563;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+#total-book:hover .tooltip {
+    display: block;
 }
