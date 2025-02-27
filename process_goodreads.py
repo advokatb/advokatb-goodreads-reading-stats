@@ -43,7 +43,9 @@ GENRE_TRANSLATION = {
     "Comedy": "Комедия",
     "Classics": "Классика",
     "Magical Realism": "Магический реализм",
-    "Young Adult": "Молодёжная литература"
+    "Young Adult": "Молодёжная литература",
+    "Literary Collections": "Литературные сборники",
+    "Fathers and daughters": "Отцы и дочери"
 }
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
@@ -77,6 +79,7 @@ def fetch_genres_from_google_books(isbn):
         logging.info(f"Invalid ISBN: {isbn}, skipping Google Books fetch")
         return None
     api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')  # Fallback for local testing
+    logging.info(f"Using API Key: {api_key}")  # Debug log (remove in production)
     url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
     try:
         response = requests.get(url, timeout=10)
@@ -94,6 +97,35 @@ def fetch_genres_from_google_books(isbn):
             return None
     except requests.RequestException as e:
         logging.error(f"Error fetching genres from Google Books for ISBN {isbn}: {e}")
+        return None
+
+def fetch_genres_from_google_books_by_title_author(title, author, additional_authors):
+    """Fetch genres from Google Books API using title and author as a fallback."""
+    if not title or not author:
+        logging.info(f"Missing title or author for genre fetch: {title}, {author}")
+        return None
+    title_clean = title.split(':')[0].strip().replace(' ', '+')
+    author_clean = author.split(',')[0].strip().replace(' ', '+')
+    url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
+    logging.info(f"Trying title+author search: {url}")
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('totalItems', 0) > 0:
+                genres = data['items'][0].get('volumeInfo', {}).get('categories', [])[:3]
+                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                if translated_genres:
+                    logging.info(f"Fetched genres from Google Books for {title} by {author}: {translated_genres}")
+                    return translated_genres
+                logging.warning(f"No valid genres found for {title} by {author} from Google Books")
+            else:
+                logging.info(f"No results for {title} by {author}")
+        else:
+            logging.error(f"Google Books API error for {title} by {author}: {response.status_code} - {response.text}")
+        return None
+    except requests.RequestException as e:
+        logging.error(f"Error fetching genres for {title} by {author}: {e}")
         return None
 
 def fetch_goodreads_genres(book_id):
@@ -120,9 +152,11 @@ def fetch_goodreads_genres(book_id):
         logging.error(f"Error fetching genres for Book ID {book_id}: {e}")
         return None
 
-# Apply genres with Google Books as primary and Goodreads as fallback
+# Apply genres with Google Books (ISBN and title+author) as primary and Goodreads as fallback
 df['Genres'] = df.apply(
-    lambda row: fetch_genres_from_google_books(row['ISBN'] or row['ISBN13']) or fetch_goodreads_genres(row['Book Id']),
+    lambda row: fetch_genres_from_google_books(row['ISBN'] or row['ISBN13']) or
+                fetch_genres_from_google_books_by_title_author(row['Title'], row['Author'], row['Additional Authors']) or
+                fetch_goodreads_genres(row['Book Id']),
     axis=1
 )
 time.sleep(1)  # Rate limiting to avoid overwhelming APIs

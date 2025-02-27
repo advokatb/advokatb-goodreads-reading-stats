@@ -56,10 +56,9 @@ class Book {
     }
     renderCurrent() {
         const div = document.createElement('div');
-        div.className = 'flex space-x-4'; // Removed items-center
+        div.className = 'flex space-x-4'; // No items-center, no genres
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
-        // Removed genres from this block
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"
@@ -171,6 +170,7 @@ class BookCollection {
         }
         container.innerHTML = '';
         if (this.models) {
+            this.sortBy('date-desc'); // Sort by read date latest to oldest by default
             const renderedBooks = this.models.map(book => book.render());
             renderedBooks.forEach(div => container.appendChild(div));
         } else {
@@ -186,16 +186,21 @@ class BookCollection {
         container.innerHTML = '';
         const seriesBooks = {};
         this.allBooks.forEach(book => {
-            if (book.Series && book['Exclusive Shelf'] === 'read') { // Filter for read books only
+            if (book.Series) { // Include all books with series, not just read
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
                 seriesBooks[book.Series].books.push(book);
+                console.log(`Added book to series ${book.Series}: ${book.Title}`); // Debug log
             }
         });
 
         for (const [series, data] of Object.entries(seriesBooks)) {
             const { books, author } = data;
+            if (books.length === 0) {
+                console.warn(`Series ${series} has no books`);
+                continue;
+            }
             const seriesDiv = document.createElement('div');
             seriesDiv.className = 'series-box';
             seriesDiv.innerHTML = `
@@ -291,7 +296,7 @@ fetch('reading_stats.json')
         const allBooks = new BookCollection(data.book_list);
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
         const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
-        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
+        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] == 'to-read'));
         
         if (currentBooks.models.length > 0) {
             document.getElementById('current-book').appendChild(currentBooks.models[0].renderCurrent());
