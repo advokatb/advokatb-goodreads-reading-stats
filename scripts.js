@@ -186,12 +186,14 @@ class BookCollection {
         container.innerHTML = '';
         const seriesBooks = {};
         this.allBooks.forEach(book => {
-            if (book.Series) { // Include all books with series
+            if (book.Series && book.Series.trim()) { // Ensure Series is not empty
                 if (!seriesBooks[book.Series]) {
                     seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
                 }
                 seriesBooks[book.Series].books.push(book);
                 console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`); // Debug log
+            } else {
+                console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`); // Debug empty Series
             }
         });
 

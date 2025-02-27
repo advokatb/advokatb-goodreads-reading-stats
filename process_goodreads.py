@@ -51,7 +51,7 @@ GENRE_TRANSLATION = {
     "Psychology": "Психология"
 }
 
-EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus"}
+EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus", "Russia", "Foreign Language Study"}
 
 # Mapping of English to Russian author names
 AUTHOR_MAPPING = {
