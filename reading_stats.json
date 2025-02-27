@@ -98,11 +98,7 @@
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
       "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "\u041c\u043e\u043b\u043e\u0434\u0451\u0436\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
-        "\u0424\u044d\u043d\u0442\u0435\u0437\u0438",
-        "\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430"
-      ],
+      "Genres": null,
       "Book Id": "7769068",
       "Days Spent": null
     },
