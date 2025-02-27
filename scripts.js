@@ -69,6 +69,20 @@ class Book {
         `;
         return div;
     }
+    renderMostProlificAuthor() {
+        const div = document.createElement('div');
+        div.className = 'flex items-center space-x-4';
+        const imgSrc = 'https://picsum.photos/50'; // Placeholder for author photo
+        const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
+        div.innerHTML = `
+            <img src="${imgSrc}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</h3>
+                <p class="text-gray-600 text-sm">${authorBookCount} книг</p>
+            </div>
+        `;
+        return div;
+    }
 }
 
 class BookCollection {
@@ -125,8 +139,10 @@ class BookCollection {
         if (!this.allBooks.length) return ['Нет данных', 0];
         const authorCounts = {};
         this.allBooks.forEach(book => {
-            const displayAuthor = book.getDisplayAuthor();
-            authorCounts[displayAuthor] = (authorCounts[displayAuthor] || 0) + 1;
+            if (book['Exclusive Shelf'] === 'read') { // Count only read books
+                const displayAuthor = book.getDisplayAuthor();
+                authorCounts[displayAuthor] = (authorCounts[displayAuthor] || 0) + 1;
+            }
         });
         return Object.entries(authorCounts).reduce((max, [author, count]) => 
             count > max[1] ? [author, count] : max, ['', 0]);
@@ -175,7 +191,7 @@ class BookCollection {
                 const bookDiv = document.createElement('div');
                 bookDiv.className = 'series-book';
                 bookDiv.style.left = `${index * 60}px`;
-                bookDiv.style.zIndex = `${books.length - index}`;
+                bookDiv.style.z-index = `${books.length - index}`;
                 const imgSrc = book.getCoverUrl();
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
@@ -214,7 +230,7 @@ class BookCollection {
                     <p class="text-gray-600 text-sm">👤 ${book.getDisplayAuthor()}</p>
                     <p class="text-gray-500 text-sm">📖 ${book['Number of Pages']}</p>
                     ${book.Series ? `<p class="text-gray-500 text-sm">📚 ${book.Series}</p>` : ''}
-                    ${book.Genres && book.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${book.Genres[0]}</p>` : ''}
+                    ${book.Genres && this.Genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.Genres[0]}</p>` : ''}
                 </div>
             `;
             container.appendChild(div);
@@ -229,9 +245,9 @@ fetch('reading_stats.json')
     })
     .then(data => {
         // Update total-books, total-pages, books-2025 inside the "Всего" block
-        const totalBooksElement = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(1)');
-        const totalPagesElement = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(2)');
-        const books2025Element = document.querySelector('#total-book-1').closest('.flex').nextElementSibling.querySelector('p:nth-child(3) span');
+        const totalBooksElement = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(1)');
+        const totalPagesElement = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(2)');
+        const books2025Element = document.querySelector('#total-book-1').closest('div').nextElementSibling.querySelector('p:nth-child(3) span');
         totalBooksElement.textContent = data.total_books;
         totalPagesElement.textContent = data.total_pages.toLocaleString();
         books2025Element.textContent = data.books_2025;
@@ -254,9 +270,9 @@ fetch('reading_stats.json')
             document.getElementById('last-read-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
 
-        const [mostProlificAuthor, authorBookCount] = books.getMostProlificAuthor();
-        document.getElementById('most-prolific-author-name').textContent = mostProlificAuthor;
-        document.getElementById('most-prolific-author-count').textContent = `${authorBookCount} книг`;
+        // Populate "Любимый автор" with consistent layout
+        const mostProlificAuthorData = books.getMostProlificAuthor();
+        document.getElementById('most-prolific-author').appendChild(books.renderMostProlificAuthor());
 
         // Populate two random read books in "Всего"
         const randomReadBooks = books.getTwoRandomReadBooks();
