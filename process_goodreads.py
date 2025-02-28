@@ -91,7 +91,7 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
 # Enhanced Series extraction before title cleanup
 df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Still uses original name
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Uses original name
 logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -105,6 +105,8 @@ df['Additional Authors'] = df['Additional Authors'].fillna('')
 # Fetch genres and annotations from Google Books
 def fetch_book_data(isbn, title, author, additional_authors):
     """Fetch genres and annotation from Google Books API."""
+    genres = []
+    annotation = None
     if isbn and isinstance(isbn, str) and len(isbn.replace('-', '')) in [10, 13]:
         api_key = os.environ.get('GOOGLE_BOOKS_API_KEY', 'YOUR_GOOGLE_BOOKS_API_KEY')
         url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn.replace('-', '')}&key={api_key}"
@@ -116,19 +118,16 @@ def fetch_book_data(isbn, title, author, additional_authors):
                     volume_info = data['items'][0]['volumeInfo']
                     genres = volume_info.get('categories', [])[:3]
                     translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                    genres = translated_genres if translated_genres else []
                     annotation = volume_info.get('description', None)
-                    logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {translated_genres}")
-                    return translated_genres if translated_genres else None, annotation
-                logging.warning(f"No data found for ISBN {isbn} from Google Books")
-                return None, None
+                    logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {genres}")
+                else:
+                    logging.warning(f"No data found for ISBN {isbn} from Google Books")
             else:
                 logging.error(f"Google Books API error for ISBN {isbn}: {response.status_code} - {response.text}")
-                return None, None
         except requests.RequestException as e:
             logging.error(f"Error fetching data from Google Books for ISBN {isbn}: {e}")
-            return None, None
-
-    if title and author:
+    elif title and author:
         title_encoded = urllib.parse.quote(title)
         author_encoded = urllib.parse.quote(author.strip())
         url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
@@ -140,15 +139,12 @@ def fetch_book_data(isbn, title, author, additional_authors):
                     volume_info = data['items'][0]['volumeInfo']
                     genres = volume_info.get('categories', [])[:3]
                     translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                    genres = translated_genres if translated_genres else []
                     annotation = volume_info.get('description', None)
-                    logging.info(f"Fetched genres from Google Books for {title} by {author}: {translated_genres}")
-                    return translated_genres if translated_genres else None, annotation
-                logging.info(f"No results for {title} by {author}")
-            else:
-                logging.error(f"Google Books API error for {title} by {author}: {response.status_code} - {response.text}")
+                    logging.info(f"Fetched genres from Google Books for {title} by {author}: {genres}")
         except requests.RequestException as e:
             logging.error(f"Error fetching data for {title} by {author}: {e}")
-    return None, None
+    return genres, annotation
 
 # Fetch annotation from Goodreads
 def fetch_goodreads_annotation(book_id):
@@ -233,7 +229,7 @@ time.sleep(1)  # Rate limiting after Google Books fallback
 # Apply genres with Google Books as primary and Goodreads as fallback
 df['Genres'] = df.apply(
     lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
-    if (row['ISBN'] or row['ISBN13'] or row['Title']) 
+    if (row['ISBN'] or row['ISBN13'] or row['Title']) and fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] is not None 
     else fetch_goodreads_genres(row['Book Id']),
     axis=1
 )
