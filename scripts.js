@@ -66,7 +66,7 @@ class Book {
                             <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                             <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                             ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
-                            ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
+                            ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
                             ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
                         </div>
                     </div>
