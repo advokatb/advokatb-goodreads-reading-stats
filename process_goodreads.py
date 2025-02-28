@@ -150,47 +150,54 @@ def fetch_book_data(isbn, title, author, additional_authors):
             logging.error(f"Error fetching data for {title} by {author}: {e}")
     return None, None
 
-# Apply genres and annotations
-df[['Genres', 'Annotation']] = df.apply(
-    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']),
-    axis=1, result_type='expand'
-)
-time.sleep(1)  # Rate limiting
-
-# Fetch genres from Goodreads as fallback
-def fetch_goodreads_genres(book_id):
-    """Fetch genres from Goodreads book page as a fallback with error handling."""
+# Fetch annotation from Goodreads
+def fetch_goodreads_annotation(book_id):
+    """Fetch annotation from Goodreads book page."""
     if not book_id or book_id == '':
         logging.warning(f"Invalid or empty Book ID: {book_id}, returning fallback")
-        return []  # Fallback for invalid ID
+        return None
     url = f"https://www.goodreads.com/book/show/{book_id}"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
     try:
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
-            genres_div = soup.find('div', {'data-testid': 'genresList'})
-            if genres_div:
-                genre_buttons = genres_div.find_all('a', class_='Button--tag')
-                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
-                filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
-                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
-                if translated_genres:
-                    logging.info(f"Fetched genres from Goodreads for Book ID {book_id}: {translated_genres}")
-                    return translated_genres
-                logging.warning(f"No valid genres found for Book ID {book_id}")
+            description_div = soup.find('div', {'id': 'description'})
+            if description_div:
+                # Extract the first paragraph or full text if available
+                annotation = description_div.get_text(strip=True).split('\n')[0] if description_div.get_text(strip=True) else None
+                if annotation:
+                    logging.info(f"Fetched annotation from Goodreads for Book ID {book_id}: {annotation[:50]}...")
+                    return annotation
+                logging.warning(f"No valid annotation found for Book ID {book_id}")
             else:
-                logging.warning(f"No genres div found for Book ID {book_id}")
+                logging.warning(f"No description div found for Book ID {book_id}")
         else:
             logging.error(f"Goodreads API error for Book ID {book_id}: {response.status_code} - {response.text}")
     except requests.RequestException as e:
-        logging.error(f"Error fetching genres for Book ID {book_id}: {e}")
+        logging.error(f"Error fetching annotation for Book ID {book_id}: {e}")
     except Exception as e:
-        logging.error(f"Unexpected error fetching genres for Book ID {book_id}: {e}")
-    logging.info(f"Fallback to empty genres list for Book ID {book_id}")
-    return []  # Fallback to empty list if all else fails
+        logging.error(f"Unexpected error fetching annotation for Book ID {book_id}: {e}")
+    return None
 
-# Apply Goodreads fallback if Genres is None
+# Apply genres and annotations with Goodreads as primary source
+df[['Genres', 'Annotation']] = df.apply(
+    lambda row: fetch_goodreads_annotation(row['Book Id']) if pd.notna(row['Book Id']) 
+    else fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']),
+    axis=1, result_type='expand'
+)
+time.sleep(1)  # Rate limiting after Goodreads fetch
+
+# Fallback to Google Books if Goodreads fails
+df['Annotation'] = df.apply(
+    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[1] 
+    if pd.isna(row['Annotation']) and (row['ISBN'] or row['ISBN13'] or row['Title']) 
+    else row['Annotation'],
+    axis=1
+)
+time.sleep(1)  # Rate limiting after Google Books fallback
+
+# Fetch genres from Goodreads as fallback if not from Google Books
 df['Genres'] = df.apply(
     lambda row: row['Genres'] if row['Genres'] is not None else fetch_goodreads_genres(row['Book Id']),
     axis=1
