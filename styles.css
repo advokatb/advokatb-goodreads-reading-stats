@@ -4,7 +4,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Roboto Condensed', sans-serif; /* Ensure font-sans applies */
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .fade-in {
@@ -14,7 +14,7 @@ body {
 /* Flip Card Styles */
 .flip-container {
     perspective: 1000px;
-    min-height: 200px; /* Increased from 150px to fully show cover and content */
+    min-height: 200px;
 }
 
 .flipper {
@@ -44,46 +44,46 @@ body {
 }
 
 .front {
-    overflow: hidden; /* Contain content within card */
+    overflow: hidden;
 }
 
 .back {
     transform: rotateY(180deg);
-    background: linear-gradient(135deg, #e0e7ff, #c7d2fe); /* Different background for annotation side */
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
     color: #2d3748;
     overflow: hidden;
 }
 
 .back .overflow-y-auto {
-    max-height: 180px; /* Increased from 130px to match new card height, adjusted for padding */
+    max-height: 180px;
     overflow-y: auto;
-    padding: 0.25rem; /* Reduced padding from 1rem */
+    padding: 0.25rem;
 }
 
 .back .overflow-y-auto p {
-    text-align: justify; /* Justify annotation text */
-    font-size: 0.875rem; /* text-sm instead of text-base (0.875rem ~ 14px) */
-    line-height: 1.25rem; /* Maintain readability */
-    margin: 0; /* Remove default margin */
+    text-align: justify;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
 }
 
 /* Custom Scrollbar for Annotation */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 6px; /* Thin scrollbar */
+    width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #e0e7ff; /* Light background to match annotation side */
+    background: #e0e7ff;
     border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #6b7280; /* Gray-500 for thumb */
+    background: #6b7280;
     border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #4b5563; /* Gray-600 on hover */
+    background: #4b5563;
 }
 
 /* Ensure scrollbar works in Firefox */
@@ -96,10 +96,10 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
-    position: relative; /* For rating and tooltip positioning */
-    min-height: 200px; /* Increased from 150px to fully show cover */
-    max-height: 200px; /* Cap height to prevent overflow */
-    overflow: hidden; /* Prevent content from spilling out */
+    position: relative;
+    min-height: 200px;
+    max-height: 200px;
+    overflow: hidden;
 }
 
 .book-card:hover {
@@ -107,16 +107,23 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Rating Adjustment for Mobile */
 .rating {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    color: #f59e0b; /* Tailwind amber-500 */
-    font-size: 1.5rem; /* text-xl */
+    color: #f59e0b;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) { /* Tailwind's sm breakpoint is 640px */
+    .rating {
+        position: static; /* Remove absolute positioning on mobile */
+        margin-top: 0.5rem; /* Space above rating */
+        align-self: flex-end; /* Align to the bottom-right in flex context */
+    }
 }
 
 .rating::before {
-    content: '★'; /* Unicode star character */
+    content: '★';
 }
 
 .rating[data-rating="1"]::before { content: '★'; }
@@ -139,22 +146,22 @@ body {
 
 .btn {
     transition: all 0.3s ease;
-    background: linear-gradient(to-right, #4b5563, #1f2937); /* Gray-600 to Gray-800 */
+    background: linear-gradient(to right, #4b5563, #1f2937);
     color: white;
-    padding: 8px 16px; /* Equal padding */
+    padding: 8px 16px;
     border-radius: 8px;
-    text-align: center; /* Center text */
-    appearance: none; /* Remove default arrow */
+    text-align: center;
+    appearance: none;
 }
 
 .btn:hover {
-    background: linear-gradient(to-right, #6b7280, #374151); /* Gray-500 to Gray-700 */
+    background: linear-gradient(to right, #6b7280, #374151);
 }
 
 select.btn {
     color: #ffffff;
-    background: linear-gradient(to-right, #4b5563, #1f2937); /* Ensure visibility */
-    padding-right: 16px; /* Consistent padding */
+    background: linear-gradient(to right, #4b5563, #1f2937);
+    padding-right: 16px;
 }
 
 select.btn option {
@@ -162,9 +169,31 @@ select.btn option {
     background: #ffffff;
 }
 
+/* Adjust Select Elements for Mobile */
+@media (max-width: 640px) {
+    .flex.gap-4.mt-4.sm\:mt-0 {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem !important; /* Override sm:mt-0 for mobile */
+        width: 100%; /* Ensure it stays within container */
+    }
+
+    select.btn {
+        width: 100%; /* Full width on mobile */
+        font-size: 0.875rem; /* Slightly smaller text */
+    }
+}
+
 h1, h2 {
     font-family: 'Arial', sans-serif;
     font-weight: 700;
+}
+
+/* Adjust Book Title Font Size for Mobile */
+@media (max-width: 640px) {
+    #book-list h3, #future-reads h3 {
+        font-size: 1rem !important; /* text-base on mobile */
+    }
 }
 
 .series-shelf {
@@ -188,8 +217,8 @@ h1, h2 {
     position: relative;
     height: 120px;
     white-space: nowrap;
-    width: 240px; /* Adjust to fit 3 books with 80px width and overlap */
-    overflow: visible; /* Ensure images are not clipped */
+    width: 240px;
+    overflow: visible;
 }
 
 .series-book {
@@ -226,7 +255,7 @@ h1, h2 {
 
 /* Fallback for filter visibility if gradient fails */
 select.btn {
-    background-color: #4b5563; /* Fallback solid color if gradient issues persist */
+    background-color: #4b5563;
 }
 
 /* Tooltip for "Всего" hover */
@@ -248,16 +277,37 @@ select.btn {
 /* Flip Button Styles */
 .flip-button {
     cursor: pointer;
-    font-size: 1rem; /* Reduced from 1.2rem for smaller icon */
+    font-size: 1rem;
     padding: 0.25rem;
     border: none;
     background: none;
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    z-index: 10; /* Ensure it stays above flipper */
+    z-index: 10;
 }
 
 .flip-button:hover {
-    color: #2563eb; /* Tailwind indigo-600 */
+    color: #2563eb;
+}
+
+/* Additional Mobile Adjustments */
+@media (max-width: 640px) {
+    .book-card {
+        padding: 0.5rem; /* Reduce padding on mobile */
+    }
+
+    .front .flex.items-start img {
+        width: 80px; /* Slightly smaller cover on mobile */
+        height: 120px;
+    }
+
+    .series-box {
+        min-width: 100%; /* Full width series boxes on mobile */
+        margin-bottom: 1rem;
+    }
+
+    .series-row {
+        width: 100%; /* Adjust series row width */
+    }
 }
