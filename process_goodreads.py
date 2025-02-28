@@ -213,11 +213,11 @@ def fetch_goodreads_genres(book_id):
     logging.info(f"Fallback to empty genres list for Book ID {book_id}")
     return []  # Fallback to empty list if all else fails
 
-# Apply genres and annotations with Goodreads as primary source
-df[['Genres', 'Annotation']] = df.apply(
+# Apply annotations from Goodreads as primary source
+df['Annotation'] = df.apply(
     lambda row: fetch_goodreads_annotation(row['Book Id']) if pd.notna(row['Book Id']) 
-    else fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors']),
-    axis=1, result_type='expand'
+    else fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[1],
+    axis=1
 )
 time.sleep(1)  # Rate limiting after Goodreads fetch
 
@@ -230,9 +230,11 @@ df['Annotation'] = df.apply(
 )
 time.sleep(1)  # Rate limiting after Google Books fallback
 
-# Fetch genres from Goodreads as fallback if not from Google Books
+# Apply genres with Google Books as primary and Goodreads as fallback
 df['Genres'] = df.apply(
-    lambda row: row['Genres'] if row['Genres'] is not None else fetch_goodreads_genres(row['Book Id']),
+    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
+    if (row['ISBN'] or row['ISBN13'] or row['Title']) 
+    else fetch_goodreads_genres(row['Book Id']),
     axis=1
 )
 time.sleep(1)  # Rate limiting
