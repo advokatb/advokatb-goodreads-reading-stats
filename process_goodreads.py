@@ -228,13 +228,12 @@ time.sleep(1)  # Rate limiting after Google Books fallback
 
 # Apply genres with Google Books as primary and Goodreads as fallback
 df['Genres'] = df.apply(
-    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
-    if (row['ISBN'] or row['ISBN13'] or row['Title']) 
+    lambda row: fetch_goodreads_genres(row['Book Id']) if pd.isna(row['Book Id']) 
+    else fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
+    if (row['ISBN'] or row['ISBN13'] or row['Title']) and len(fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0]) > 0 
     else fetch_goodreads_genres(row['Book Id']),
     axis=1
 )
-# Ensure Genres is always a list, even if fetch_book_data returns None
-df['Genres'] = df['Genres'].apply(lambda x: x if x is not None else fetch_goodreads_genres(df.loc[df.index[df['Book Id'] == row['Book Id'], 'Book Id'].index[0]] if pd.notna(row['Book Id']) else ''))
 time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
