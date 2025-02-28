@@ -49,7 +49,7 @@ GENRE_TRANSLATION = {
     "Fathers and daughters": "Отцы и дочери",
     "Colombian fiction": "Колумбийская художественная литература",
     "Psychology": "Психология",
-    "Science Fiction Fantasy": "Научно-фантастическое фэнтези"  # Added translation
+    "Science Fiction Fantasy": "Научно-фантастическое фэнтези"
 }
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus", "Russia", "Foreign Language Study"}
@@ -126,8 +126,8 @@ def fetch_book_data(isbn, title, author, additional_authors):
                     logging.warning(f"No data found for ISBN {isbn} from Google Books, trying title/author")
                     # Fall back to title/author search if ISBN fails
                     title_encoded = urllib.parse.quote(title)
-                    author_encoded = urllib.parse.quote(author.strip())
-                    url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
+                    author_clean = urllib.parse.quote(author.strip())
+                    url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_clean}"
                     try:
                         response = requests.get(url, timeout=10)
                         if response.status_code == 200:
@@ -147,8 +147,8 @@ def fetch_book_data(isbn, title, author, additional_authors):
             logging.error(f"Error fetching data from Google Books for ISBN {isbn}: {e}")
     elif title and author:
         title_encoded = urllib.parse.quote(title)
-        author_encoded = urllib.parse.quote(author.strip())
-        url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
+        author_clean = urllib.parse.quote(author.strip())
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_clean}"
         try:
             response = requests.get(url, timeout=10)
             if response.status_code == 200:
@@ -209,7 +209,7 @@ def fetch_goodreads_genres(book_id):
             genres_div = soup.find('div', {'data-testid': 'genresList'})
             if genres_div:
                 genre_buttons = genres_div.find_all('a', class_='Button--tag')
-                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons]
+                genres = [button.find('span', class_='Button__labelItem').text for button in genre_buttons if button.find('span', class_='Button__labelItem')]
                 filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
                 translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
                 if translated_genres:
@@ -217,7 +217,17 @@ def fetch_goodreads_genres(book_id):
                     return translated_genres
                 logging.warning(f"No valid genres found for Book ID {book_id}")
             else:
-                logging.warning(f"No genres div found for Book ID {book_id}")
+                logging.warning(f"No genres div found for Book ID {book_id}, trying alternative parsing")
+                # Alternative parsing for genres (e.g., from book details or tags)
+                alternative_genres = soup.find_all('a', class_='BookPageTagButton')
+                if alternative_genres:
+                    genres = [tag.text.strip() for tag in alternative_genres if tag.text.strip()]
+                    filtered_genres = [g for g in genres if g not in EXCLUDED_GENRES]
+                    translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in filtered_genres[:3]]
+                    if translated_genres:
+                        logging.info(f"Fetched alternative genres from Goodreads for Book ID {book_id}: {translated_genres}")
+                        return translated_genres
+                logging.warning(f"No alternative genres found for Book ID {book_id}")
         else:
             logging.error(f"Goodreads API error for Book ID {book_id}: {response.status_code} - {response.text}")
     except requests.RequestException as e:
@@ -293,7 +303,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     if title and author:
         title_clean = urllib.parse.quote(title)
         author_clean = urllib.parse.quote(author.strip())
-        url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_encoded}"
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
         logging.info(f"Trying author: {url}")
         try:
             response = requests.get(url)
