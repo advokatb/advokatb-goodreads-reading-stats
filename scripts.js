@@ -37,14 +37,14 @@ class Book {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
-            <div class="flipper">
+            <div class="flipper h-full w-full">
                 <!-- Front Side (Book Info) -->
-                <div class="front flex flex-col justify-between w-full h-full">
-                    <div>
-                        <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4 inline-block align-top" 
+                <div class="front flex flex-col justify-between w-full h-full overflow-hidden">
+                    <div class="flex items-start">
+                        <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4" 
                              onload="console.log('Loaded cover for ${this.Title}')"
                              onerror="console.error('Failed to load cover for ${this.Title}: ${this.getCoverUrl()}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-                        <div class="inline-block vertical-align-top w-[calc(100%-120px)]">
+                        <div class="flex-1">
                             <h3 class="text-lg font-semibold text-gray-800"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
                             <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
                             <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>

@@ -40,6 +40,11 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.front {
+    overflow: hidden; /* Contain content within card */
 }
 
 .back {
@@ -50,7 +55,7 @@ body {
 }
 
 .back .overflow-y-auto {
-    max-height: 150px; /* Scrollable height */
+    max-height: 130px; /* Adjusted for padding and button */
     overflow-y: auto;
 }
 
@@ -60,6 +65,8 @@ body {
     border-radius: 12px;
     position: relative; /* For rating and tooltip positioning */
     min-height: 150px; /* Ensure enough height for flip */
+    max-height: 150px; /* Cap height to prevent overflow */
+    overflow: hidden; /* Prevent content from spilling out */
 }
 
 .book-card:hover {
