@@ -53,7 +53,7 @@ GENRE_TRANSLATION = {
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus", "Russia", "Foreign Language Study"}
 
-# Mapping of English to Russian author names
+# Mapping of English to Russian author names (moved to front-end)
 AUTHOR_MAPPING = {
     "Sergei Lukyanenko": "Сергей Лукьяненко",
     "Daniel Keyes": "Дэниел Киз",
@@ -79,9 +79,9 @@ except Exception as e:
     logging.error(f"Failed to load CSV: {e}")
     raise
 
-# Map English author names to Russian before series processing
-df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x.lower(), x) if pd.notna(x) else x)  # Case-insensitive mapping
-logging.info(f"Processed Author data sample: {df['Author'].head().to_string()}")  # Debug after Author mapping
+# Remove author mapping here to keep original names
+# df['Author'] = df['Author'].apply(lambda x: AUTHOR_MAPPING.get(x.lower(), x) if pd.notna(x) else x)  # Commented out
+logging.info(f"Processed Author data sample (original): {df['Author'].head().to_string()}")  # Debug original names
 
 df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
 df['Estimated Word Count'] = df['Number of Pages'] * 275
@@ -91,7 +91,7 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 
 # Enhanced Series extraction before title cleanup
 df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Still uses original name
 logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -240,7 +240,7 @@ df['Genres'] = df.apply(
 time.sleep(1)  # Rate limiting
 
 # Assign manual series for Sergei Lukyanenko books
-df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)
+df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Uses original name
 logging.info(f"Series data after mapping: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats

@@ -25,7 +25,21 @@ class Book {
         return this['Book Id'] ? `https://www.goodreads.com/book/show/${this['Book Id']}` : '#';
     }
     getDisplayAuthor() {
-        return this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
+        const AUTHOR_MAPPING = {
+            "Sergei Lukyanenko": "Сергей Лукьяненко",
+            "Daniel Keyes": "Дэниел Киз",
+            "Gabriel García Márquez": "Габриэль Гарсиа Маркес",
+            "Charlotte Brontë": "Шарлотта Бронте",
+            "Pom Yu Jin": "Пом Ю Джин",
+            "Chan Ho-Kei": "Чан Хо-Кей",
+            "Abraham Verghese": "Абрахам Вергисе",
+            "Gary Chapman": "Гэри Чепмен",
+            "Veronika i Angelina Shen": "Вероника и Ангелина Шэн",
+            "Jane Austen": "Джейн Остин",
+            "Harper Lee": "Харпер Ли",
+            "Suzanne Collins": "Сюзанна Коллинз"
+        };
+        return AUTHOR_MAPPING[this.Author] || this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
     }
     getDisplayGenres() {
         return this.Genres?.slice(0, 3) || [];
@@ -278,7 +292,7 @@ class BookCollection {
             return;
         }
         container.innerHTML = '';
-        if (!this.models || !Array.isArray(this.models)) {
+        if (!this.models || !Array.isarray(this.models)) {
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
