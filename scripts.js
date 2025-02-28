@@ -292,7 +292,7 @@ class BookCollection {
             return;
         }
         container.innerHTML = '';
-        if (!this.models || !Array.isarray(this.models)) {
+        if (!this.models || !Array.isArray(this.models)) { // Fixed typo: Array.isarray to Array.isArray
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
