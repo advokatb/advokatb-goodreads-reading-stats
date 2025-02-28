@@ -30,26 +30,55 @@ class Book {
     getDisplayGenres() {
         return this.Genres?.slice(0, 3) || [];
     }
+    getAnnotation() {
+        return this.Annotation || 'Нет аннотации';
+    }
     render() {
         const div = document.createElement('div');
-        div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group';
-        const imgSrc = this.getCoverUrl();
-        const genres = this.getDisplayGenres();
-        const author = this.getDisplayAuthor();
+        div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
-            <img src="${imgSrc}" alt="${this.Title}" class="book-cover mr-4" 
-                 onload="console.log('Loaded cover for ${this.Title}')"
-                 onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-            <div class="flex-1">
-                <h3 class="text-lg font-semibold text-gray-800 inline"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
-                <p class="text-gray-600 text-sm">👤 ${author}</p>
-                <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
-                ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
-                ${genres.length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${genres.join(', ')}</p>` : ''}
-                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+            <div class="flipper">
+                <!-- Front Side (Book Info) -->
+                <div class="front flex flex-col justify-between w-full h-full">
+                    <div>
+                        <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4 inline-block align-top" 
+                             onload="console.log('Loaded cover for ${this.Title}')"
+                             onerror="console.error('Failed to load cover for ${this.Title}: ${this.getCoverUrl()}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
+                        <div class="inline-block vertical-align-top w-[calc(100%-120px)]">
+                            <h3 class="text-lg font-semibold text-gray-800"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
+                            <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
+                            <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
+                            ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
+                            ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-xs">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
+                            ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end mt-2">
+                        ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
+                        <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none">
+                            <i class="fas fa-sync"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Back Side (Annotation) -->
+                <div class="back flex items-center justify-center w-full h-full">
+                    <div class="p-4 text-center overflow-y-auto max-h-[150px]">
+                        <p class="text-gray-800 text-base">${this.getAnnotation()}</p>
+                        <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none mt-2">
+                            <i class="fas fa-sync"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
         `;
+        // Add flip functionality
+        const flipper = div.querySelector('.flipper');
+        const flipButtons = div.querySelectorAll('.flip-button');
+        flipButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                flipper.classList.toggle('flipped');
+            });
+        });
         return div;
     }
     renderCurrent() {

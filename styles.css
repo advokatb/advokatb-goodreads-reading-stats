@@ -11,11 +11,55 @@ body {
     animation: fadeIn 1s ease-in;
 }
 
+/* Flip Card Styles */
+.flip-container {
+    perspective: 1000px;
+    min-height: 150px; /* Ensure minimum height for flip */
+}
+
+.flipper {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    height: 100%;
+    width: 100%;
+}
+
+.flipper.flipped {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe); /* Different background for annotation side */
+    color: #2d3748;
+    overflow: hidden;
+}
+
+.back .overflow-y-auto {
+    max-height: 150px; /* Scrollable height */
+    overflow-y: auto;
+}
+
 .book-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
     position: relative; /* For rating and tooltip positioning */
+    min-height: 150px; /* Ensure enough height for flip */
 }
 
 .book-card:hover {
@@ -24,7 +68,7 @@ body {
 }
 
 .rating {
-    position: absolute; /* Restored to original position */
+    position: absolute;
     bottom: 5px;
     right: 5px;
     color: #f59e0b; /* Tailwind amber-500 */
@@ -159,4 +203,20 @@ select.btn {
 
 #total-book:hover .tooltip {
     display: block;
+}
+
+/* Flip Button Styles */
+.flip-button {
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.flip-button:hover {
+    color: #2563eb; /* Tailwind indigo-600 */
 }
