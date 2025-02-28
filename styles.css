@@ -67,6 +67,31 @@ body {
     margin: 0; /* Remove default margin */
 }
 
+/* Custom Scrollbar for Annotation */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px; /* Thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #e0e7ff; /* Light background to match annotation side */
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #6b7280; /* Gray-500 for thumb */
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #4b5563; /* Gray-600 on hover */
+}
+
+/* Ensure scrollbar works in Firefox */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #6b7280 #e0e7ff;
+}
+
 .book-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: linear-gradient(135deg, #ffffff, #f9fafb);
@@ -223,13 +248,14 @@ select.btn {
 /* Flip Button Styles */
 .flip-button {
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Reduced from 1.2rem for smaller icon */
     padding: 0.25rem;
     border: none;
     background: none;
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+    z-index: 10; /* Ensure it stays above flipper */
 }
 
 .flip-button:hover {

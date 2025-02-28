@@ -37,6 +37,9 @@ class Book {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
+            <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none absolute top-2 right-2 z-10">
+                <i class="fas fa-sync"></i>
+            </button>
             <div class="flipper h-full w-full">
                 <!-- Front Side (Book Info) -->
                 <div class="front flex flex-col justify-between w-full h-full overflow-hidden">
@@ -55,15 +58,12 @@ class Book {
                     </div>
                     <div class="flex justify-between items-end mt-2">
                         ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
-                        <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none">
-                            <i class="fas fa-sync"></i>
-                        </button>
                     </div>
                 </div>
                 <!-- Back Side (Annotation) -->
                 <div class="back flex items-center justify-center w-full h-full">
-                    <div class="p-1 text-center overflow-y-auto max-h-[180px]">
-                        <p class="text-gray-800 text-base">${this.getAnnotation()}</p>
+                    <div class="p-1 text-center overflow-y-auto max-h-[180px] custom-scrollbar">
+                        <p class="text-gray-800 text-sm text-justify">${this.getAnnotation()}</p>
                         <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none mt-2">
                             <i class="fas fa-sync"></i>
                         </button>
