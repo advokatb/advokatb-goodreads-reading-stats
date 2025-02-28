@@ -114,11 +114,11 @@ body {
     margin-top: 0.5rem;
 }
 
-@media (max-width: 640px) { /* Tailwind's sm breakpoint is 640px */
+@media (max-width: 640px) {
     .rating {
-        position: static; /* Remove absolute positioning on mobile */
-        margin-top: 0.5rem; /* Space above rating */
-        align-self: flex-end; /* Align to the bottom-right in flex context */
+        position: static;
+        margin-top: 0.5rem;
+        align-self: flex-end;
     }
 }
 
@@ -174,13 +174,13 @@ select.btn option {
     .flex.gap-4.mt-4.sm\:mt-0 {
         flex-direction: column;
         gap: 1rem;
-        margin-top: 1rem !important; /* Override sm:mt-0 for mobile */
-        width: 100%; /* Ensure it stays within container */
+        margin-top: 1rem !important;
+        width: 100%;
     }
 
     select.btn {
-        width: 100%; /* Full width on mobile */
-        font-size: 0.875rem; /* Slightly smaller text */
+        width: 100%;
+        font-size: 0.875rem;
     }
 }
 
@@ -189,10 +189,14 @@ h1, h2 {
     font-weight: 700;
 }
 
-/* Adjust Book Title Font Size for Mobile */
+/* Adjust Book Title and Genre Font Size for Mobile */
 @media (max-width: 640px) {
     #book-list h3, #future-reads h3 {
-        font-size: 1rem !important; /* text-base on mobile */
+        font-size: 1rem !important;
+    }
+
+    .front .flex-1 p:nth-child(4) { /* Target the genre paragraph */
+        font-size: 0.875rem !important; /* text-sm */
     }
 }
 
@@ -294,20 +298,20 @@ select.btn {
 /* Additional Mobile Adjustments */
 @media (max-width: 640px) {
     .book-card {
-        padding: 0.5rem; /* Reduce padding on mobile */
+        padding: 0.5rem;
     }
 
     .front .flex.items-start img {
-        width: 80px; /* Slightly smaller cover on mobile */
+        width: 80px;
         height: 120px;
     }
 
     .series-box {
-        min-width: 100%; /* Full width series boxes on mobile */
+        min-width: 100%;
         margin-bottom: 1rem;
     }
 
     .series-row {
-        width: 100%; /* Adjust series row width */
+        width: 100%;
     }
 }

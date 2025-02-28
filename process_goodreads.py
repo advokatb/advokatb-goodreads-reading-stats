@@ -48,7 +48,8 @@ GENRE_TRANSLATION = {
     "Literary Collections": "Литературные сборники",
     "Fathers and daughters": "Отцы и дочери",
     "Colombian fiction": "Колумбийская художественная литература",
-    "Psychology": "Психология"
+    "Psychology": "Психология",
+    "Science Fiction Fantasy": "Научно-фантастическое фэнтези"  # Added translation
 }
 
 EXCLUDED_GENRES = {"Fiction", "Audiobook", "Rus", "Russia", "Foreign Language Study"}
@@ -122,7 +123,24 @@ def fetch_book_data(isbn, title, author, additional_authors):
                     annotation = volume_info.get('description', None)
                     logging.info(f"Fetched genres from Google Books for ISBN {isbn}: {genres}")
                 else:
-                    logging.warning(f"No data found for ISBN {isbn} from Google Books")
+                    logging.warning(f"No data found for ISBN {isbn} from Google Books, trying title/author")
+                    # Fall back to title/author search if ISBN fails
+                    title_encoded = urllib.parse.quote(title)
+                    author_encoded = urllib.parse.quote(author.strip())
+                    url = f"https://www.googleapis.com/books/v1/volumes?q={title_encoded}+inauthor:{author_encoded}"
+                    try:
+                        response = requests.get(url, timeout=10)
+                        if response.status_code == 200:
+                            data = response.json()
+                            if data.get('totalItems', 0) > 0:
+                                volume_info = data['items'][0]['volumeInfo']
+                                genres = volume_info.get('categories', [])[:3]
+                                translated_genres = [GENRE_TRANSLATION.get(genre, genre) for genre in genres if genre not in EXCLUDED_GENRES]
+                                genres = translated_genres if translated_genres else []
+                                annotation = volume_info.get('description', None)
+                                logging.info(f"Fetched genres from Google Books for {title} by {author}: {genres}")
+                    except requests.RequestException as e:
+                        logging.error(f"Error fetching data for {title} by {author}: {e}")
             else:
                 logging.error(f"Google Books API error for ISBN {isbn}: {response.status_code} - {response.text}")
         except requests.RequestException as e:
@@ -228,8 +246,7 @@ time.sleep(1)  # Rate limiting after Google Books fallback
 
 # Apply genres with Google Books as primary and Goodreads as fallback
 df['Genres'] = df.apply(
-    lambda row: fetch_goodreads_genres(row['Book Id']) if pd.isna(row['Book Id']) 
-    else fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
+    lambda row: fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0] 
     if (row['ISBN'] or row['ISBN13'] or row['Title']) and len(fetch_book_data(row['ISBN'] or row['ISBN13'], row['Title'], row['Author'], row['Additional Authors'])[0]) > 0 
     else fetch_goodreads_genres(row['Book Id']),
     axis=1
@@ -276,8 +293,8 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
     if title and author:
         title_clean = urllib.parse.quote(title)
         author_clean = urllib.parse.quote(author.strip())
-        url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_clean}"
-        logging.info(f"Trying Russian author: {url}")
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{author_encoded}"
+        logging.info(f"Trying author: {url}")
         try:
             response = requests.get(url)
             if response.status_code == 200:
@@ -293,9 +310,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                 else:
                     logging.info(f"No results for {title} by {author}")
             else:
-                logging.info(f"Failed Russian author request: {response.status_code}")
+                logging.info(f"Failed author request: {response.status_code}")
         except Exception as e:
-            logging.error(f"Error with Russian author {author}: {e}")
+            logging.error(f"Error with author {author}: {e}")
 
     if title and additional_authors:
         title_clean = urllib.parse.quote(title)
@@ -303,7 +320,7 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
         if add_author:
             add_author_clean = urllib.parse.quote(add_author)
             url = f"https://www.googleapis.com/books/v1/volumes?q={title_clean}+inauthor:{add_author_clean}"
-            logging.info(f"Trying additional Russian author: {url}")
+            logging.info(f"Trying additional author: {url}")
             try:
                 response = requests.get(url)
                 if response.status_code == 200:
@@ -327,9 +344,9 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                                 return cover
                     logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
                 else:
-                    logging.info(f"Failed additional Russian author request: {response.status_code}")
+                    logging.info(f"Failed additional author request: {response.status_code}")
             except Exception as e:
-                logging.error(f"Error with additional Russian author {add_author}: {e}")
+                logging.error(f"Error with additional author {add_author}: {e}")
     
     logging.info(f"No cover found for {title}")
     return None
