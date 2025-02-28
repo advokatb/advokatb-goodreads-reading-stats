@@ -62,7 +62,7 @@ class Book {
                 </div>
                 <!-- Back Side (Annotation) -->
                 <div class="back flex items-center justify-center w-full h-full">
-                    <div class="p-4 text-center overflow-y-auto max-h-[150px]">
+                    <div class="p-1 text-center overflow-y-auto max-h-[180px]">
                         <p class="text-gray-800 text-base">${this.getAnnotation()}</p>
                         <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none mt-2">
                             <i class="fas fa-sync"></i>
