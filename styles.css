@@ -1,9 +1,47 @@
 body {
-    background: linear-gradient(to bottom, #f0f4f8, #e0e7ff);
+    background: linear-gradient(to-bottom, #f0f4f8, #e0e7ff); /* Fallback if bg.webp fails */
+    background-image: url('/advokatb-goodreads-reading-stats/bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Roboto Condensed', sans-serif; /* Ensure font-sans applies */
 }
 
 .fade-in {
     animation: fadeIn 1s ease-in;
+}
+
+/* Flip Card Styles */
+.flip-container {
+    perspective: 1000px;
+}
+
+.flipper {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flipper.flipped {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe); /* Different background for annotation side */
+    color: #2d3748;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .book-card {
@@ -11,6 +49,7 @@ body {
     background: linear-gradient(135deg, #ffffff, #f9fafb);
     border-radius: 12px;
     position: relative; /* For rating and tooltip positioning */
+    min-height: 150px; /* Ensure enough height for flip */
 }
 
 .book-card:hover {
@@ -19,7 +58,7 @@ body {
 }
 
 .rating {
-    position: absolute; /* Restored to original position */
+    position: absolute;
     bottom: 5px;
     right: 5px;
     color: #f59e0b; /* Tailwind amber-500 */
@@ -154,4 +193,17 @@ select.btn {
 
 #total-book:hover .tooltip {
     display: block;
+}
+
+/* Flip Button Styles */
+.flip-button {
+    cursor: pointer;
+    font-size: 1.2rem; /* Adjust size as needed */
+    padding: 0.25rem;
+    border: none;
+    background: none;
+}
+
+.flip-button:hover {
+    color: #2563eb; /* Tailwind indigo-600 */
 }
