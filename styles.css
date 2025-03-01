@@ -119,7 +119,6 @@ body {
         position: static;
         margin-top: 0.5rem;
         align-self: flex-end;
-        font-size: 1.25rem; /* Reduced from 1.5rem for mobile */
     }
 }
 
@@ -300,8 +299,8 @@ select.btn {
 @media (max-width: 640px) {
     .book-card {
         padding: 0.5rem;
-        min-height: 180px; /* Reduced height for mobile */
-        max-height: 180px; /* Reduced height for mobile */
+        min-height: 250px;
+        max-height: 250px;
     }
 
     .front .flex.items-start img {
