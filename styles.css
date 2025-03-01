@@ -107,18 +107,22 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Rating Adjustment for Mobile */
+/* Rating Adjustment */
 .rating {
     color: #f59e0b;
     font-size: 1.5rem;
     margin-top: 0.5rem;
+    position: absolute; /* Restore absolute positioning for desktop */
+    bottom: 0.5rem; /* Bottom right corner */
+    right: 0.5rem; /* Bottom right corner */
 }
 
 @media (max-width: 640px) {
     .rating {
-        position: static;
+        position: static; /* Switch to static for mobile */
         margin-top: 0.5rem;
-        align-self: flex-end;
+        align-self: flex-end; /* Align to bottom right in flex context */
+        font-size: 1.25rem; /* Reduced size for mobile */
     }
 }
 
