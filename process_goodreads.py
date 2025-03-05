@@ -23,7 +23,10 @@ SERIES_MAPPING = {
     "Лето волонтёра": "Изменённые",
     "Прыжок": "Соглашение",
     "Порог": "Соглашение",
-    "Предел": "Соглашение"
+    "Предел": "Соглашение",
+    "Голодные игры": "Голодные игры",  # Added for Suzanne Collins
+    "Сойка-пересмешница": "Голодные игры",  # Added for Suzanne Collins
+    "И вспыхнет пламя": "Голодные игры"  # Added for Suzanne Collins
 }
 
 GENRE_TRANSLATION = {
@@ -93,6 +96,7 @@ df['My Rating'] = df['My Rating'].fillna(0).astype(int)
 # Enhanced Series extraction before title cleanup
 df['Series'] = df['Title'].str.extract(r'\(([^,]+),\s*#?\d+\)', expand=False)
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Uses original name
+df.loc[df['Author'] == 'Suzanne Collins', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Add series for Suzanne Collins
 logging.info(f"Processed Series data sample before cleanup: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 df['Title'] = df['Title'].str.replace(r'\s*\([^)]+\)', '', regex=True).str.strip()
@@ -263,8 +267,9 @@ df['Genres'] = df.apply(
 )
 time.sleep(1)  # Rate limiting
 
-# Assign manual series for Sergei Lukyanenko books
+# Assign manual series for Sergei Lukyanenko and Suzanne Collins books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Uses original name
+df.loc[df['Author'] == 'Suzanne Collins', 'Series'] = df['Title'].map(SERIES_MAPPING)  # Add series for Suzanne Collins
 logging.info(f"Series data after mapping: {df[['Title', 'Author', 'Series']].head().to_string()}")  # Debug Series
 
 # Filter read books for stats
@@ -350,15 +355,15 @@ def get_cover_url(isbn, isbn13, title, author, additional_authors):
                             book_broad = data_broad['items'][0]['volumeInfo']
                             cover = book_broad.get('imageLinks', {}).get('thumbnail', None)
                             if cover:
-                                logging.info(f"Found cover for {title} (broad): {cover}")
+                                logging.info(f"Found cover for ${title} (broad): ${cover}")
                                 return cover
-                    logging.info(f"No thumbnail for {title} by {add_author}: {json.dumps(book.get('imageLinks', {}))}")
+                    logging.info(f"No thumbnail for ${title} by ${add_author}: ${json.dumps(book.get('imageLinks', {}))}")
                 else:
-                    logging.info(f"Failed additional author request: {response.status_code}")
+                    logging.info(f"Failed additional author request: ${response.status_code}")
             except Exception as e:
-                logging.error(f"Error with additional author {add_author}: {e}")
+                logging.error(f"Error with additional author ${add_author}: ${e}")
     
-    logging.info(f"No cover found for {title}")
+    logging.info(f"No cover found for ${title}")
     return None
 
 # Process all books for covers

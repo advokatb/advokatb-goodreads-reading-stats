@@ -230,8 +230,15 @@ class BookCollection {
             console.warn('No books available to render series');
             return;
         }
+        // Filter to only read books
+        const readBooks = this.allBooks.filter(book => book['Exclusive Shelf'] === 'read');
+        if (readBooks.length === 0) {
+            container.innerHTML = '<p class="text-gray-600">Нет прочитанных книг в сериях</p>';
+            console.warn('No read books available to render series');
+            return;
+        }
         const seriesBooks = {};
-        this.allBooks.forEach(book => {
+        readBooks.forEach(book => {
             console.log(`Processing book: ${book.Title}, Series: ${book.Series}, Author: ${book.getDisplayAuthor()}`);
             if (book.Series && book.Series.trim()) {
                 if (!seriesBooks[book.Series]) {
@@ -246,7 +253,7 @@ class BookCollection {
 
         if (Object.keys(seriesBooks).length === 0) {
             container.innerHTML = '<p class="text-gray-600">Нет серий для отображения</p>';
-            console.warn('No series found in allBooks');
+            console.warn('No series found in read books');
             return;
         }
 
@@ -441,7 +448,7 @@ fetch('reading_stats.json')
             books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
 
-        allBooks.renderSeriesShelf('series-shelf');
+        books.renderSeriesShelf('series-shelf');  // Use 'books' (read books) instead of 'allBooks'
 
         const options = {
             series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
