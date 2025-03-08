@@ -12,6 +12,52 @@
   "books_2025": 12,
   "book_list": [
     {
+      "Title": "Шестой Дозор",
+      "Author": "Sergei Lukyanenko",
+      "Additional Authors": "Сергей Лукьяненко",
+      "Number of Pages": 384,
+      "Estimated Word Count": 105600,
+      "Date Read": null,
+      "Date Added": "2025-03-08",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#11)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "5170878443",
+      "ISBN13": "9785170878444",
+      "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Genres": [
+        "Good and evil"
+      ],
+      "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
+      "Book Id": "23753355",
+      "Days Spent": null
+    },
+    {
+      "Title": "Поиски утраченного завтра",
+      "Author": "Сергей Лукьяненко",
+      "Additional Authors": "",
+      "Number of Pages": 391,
+      "Estimated Word Count": 107525,
+      "Date Read": null,
+      "Date Added": "2025-03-08",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#10)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Electronic books"
+      ],
+      "Annotation": "Мне тридцать лет. Меня зовут Никита и полвека назад я спас человечество. Как вы и сами понимаете, за это меня часто пытаются убить. Это довольно глупо, конечно. Бессмысленная потеря времени, я каждый раз пытаюсь это объяснить. Но в этот раз, кажется, у них может что-то получиться. Еще бы понять - кто эти \"они\"...",
+      "Book Id": "220715348",
+      "Days Spent": null
+    },
+    {
       "Title": "Кайноzой",
       "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
@@ -282,7 +328,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=vNyuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
