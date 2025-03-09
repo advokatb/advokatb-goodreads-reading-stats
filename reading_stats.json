@@ -73,7 +73,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5171667233",
       "ISBN13": "9785171667238",
-      "Cover URL": null,
+      "Cover URL": "http://books.google.com/books/content?id=jysYEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Electronic books"
       ],
@@ -328,7 +328,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=vNyuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=8UOyAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Insurgency"
       ],
@@ -401,7 +401,9 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [],
+      "Genres": [
+        "Психология"
+      ],
       "Annotation": "Как выразить любовь вашему спутнику. Любовь можно проявлять по-разному. Доктор Гэри Чепмен утверждает, что существует пять языков любви: Слова поощрения; Время; Подарки; Помощь; Прикосновения.",
       "Book Id": "220278968",
       "Days Spent": 2.0
