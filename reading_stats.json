@@ -1,39 +1,16 @@
 {
-  "total_books": 16,
-  "total_pages": 6336,
-  "avg_pages": 396.0,
+  "total_books": 17,
+  "total_pages": 6656,
+  "avg_pages": 391.5,
   "avg_rating": 4.62,
   "series_counts": {
     "Изменённые": 4,
     "Канашибари": 2,
-    "Кваzи": 1,
+    "Кваzи": 2,
     "Соглашение": 3
   },
-  "books_2025": 12,
+  "books_2025": 13,
   "book_list": [
-    {
-      "Title": "Поиски утраченного завтра",
-      "Author": "Сергей Лукьяненко",
-      "Additional Authors": "",
-      "Number of Pages": 321,
-      "Estimated Word Count": 88275,
-      "Date Read": null,
-      "Date Added": "2025-03-08",
-      "My Rating": 0,
-      "Series": null,
-      "Bookshelves": "to-read",
-      "Bookshelves with positions": "to-read (#11)",
-      "Exclusive Shelf": "to-read",
-      "ISBN": "5171667233",
-      "ISBN13": "9785171667238",
-      "Cover URL": null,
-      "Genres": [
-        "Electronic books"
-      ],
-      "Annotation": "Мне тридцать лет. Меня зовут Никита, и полвека назад я спас человечество. Как вы и сами понимаете, за это меня часто пытаются убить. Это довольно глупо, конечно. Бессмысленная потеря времени, я каждый раз пытаюсь это объяснить. Но в этот раз, кажется, у них может что-то получиться. Еще бы понять – кто эти «они»…",
-      "Book Id": "218567113",
-      "Days Spent": null
-    },
     {
       "Title": "Шестой Дозор",
       "Author": "Sergei Lukyanenko",
@@ -44,9 +21,9 @@
       "Date Added": "2025-03-08",
       "My Rating": 0,
       "Series": null,
-      "Bookshelves": "to-read",
-      "Bookshelves with positions": "to-read (#10)",
-      "Exclusive Shelf": "to-read",
+      "Bookshelves": "currently-reading",
+      "Bookshelves with positions": "currently-reading (#1)",
+      "Exclusive Shelf": "currently-reading",
       "ISBN": "5170878443",
       "ISBN13": "9785170878444",
       "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
@@ -63,13 +40,13 @@
       "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 320,
       "Estimated Word Count": 88000,
-      "Date Read": null,
+      "Date Read": "2025-03-08",
       "Date Added": "2025-02-26",
       "My Rating": 0,
       "Series": "Кваzи",
-      "Bookshelves": "currently-reading",
-      "Bookshelves with positions": "currently-reading (#1)",
-      "Exclusive Shelf": "currently-reading",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "9785171125844",
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
@@ -79,6 +56,29 @@
       ],
       "Annotation": "Один мёртвый поезд. Один мёртвый город. Одна неделя, чтобы спасти мёртвый мир.",
       "Book Id": "43195781",
+      "Days Spent": 10.0
+    },
+    {
+      "Title": "Поиски утраченного завтра",
+      "Author": "Сергей Лукьяненко",
+      "Additional Authors": "",
+      "Number of Pages": 321,
+      "Estimated Word Count": 88275,
+      "Date Read": null,
+      "Date Added": "2025-03-08",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#10)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "5171667233",
+      "ISBN13": "9785171667238",
+      "Cover URL": null,
+      "Genres": [
+        "Electronic books"
+      ],
+      "Annotation": "Мне тридцать лет. Меня зовут Никита, и полвека назад я спас человечество. Как вы и сами понимаете, за это меня часто пытаются убить. Это довольно глупо, конечно. Бессмысленная потеря времени, я каждый раз пытаюсь это объяснить. Но в этот раз, кажется, у них может что-то получиться. Еще бы понять – кто эти «они»…",
+      "Book Id": "218567113",
       "Days Spent": null
     },
     {
@@ -330,7 +330,7 @@
       "ISBN13": "9785170624638",
       "Cover URL": "http://books.google.com/books/content?id=vNyuEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Литературные сборники"
+        "Insurgency"
       ],
       "Annotation": "Книга-сенсация, возглавившая 21 список бестселлеров и удостоенная множества литературных наград! Эти парень и девушка знакомы с детства и еще могут полюбить друг друга, но им придется стать врагами... По жребию они должны участвовать в страшных \"Голодных играх\", где выживает только один - сильнейший. Пока в жестоком квесте остаются хотя бы какие-то участники, Китнисс и Пит могут защищать друг друга и сражаться вместе. Но рано или поздно кому-то из них придется пожертвовать жизнью ради любимого... Таков закон \"Голодных игр\". Закон, который не нарушался еще никогда!",
       "Book Id": "7769068",
@@ -401,9 +401,7 @@
       "ISBN": "",
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "Психология"
-      ],
+      "Genres": [],
       "Annotation": "Как выразить любовь вашему спутнику. Любовь можно проявлять по-разному. Доктор Гэри Чепмен утверждает, что существует пять языков любви: Слова поощрения; Время; Подарки; Помощь; Прикосновения.",
       "Book Id": "220278968",
       "Days Spent": 2.0
@@ -682,7 +680,7 @@
     },
     {
       "Date": "2025-03",
-      "Books": 2
+      "Books": 3
     }
   ],
   "longest_book": {
