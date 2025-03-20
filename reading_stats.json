@@ -1,37 +1,39 @@
 {
-  "total_books": 17,
-  "total_pages": 6656,
-  "avg_pages": 391.5,
-  "avg_rating": 4.62,
+  "total_books": 18,
+  "total_pages": 7040,
+  "avg_pages": 391.1,
+  "avg_rating": 4.56,
   "series_counts": {
     "Изменённые": 4,
     "Канашибари": 2,
     "Кваzи": 2,
     "Соглашение": 3
   },
-  "books_2025": 13,
+  "books_2025": 14,
   "book_list": [
     {
-      "Title": "Шестой Дозор",
-      "Author": "Sergei Lukyanenko",
-      "Additional Authors": "Сергей Лукьяненко",
-      "Number of Pages": 384,
-      "Estimated Word Count": 105600,
+      "Title": "Эммануэль",
+      "Author": "Emmanuelle Arsan",
+      "Additional Authors": "",
+      "Number of Pages": 336,
+      "Estimated Word Count": 92400,
       "Date Read": null,
-      "Date Added": "2025-03-08",
+      "Date Added": "2025-03-20",
       "My Rating": 0,
       "Series": null,
       "Bookshelves": "currently-reading",
       "Bookshelves with positions": "currently-reading (#1)",
       "Exclusive Shelf": "currently-reading",
-      "ISBN": "5170878443",
-      "ISBN13": "9785170878444",
-      "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": "http://books.google.com/books/content?id=oJhcAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Good and evil"
+        "Романтика",
+        "Классика",
+        "Erotica"
       ],
-      "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
-      "Book Id": "23753355",
+      "Annotation": "With Story of O, this classic erotic book is the most famous French underground novel of the late 20th century, a work of seductive literary merit. It appears an autobiographical novel by a French Foreign Service diplomat's wife. It opens as Emmanuelle flys from London to rejoin her husband in Bangkok. Compelled by an overnight passenger seated beside her, her irrepressible nature opens vistas of sensual possibility. She moves easily from her spouse's arms to intimacies with his business associates' wives & to further explorations in which subtle erotic aesthetics are fully expounded & enacted. Selling millions of copies since a clandestine French publication, Emmanuelle shows a woman's progress from unconscious to profoundly conscious sexuality.",
+      "Book Id": "17157096",
       "Days Spent": null
     },
     {
@@ -42,7 +44,7 @@
       "Estimated Word Count": 88000,
       "Date Read": "2025-03-08",
       "Date Added": "2025-02-26",
-      "My Rating": 0,
+      "My Rating": 4,
       "Series": "Кваzи",
       "Bookshelves": "",
       "Bookshelves with positions": "",
@@ -59,9 +61,32 @@
       "Days Spent": 10.0
     },
     {
+      "Title": "Шестой Дозор",
+      "Author": "Sergei Lukyanenko",
+      "Additional Authors": "Сергей Лукьяненко",
+      "Number of Pages": 384,
+      "Estimated Word Count": 105600,
+      "Date Read": "2025-03-19",
+      "Date Added": "2025-03-08",
+      "My Rating": 4,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5170878443",
+      "ISBN13": "9785170878444",
+      "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Genres": [
+        "Good and evil"
+      ],
+      "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
+      "Book Id": "23753355",
+      "Days Spent": 11.0
+    },
+    {
       "Title": "Поиски утраченного завтра",
-      "Author": "Сергей Лукьяненко",
-      "Additional Authors": "",
+      "Author": "Sergei Lukyanenko",
+      "Additional Authors": "Сергей Лукьяненко",
       "Number of Pages": 321,
       "Estimated Word Count": 88275,
       "Date Read": null,
@@ -96,7 +121,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "5170981317",
       "ISBN13": "9785170981311",
-      "Cover URL": "http://books.google.com/books/content?id=yhAsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=YHneDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Научная фантастика",
         "Фэнтези",
@@ -144,11 +169,9 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5041907420",
       "ISBN13": "9785041907426",
-      "Cover URL": "http://books.google.com/books/content?id=JUP3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=l3SxDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Триллер",
-        "Детектив",
-        "Japan"
+        "Technology & Engineering"
       ],
       "Annotation": "Автор - признанный мастер стиля иямису, исследующего темные стороны человеческой души. Это одно из основных направлений в современном японском детективе. Пятеро девочек-школьниц играли в волейбол рядом со школьным бассейном. Тут к ним подошел мужчина и попросил помочь проверить вентиляцию в раздевалке. Он выбрал одну из девочек и повел ее в помещение, а остальные просто продолжили игру. Спохватившись, что подруги нет уже слишком долго, они пошли за ней в раздевалку. И там с ужасом увидели ее мертвое тело… Сколько девочек ни допрашивали, они никак не могли вспомнить лицо убийцы. Тогда мать погибшей собрала их вместе и обвинила в смерти дочери. Она сказала: \"Я не прощу вас, если вы не найдете убийцу. Если вы не сможете это сделать, найдите другой способ искупить свою вину, который я приму. Если вы не сделаете ни того, ни другого, говорю вам здесь и сейчас: я вам отомщу, каждой из вас\". И жизнь девочек на долгие годы превратилась в кошмар… Этот роман бьет в самое сердце, заставляя всерьез задуматься об ответственности за поступки, которые мы совершили, - или, наоборот, не совершили, что оказалось еще хуже…",
       "Book Id": "202936542",
@@ -190,9 +213,11 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5041859183",
       "ISBN13": "9785041859183",
-      "Cover URL": "http://books.google.com/books/content?id=MOP1EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=6RCrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Multimedia (Art)"
+        "Триллер",
+        "Детектив",
+        "Детективный триллер"
       ],
       "Annotation": "Изощренный, умный и стремительный роман о мести, одержимости и… идеальном убийстве. От автора бестселлеров New York Times. Смесь «Исчезнувшей» и «Незнакомцев в поезде». Ложь, скрывающая ложь Саймон и Вики Добиас — богатая, благополучная семья из Чикаго. Он — уважаемый преподаватель права, она — защитница жертв домашнего насилия. Спокойная, счастливая семейная жизнь. Но на самом деле все абсолютно не так, как кажется. На поверхности остается лишь то, что они хотят показать людям. И один из них вполне может оказаться убийцей… Когда блестящую светскую львицу Лорен Бетанкур находят повешенной, тайная жизнь четы Добиас выходит на свет. Их бурные романы на стороне… Трастовый фонд Саймона в двадцать один миллион долларов, срок погашения которого вот-вот наступит… Многолетняя обида Вики и ее одержимость местью… Это лишь вершина айсберга, и она будет иметь самые разрушительные последствия. Но хотя и Вики, и Саймон — лжецы, кто именно кого обманывает? К тому же, под этим слоем лицемерия скрывается еще одна ложь. Поистине чудовищная…",
       "Book Id": "208460125",
@@ -328,9 +353,9 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=8UOyAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=hlb_sM1AN0gC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Insurgency"
+        "Литературные сборники"
       ],
       "Annotation": "Книга-сенсация, возглавившая 21 список бестселлеров и удостоенная множества литературных наград! Эти парень и девушка знакомы с детства и еще могут полюбить друг друга, но им придется стать врагами... По жребию они должны участвовать в страшных \"Голодных играх\", где выживает только один - сильнейший. Пока в жестоком квесте остаются хотя бы какие-то участники, Китнисс и Пит могут защищать друг друга и сражаться вместе. Но рано или поздно кому-то из них придется пожертвовать жизнью ради любимого... Таков закон \"Голодных игр\". Закон, который не нарушался еще никогда!",
       "Book Id": "7769068",
@@ -351,11 +376,9 @@
       "Exclusive Shelf": "read",
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=6P_jN6zUuMcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=NRWlitmahXkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Классика",
-        "Научная фантастика",
-        "Молодёжная литература"
+        "Brain"
       ],
       "Annotation": "Сорок лет назад это считалось фантастикой. Сорок лет назад это читалось как фантастика. Исследующая и расширяющая границы жанра, жадно впитывающая всевозможные новейшие веяния, примеряющая общечеловеческое лицо, отважно игнорирующая каинову печать \"жанрового гетто\". Сейчас это воспринимается как одно из самых человечных произведений новейшего времени, как роман пронзительной психологической силы, как филигранное развитие темы любви и ответственности. Не зря вышедшую уже в 1990-е книгу воспоминаний Киз назвал \"Элджернон, Чарли и я\".",
       "Book Id": "6139677",
@@ -448,7 +471,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=inK3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=N8CgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Научная фантастика"
       ],
@@ -682,7 +705,7 @@
     },
     {
       "Date": "2025-03",
-      "Books": 3
+      "Books": 4
     }
   ],
   "longest_book": {
