@@ -51,23 +51,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        const allBooks = new BookCollection(data.book_list);
-        const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
-        const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
-        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
-
-        // Populate the series filter dropdown
-        const seriesFilter = document.getElementById('series-filter');
-        const uniqueSeries = [...new Set(books.allBooks
-            .filter(book => book.Series && book.Series.trim())
-            .map(book => book.Series))]
-            .sort();
-        uniqueSeries.forEach(series => {
-            const option = document.createElement('option');
-            option.value = series;
-            option.textContent = series;
-            seriesFilter.appendChild(option);
-        });
+        // Pass customDates to BookCollection
+        const allBooks = new BookCollection(data.book_list, customDates);
+        const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'), customDates);
+        const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'), customDates);
+        const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'), customDates);
 
         // Populate the genre filter dropdown
         const genreFilter = document.getElementById('genre-filter');
@@ -147,7 +135,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Calculate statistics for the "Статистика чтения" block
         // 1. Total series read (Циклов прочитано всего)
-        const totalSeries = uniqueSeries.length; // Already calculated for series filter
+        const uniqueSeries = [...new Set(books.allBooks
+            .filter(book => book.Series && book.Series.trim())
+            .map(book => book.Series))]
+            .sort();
+        const totalSeries = uniqueSeries.length;
 
         // 2. Average books read per month (В среднем прочитано в месяц)
         let averageBooksPerMonth = 0;
@@ -234,14 +226,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         document.getElementById('sort-by').value = 'date-desc';
 
-        // Combine series and genre filters
+        // Combine genre and sort filters
         const applyFilters = async () => {
             let filteredBooks = books;
-            const selectedSeries = seriesFilter.value;
             const selectedGenre = genreFilter.value;
-
-            // Apply series filter
-            filteredBooks = filteredBooks.filterBySeries(selectedSeries);
 
             // Apply genre filter
             filteredBooks = filteredBooks.filterByGenre(selectedGenre);
@@ -254,7 +242,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             await filteredBooks.render('book-list');
         };
 
-        seriesFilter.addEventListener('change', applyFilters);
         genreFilter.addEventListener('change', applyFilters);
         document.getElementById('sort-by').addEventListener('change', applyFilters);
 

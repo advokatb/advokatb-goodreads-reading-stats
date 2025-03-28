@@ -1,6 +1,7 @@
 class BookCollection {
-    constructor(books) {
-        this.models = books ? books.map(book => new Book(book)) : [];
+    constructor(books, customDates) {
+        this.customDates = customDates || { books: {} }; // Store customDates
+        this.models = books ? books.map(book => new Book(book, this.customDates)) : [];
         this.allBooks = [...this.models];
         console.log(`BookCollection initialized with ${this.allBooks.length} books`);
         if (this.allBooks.length === 0) {
@@ -8,14 +9,6 @@ class BookCollection {
         }
     }
 
-    filterBySeries(series) {
-        this.models = series ? 
-            this.allBooks.filter(book => book.Series === series) : 
-            [...this.allBooks];
-        return this;
-    }
-
-    // New method: Filter by genre
     filterByGenre(genre) {
         this.models = genre ?
             this.allBooks.filter(book => book.Genres && book.Genres.includes(genre)) :

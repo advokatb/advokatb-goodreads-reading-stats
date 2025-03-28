@@ -1,6 +1,7 @@
 class Book {
-    constructor(attributes) {
+    constructor(attributes, customDates) {
         Object.assign(this, attributes);
+        this.customDates = customDates || { books: {} }; // Store customDates for calculating reading duration
     }
 
     async getDisplayAuthor() {
@@ -20,10 +21,38 @@ class Book {
         return url.startsWith('http://books.google.com') ? url.replace('http://', 'https://') : url;
     }
 
+    // Calculate the number of days spent reading the book
+    getReadingDuration() {
+        if (!this['Date Read']) return null;
+
+        const endDate = new Date(this['Date Read']);
+        let startDate;
+
+        // Check if there's a custom start date in customDates
+        const customDateInfo = this.customDates.books[this.Title] || {};
+        if (customDateInfo.custom_start_date) {
+            startDate = new Date(customDateInfo.custom_start_date);
+        } else {
+            // Estimate start date based on pages (100 pages per day)
+            const pages = this['Number of Pages'] || 300;
+            const daysToRead = Math.ceil(pages / 100);
+            startDate = new Date(this['Date Read']);
+            startDate.setDate(startDate.getDate() - daysToRead);
+        }
+
+        if (isNaN(startDate) || isNaN(endDate)) return null;
+
+        // Calculate the difference in days
+        const diffTime = Math.abs(endDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+    }
+
     formatDateRead() {
         if (!this['Date Read']) return '';
         const [year, month, day] = this['Date Read'].split('-');
-        const days = this['Days Spent'];
+        const days = this.getReadingDuration(); // Dynamically calculate days
+        if (days === null) return `${day}.${month}.${year}`;
         let daysText;
         if (days === 1) {
             daysText = '1 день';
@@ -48,7 +77,7 @@ class Book {
     }
 
     async render() {
-        const author = await this.getDisplayAuthor(); // Await the async method
+        const author = await this.getDisplayAuthor();
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
@@ -95,7 +124,7 @@ class Book {
     }
 
     async renderCurrent() {
-        const author = await this.getDisplayAuthor(); // Await the async method
+        const author = await this.getDisplayAuthor();
         const div = document.createElement('div');
         div.className = 'flex space-x-4';
         const imgSrc = this.getCoverUrl();

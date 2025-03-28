@@ -94,7 +94,8 @@ body {
 
 .book-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: linear-gradient(135deg, #ffffff, #f9fafb);
+    /* background: linear-gradient(135deg, #ffffff, #f9fafb); */
+    background: linear-gradient(135deg, #FEF6E8, #FEF6E8);
     border-radius: 12px;
     position: relative;
     min-height: 200px;
@@ -156,8 +157,26 @@ body {
     border-radius: 8px;
     text-align: center;
     appearance: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 0.375rem; /* rounded */
+    background-color: #ffffff; /* white */
+    color: #374151; /* gray-700 */
+    font-size: 0.875rem; /* text-sm */
+    cursor: pointer;
 }
 
+
+/* Ensure text in select elements is aligned to the left */
+.btn.text-left {
+    text-align: left;
+    text-align-last: left; /* For some browsers */
+}
+
+/* Optional: Ensure option elements inside select are also aligned left */
+.btn.text-left option {
+    text-align: left;
+}
 .btn:hover {
     background: linear-gradient(to right, #6b7280, #374151);
 }
@@ -260,6 +279,7 @@ h1, h2 {
 .font-vasek-italic {
     font-family: 'Vasek Italic', sans-serif;
 }
+
 
 /* Fallback for filter visibility if gradient fails */
 select.btn {
