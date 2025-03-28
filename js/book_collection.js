@@ -239,7 +239,6 @@ class BookCollection {
         return div;
     }
 
-    // New method: Render the rating distribution chart
     async renderRatingChart() {
         const ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
         for (const book of this.allBooks) {
@@ -316,7 +315,6 @@ class BookCollection {
         chart.render();
     }
 
-    // New method: Render the most read genres chart
     async renderGenreChart() {
         const genreCounts = {};
         for (const book of this.allBooks) {
@@ -328,11 +326,10 @@ class BookCollection {
             }
         }
 
-        // Filter out genres with 0 counts and sort by count (descending)
         const sortedGenres = Object.entries(genreCounts)
             .filter(([_, count]) => count > 0)
             .sort((a, b) => b[1] - a[1])
-            .slice(0, 5); // Limit to top 5 genres for better visualization
+            .slice(0, 5);
 
         const labels = sortedGenres.map(([genre]) => genre);
         const seriesData = sortedGenres.map(([_, count]) => count);
@@ -345,12 +342,12 @@ class BookCollection {
             },
             series: seriesData,
             labels: labels,
-            colors: ['#4F46E5', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'], // Indigo-600, Emerald-500, Amber-500, Red-500, Purple-500
+            colors: ['#4F46E5', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'],
             legend: {
                 position: 'bottom',
                 fontSize: '12px',
                 labels: {
-                    colors: '#4B5563' // text-gray-600
+                    colors: '#4B5563'
                 }
             },
             dataLabels: {
@@ -372,6 +369,87 @@ class BookCollection {
         };
 
         const chart = new ApexCharts(document.querySelector("#genreChart"), options);
+        chart.render();
+    }
+
+    async renderTimelineChart() {
+        const timelineData = {};
+        for (const book of this.allBooks) {
+            if (book['Exclusive Shelf'] === 'read' && book['Date Read']) {
+                const [year, month] = book['Date Read'].split('-');
+                const key = `${year}-${month}`;
+                timelineData[key] = (timelineData[key] || 0) + 1;
+            }
+        }
+
+        const sortedKeys = Object.keys(timelineData).sort();
+        const seriesData = sortedKeys.map(key => timelineData[key]);
+        const labels = sortedKeys.map(key => {
+            const [year, month] = key.split('-');
+            return `${month}.${year}`;
+        });
+
+        const options = {
+            chart: {
+                type: 'bar',
+                height: 200,
+                toolbar: { show: false }
+            },
+            series: [{
+                name: 'Книги',
+                data: seriesData
+            }],
+            xaxis: {
+                categories: labels,
+                title: {
+                    text: 'Месяц',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        color: '#374151'
+                    }
+                },
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        colors: Array(labels.length).fill('#4B5563')
+                    }
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Книги',
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        color: '#374151'
+                    }
+                },
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        colors: '#4B5563'
+                    }
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '70%'
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            colors: ['#2563eb'],
+            tooltip: {
+                y: {
+                    formatter: val => `${val} книг${val > 1 ? 'и' : 'а'}`
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector('#timelineChart'), options);
         chart.render();
     }
 }
