@@ -4,9 +4,14 @@ class Book {
     }
 
     async getDisplayAuthor() {
-        const response = await fetch('data/author_mapping.json');
-        const AUTHOR_MAPPING = await response.json();
-        return AUTHOR_MAPPING[this.Author] || this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
+        try {
+            const response = await fetch('data/author_mapping.json');
+            const AUTHOR_MAPPING = await response.json();
+            return AUTHOR_MAPPING[this.Author] || this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
+        } catch (error) {
+            console.error('Failed to load author mapping:', error);
+            return this.Author || (this['Additional Authors'] && this['Additional Authors'].split(',')[0].trim()) || 'No Author';
+        }
     }
 
     getCoverUrl() {
@@ -42,7 +47,8 @@ class Book {
         return this.Annotation || 'Нет аннотации';
     }
 
-    render() {
+    async render() {
+        const author = await this.getDisplayAuthor(); // Await the async method
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
@@ -58,7 +64,7 @@ class Book {
                              onerror="console.error('Failed to load cover for ${this.Title}: ${this.getCoverUrl()}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
                         <div class="flex-1">
                             <h3 class="text-lg font-semibold text-gray-800"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
-                            <p class="text-gray-600 text-sm">👤 ${this.getDisplayAuthor()}</p>
+                            <p class="text-gray-600 text-sm">👤 ${author}</p>
                             <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
                             ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
                             ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
@@ -88,12 +94,12 @@ class Book {
         return div;
     }
 
-    renderCurrent() {
+    async renderCurrent() {
+        const author = await this.getDisplayAuthor(); // Await the async method
         const div = document.createElement('div');
         div.className = 'flex space-x-4';
         const imgSrc = this.getCoverUrl();
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
-        const author = this.getDisplayAuthor();
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
                  onload="console.log('Loaded cover for ${this.Title}')"

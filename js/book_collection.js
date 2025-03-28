@@ -33,16 +33,17 @@ class BookCollection {
         return this;
     }
 
-    getSeriesWithAuthors() {
+    async getSeriesWithAuthors() {
         const seriesAuthors = {};
-        this.allBooks.forEach(book => {
+        for (const book of this.allBooks) {
             if (book.Series && book.Series.trim()) {
+                const author = await book.getDisplayAuthor();
                 if (!seriesAuthors[book.Series]) {
                     seriesAuthors[book.Series] = new Set();
                 }
-                seriesAuthors[book.Series].add(book.getDisplayAuthor());
+                seriesAuthors[book.Series].add(author);
             }
-        });
+        }
         return seriesAuthors;
     }
 
@@ -58,15 +59,15 @@ class BookCollection {
             book['Number of Pages'] < min['Number of Pages'] ? book : min, this.allBooks[0]);
     }
 
-    getMostProlificAuthor() {
+    async getMostProlificAuthor() {
         if (!this.allBooks.length) return ['Нет данных', 0];
         const authorCounts = {};
-        this.allBooks.forEach(book => {
+        for (const book of this.allBooks) {
             if (book['Exclusive Shelf'] === 'read') {
-                const displayAuthor = book.getDisplayAuthor();
+                const displayAuthor = await book.getDisplayAuthor();
                 authorCounts[displayAuthor] = (authorCounts[displayAuthor] || 0) + 1;
             }
-        });
+        }
         return Object.entries(authorCounts).reduce((max, [author, count]) => 
             count > max[1] ? [author, count] : max, ['', 0]);
     }
@@ -94,7 +95,7 @@ class BookCollection {
         return photoUrl;
     }
 
-    render(containerId) {
+    async render(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container ${containerId} not found`);
@@ -103,14 +104,14 @@ class BookCollection {
         container.innerHTML = '';
         if (this.models) {
             this.sortBy('date-desc');
-            const renderedBooks = this.models.map(book => book.render());
+            const renderedBooks = await Promise.all(this.models.map(book => book.render()));
             renderedBooks.forEach(div => container.appendChild(div));
         } else {
             console.error('models is undefined in render');
         }
     }
 
-    renderSeriesShelf(containerId) {
+    async renderSeriesShelf(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container ${containerId} not found`);
@@ -130,18 +131,19 @@ class BookCollection {
             return;
         }
         const seriesBooks = {};
-        readBooks.forEach(book => {
-            console.log(`Processing book: ${book.Title}, Series: ${book.Series}, Author: ${book.getDisplayAuthor()}`);
+        for (const book of readBooks) {
+            console.log(`Processing book: ${book.Title}, Series: ${book.Series}`);
             if (book.Series && book.Series.trim()) {
+                const author = await book.getDisplayAuthor();
                 if (!seriesBooks[book.Series]) {
-                    seriesBooks[book.Series] = { books: [], author: book.getDisplayAuthor() };
+                    seriesBooks[book.Series] = { books: [], author };
                 }
                 seriesBooks[book.Series].books.push(book);
-                console.log(`Added book to series ${book.Series}: ${book.Title} by ${book.getDisplayAuthor()}`);
+                console.log(`Added book to series ${book.Series}: ${book.Title} by ${author}`);
             } else {
                 console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`);
             }
-        });
+        }
 
         if (Object.keys(seriesBooks).length === 0) {
             container.innerHTML = '<p class="text-gray-600">Нет серий для отображения</p>';
@@ -173,7 +175,7 @@ class BookCollection {
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${book.getCoverUrl()}" alt="${book.Title}" 
-                             onload="console.log('Loaded cover for ${book.Title} by ${book.getDisplayAuthor()}')"
+                             onload="console.log('Loaded cover for ${book.Title} by ${author}')"
                              onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;
@@ -185,7 +187,7 @@ class BookCollection {
         }
     }
 
-    renderFutureReads(containerId) {
+    async renderFutureReads(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container ${containerId} not found`);
@@ -196,12 +198,12 @@ class BookCollection {
             console.error('models is not an array or is undefined in renderFutureReads');
             return;
         }
-        const renderedBooks = this.models.map(book => book.render());
+        const renderedBooks = await Promise.all(this.models.map(book => book.render()));
         renderedBooks.forEach(div => container.appendChild(div));
     }
 
     async renderMostProlificAuthor() {
-        const [mostProlificAuthor, authorBookCount] = this.getMostProlificAuthor();
+        const [mostProlificAuthor, authorBookCount] = await this.getMostProlificAuthor();
         const div = document.createElement('div');
         div.className = 'flex items-center space-x-4';
         const photoUrl = await this.getAuthorPhoto(mostProlificAuthor);

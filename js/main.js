@@ -1,9 +1,9 @@
-fetch('reading_stats.json')
-    .then(response => {
+(async () => {
+    try {
+        const response = await fetch('reading_stats.json');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        return response.json();
-    })
-    .then(data => {
+        const data = await response.json();
+
         console.log('Fetched data:', data.book_list.length);
 
         // Update total-books, total-pages, books-2025 inside the "Всего" block
@@ -39,23 +39,24 @@ fetch('reading_stats.json')
         const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
         
         if (currentBooks.models.length > 0) {
-            document.getElementById('current-book').appendChild(currentBooks.models[0].renderCurrent());
+            const currentBookDiv = await currentBooks.models[0].renderCurrent();
+            document.getElementById('current-book').appendChild(currentBookDiv);
         } else {
             document.getElementById('current-book').innerHTML = '<p class="text-gray-600">Ничего не читаю сейчас</p>';
         }
 
         const lastReadBook = books.getLastReadBook();
         if (lastReadBook) {
-            document.getElementById('last-read-book').appendChild(lastReadBook.renderCurrent());
+            const lastReadBookDiv = await lastReadBook.renderCurrent();
+            document.getElementById('last-read-book').appendChild(lastReadBookDiv);
         } else {
             document.getElementById('last-read-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
 
         // Populate "Любимый автор" with consistent layout
         if (document.getElementById('most-prolific-author')) {
-            books.renderMostProlificAuthor().then(div => {
-                document.getElementById('most-prolific-author').appendChild(div);
-            });
+            const mostProlificAuthorDiv = await books.renderMostProlificAuthor();
+            document.getElementById('most-prolific-author').appendChild(mostProlificAuthorDiv);
         } else {
             console.error('most-prolific-author element not found');
         }
@@ -106,12 +107,12 @@ fetch('reading_stats.json')
         document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
         document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
 
-        books.render('book-list');
+        await books.render('book-list');
         
         const futureReadsBlock = document.getElementById('future-reads-block');
         if (toReadBooks && toReadBooks.models && toReadBooks.models.length > 0) {
             futureReadsBlock.style.display = 'block';
-            toReadBooks.renderFutureReads('future-reads');
+            await toReadBooks.renderFutureReads('future-reads');
         } else {
             futureReadsBlock.style.display = 'none';
             console.warn('No to-read books found or models is invalid');
@@ -120,14 +121,14 @@ fetch('reading_stats.json')
         document.getElementById('sort-by').value = 'date-desc';
 
         const seriesFilter = document.getElementById('series-filter');
-        seriesFilter.addEventListener('change', () => {
-            books.filterBySeries(seriesFilter.value).render('book-list');
+        seriesFilter.addEventListener('change', async () => {
+            await books.filterBySeries(seriesFilter.value).render('book-list');
         });
-        document.getElementById('sort-by').addEventListener('change', () => {
-            books.sortBy(document.getElementById('sort-by').value).render('book-list');
+        document.getElementById('sort-by').addEventListener('change', async () => {
+            await books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
 
-        allBooks.renderSeriesShelf('series-shelf');
+        await allBooks.renderSeriesShelf('series-shelf');
 
         const options = {
             series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
@@ -141,5 +142,7 @@ fetch('reading_stats.json')
         };
         const chart = new ApexCharts(document.querySelector('#timelineChart'), options);
         chart.render();
-    })
-    .catch(error => console.error('Fetch error:', error));
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+})();
