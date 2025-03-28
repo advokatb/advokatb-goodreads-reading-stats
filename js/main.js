@@ -1,8 +1,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // Fetch reading_stats.json
         const response = await fetch('reading_stats.json');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
+
+        // Fetch custom_dates.json
+        let customDates = {};
+        try {
+            const customDatesResponse = await fetch('custom_dates.json');
+            if (!customDatesResponse.ok) throw new Error(`HTTP error! Status: ${customDatesResponse.status}`);
+            customDates = await customDatesResponse.json();
+        } catch (error) {
+            console.warn('Failed to load custom_dates.json, proceeding without custom dates:', error);
+            customDates = { books: {} };
+        }
 
         console.log('Fetched data:', data.book_list.length);
 
@@ -140,16 +152,47 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 2. Average books read per month (В среднем прочитано в месяц)
         let averageBooksPerMonth = 0;
         if (books.allBooks.length > 0) {
-            // Get the date range of read books
-            const readDates = books.allBooks
-                .filter(book => book['Date Read'])
-                .map(book => new Date(book['Date Read']));
-            if (readDates.length > 0) {
-                const earliestDate = new Date(Math.min(...readDates));
-                const latestDate = new Date(Math.max(...readDates));
-                const monthsDiff = (latestDate.getFullYear() - earliestDate.getFullYear()) * 12 +
-                    (latestDate.getMonth() - earliestDate.getMonth()) + 1; // +1 to include the start month
-                averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
+            // Collect all start and end dates for the books
+            const dateRanges = books.allBooks
+                .filter(book => book['Date Read']) // Ensure the book has a Date Read
+                .map(book => {
+                    const bookTitle = book.Title;
+                    const customDateInfo = customDates.books[bookTitle] || {};
+                    let startDate, endDate;
+
+                    // End date: Use custom_end_date if provided, otherwise use Date Read
+                    endDate = customDateInfo.custom_end_date
+                        ? new Date(customDateInfo.custom_end_date)
+                        : new Date(book['Date Read']);
+
+                    // Start date: Use custom_start_date if provided, otherwise estimate
+                    if (customDateInfo.custom_start_date) {
+                        startDate = new Date(customDateInfo.custom_start_date);
+                    } else {
+                        // Estimate start date by subtracting reading duration
+                        // Assume 100 pages per day as a rough estimate
+                        const pages = book['Number of Pages'] || 300; // Default to 300 if pages not specified
+                        const daysToRead = Math.ceil(pages / 100);
+                        startDate = new Date(book['Date Read']);
+                        startDate.setDate(startDate.getDate() - daysToRead);
+                    }
+
+                    return { startDate, endDate };
+                })
+                .filter(range => !isNaN(range.startDate) && !isNaN(range.endDate));
+
+            if (dateRanges.length > 0) {
+                // Find the earliest start date and latest end date
+                const earliestStart = new Date(Math.min(...dateRanges.map(range => range.startDate)));
+                const latestEnd = new Date(Math.max(...dateRanges.map(range => range.endDate)));
+
+                // Calculate the number of months between the earliest start and latest end
+                const monthsDiff = (latestEnd.getFullYear() - earliestStart.getFullYear()) * 12 +
+                    (latestEnd.getMonth() - earliestStart.getMonth()) + 1; // +1 to include the start month
+
+                if (monthsDiff > 0) {
+                    averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
+                }
             }
         }
 
