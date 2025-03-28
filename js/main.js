@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Fetch custom_dates.json
         let customDates = {};
         try {
-            const customDatesResponse = await fetch('custom_dates.json');
+            const customDatesResponse = await fetch('data/custom_dates.json');
             if (!customDatesResponse.ok) throw new Error(`HTTP error! Status: ${customDatesResponse.status}`);
             customDates = await customDatesResponse.json();
         } catch (error) {
