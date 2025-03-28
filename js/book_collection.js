@@ -1,8 +1,10 @@
 class BookCollection {
     constructor(books, customDates) {
-        this.customDates = customDates || { books: {} }; // Store customDates
+        this.customDates = customDates || { books: {} };
         this.models = books ? books.map(book => new Book(book, this.customDates)) : [];
         this.allBooks = [...this.models];
+        this.currentPage = 0; // Track the current page
+        this.booksPerPage = 9; // Number of books per page
         console.log(`BookCollection initialized with ${this.allBooks.length} books`);
         if (this.allBooks.length === 0) {
             console.error('No books loaded in BookCollection');
@@ -97,6 +99,7 @@ class BookCollection {
     }
 
     async render(containerId) {
+        // This method is no longer used directly; replaced by renderPage for pagination
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container ${containerId} not found`);
@@ -109,6 +112,41 @@ class BookCollection {
             renderedBooks.forEach(div => container.appendChild(div));
         } else {
             console.error('models is undefined in render');
+        }
+    }
+
+    async renderPage(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container ${containerId} not found`);
+            return;
+        }
+
+        // Calculate the start and end indices for the current page
+        const startIndex = this.currentPage * this.booksPerPage;
+        const endIndex = startIndex + this.booksPerPage;
+        const booksToRender = this.models.slice(0, endIndex); // Render all books up to the current page
+
+        // Clear the container only on the first page (or after filtering/sorting)
+        if (this.currentPage === 0) {
+            container.innerHTML = '';
+        }
+
+        // Render the books for the current page
+        if (booksToRender.length > 0) {
+            const renderedBooks = await Promise.all(booksToRender.map(book => book.render()));
+            renderedBooks.forEach(div => container.appendChild(div));
+        } else {
+            container.innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
+        }
+
+        // Show or hide the "Load More" button
+        const loadMoreButton = document.getElementById('load-more');
+        const loadMoreContainer = document.getElementById('load-more-container');
+        if (endIndex < this.models.length) {
+            loadMoreContainer.style.display = 'block';
+        } else {
+            loadMoreContainer.style.display = 'none';
         }
     }
 

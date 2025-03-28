@@ -319,6 +319,35 @@ select.btn {
     color: #2563eb;
 }
 
+/* Tab Navigation */
+.tab-button {
+    color: #374151; /* text-gray-700 */
+    transition: border-color 0.3s ease;
+}
+
+.tab-button.active {
+    color: #4F46E5; /* indigo-600 */
+    border-color: #4F46E5; /* indigo-600 */
+}
+
+.tab-button:hover {
+    color: #4F46E5; /* indigo-600 */
+}
+
+/* Tab Content */
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Ensure the Load More button is hidden by default */
+#load-more-container {
+    display: none;
+}
+
 /* Additional Mobile Adjustments */
 @media (max-width: 640px) {
     .book-card {

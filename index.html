@@ -59,27 +59,54 @@
             </div>
         </div>
 
-        <!-- Book List with Filters -->
+        <!-- Tabs for Прочитанные книги and Будущие книги -->
         <div class="bg-white p-6 rounded-lg shadow-lg mb-12 fade-in">
-            <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
-                <h2 class="text-2xl font-semibold text-gray-700">Прочитанные книги</h2>
-                <div class="flex gap-4 mt-4 sm:mt-0">
-                    <select id="genre-filter" class="btn text-left">
-                        <option value="">Все жанры</option>
-                    </select>
-                    <select id="sort-by" class="btn text-left">
-                        <option value="title-asc">Название (А-Я)</option>
-                        <option value="title-desc">Название (Я-А)</option>
-                        <option value="pages-asc">Страниц (возр.)</option>
-                        <option value="pages-desc">Страниц (убыв.)</option>
-                        <option value="date-asc">Дата (старая-новая)</option>
-                        <option value="date-desc">Дата (новая-старая)</option>
-                        <option value="rating-asc">Оценка (низкая-высокая)</option>
-                        <option value="rating-desc">Оценка (высокая-низкая)</option>
-                    </select>
+            <!-- Tab Navigation -->
+            <div class="border-b border-gray-200">
+                <ul class="flex -mb-px">
+                    <li class="mr-2">
+                        <button id="read-books-tab" class="tab-button inline-block py-2 px-4 text-lg font-semibold border-b-2 border-transparent hover:border-indigo-600 focus:outline-none active" data-tab="read-books">Прочитанные книги</button>
+                    </li>
+                    <li class="mr-2">
+                        <button id="future-books-tab" class="tab-button inline-block py-2 px-4 text-lg font-semibold border-b-2 border-transparent hover:border-indigo-600 focus:outline-none" data-tab="future-books">Будущие книги</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="tab-content">
+                <!-- Прочитанные книги Tab -->
+                <div id="read-books" class="tab-pane active pt-6">
+                    <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-700">Прочитанные книги</h2>
+                        <div class="flex gap-4 mt-4 sm:mt-0">
+                            <select id="genre-filter" class="btn text-left">
+                                <option value="">Все жанры</option>
+                            </select>
+                            <select id="sort-by" class="btn text-left">
+                                <option value="title-asc">Название (А-Я)</option>
+                                <option value="title-desc">Название (Я-А)</option>
+                                <option value="pages-asc">Страниц (возр.)</option>
+                                <option value="pages-desc">Страниц (убыв.)</option>
+                                <option value="date-asc">Дата (старая-новая)</option>
+                                <option value="date-desc">Дата (новая-старая)</option>
+                                <option value="rating-asc">Оценка (низкая-высокая)</option>
+                                <option value="rating-desc">Оценка (высокая-низкая)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                    <div id="load-more-container" class="text-center mt-6">
+                        <button id="load-more" class="btn bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded-lg">Загрузить еще</button>
+                    </div>
+                </div>
+
+                <!-- Будущие книги Tab -->
+                <div id="future-books" class="tab-pane hidden pt-6">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-6">Будущие книги</h2>
+                    <div id="future-reads" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 </div>
             </div>
-            <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
 
         <!-- Series Shelf -->
@@ -146,11 +173,7 @@
             </div>
         </div>
 
-        <!-- Future Reads -->
-        <div id="future-reads-block" class="bg-white p-6 rounded-lg shadow-lg mb-12 fade-in">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Будущие книги</h2>
-            <div id="future-reads" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-        </div>
+
     </div>
     <script src="js/book.js"></script>
     <script src="js/book_collection.js"></script>

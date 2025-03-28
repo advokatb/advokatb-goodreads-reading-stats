@@ -134,36 +134,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Calculate statistics for the "Статистика чтения" block
-        // 1. Total series read (Циклов прочитано всего)
         const uniqueSeries = [...new Set(books.allBooks
             .filter(book => book.Series && book.Series.trim())
             .map(book => book.Series))]
             .sort();
         const totalSeries = uniqueSeries.length;
 
-        // 2. Average books read per month (В среднем прочитано в месяц)
         let averageBooksPerMonth = 0;
         if (books.allBooks.length > 0) {
-            // Collect all start and end dates for the books
             const dateRanges = books.allBooks
-                .filter(book => book['Date Read']) // Ensure the book has a Date Read
+                .filter(book => book['Date Read'])
                 .map(book => {
                     const bookTitle = book.Title;
                     const customDateInfo = customDates.books[bookTitle] || {};
                     let startDate, endDate;
 
-                    // End date: Use custom_end_date if provided, otherwise use Date Read
                     endDate = customDateInfo.custom_end_date
                         ? new Date(customDateInfo.custom_end_date)
                         : new Date(book['Date Read']);
 
-                    // Start date: Use custom_start_date if provided, otherwise estimate
                     if (customDateInfo.custom_start_date) {
                         startDate = new Date(customDateInfo.custom_start_date);
                     } else {
-                        // Estimate start date by subtracting reading duration
-                        // Assume 100 pages per day as a rough estimate
-                        const pages = book['Number of Pages'] || 300; // Default to 300 if pages not specified
+                        const pages = book['Number of Pages'] || 300;
                         const daysToRead = Math.ceil(pages / 100);
                         startDate = new Date(book['Date Read']);
                         startDate.setDate(startDate.getDate() - daysToRead);
@@ -174,13 +167,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .filter(range => !isNaN(range.startDate) && !isNaN(range.endDate));
 
             if (dateRanges.length > 0) {
-                // Find the earliest start date and latest end date
                 const earliestStart = new Date(Math.min(...dateRanges.map(range => range.startDate)));
                 const latestEnd = new Date(Math.max(...dateRanges.map(range => range.endDate)));
 
-                // Calculate the number of months between the earliest start and latest end
                 const monthsDiff = (latestEnd.getFullYear() - earliestStart.getFullYear()) * 12 +
-                    (latestEnd.getMonth() - earliestStart.getMonth()) + 1; // +1 to include the start month
+                    (latestEnd.getMonth() - earliestStart.getMonth()) + 1;
+
 
                 if (monthsDiff > 0) {
                     averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
@@ -188,7 +180,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Populate the "Статистика чтения" block
         const totalSeriesElement = document.getElementById('total-series');
         const averageBooksElement = document.getElementById('average-books-per-month');
         if (totalSeriesElement && averageBooksElement) {
@@ -213,20 +204,44 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('challenge-bar').style.width = `${progressPercent}%`;
         document.getElementById('challenge-percent').textContent = `${progressPercent}%`;
 
-        await books.render('book-list');
-        
-        const futureReadsBlock = document.getElementById('future-reads-block');
+        // Tab Switching Logic
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Initialize books for pagination
+        books.currentPage = 0;
+        books.booksPerPage = 9;
+        await books.renderPage('book-list');
+
+        // Add "Load More" button event listener
+        const loadMoreButton = document.getElementById('load-more');
+        loadMoreButton.addEventListener('click', async () => {
+            books.currentPage += 1;
+            await books.renderPage('book-list');
+        });
+
+        // Render future reads in the "Будущие книги" tab
         if (toReadBooks && toReadBooks.models && toReadBooks.models.length > 0) {
-            futureReadsBlock.style.display = 'block';
             await toReadBooks.renderFutureReads('future-reads');
         } else {
-            futureReadsBlock.style.display = 'none';
+            document.getElementById('future-reads').innerHTML = '<p class="text-gray-600">Нет книг для чтения</p>';
             console.warn('No to-read books found or models is invalid');
         }
-        
+
         document.getElementById('sort-by').value = 'date-desc';
 
-        // Combine genre and sort filters
+        // Combine genre and sort filters for "Прочитанные книги"
         const applyFilters = async () => {
             let filteredBooks = books;
             const selectedGenre = genreFilter.value;
@@ -238,8 +253,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             const sortValue = document.getElementById('sort-by').value;
             filteredBooks = filteredBooks.sortBy(sortValue);
 
-            // Render the filtered and sorted list
-            await filteredBooks.render('book-list');
+            // Reset pagination and render
+            filteredBooks.currentPage = 0;
+            await filteredBooks.renderPage('book-list');
         };
 
         genreFilter.addEventListener('change', applyFilters);
