@@ -1,3 +1,4 @@
+import pandas as pd  # Add this import for pandas
 import time
 from utils.data_loader import load_and_preprocess_data, load_mappings
 from utils.api_fetch import fetch_book_data, fetch_goodreads_annotation, fetch_goodreads_genres
