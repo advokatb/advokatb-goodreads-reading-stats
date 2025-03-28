@@ -70,8 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             genreFilter.appendChild(option);
         });
 
-        // ... rest of the existing code ...
-
         if (currentBooks.models.length > 0) {
             const currentBookDiv = await currentBooks.models[0].renderCurrent();
             document.getElementById('current-book').appendChild(currentBookDiv);
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await books.renderGenreChart();
         }
 
-        // Populate one random read book cover in "Всего" with hover info
+        // Populate one random read book cover in "Всего" (without hover tooltip)
         const randomReadBook = books.getRandomReadBook();
         if (randomReadBook) {
             const totalBookDiv = document.getElementById('total-book');
@@ -118,27 +116,51 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (imgElement && totalBookDiv) {
                 imgElement.src = randomReadBook.getCoverUrl() || 'https://placehold.co/100x150?text=Нет+обложки';
                 imgElement.alt = randomReadBook.Title || 'No Title';
-                totalBookDiv.addEventListener('mouseover', () => {
-                    const tooltip = document.createElement('div');
-                    tooltip.className = 'tooltip absolute bg-gray-800 text-white p-2 rounded text-sm z-10';
-                    tooltip.innerHTML = `
-                        Долгожданная книга: ${data.longest_book.Title} (${data.longest_book['Number of Pages']} страниц)<br>
-                        Кратчайшая книга: ${data.shortest_book.Title} (${data.shortest_book['Number of Pages']} страниц)
-                    `;
-                    tooltip.style.left = '50%';
-                    tooltip.style.top = '-100px';
-                    tooltip.style.transform = 'translateX(-50%)';
-                    totalBookDiv.appendChild(tooltip);
-                });
-                totalBookDiv.addEventListener('mouseout', () => {
-                    const tooltip = totalBookDiv.querySelector('.tooltip');
-                    if (tooltip) totalBookDiv.removeChild(tooltip);
-                });
             } else {
                 console.error('total-book-image or total-book element not found');
             }
         } else {
             document.getElementById('total-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
+        }
+
+        // Populate the "Книжные рекорды" block
+        const longestBookElement = document.getElementById('longest-book');
+        const shortestBookElement = document.getElementById('shortest-book');
+        if (longestBookElement && shortestBookElement) {
+            longestBookElement.textContent = `${data.longest_book.Title} (${data.longest_book['Number of Pages']} страниц)`;
+            shortestBookElement.textContent = `${data.shortest_book.Title} (${data.shortest_book['Number of Pages']} страниц)`;
+        } else {
+            console.error('longest-book or shortest-book element not found');
+        }
+
+        // Calculate statistics for the "Статистика чтения" block
+        // 1. Total series read (Циклов прочитано всего)
+        const totalSeries = uniqueSeries.length; // Already calculated for series filter
+
+        // 2. Average books read per month (В среднем прочитано в месяц)
+        let averageBooksPerMonth = 0;
+        if (books.allBooks.length > 0) {
+            // Get the date range of read books
+            const readDates = books.allBooks
+                .filter(book => book['Date Read'])
+                .map(book => new Date(book['Date Read']));
+            if (readDates.length > 0) {
+                const earliestDate = new Date(Math.min(...readDates));
+                const latestDate = new Date(Math.max(...readDates));
+                const monthsDiff = (latestDate.getFullYear() - earliestDate.getFullYear()) * 12 +
+                    (latestDate.getMonth() - earliestDate.getMonth()) + 1; // +1 to include the start month
+                averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
+            }
+        }
+
+        // Populate the "Статистика чтения" block
+        const totalSeriesElement = document.getElementById('total-series');
+        const averageBooksElement = document.getElementById('average-books-per-month');
+        if (totalSeriesElement && averageBooksElement) {
+            totalSeriesElement.textContent = totalSeries;
+            averageBooksElement.textContent = `${averageBooksPerMonth} книг`;
+        } else {
+            console.error('total-series or average-books-per-month element not found');
         }
 
         const challengeGoal = 50;
