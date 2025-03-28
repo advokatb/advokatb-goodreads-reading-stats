@@ -121,27 +121,27 @@ class BookCollection {
             console.error(`Container ${containerId} not found`);
             return;
         }
-
+    
         // Calculate the start and end indices for the current page
         const startIndex = this.currentPage * this.booksPerPage;
         const endIndex = startIndex + this.booksPerPage;
-        const booksToRender = this.models.slice(0, endIndex); // Render all books up to the current page
-
+        const booksToRender = this.models.slice(startIndex, endIndex); // Render only the books for the current page
+    
         // Clear the container only on the first page (or after filtering/sorting)
         if (this.currentPage === 0) {
             container.innerHTML = '';
         }
-
+    
         // Render the books for the current page
         if (booksToRender.length > 0) {
             const renderedBooks = await Promise.all(booksToRender.map(book => book.render()));
             renderedBooks.forEach(div => container.appendChild(div));
-        } else {
+        } else if (this.currentPage === 0) {
+            // Only show "No books" message if this is the first page and there are no books
             container.innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
-
+    
         // Show or hide the "Load More" button
-        const loadMoreButton = document.getElementById('load-more');
         const loadMoreContainer = document.getElementById('load-more-container');
         if (endIndex < this.models.length) {
             loadMoreContainer.style.display = 'block';

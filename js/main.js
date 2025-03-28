@@ -173,7 +173,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const monthsDiff = (latestEnd.getFullYear() - earliestStart.getFullYear()) * 12 +
                     (latestEnd.getMonth() - earliestStart.getMonth()) + 1;
 
-
                 if (monthsDiff > 0) {
                     averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
                 }
