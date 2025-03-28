@@ -239,11 +239,11 @@ class BookCollection {
         div.innerHTML = `
             <img src="${photoUrl}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
             <div class="flex-1">
-                <p class="text-gray-600 text-sm font-semibold">Автор</p>
+                <p class="text-gray-700 text-base font-bold mb-1">Автор</p>
                 <p class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</p>
-                <p class="text-gray-600 text-sm">${authorBookCount} книг</p>
+                <p class="text-gray-600 text-sm mb-2">${authorBookCount} книг</p>
                 <hr class="my-2 border-gray-300">
-                <p class="text-gray-600 text-sm font-semibold">Жанр</p>
+                <p class="text-gray-700 text-base font-bold mb-1">Жанр</p>
                 <p class="text-gray-600 text-sm">${mostReadGenre}</p>
             </div>
         `;
