@@ -1,4 +1,4 @@
-(async () => {
+document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('reading_stats.json');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -33,6 +33,12 @@
             });
         }
 
+        // Ensure BookCollection is defined
+        if (typeof BookCollection === 'undefined') {
+            console.error('BookCollection class is not defined. Ensure book_collection.js is loaded correctly.');
+            return;
+        }
+
         const allBooks = new BookCollection(data.book_list);
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
         const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
@@ -53,7 +59,7 @@
             document.getElementById('last-read-book').innerHTML = '<p class="text-gray-600">Нет прочитанных книг</p>';
         }
 
-        // Populate "Любимый автор" with consistent layout
+        // Populate "Самый читаемый" with consistent layout
         if (document.getElementById('most-prolific-author')) {
             const mostProlificAuthorDiv = await books.renderMostProlificAuthor();
             document.getElementById('most-prolific-author').appendChild(mostProlificAuthorDiv);
@@ -61,9 +67,9 @@
             console.error('most-prolific-author element not found');
         }
 
-        // Render the timeline chart (already exists in your code)
+        // Render the timeline chart
         if (document.getElementById('timelineChart')) {
-            await books.renderTimelineChart(); // Assuming this method exists
+            await books.renderTimelineChart();
         }
 
         // Render the rating chart
@@ -144,20 +150,7 @@
         });
 
         await allBooks.renderSeriesShelf('series-shelf');
-
-        const options = {
-            series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
-            chart: { type: 'bar', height: 200 },
-            plotOptions: { bar: { horizontal: false, columnWidth: '70%' } },
-            dataLabels: { enabled: false },
-            xaxis: { categories: data.timeline.map(t => t.Date), title: { text: 'Месяц' } },
-            yaxis: { title: { text: 'Книги' }, labels: { show: false } },
-            colors: ['#2563eb'],
-            tooltip: { y: { formatter: val => `${val} книг${val > 1 ? 'и' : 'а'}` } }
-        };
-        const chart = new ApexCharts(document.querySelector('#timelineChart'), options);
-        chart.render();
     } catch (error) {
         console.error('Fetch error:', error);
     }
-})();
+});
