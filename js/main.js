@@ -43,7 +43,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         const books = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'read'));
         const currentBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'currently-reading'));
         const toReadBooks = new BookCollection(data.book_list.filter(book => book['Exclusive Shelf'] === 'to-read'));
-        
+
+        // Populate the series filter dropdown
+        const seriesFilter = document.getElementById('series-filter');
+        const uniqueSeries = [...new Set(books.allBooks
+            .filter(book => book.Series && book.Series.trim())
+            .map(book => book.Series))]
+            .sort();
+        uniqueSeries.forEach(series => {
+            const option = document.createElement('option');
+            option.value = series;
+            option.textContent = series;
+            seriesFilter.appendChild(option);
+        });
+
+        // Populate the genre filter dropdown
+        const genreFilter = document.getElementById('genre-filter');
+        const uniqueGenres = [...new Set(books.allBooks
+            .flatMap(book => book.Genres || [])
+            .filter(genre => genre && genre.trim()))]
+            .sort();
+        uniqueGenres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = genre;
+            genreFilter.appendChild(option);
+        });
+
+        // ... rest of the existing code ...
+
         if (currentBooks.models.length > 0) {
             const currentBookDiv = await currentBooks.models[0].renderCurrent();
             document.getElementById('current-book').appendChild(currentBookDiv);
@@ -141,13 +169,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         document.getElementById('sort-by').value = 'date-desc';
 
-        const seriesFilter = document.getElementById('series-filter');
-        seriesFilter.addEventListener('change', async () => {
-            await books.filterBySeries(seriesFilter.value).render('book-list');
-        });
-        document.getElementById('sort-by').addEventListener('change', async () => {
-            await books.sortBy(document.getElementById('sort-by').value).render('book-list');
-        });
+        // Combine series and genre filters
+        const applyFilters = async () => {
+            let filteredBooks = books;
+            const selectedSeries = seriesFilter.value;
+            const selectedGenre = genreFilter.value;
+
+            // Apply series filter
+            filteredBooks = filteredBooks.filterBySeries(selectedSeries);
+
+            // Apply genre filter
+            filteredBooks = filteredBooks.filterByGenre(selectedGenre);
+
+            // Apply sorting
+            const sortValue = document.getElementById('sort-by').value;
+            filteredBooks = filteredBooks.sortBy(sortValue);
+
+            // Render the filtered and sorted list
+            await filteredBooks.render('book-list');
+        };
+
+        seriesFilter.addEventListener('change', applyFilters);
+        genreFilter.addEventListener('change', applyFilters);
+        document.getElementById('sort-by').addEventListener('change', applyFilters);
 
         await allBooks.renderSeriesShelf('series-shelf');
     } catch (error) {

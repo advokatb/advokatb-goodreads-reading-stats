@@ -15,6 +15,14 @@ class BookCollection {
         return this;
     }
 
+    // New method: Filter by genre
+    filterByGenre(genre) {
+        this.models = genre ?
+            this.allBooks.filter(book => book.Genres && book.Genres.includes(genre)) :
+            [...this.allBooks];
+        return this;
+    }
+
     sortBy(field) {
         const [key, direction] = field.split('-');
         this.models.sort((a, b) => {
