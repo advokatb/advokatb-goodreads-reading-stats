@@ -25,7 +25,7 @@
         </div>
 
         <!-- Top Row Block -->
-        <div class="bg-white p-6 rounded-lg shadow-lg mb-12 mt-32 fade-in flex flex-col md:flex-row justify-between items-start gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-12 mt-32 fade-in flex flex-col md:flex-row justify-between items-stretch gap-6">
             <!-- Читаю сейчас -->
             <div class="w-full md:w-1/4 p-4 bg-white rounded-lg shadow-inner">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Читаю сейчас</h2>
@@ -56,11 +56,10 @@
             <!-- Самый читаемый -->
             <div class="w-full md:w-1/4 p-4 bg-white rounded-lg shadow-inner">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Самый читаемый</h2>
-                <div id="most-prolific-author" class="flex items-start space-x-4">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
+                <div id="most-prolific-author" class="flex items-start space-x-4"></div>
             </div>
-        </div>    
+        </div>
+
         <!-- Book List with Filters -->
         <div class="bg-white p-6 rounded-lg shadow-lg mb-12 fade-in">
             <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
@@ -90,12 +89,8 @@
             <div id="series-shelf" class="series-shelf"></div>
         </div>
 
-        <!-- Timeline and Reading Challenge -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
-                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Прочитанные книги по времени</h2>
-                <div id="timelineChart" style="height: 200px; min-height: 215px;"></div>
-            </div>
+        <!-- New Row for Чтение 2025: Challenge -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div class="bg-white p-6 rounded-lg shadow-inner fade-in">
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4">Чтение 2025: Challenge</h2>
                 <div class="flex items-center mb-4">
@@ -109,6 +104,30 @@
                     <div id="challenge-bar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
                 </div>
                 <p id="challenge-percent" class="text-center text-gray-500 text-sm mt-2"></p>
+            </div>
+            <!-- Placeholder for future blocks -->
+            <div class="bg-white p-6 rounded-lg shadow-inner fade-in"></div>
+            <div class="bg-white p-6 rounded-lg shadow-inner fade-in"></div>
+        </div>
+
+        <!-- Timeline and Charts Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Прочитанные книги по времени -->
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Прочитанные книги по времени</h2>
+                <div id="timelineChart" style="height: 200px; min-height: 215px;"></div>
+            </div>
+
+            <!-- Статистика оценок в библиотеке -->
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Статистика оценок в библиотеке</h2>
+                <div id="ratingChart" style="height: 200px; min-height: 215px;"></div>
+            </div>
+
+            <!-- Самые читаемые жанры -->
+            <div class="bg-white p-6 rounded-lg shadow-lg fade-in">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-2">Самые читаемые жанры</h2>
+                <div id="genreChart" style="height: 200px; min-height: 215px;"></div>
             </div>
         </div>
 

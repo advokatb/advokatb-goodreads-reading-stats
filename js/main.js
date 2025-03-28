@@ -61,6 +61,21 @@
             console.error('most-prolific-author element not found');
         }
 
+        // Render the timeline chart (already exists in your code)
+        if (document.getElementById('timelineChart')) {
+            await books.renderTimelineChart(); // Assuming this method exists
+        }
+
+        // Render the rating chart
+        if (document.getElementById('ratingChart')) {
+            await books.renderRatingChart();
+        }
+
+        // Render the genre chart
+        if (document.getElementById('genreChart')) {
+            await books.renderGenreChart();
+        }
+
         // Populate one random read book cover in "Всего" with hover info
         const randomReadBook = books.getRandomReadBook();
         if (randomReadBook) {
