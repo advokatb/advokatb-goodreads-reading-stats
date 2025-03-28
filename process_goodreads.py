@@ -1,4 +1,4 @@
-import pandas as pd  # Add this import for pandas
+import pandas as pd
 import time
 from utils.data_loader import load_and_preprocess_data, load_mappings
 from utils.api_fetch import fetch_book_data, fetch_goodreads_annotation, fetch_goodreads_genres
@@ -7,7 +7,7 @@ from utils.stats_generator import generate_stats
 
 # Load data and mappings
 df = load_and_preprocess_data()
-correct_ids, series_mapping, genre_translation, excluded_genres, author_mapping = load_mappings()
+correct_ids, series_mapping, genre_translation, excluded_genres, author_mapping, custom_genres = load_mappings()
 
 # Apply annotations from Goodreads as primary source
 df['Annotation'] = df.apply(
@@ -34,6 +34,12 @@ df['Genres'] = df.apply(
     axis=1
 )
 time.sleep(1)  # Rate limiting
+
+# Apply custom genres from custom_genres.json
+df['Genres'] = df.apply(
+    lambda row: list(set(row['Genres'] + custom_genres.get(row['Title'], []))),  # Combine existing genres with custom genres and remove duplicates
+    axis=1
+)
 
 # Assign manual series for Sergei Lukyanenko and Suzanne Collins books
 df.loc[df['Author'] == 'Sergei Lukyanenko', 'Series'] = df['Title'].map(series_mapping)

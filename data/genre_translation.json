@@ -1,5 +1,7 @@
 {
     "Mystery": "Детектив",
+    "Erotica": "Эротика",
+    "Zombies": "Зомби",
     "Thriller": "Триллер",
     "Crime": "Криминал",
     "Detective": "Детектив",
@@ -15,6 +17,7 @@
     "Biography": "Биография",
     "Comedy": "Комедия",
     "Classics": "Классика",
+    "Japan": "Япония",
     "Magical Realism": "Магический реализм",
     "Young Adult": "Молодёжная литература",
     "Literary Collections": "Литературные сборники",
