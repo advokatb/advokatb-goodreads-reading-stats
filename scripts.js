@@ -329,18 +329,6 @@ fetch('reading_stats.json')
     })
     .then(data => {
         console.log('Fetched data:', data.book_list.length);
-
-        // Function to handle Russian declension for "книг"
-        function getBookDeclension(count) {
-            if (count % 10 === 1 && count % 100 !== 11) {
-                return `${count} книга`;
-            } else if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
-                return `${count} книги`;
-            } else {
-                return `${count} книг`;
-            }
-        }
-
         // Safely update total-books, total-pages, books-2025 inside the "Всего" block
         const totalBookDiv = document.getElementById('total-book')?.closest('div.w-full');
         if (!totalBookDiv) {
@@ -349,7 +337,7 @@ fetch('reading_stats.json')
         }
         const totalContainer = totalBookDiv.querySelector('.text-left');
         if (!totalContainer) {
-dynami            console.error('Text container in "Всего" block not found');
+            console.error('Text container in "Всего" block not found');
             return;
         }
         const totalBooksElement = totalContainer.querySelector('p:nth-child(1)');
@@ -357,9 +345,8 @@ dynami            console.error('Text container in "Всего" block not found'
         const books2025Element = totalContainer.querySelector('p:nth-child(3) span');
 
         if (totalBooksElement && totalPagesElement && books2025Element) {
-            // Use dynamic values from JSON with proper declension
-            totalBooksElement.textContent = getBookDeclension(data.total_books);
-            totalPagesElement.textContent = `${data.total_pages.toLocaleString('ru-RU')} страниц`;
+            totalBooksElement.textContent = '14 книг';
+            totalPagesElement.textContent = '5 742 страниц';
             books2025Element.textContent = data.books_2025;
         } else {
             console.error('One or more elements in "Всего" block not found:', {
@@ -461,7 +448,7 @@ dynami            console.error('Text container in "Всего" block not found'
             books.sortBy(document.getElementById('sort-by').value).render('book-list');
         });
 
-        books.renderSeriesShelf('series-shelf');  // Use 'books' (read books) instead of 'allBooks'
+        allBooks.renderSeriesShelf('series-shelf');
 
         const options = {
             series: [{ name: 'Книги', data: data.timeline.map(t => t.Books) }],
