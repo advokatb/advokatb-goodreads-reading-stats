@@ -204,14 +204,47 @@ class BookCollection {
 
     async renderMostProlificAuthor() {
         const [mostProlificAuthor, authorBookCount] = await this.getMostProlificAuthor();
+    
+        // Calculate the most read genre for the most prolific author
+        const booksByAuthor = this.allBooks.filter(book => book['Exclusive Shelf'] === 'read' && book.getDisplayAuthor().then(author => author === mostProlificAuthor));
+        const genreCounts = {};
+    
+        // Since getDisplayAuthor is async, we need to await it for each book
+        for (const book of this.allBooks) {
+            if (book['Exclusive Shelf'] === 'read') {
+                const displayAuthor = await book.getDisplayAuthor();
+                if (displayAuthor === mostProlificAuthor) {
+                    const genres = book.Genres || [];
+                    genres.forEach(genre => {
+                        genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+                    });
+                }
+            }
+        }
+    
+        // Find the genre with the highest count
+        let mostReadGenre = 'Неизвестно';
+        let maxCount = 0;
+        for (const [genre, count] of Object.entries(genreCounts)) {
+            if (count > maxCount) {
+                mostReadGenre = genre;
+                maxCount = count;
+            }
+        }
+    
+        // Render the block
         const div = document.createElement('div');
-        div.className = 'flex items-center space-x-4';
+        div.className = 'flex items-start space-x-4';
         const photoUrl = await this.getAuthorPhoto(mostProlificAuthor);
         div.innerHTML = `
             <img src="${photoUrl}" alt="${mostProlificAuthor} Photo" class="w-16 h-24 object-cover rounded mr-2">
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</h3>
+            <div class="flex-1">
+                <p class="text-gray-600 text-sm font-semibold">Автор</p>
+                <p class="text-lg font-semibold text-gray-800">${mostProlificAuthor}</p>
                 <p class="text-gray-600 text-sm">${authorBookCount} книг</p>
+                <hr class="my-2 border-gray-300">
+                <p class="text-gray-600 text-sm font-semibold">Жанр</p>
+                <p class="text-gray-600 text-sm">${mostReadGenre}</p>
             </div>
         `;
         return div;
