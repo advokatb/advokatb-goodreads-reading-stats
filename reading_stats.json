@@ -28,11 +28,11 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=oJhcAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Young Adult",
-        "Эротика",
         "Классика",
-        "Романтика",
-        "Азиатское фэнтези"
+        "Азиатское фэнтези",
+        "Молодёжная литература",
+        "Эротика",
+        "Романтика"
       ],
       "Annotation": "With Story of O, this classic erotic book is the most famous French underground novel of the late 20th century, a work of seductive literary merit. It appears an autobiographical novel by a French Foreign Service diplomat's wife. It opens as Emmanuelle flys from London to rejoin her husband in Bangkok. Compelled by an overnight passenger seated beside her, her irrepressible nature opens vistas of sensual possibility. She moves easily from her spouse's arms to intimacies with his business associates' wives & to further explorations in which subtle erotic aesthetics are fully expounded & enacted. Selling millions of copies since a clandestine French publication, Emmanuelle shows a woman's progress from unconscious to profoundly conscious sexuality.",
       "Book Id": "17157096",
@@ -55,9 +55,9 @@
       "ISBN13": "9785041859183",
       "Cover URL": "http://books.google.com/books/content?id=6RCrDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
+        "Детективный триллер",
         "Детектив",
-        "Триллер",
-        "Детективный триллер"
+        "Триллер"
       ],
       "Annotation": "Изощренный, умный и стремительный роман о мести, одержимости и… идеальном убийстве. От автора бестселлеров New York Times. Смесь «Исчезнувшей» и «Незнакомцев в поезде». Ложь, скрывающая ложь Саймон и Вики Добиас — богатая, благополучная семья из Чикаго. Он — уважаемый преподаватель права, она — защитница жертв домашнего насилия. Спокойная, счастливая семейная жизнь. Но на самом деле все абсолютно не так, как кажется. На поверхности остается лишь то, что они хотят показать людям. И один из них вполне может оказаться убийцей… Когда блестящую светскую львицу Лорен Бетанкур находят повешенной, тайная жизнь четы Добиас выходит на свет. Их бурные романы на стороне… Трастовый фонд Саймона в двадцать один миллион долларов, срок погашения которого вот-вот наступит… Многолетняя обида Вики и ее одержимость местью… Это лишь вершина айсберга, и она будет иметь самые разрушительные последствия. Но хотя и Вики, и Саймон — лжецы, кто именно кого обманывает? К тому же, под этим слоем лицемерия скрывается еще одна ложь. Поистине чудовищная…",
       "Book Id": "208460125",
@@ -80,9 +80,9 @@
       "ISBN13": "9781250767523",
       "Cover URL": "http://books.google.com/books/content?id=qY-tEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
+        "Детективный триллер",
         "Детектив",
-        "Япония",
-        "Детективный триллер"
+        "Япония"
       ],
       "Annotation": "From the acclaimed author of Malice and Newcomer , a confounding murder in Tokyo is connected to the mystery of the disappearance and death of Detective Kaga's own mother. A decade ago, Tokyo Police Detective Kyoichiro Kaga went to collect the ashes of his recently deceased mother. Years before, she ran away from her husband and son without explanation or any further contact, only to die alone in an apartment far away, leaving her estranged son with many unanswered questions. Now in Tokyo, Michiko Oshitani is found dead many miles from home. Strangled to death, left in the bare apartment rented under a false name by a man who has disappeared without a trace. Oshitani lived far away in Sendai, with no known connection to Tokyo - and neither her family or friends have any idea why she would have gone there. Hers is the second strangulation death in that approximate area of Tokyo - the other was a homeless man, killed and his body burned in a tent by the river. As the police search through Oshitani's past for any clue that might shed some light, one of the detectives reaches out to Detective Kaga for advice. As the case unfolds an unexpected connective emerges between the murder (or murders) now and the long ago case of the missing mother of Detective Kaga. The Final Curtain , one of Keigo Higashino's most acclaimed mysteries, brings the story of Detective Kaga to a surprising conclusion in a series of rich, surprising twists.",
       "Book Id": "65213104",
@@ -180,8 +180,8 @@
       "ISBN13": "9785171125844",
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Один мёртвый поезд. Один мёртвый город. Одна неделя, чтобы спасти мёртвый мир.",
       "Book Id": "43195781",
@@ -250,9 +250,9 @@
       "ISBN13": "9785170981311",
       "Cover URL": "http://books.google.com/books/content?id=YHneDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Зомби",
+        "Научная фантастика",
         "Фэнтези",
-        "Научная фантастика"
+        "Зомби"
       ],
       "Annotation": "Один плохой полицейский. Один мёртвый полицейский. Одна неделя, чтобы спасти весь мир. Впервые знаменитый российский писатель Сергей Лукьяненко решил написать книгу в популярном жанре зомби апокалипсиса. Однако, как всегда, автор выбрал свой уникальный, путь. Зомби Лукьяненко - вернее, кваzи - разумные, и оттого, гораздо более опасные.",
       "Book Id": "31327431",
@@ -342,7 +342,7 @@
       "ISBN13": "9785457176171",
       "Cover URL": "http://books.google.com/books/content?id=jUOyAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Young Adult Fiction"
+        "Молодёжная литература"
       ],
       "Annotation": "Китнисс выжила, хотя дом ее разрушен. Ее семья – в относительной безопасности. Но… Пит похищен власть имущими, и судьба его не известна. И тогда легенда становится реальностью. Таинственный Тринадцатый дистрикт выходит из тени, в которой скрывался долгие годы. Начинается война. Война за справедливость? Война за лучшее будущее? Возможно. Китнисс в этой войне – символ сопротивления. И если она не хочет оказаться пешкой в чужой большой игре, если не хочет, чтобы жизнь ее любимого принесли в жертву чужим интересам, ей придется стать сильной. Сильнее, чем на арене Голодных игр…",
       "Book Id": "84498019",
@@ -480,9 +480,9 @@
       "ISBN13": "9785699157440",
       "Cover URL": "http://books.google.com/books/content?id=NRWlitmahXkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Молодёжная литература",
+        "Научная фантастика",
         "Классика",
-        "Научная фантастика"
+        "Молодёжная литература"
       ],
       "Annotation": "Сорок лет назад это считалось фантастикой. Сорок лет назад это читалось как фантастика. Исследующая и расширяющая границы жанра, жадно впитывающая всевозможные новейшие веяния, примеряющая общечеловеческое лицо, отважно игнорирующая каинову печать \"жанрового гетто\". Сейчас это воспринимается как одно из самых человечных произведений новейшего времени, как роман пронзительной психологической силы, как филигранное развитие темы любви и ответственности. Не зря вышедшую уже в 1990-е книгу воспоминаний Киз назвал \"Элджернон, Чарли и я\".",
       "Book Id": "6139677",
@@ -505,8 +505,8 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Классика",
-        "Романтика"
+        "Романтика",
+        "Классика"
       ],
       "Annotation": "Самый знаменитый роман английской писательницы Шарлотты Бронте (1816—1865) продолжает и в наше время волновать сердца миллионов. Умная и образованная героиня стала примером для многих поколений юных читательниц. События романа происходят в мрачном готическом замке в поместье Торнфильд, где раскрываются страшные тайны, а страстная любовь героев встречает на своем пути множество непреодолимых препятствий.",
       "Book Id": "40536979",
@@ -623,8 +623,8 @@
       "ISBN13": "9785171163013",
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Шесть галактических цивилизаций. Пять погибших планет. Четверо учёных из разных миров. Три звёздные системы. Два космических корабля. И одна большая беда для всей Вселенной.",
       "Book Id": "46067196",
@@ -647,7 +647,8 @@
       "ISBN13": "9785353108993",
       "Cover URL": "http://books.google.com/books/content?id=BqkzEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Young Adult Fiction"
+        "Фэнтези",
+        "Молодёжная литература"
       ],
       "Annotation": "Напряженная история о том, как выжить в игре, в которой невозможно обойтись без жертв. Здесь, как и в первой части, продолжают править бал демоны, страх и предательство, а правила становятся все более жестокими. Мир кайданов, в который попала Хината, неумолим: как бы ты ни был измучен, какие бы раны ни получил, каких бы близких людей ни потерял, ты обязан играть дальше. Отказ от игры — смерть. Проигрыш — смерть. Секундная слабость или паника — смерть. И Хината сражается, проходя один жестокий кайдан за другим. Но что, если самая большая опасность подстерегает ее не в иллюзорных мирах кайданов, а в реальности? Что, если игроки, которых Хината наконец-то готова назвать друзьями, не те, за кого себя выдают?",
       "Book Id": "218689887",
@@ -670,7 +671,8 @@
       "ISBN13": "9785353108238",
       "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Young Adult Fiction"
+        "Фэнтези",
+        "Молодёжная литература"
       ],
       "Annotation": "Этот город окружают сто синих фонарей. В этом городе нельзя ни есть, ни пить, а без оберега тебя разорвут на части ночные монстры. В этом городе существует одно правило: пока ты выигрываешь — ты жив. Добро пожаловать в мир оживших кайданов — японских историй ужасов! Сражайся за свою жизнь каждый день. Выбирай, кто из игроков поневоле погибнет сегодня. И помни: самое страшное произойдет, КОГДА ПОГАСНЕТ ПОСЛЕДНИЙ ФОНАРЬ!",
       "Book Id": "201959407",
@@ -785,8 +787,8 @@
       "ISBN13": "9785171389888",
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Ктулху. В этом романе нет Ктулху. А все остальное, пожалуй, тут есть. Ах да, еще в нем нет Интернета, его запретили Инсеки! И Луны нет, поскольку они раздробили ее на куски. Над Землей теперь Лунное кольцо с двумя самыми большими осколками - Селеной и Дианой. Но все уже привыкли. К тому же теперь есть кристаллики, за которые Продавцы могут продать что угодно. Хотя бы и Джоконду. Или две Джоконды, обе настоящие, такие же, как в Лувре. Довольно доброе начало апокалипсиса, правда?",
       "Book Id": "58688819",
