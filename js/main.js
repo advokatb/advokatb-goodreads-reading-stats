@@ -221,6 +221,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Initialize books for pagination
         books.currentPage = 0;
         books.booksPerPage = 9;
+
+        // Apply default sorting (date-desc) before rendering the first page
+        books.sortBy('date-desc');
         await books.renderPage('book-list');
 
         // Add "Load More" button event listener
@@ -238,6 +241,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.warn('No to-read books found or models is invalid');
         }
 
+        // Set the default sort value in the dropdown
         document.getElementById('sort-by').value = 'date-desc';
 
         // Combine genre and sort filters for "Прочитанные книги"
