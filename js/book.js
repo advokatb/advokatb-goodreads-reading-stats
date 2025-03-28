@@ -50,9 +50,9 @@ class Book {
             return null;
         }
     
-        // Calculate the difference in days (exclusive of the end date)
+        // Calculate the difference in days (inclusive of both start and end dates)
         const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1; // Add 1 to include both start and end dates
         return diffDays;
     }
 

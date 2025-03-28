@@ -148,31 +148,40 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const bookTitle = book.Title;
                     const customDateInfo = customDates.books[bookTitle] || {};
                     let startDate, endDate;
-
-                    endDate = customDateInfo.custom_end_date
-                        ? new Date(customDateInfo.custom_end_date)
-                        : new Date(book['Date Read']);
-
+        
+                    // Normalize date formats
+                    const endDateStr = (customDateInfo.custom_end_date || book['Date Read']).replace(/\//g, '-');
+                    endDate = new Date(endDateStr);
+                    endDate.setHours(0, 0, 0, 0);
+        
                     if (customDateInfo.custom_start_date) {
-                        startDate = new Date(customDateInfo.custom_start_date);
+                        const startDateStr = customDateInfo.custom_start_date.replace(/\//g, '-');
+                        startDate = new Date(startDateStr);
+                        startDate.setHours(0, 0, 0, 0);
+                    } else if (book['Date Added']) {
+                        const startDateStr = book['Date Added'].replace(/\//g, '-');
+                        startDate = new Date(startDateStr);
+                        startDate.setHours(0, 0, 0, 0);
                     } else {
+                        // Fallback: Estimate start date based on pages (100 pages per day)
                         const pages = book['Number of Pages'] || 300;
                         const daysToRead = Math.ceil(pages / 100);
-                        startDate = new Date(book['Date Read']);
+                        startDate = new Date(endDateStr);
                         startDate.setDate(startDate.getDate() - daysToRead);
+                        startDate.setHours(0, 0, 0, 0);
                     }
-
+        
                     return { startDate, endDate };
                 })
                 .filter(range => !isNaN(range.startDate) && !isNaN(range.endDate));
-
+        
             if (dateRanges.length > 0) {
                 const earliestStart = new Date(Math.min(...dateRanges.map(range => range.startDate)));
                 const latestEnd = new Date(Math.max(...dateRanges.map(range => range.endDate)));
-
+        
                 const monthsDiff = (latestEnd.getFullYear() - earliestStart.getFullYear()) * 12 +
                     (latestEnd.getMonth() - earliestStart.getMonth()) + 1;
-
+        
                 if (monthsDiff > 0) {
                     averageBooksPerMonth = (books.allBooks.length / monthsDiff).toFixed(1);
                 }
