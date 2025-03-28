@@ -94,7 +94,7 @@ class BookCollection {
         const normalizedAuthor = authorName.trim().toLowerCase();
         console.log(`Looking for photo for author: ${authorName}, normalized: ${normalizedAuthor}`);
         const photoUrl = authorPhotos[normalizedAuthor] || authorPhotos[authorName] || `https://via.placeholder.com/64?text=${encodeURIComponent(authorName)}`;
-        console.log(`Selected photo URL: ${photoUrl}`);
+        // console.log(`Selected photo URL: ${photoUrl}`);
         return photoUrl;
     }
 
@@ -178,7 +178,7 @@ class BookCollection {
                     seriesBooks[book.Series] = { books: [], author };
                 }
                 seriesBooks[book.Series].books.push(book);
-                console.log(`Added book to series ${book.Series}: ${book.Title} by ${author}`);
+                // console.log(`Added book to series ${book.Series}: ${book.Title} by ${author}`);
             } else {
                 // console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`);
             }
@@ -214,7 +214,7 @@ class BookCollection {
                 bookDiv.innerHTML = `
                     <a href="${book.getGoodreadsBookLink()}" target="_blank">
                         <img src="${book.getCoverUrl()}" alt="${book.Title}" 
-                             onload="console.log('Loaded cover for ${book.Title} by ${author}')"
+                             
                              onerror="console.error('Failed to load cover for ${book.Title}: ${imgSrc}'); this.src='https://placehold.co/80x120?text=Нет+обложки'; this.onerror=null;">
                     </a>
                 `;

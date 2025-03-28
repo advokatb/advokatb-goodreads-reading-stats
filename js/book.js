@@ -89,33 +89,35 @@ class Book {
         const div = document.createElement('div');
         div.className = 'book-card bg-gray-50 p-4 rounded-lg shadow relative flex group flip-container';
         div.innerHTML = `
-            <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none absolute top-2 right-2 z-10">
-                <i class="fas fa-sync"></i>
-            </button>
-            <div class="flipper h-full w-full">
-                <!-- Front Side (Book Info) -->
-                <div class="front flex flex-col justify-between w-full h-full overflow-hidden">
-                    <div class="flex items-start">
-                        <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4" 
-                             onload="console.log('Loaded cover for ${this.Title}')"
-                             onerror="console.error('Failed to load cover for ${this.Title}: ${this.getCoverUrl()}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold text-gray-800"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
-                            <p class="text-gray-600 text-sm">👤 ${author}</p>
-                            <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
-                            ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
-                            ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
-                            ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+            <div class="book-card-bg absolute inset-0 z-0"></div>
+            <div class="relative z-10 w-full h-full">
+                <button class="flip-button text-gray-600 hover:text-gray-800 focus:outline-none absolute top-2 right-2 z-20">
+                    <i class="fas fa-sync"></i>
+                </button>
+                <div class="flipper h-full w-full">
+                    <!-- Front Side (Book Info) -->
+                    <div class="front flex flex-col justify-between w-full h-full overflow-hidden">
+                        <div class="flex items-start">
+                            <img src="${this.getCoverUrl()}" alt="${this.Title}" class="book-cover mr-4" 
+                                 onerror="console.error('Failed to load cover for ${this.Title}: ${this.getCoverUrl()}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800"><a href="${this.getGoodreadsBookLink()}" target="_blank" class="hover:underline">${this.Title}</a></h3>
+                                <p class="text-gray-600 text-sm">👤 ${author}</p>
+                                <p class="text-gray-500 text-sm">📖 ${this['Number of Pages']}</p>
+                                ${this.Series ? `<p class="text-gray-500 text-sm">📚 ${this.Series}</p>` : ''}
+                                ${this.getDisplayGenres().length > 0 ? `<p class="text-gray-500 text-sm">🎭 ${this.getDisplayGenres().join(', ')}</p>` : ''}
+                                ${this['Date Read'] ? `<p class="text-gray-500 text-sm">📅 ${this.formatDateRead()}</p>` : ''}
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
                         </div>
                     </div>
-                    <div class="flex justify-between items-end mt-2">
-                        ${this['My Rating'] > 0 ? `<div class="rating" data-rating="${this['My Rating']}"></div>` : ''}
-                    </div>
-                </div>
-                <!-- Back Side (Annotation) -->
-                <div class="back flex items-center justify-center w-full h-full">
-                    <div class="p-1 text-center overflow-y-auto max-h-[180px] custom-scrollbar">
-                        <p class="text-gray-800 text-sm text-justify">${this.getAnnotation()}</p>
+                    <!-- Back Side (Annotation) -->
+                    <div class="back flex items-center justify-center w-full h-full">
+                        <div class="p-1 text-center overflow-y-auto max-h-[180px] custom-scrollbar">
+                            <p class="text-gray-800 text-sm text-justify">${this.getAnnotation()}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,7 +141,6 @@ class Book {
         const [readYear, readMonth, readDay] = this['Date Read'] ? this['Date Read'].split('-') : ['', '', ''];
         div.innerHTML = `
             <img src="${imgSrc}" alt="${this.Title}" class="book-cover w-16 h-24 mr-2" 
-                 onload="console.log('Loaded cover for ${this.Title}')"
                  onerror="console.error('Failed to load cover for ${this.Title}: ${imgSrc}'); this.src='https://placehold.co/100x150?text=Нет+обложки'; this.onerror=null;">
             <div class="flex-1">
                 <h3 class="text-lg font-semibold text-gray-800 inline">${this.Title}</h3>
