@@ -16,7 +16,7 @@ def load_mappings():
         excluded_genres = set(json.load(f))
     with open('data/author_mapping.json', 'r', encoding='utf-8') as f:
         author_mapping = json.load(f)
-    with open('data/custom_genres.json', 'r', encoding='utf-8') as f:  # Load custom genres
+    with open('data/custom_genres.json', 'r', encoding='utf-8') as f:
         custom_genres = json.load(f)
     return correct_ids, series_mapping, genre_translation, excluded_genres, author_mapping, custom_genres
 
@@ -31,7 +31,7 @@ def load_and_preprocess_data():
         raise
 
     # Load mappings
-    _, series_mapping, _, _, _ = load_mappings()
+    _, series_mapping, _, _, _, _ = load_mappings()  # Updated to unpack all six values
 
     # Preprocess data
     df['Number of Pages'] = pd.to_numeric(df['Number of Pages'], errors='coerce').fillna(0).astype(int)
