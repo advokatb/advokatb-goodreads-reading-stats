@@ -17,41 +17,49 @@ class Book {
 
     getCoverUrl() {
         const url = this['Cover URL'] || 'https://placehold.co/100x150?text=Нет+обложки';
-        console.log(`Cover URL for ${this.Title}: ${url}`);
+        // console.log(`Cover URL for ${this.Title}: ${url}`);
         return url.startsWith('http://books.google.com') ? url.replace('http://', 'https://') : url;
     }
 
     // Calculate the number of days spent reading the book
     getReadingDuration() {
         if (!this['Date Read']) return null;
-
-        const endDate = new Date(this['Date Read']);
+    
+        // Normalize date format (replace slashes with hyphens)
+        const endDateStr = this['Date Read'].replace(/\//g, '-');
+        const endDate = new Date(endDateStr);
+        endDate.setHours(0, 0, 0, 0);
+    
         let startDate;
-
+    
         // Check if there's a custom start date in customDates
         const customDateInfo = this.customDates.books[this.Title] || {};
         if (customDateInfo.custom_start_date) {
-            startDate = new Date(customDateInfo.custom_start_date);
-        } else {
-            // Estimate start date based on pages (100 pages per day)
-            const pages = this['Number of Pages'] || 300;
-            const daysToRead = Math.ceil(pages / 100);
-            startDate = new Date(this['Date Read']);
-            startDate.setDate(startDate.getDate() - daysToRead);
+            const startDateStr = customDateInfo.custom_start_date.replace(/\//g, '-');
+            startDate = new Date(startDateStr);
+            startDate.setHours(0, 0, 0, 0);
+        } else if (this['Date Added']) {
+            // Use Date Added as the start date if no custom start date is provided
+            const startDateStr = this['Date Added'].replace(/\//g, '-');
+            startDate = new Date(startDateStr);
+            startDate.setHours(0, 0, 0, 0);
         }
-
-        if (isNaN(startDate) || isNaN(endDate)) return null;
-
-        // Calculate the difference in days
+    
+        if (isNaN(startDate) || isNaN(endDate)) {
+            console.error(`Invalid dates for ${this.Title}: startDate=${startDate}, endDate=${endDate}`);
+            return null;
+        }
+    
+        // Calculate the difference in days (exclusive of the end date)
         const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
         return diffDays;
     }
 
     formatDateRead() {
         if (!this['Date Read']) return '';
         const [year, month, day] = this['Date Read'].split('-');
-        const days = this.getReadingDuration(); // Dynamically calculate days
+        const days = this.getReadingDuration();
         if (days === null) return `${day}.${month}.${year}`;
         let daysText;
         if (days === 1) {

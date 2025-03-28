@@ -171,7 +171,7 @@ class BookCollection {
         }
         const seriesBooks = {};
         for (const book of readBooks) {
-            console.log(`Processing book: ${book.Title}, Series: ${book.Series}`);
+            // console.log(`Processing book: ${book.Title}, Series: ${book.Series}`);
             if (book.Series && book.Series.trim()) {
                 const author = await book.getDisplayAuthor();
                 if (!seriesBooks[book.Series]) {
@@ -180,7 +180,7 @@ class BookCollection {
                 seriesBooks[book.Series].books.push(book);
                 console.log(`Added book to series ${book.Series}: ${book.Title} by ${author}`);
             } else {
-                console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`);
+                // console.log(`Skipping book ${book.Title} due to empty or invalid Series: ${book.Series}`);
             }
         }
 
