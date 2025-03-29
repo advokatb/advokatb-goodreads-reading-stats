@@ -278,79 +278,75 @@ class BookCollection {
         return div;
     }
 
+    // Utility function to remove any existing popup
+    removePopup = (popupId) => {
+        const existingPopup = document.getElementById(popupId);
+        if (existingPopup) existingPopup.remove();
+    };
+
+    // Add popup functionality to renderRatingChart
     async renderRatingChart() {
         const ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
         for (const book of this.allBooks) {
             if (book['Exclusive Shelf'] === 'read' && book['My Rating'] > 0) {
-                ratingCounts[book['My Rating']] = (ratingCounts[book['My Rating']] || 0) + 1;
+                ratingCounts[book['My Rating']]++;
             }
         }
 
         const seriesData = Object.values(ratingCounts);
-        const labels = Object.keys(ratingCounts).map(rating => {
-            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-            return `${stars} (${ratingCounts[rating]})`;
-        });
+        const labels = Object.keys(ratingCounts).map(rating => `${rating} звёзд`);
+        const chartContainer = document.querySelector("#ratingChart");
 
         const options = {
             chart: {
                 type: 'bar',
                 height: 200,
-                toolbar: { show: false }
-            },
-            series: [{
-                name: 'Количество книг',
-                data: seriesData
-            }],
-            xaxis: {
-                categories: labels,
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        colors: Array(5).fill('#4B5563') // text-gray-600
+                events: {
+                    dataPointSelection: async (event, chartContext, config) => {
+                        removePopup('rating-popup');
+
+                        const rating = config.dataPointIndex + 1;
+                        const filteredBooks = this.allBooks.filter(book => book['My Rating'] === rating);
+
+                        const popup = document.createElement('div');
+                        popup.id = 'rating-popup';
+                        popup.style = 'position:absolute; bottom:210px; left:50%; transform:translateX(-50%); z-index:50; background:#fff; border:1px solid #ccc; border-radius:8px; padding:10px; box-shadow:0 4px 10px rgba(0,0,0,0.3); max-height:250px; width:90%; overflow-y:auto;';
+
+                        const closeBtn = document.createElement('button');
+                        closeBtn.textContent = '✕';
+                        closeBtn.style = 'position:absolute; top:5px; right:5px; background:none; border:none; cursor:pointer; font-size:16px;';
+                        closeBtn.onclick = () => removePopup('rating-popup');
+
+                        popup.innerHTML = `<h3 style="font-weight:bold; margin-bottom:8px; text-align:center;">Книги с рейтингом: ${rating} звёзд</h3>`;
+                        popup.appendChild(closeBtn);
+
+                        filteredBooks.forEach(book => {
+                            const bookDiv = document.createElement('div');
+                            bookDiv.style = 'display:flex; align-items:center; margin-bottom:6px;';
+
+                            const img = document.createElement('img');
+                            img.src = book.getCoverUrl();
+                            img.style = 'width:30px; height:45px; object-fit:cover; border-radius:3px; margin-right:8px;';
+
+                            const bookInfo = document.createElement('div');
+                            bookInfo.innerHTML = `<a href="${book.getGoodreadsBookLink()}" target="_blank" style="font-size:13px; color:#4F46E5;">${book.Title}</a><br><span style="font-size:12px; color:#6B7280;">${book.Author}</span>`;
+
+                            bookDiv.appendChild(img);
+                            bookDiv.appendChild(bookInfo);
+                            popup.appendChild(bookDiv);
+                        });
+
+                        chartContainer.style.position = 'relative';
+                        chartContainer.appendChild(popup);
                     }
                 }
             },
-            yaxis: {
-                title: {
-                    text: 'Количество книг',
-                    style: {
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        color: '#374151' // text-gray-700
-                    }
-                },
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        colors: '#4B5563' // text-gray-600
-                    }
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded'
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: val => val > 0 ? val : '',
-                style: {
-                    fontSize: '12px',
-                    colors: ['#fff']
-                }
-            },
-            colors: ['#4F46E5'], // Indigo-600
-            tooltip: {
-                y: {
-                    formatter: val => `${val} книг`
-                }
-            }
+            series: [{ name: 'Количество книг', data: seriesData }],
+            xaxis: { categories: labels },
+            colors: ['#4F46E5'],
         };
 
-        const chart = new ApexCharts(document.querySelector("#ratingChart"), options);
+        const chart = new ApexCharts(chartContainer, options);
         chart.render();
     }
 
@@ -375,11 +371,6 @@ class BookCollection {
     
         const chartContainer = document.querySelector("#genreChart");
     
-        // Remove any existing popup
-        const removePopup = () => {
-            const existingPopup = document.getElementById('genre-popup');
-            if (existingPopup) existingPopup.remove();
-        };
     
         const options = {
             chart: {
@@ -388,7 +379,7 @@ class BookCollection {
                 toolbar: { show: false },
                 events: {
                     dataPointSelection: async (event, chartContext, config) => {
-                        removePopup();
+                        removePopup('genre-popup');
     
                         const genre = labels[config.dataPointIndex];
                         const filteredBooks = this.allBooks.filter(book => book.Genres && book.Genres.includes(genre));
@@ -491,84 +482,71 @@ class BookCollection {
     }
     
 
+    // Add popup functionality to renderTimelineChart
     async renderTimelineChart() {
         const timelineData = {};
         for (const book of this.allBooks) {
             if (book['Exclusive Shelf'] === 'read' && book['Date Read']) {
-                const [year, month] = book['Date Read'].split('-');
-                const key = `${year}-${month}`;
+                const key = book['Date Read'].substring(0, 7); // YYYY-MM
                 timelineData[key] = (timelineData[key] || 0) + 1;
             }
         }
 
         const sortedKeys = Object.keys(timelineData).sort();
         const seriesData = sortedKeys.map(key => timelineData[key]);
-        const labels = sortedKeys.map(key => {
-            const [year, month] = key.split('-');
-            return `${month}.${year}`;
-        });
+        const labels = sortedKeys.map(key => key.replace('-', '.'));
+        const chartContainer = document.querySelector('#timelineChart');
 
         const options = {
             chart: {
                 type: 'bar',
                 height: 200,
-                toolbar: { show: false }
-            },
-            series: [{
-                name: 'Книги',
-                data: seriesData
-            }],
-            xaxis: {
-                categories: labels,
-                title: {
-                    text: 'Месяц',
-                    style: {
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        color: '#374151'
-                    }
-                },
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        colors: Array(labels.length).fill('#4B5563')
+                events: {
+                    dataPointSelection: async (event, chartContext, config) => {
+                        removePopup('timeline-popup');
+
+                        const dateKey = sortedKeys[config.dataPointIndex];
+                        const filteredBooks = this.allBooks.filter(book => book['Date Read']?.startsWith(dateKey));
+
+                        const popup = document.createElement('div');
+                        popup.id = 'timeline-popup';
+                        popup.style = 'position:absolute; bottom:210px; left:50%; transform:translateX(-50%); z-index:50; background:#fff; border:1px solid #ccc; border-radius:8px; padding:10px; box-shadow:0 4px 10px rgba(0,0,0,0.3); max-height:250px; width:90%; overflow-y:auto;';
+
+                        const closeBtn = document.createElement('button');
+                        closeBtn.textContent = '✕';
+                        closeBtn.style = 'position:absolute; top:5px; right:5px; background:none; border:none; cursor:pointer; font-size:16px;';
+                        closeBtn.onclick = () => removePopup('timeline-popup');
+
+                        popup.innerHTML = `<h3 style="font-weight:bold; margin-bottom:8px; text-align:center;">Книги за период: ${dateKey.replace('-', '.')}</h3>`;
+                        popup.appendChild(closeBtn);
+
+                        filteredBooks.forEach(book => {
+                            const bookDiv = document.createElement('div');
+                            bookDiv.style = 'display:flex; align-items:center; margin-bottom:6px;';
+
+                            const img = document.createElement('img');
+                            img.src = book.getCoverUrl();
+                            img.style = 'width:30px; height:45px; object-fit:cover; border-radius:3px; margin-right:8px;';
+
+                            const bookInfo = document.createElement('div');
+                            bookInfo.innerHTML = `<a href="${book.getGoodreadsBookLink()}" target="_blank" style="font-size:13px; color:#4F46E5;">${book.Title}</a><br><span style="font-size:12px; color:#6B7280;">${book.Author}</span>`;
+
+                            bookDiv.appendChild(img);
+                            bookDiv.appendChild(bookInfo);
+                            popup.appendChild(bookDiv);
+                        });
+
+                        chartContainer.style.position = 'relative';
+                        chartContainer.appendChild(popup);
                     }
                 }
             },
-            yaxis: {
-                title: {
-                    text: 'Книги',
-                    style: {
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        color: '#374151'
-                    }
-                },
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        colors: '#4B5563'
-                    }
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '70%'
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
+            series: [{ name: 'Книги', data: seriesData }],
+            xaxis: { categories: labels },
             colors: ['#2563eb'],
-            tooltip: {
-                y: {
-                    formatter: val => `${val} книг${val > 1 ? 'и' : 'а'}`
-                }
-            }
         };
 
-        const chart = new ApexCharts(document.querySelector('#timelineChart'), options);
+        const chart = new ApexCharts(chartContainer, options);
         chart.render();
     }
 }
