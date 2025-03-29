@@ -328,7 +328,7 @@ class BookCollection {
             bookInfo.className = 'flex-1';
             bookInfo.innerHTML = `
                 <p class="text-sm font-medium text-gray-800">
-                    <a href="${book.getLiveLibBookLink()}" target="_blank" class="text-indigo-600 hover:underline">${book.Title}</a>
+                    <a href="${book.getGoodreadsBookLink()}" target="_blank" class="text-indigo-600 hover:underline">${book.Title}</a>
                 </p>
                 <p class="text-xs text-gray-600">${displayAuthor}</p>
             `;
