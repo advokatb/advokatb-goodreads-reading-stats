@@ -371,7 +371,7 @@ class BookCollection {
         const options = {
             chart: {
                 type: 'bar',
-                height: 200,
+                height: 300,
                 toolbar: { show: false },
                 events: {
                     dataPointSelection: async (event, chartContext, config) => {
@@ -467,7 +467,7 @@ class BookCollection {
         const options = {
             chart: {
                 type: 'bar',
-                height: 200,
+                height: 300,
                 toolbar: { show: false },
                 events: {
                     dataPointSelection: async (event, chartContext, config) => {
@@ -570,7 +570,7 @@ class BookCollection {
         const options = {
             chart: {
                 type: 'pie',
-                height: 200,
+                height: 300,
                 toolbar: { show: false },
                 events: {
                     dataPointSelection: async (event, chartContext, config) => {
