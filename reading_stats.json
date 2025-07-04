@@ -1,37 +1,136 @@
 {
-  "total_books": 21,
-  "total_pages": 8338,
-  "avg_pages": 397.0,
+  "total_books": 23,
+  "total_pages": 9760,
+  "avg_pages": 424.3,
   "avg_rating": 4.52,
   "series_counts": {
+    "The Ruinous Love Trilogy": 1,
     "Изменённые": 4,
     "Канашибари": 2,
     "Кваzи": 2,
     "Соглашение": 3
   },
-  "books_2025": 17,
+  "books_2025": 19,
   "book_list": [
+    {
+      "Title": "Leather & Lark",
+      "Author": "Brynne Weaver",
+      "Additional Authors": "",
+      "Number of Pages": 416,
+      "Estimated Word Count": 114400,
+      "Date Read": null,
+      "Date Added": "2025-05-05",
+      "My Rating": 0,
+      "Series": "The Ruinous Love Trilogy",
+      "Bookshelves": "currently-reading",
+      "Bookshelves with positions": "currently-reading (#1)",
+      "Exclusive Shelf": "currently-reading",
+      "ISBN": "0349441588",
+      "ISBN13": "9780349441580",
+      "Cover URL": "http://books.google.com/books/content?id=wipj0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Genres": [
+        "Dark",
+        "Dark Romance",
+        "Романтика"
+      ],
+      "Annotation": "Contract killer Lachlan Kane wants a quiet life working in his leather studio and forgetting all about his traumatic past. But when he botches a job for his boss’s biggest client, Lachlan knows he’ll never claw his way out of the underworld. At least, not until songbird Lark Montague offers him a deal: use his skills to hunt down a killer and she’ll find a way to secure his freedom. The catch? He has to marry her first. And they can’t stand each other. Indie singer-songwriter Lark is the sunshine and glitter that burns through every cloud and clings to every crevice that Lachlan Kane tries to hide inside. The surly older brother of her best friend’s soulmate, Lachlan thinks she’s just a privileged princess, but Lark has plenty of secrets hiding in the shadows of her bright light. With her formidable family in a tailspin and her best friend’s happiness on the line, she’s willing to make a vow to the man she’s determined to hate, no matter how tempting the broody assassin might be. As Lachlan and Lark navigate the dark world that binds them together, it becomes impossible to discern their fake marriage from a real one. But it’s not just familiar dangers that haunt them. There’s another phantom lurking on their doorstep. And this one has come for blood.",
+      "Book Id": "127611580",
+      "Days Spent": null
+    },
+    {
+      "Title": "Палач и Дрозд",
+      "Author": "Brynne Weaver",
+      "Additional Authors": "Бринн Уивер",
+      "Number of Pages": 352,
+      "Estimated Word Count": 96800,
+      "Date Read": "2025-05-05",
+      "Date Added": "2025-05-03",
+      "My Rating": 5,
+      "Series": "The Ruinous Love Trilogy",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5042068430",
+      "ISBN13": "9785042068430",
+      "Cover URL": "http://books.google.com/books/content?id=FM0UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": [
+        "Dark",
+        "Dark Romance",
+        "Триллер"
+      ],
+      "Annotation": "Он — суровый и безжалостный, как палач. Она — яркая и свободолюбивая, как птичка. Каждый август они встречаются, чтобы сыграть в смертельную игру. Потому что они – охотники за головами, и у каждого — свой почерк. Когда мрачное прошлое начинает угрожать их жизням, герои понимают: чтобы выжить, им придется стать союзниками. Но можно ли любить того, кто держит нож за спиной?",
+      "Book Id": "227899155",
+      "Days Spent": 2.0
+    },
     {
       "Title": "Книги Земноморья",
       "Author": "Ursula K. Le Guin",
       "Additional Authors": "Урсула Ле Гуин, Charles Vess, Чарльз Весс, Ирина Тогоева",
       "Number of Pages": 1088,
       "Estimated Word Count": 299200,
-      "Date Read": null,
+      "Date Read": "2025-05-03",
       "Date Added": "2025-04-07",
-      "My Rating": 0,
+      "My Rating": 4,
       "Series": null,
-      "Bookshelves": "currently-reading",
-      "Bookshelves with positions": "currently-reading (#1)",
-      "Exclusive Shelf": "currently-reading",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
       "ISBN": "5389166949",
       "ISBN13": "9785389166943",
-      "Cover URL": "http://books.google.com/books/content?id=FD72ekYZqIkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=xQZMCgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Juvenile Fiction"
+        "Фэнтези",
+        "Dragons",
+        "Классика"
       ],
       "Annotation": "Впервые полное собрание историй о Земноморье издаются в одном иллюстрированном томе. Этот роскошный однотомник издан в ознаменование пятидесятилетия со дня выхода «Волшебника Земноморья»; в него включены все романы и рассказы о Земноморье, написанные Урсулой Ле Гуин. Сборник полностью иллюстрирован – в нем более пятидесяти цветных и черно-белых иллюстраций, выполненных художником Чарльзом Вессом, лауреатом Всемирной премии фантастов. Это поистине последнее и окончательное слово Ле Гуин о Земноморье. В сборнике вы найдете: — оба первых рассказа о Земноморье: «Правило имен» и «Освобождающее заклятье»; — все шесть романов о Земноморье: «Волшебник Земноморья», «Гробницы Атуана», «На последнем берегу», «Техану», «Сказания Земноморья», «На иных ветрах»; — последний горький рассказ Ле Гуин о Геде и Тенар «Свет домашнего очага»; — последний, нигде не публиковавшийся ранее рассказ «Дочь Одрена»; — прочитанную писательницей в 1992 году в Оксфорде лекцию «Земноморье, пересмотренное и исправленное»; — предисловие Урсулы Ле Гуин, где она представляет Земноморье новым читателям и приветствует тех, кто снова и снова возвращается на эти волшебные острова. Истории о Земноморье всякий раз восторженно оценивались критиками и читателями и воспринимались как очередная триумфальная победа писательницы в литературе. Роман «Гробницы Атуана» был удостоен медали Ньюбери; роман «На последнем берегу» — Национальной литературной премии; роман «Техану» — премии «Небьюла»; а роман «На иных ветрах» — Всемирной премии фантастов.",
       "Book Id": "49217991",
+      "Days Spent": 26.0
+    },
+    {
+      "Title": "The Aztlanian",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 0,
+      "Estimated Word Count": 0,
+      "Date Read": null,
+      "Date Added": "2025-04-25",
+      "My Rating": 0,
+      "Series": "Rithmatist",
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#16)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": "http://books.google.com/books/content?id=Df6WDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Genres": [
+        "Молодёжная литература"
+      ],
+      "Annotation": "NOT PUBLICATED Brandon Sanderson writes a \"State of the Sanderson\" each December to \"take a look back at [his] year and talk about the projects [he's] been working on.\" \"No updates from last year, I’m afraid. There was no intention to make progress on these this year. Once Alcatraz is wrapped up, I’ll turn my attention back to The Rithmatist as the last looming series that needs a wrapup that hasn’t gotten one … I know a lot of you keep waiting on Rithmatist news, and I feel bad having to give you the same news every year. (Yes, that paragraph above is the same one I put in the State of the Sanderson last year.) But the truth is, I really can’t work on this until at the very least Alcatraz is finished. A glimmer of light for you Rithmatist fans is this: my son just read the book, and he’s joined the crowd calling for me to do a sequel. So you have an in-house representative. STATUS: Keep Waiting. (Sorry again, again.)\" — Brandon Sanderson's website (The page is linked as the \"official url\" as non-GoodReads links aren't allowed in the description.)",
+      "Book Id": "17825280",
+      "Days Spent": null
+    },
+    {
+      "Title": "Остання обитель бунтарства",
+      "Author": "Ірина Грабовська",
+      "Additional Authors": "",
+      "Number of Pages": 478,
+      "Estimated Word Count": 131450,
+      "Date Read": null,
+      "Date Added": "2025-04-18",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#15)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "9669483255",
+      "ISBN13": "9789669483256",
+      "Cover URL": null,
+      "Genres": [
+        "Fantasy fiction, Ukrainian"
+      ],
+      "Annotation": "Отримати в спадок будинок — чим не мрія? Особливо якщо це справжній старовинний маєток, більше схожий на палац. От тільки не все з тим дарунком так безхмарно: дядько, який заповів Данилові своє майно, зник безвісти, а будиночок виявився з секретом. Обстежуючи нову домівку, Данило знагла провалився в чудернацьке місце, де в небі літають дирижаблі, по місту їздять монорельси, а хатню роботу виконують дивовижні парові машини. Що це — неймовірний сон чи паралельний стімпанк-світ? Купити тут: https://kmbooks.com.ua/book?code=745054",
+      "Book Id": "46049610",
       "Days Spent": null
     },
     {
@@ -51,9 +150,9 @@
       "ISBN13": "9785389241879",
       "Cover URL": "http://books.google.com/books/content?id=P3vcEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
+        "Молодёжная литература",
         "Фэнтези",
-        "Steampunk",
-        "Молодёжная литература"
+        "Steampunk"
       ],
       "Annotation": "Больше всего на свете Джоэл мечтает стать рифматистом. Почему? Да потому, что рифматисты обладают способностью оживлять двухмерные фигуры, начертанные мелом. А еще потому, что рифматисты — последняя надежда человечества в борьбе против диких меллингов, которые того и гляди прорвут оборону и уничтожат все живое. Однако не всем мечтам суждено сбыться. Сыну меловых дел мастера стать рифматистом не удалось. И теперь Джоэл может лишь с тоской наблюдать за студентами академии Армедиуса, изо дня в день практикующими магическое искусство, ради которого он готов на все. Но загадочные, внезапные исчезновения студентов дают Джоэлу шанс проявить себя, и вдруг его жизнь к",
       "Book Id": "200078422",
@@ -76,9 +175,9 @@
       "ISBN13": "9785041859183",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1717535231i/208460125.jpg",
       "Genres": [
-        "Триллер",
+        "Детективный триллер",
         "Детектив",
-        "Детективный триллер"
+        "Триллер"
       ],
       "Annotation": "Изощренный, умный и стремительный роман о мести, одержимости и… идеальном убийстве. От автора бестселлеров New York Times. Смесь «Исчезнувшей» и «Незнакомцев в поезде». Ложь, скрывающая ложь Саймон и Вики Добиас — богатая, благополучная семья из Чикаго. Он — уважаемый преподаватель права, она — защитница жертв домашнего насилия. Спокойная, счастливая семейная жизнь. Но на самом деле все абсолютно не так, как кажется. На поверхности остается лишь то, что они хотят показать людям. И один из них вполне может оказаться убийцей… Когда блестящую светскую львицу Лорен Бетанкур находят повешенной, тайная жизнь четы Добиас выходит на свет. Их бурные романы на стороне… Трастовый фонд Саймона в двадцать один миллион долларов, срок погашения которого вот-вот наступит… Многолетняя обида Вики и ее одержимость местью… Это лишь вершина айсберга, и она будет иметь самые разрушительные последствия. Но хотя и Вики, и Саймон — лжецы, кто именно кого обманывает? К тому же, под этим слоем лицемерия скрывается еще одна ложь. Поистине чудовищная…",
       "Book Id": "208460125",
@@ -124,9 +223,9 @@
       "ISBN13": "",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355947770i/17157096.jpg",
       "Genres": [
-        "Романтика",
         "Эротика",
-        "Классика"
+        "Классика",
+        "Романтика"
       ],
       "Annotation": "With Story of O, this classic erotic book is the most famous French underground novel of the late 20th century, a work of seductive literary merit. It appears an autobiographical novel by a French Foreign Service diplomat's wife. It opens as Emmanuelle flys from London to rejoin her husband in Bangkok. Compelled by an overnight passenger seated beside her, her irrepressible nature opens vistas of sensual possibility. She moves easily from her spouse's arms to intimacies with his business associates' wives & to further explorations in which subtle erotic aesthetics are fully expounded & enacted. Selling millions of copies since a clandestine French publication, Emmanuelle shows a woman's progress from unconscious to profoundly conscious sexuality.",
       "Book Id": "17157096",
@@ -149,9 +248,9 @@
       "ISBN13": "9781250767523",
       "Cover URL": "http://books.google.com/books/content?id=qY-tEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Япония",
+        "Криминал",
         "Детектив",
-        "Криминал"
+        "Япония"
       ],
       "Annotation": "From the acclaimed author of Malice and Newcomer , a confounding murder in Tokyo is connected to the mystery of the disappearance and death of Detective Kaga's own mother. A decade ago, Tokyo Police Detective Kyoichiro Kaga went to collect the ashes of his recently deceased mother. Years before, she ran away from her husband and son without explanation or any further contact, only to die alone in an apartment far away, leaving her estranged son with many unanswered questions. Now in Tokyo, Michiko Oshitani is found dead many miles from home. Strangled to death, left in the bare apartment rented under a false name by a man who has disappeared without a trace. Oshitani lived far away in Sendai, with no known connection to Tokyo - and neither her family or friends have any idea why she would have gone there. Hers is the second strangulation death in that approximate area of Tokyo - the other was a homeless man, killed and his body burned in a tent by the river. As the police search through Oshitani's past for any clue that might shed some light, one of the detectives reaches out to Detective Kaga for advice. As the case unfolds an unexpected connective emerges between the murder (or murders) now and the long ago case of the missing mother of Detective Kaga. The Final Curtain , one of Keigo Higashino's most acclaimed mysteries, brings the story of Detective Kaga to a surprising conclusion in a series of rich, surprising twists.",
       "Book Id": "65213104",
@@ -174,9 +273,9 @@
       "ISBN13": "9781250767509",
       "Cover URL": "http://books.google.com/books/content?id=fCdlEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Япония",
+        "Криминал",
         "Детектив",
-        "Криминал"
+        "Япония"
       ],
       "Annotation": "In the latest from international bestselling author Keigo Higashino, Tokyo Police Detective Kaga is faced with a very public murder that doesn't quite add up, a prime suspect unable to defend himself, and pressure from the highest levels for a quick solution. In the Nihonbashi district of Tokyo an unusual statue of a Japanese mythic beast - a kirin - stands guard over the district from the classic Nihonbashi bridge. In the evening, a man who appears to be very drunk staggers onto the bridge and collapses right under the statue of the winged beast. The patrolman who sees this scene unfold goes to rouse the man, only to discover that the man has not passed out, he is dead; that he was not drunk, he was stabbed in the chest. However, where he died was not where the crime was committed - the key to solving the crime is to find out where he was attacked and why he made such a superhuman effort to carry himself to the Nihonbashi Bridge. That same night, a young man named Yashima is injured in a car accident while attempting to flee from the police. Found on him is the wallet of the murdered man. Tokyo Police Detective Kyoichiro Kaga is assigned to the team investigating the murder - and must bring his skills to bear to uncover what actually happened that night on the Nihonbashi bridge. What, if any, connection is there between the murdered man and Yashima, the young man caught with his wallet? Kaga's investigation takes him down dark roads and into the unknown past to uncover what really happened and why. A Death in Tokyo is another mind-bending mystery from the modern master of classic crime, finalist for both an Edgar Award and a CWA Dagger, the internationally bestselling Keigo Higashino.",
       "Book Id": "59808174",
@@ -199,9 +298,9 @@
       "ISBN13": "9781250067869",
       "Cover URL": "http://books.google.com/books/content?id=S6xvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Япония",
+        "Криминал",
         "Детектив",
-        "Криминал"
+        "Япония"
       ],
       "Annotation": "Detective Kyoichiro Kaga of the Tokyo Police Department has just been transferred to a new precinct in the Nihonbashi area of Tokyo. Newly arrived, but with a great deal of experience, Kaga is promptly assigned to the team investigating the murder of a woman. But the more he investigates, the greater number of potential suspects emerges. It isn’t long before it seems nearly all the people living and working in the business district of Nihonbashi have a motive for murder. To prevent the murderer from eluding justice, Kaga must unravel all the secrets surrounding a complicated life. Buried somewhere in the woman’s past, in her family history, and the last few days of her life is the clue that will lead to the murderer. From the international bestseller Keigo Higashino, author of The Devotion of Suspect X , comes one of his finest works of crime fiction yet.",
       "Book Id": "33602102",
@@ -224,9 +323,9 @@
       "ISBN13": "9781250035608",
       "Cover URL": "http://books.google.com/books/content?id=ZGBnBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Япония",
+        "Криминал",
         "Детектив",
-        "Криминал"
+        "Япония"
       ],
       "Annotation": "From the bestselling Japanese author of The Devotion of Suspect X comes Malice, the most acclaimed novel in Higashino's outstanding Detective Kaga series. Acclaimed bestselling novelist Kunihiko Hidaka is found brutally murdered in his home on the night before he's planning to leave Japan and relocate to Vancouver. His body is found in his office, in a locked room, within his locked house, by his wife and his best friend, both of whom have rock solid alibis. Or so it seems. Police Detective Kyochiro Kaga recognizes Hidaka's best friend from years ago when they were both teachers. Kaga joined the police force while Nonoguchi became a writer, though with not nearly the success of his friend Hidaka. When Kaga suspects something is a little bit off with Nonoguchi's statement, he investigates further, searching Nonoguchi's apartment. There he finds evidence that shows that the two writers' relationship was very different than the two claimed... In a brilliantly realized tale of cat and mouse, the detective and the writer battle over the truth of the past and how events that led to the murder really unfolded. Which one of the two writers was ultimately guilty of malice?",
       "Book Id": "20613611",
@@ -273,9 +372,9 @@
       "ISBN13": "9785170878444",
       "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
+        "Городское фэнтези",
         "Фэнтези",
-        "Ужасы",
-        "Городское фэнтези"
+        "Ужасы"
       ],
       "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
       "Book Id": "23753355",
@@ -285,8 +384,8 @@
       "Title": "Поиски утраченного завтра",
       "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
-      "Number of Pages": 321,
-      "Estimated Word Count": 88275,
+      "Number of Pages": 384,
+      "Estimated Word Count": 105600,
       "Date Read": null,
       "Date Added": "2025-03-08",
       "My Rating": 0,
@@ -321,9 +420,9 @@
       "ISBN13": "9785170981311",
       "Cover URL": "http://books.google.com/books/content?id=YHneDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
+        "Зомби",
         "Фэнтези",
-        "Научная фантастика",
-        "Зомби"
+        "Научная фантастика"
       ],
       "Annotation": "Один плохой полицейский. Один мёртвый полицейский. Одна неделя, чтобы спасти весь мир. Впервые знаменитый российский писатель Сергей Лукьяненко решил написать книгу в популярном жанре зомби апокалипсиса. Однако, как всегда, автор выбрал свой уникальный, путь. Зомби Лукьяненко - вернее, кваzи - разумные, и оттого, гораздо более опасные.",
       "Book Id": "31327431",
@@ -460,7 +559,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "9785170166282",
-      "Cover URL": "http://books.google.com/books/content?id=ydULEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=5ZFEX5msS6UC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
         "Литературные сборники"
       ],
@@ -552,11 +651,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=pIs9Em38dAoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=NRWlitmahXkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Классика",
+        "Молодёжная литература",
         "Научная фантастика",
-        "Молодёжная литература"
+        "Классика"
       ],
       "Annotation": "Сорок лет назад это считалось фантастикой. Сорок лет назад это читалось как фантастика. Исследующая и расширяющая границы жанра, жадно впитывающая всевозможные новейшие веяния, примеряющая общечеловеческое лицо, отважно игнорирующая каинову печать \"жанрового гетто\". Сейчас это воспринимается как одно из самых человечных произведений новейшего времени, как роман пронзительной психологической силы, как филигранное развитие темы любви и ответственности. Не зря вышедшую уже в 1990-е книгу воспоминаний Киз назвал \"Элджернон, Чарли и я\".",
       "Book Id": "6139677",
@@ -579,8 +678,8 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Классика",
         "Historical",
+        "Классика",
         "Романтика"
       ],
       "Annotation": "Самый знаменитый роман английской писательницы Шарлотты Бронте (1816—1865) продолжает и в наше время волновать сердца миллионов. Умная и образованная героиня стала примером для многих поколений юных читательниц. События романа происходят в мрачном готическом замке в поместье Торнфильд, где раскрываются страшные тайны, а страстная любовь героев встречает на своем пути множество непреодолимых препятствий.",
@@ -623,13 +722,13 @@
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
-      "ISBN": "5386145401",
+      "ISBN": "504383479X",
       "ISBN13": "9785386145408",
       "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Триллер",
+        "Криминал",
         "Детектив",
-        "Криминал"
+        "Триллер"
       ],
       "Annotation": "Интернет. Бездушная аудитория. Анонимность. Теперь каждый может выпустить на волю внутреннего зверя. И если вы оказались его целью — вам не спастись. Младшая сестра Нга-Йи покончила с собой, но девушка не верит, что это было самоубийство. В погоне за правдой она объединяется с таинственным N — хакером, специалистом по кибербезопасности и манипулированию человеческим сознанием. Вместе героям предстоит раскрыть самые грязные секреты Гонконга. Онлайн-платформа, где кто-то распускает ужасные слухи о сестре Нга-Йи. Сексуальный маньяк. Даркнет. Китайские триады. Настоящая личность N. Все как-то связано. Но готова ли Нга-Йи к правде?",
       "Book Id": "59222769",
@@ -662,8 +761,8 @@
       "Title": "Предел",
       "Author": "Sergei Lukyanenko",
       "Additional Authors": "Сергей Лукьяненко",
-      "Number of Pages": 370,
-      "Estimated Word Count": 101750,
+      "Number of Pages": 352,
+      "Estimated Word Count": 96800,
       "Date Read": "2025-02-04",
       "Date Added": "2025-01-31",
       "My Rating": 5,
@@ -722,8 +821,8 @@
       "ISBN13": "9785353108993",
       "Cover URL": "http://books.google.com/books/content?id=BqkzEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Молодёжная литература"
+        "Молодёжная литература",
+        "Фэнтези"
       ],
       "Annotation": "Напряженная история о том, как выжить в игре, в которой невозможно обойтись без жертв. Здесь, как и в первой части, продолжают править бал демоны, страх и предательство, а правила становятся все более жестокими. Мир кайданов, в который попала Хината, неумолим: как бы ты ни был измучен, какие бы раны ни получил, каких бы близких людей ни потерял, ты обязан играть дальше. Отказ от игры — смерть. Проигрыш — смерть. Секундная слабость или паника — смерть. И Хината сражается, проходя один жестокий кайдан за другим. Но что, если самая большая опасность подстерегает ее не в иллюзорных мирах кайданов, а в реальности? Что, если игроки, которых Хината наконец-то готова назвать друзьями, не те, за кого себя выдают?",
       "Book Id": "218689887",
@@ -746,8 +845,8 @@
       "ISBN13": "9785353108238",
       "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Молодёжная литература"
+        "Молодёжная литература",
+        "Фэнтези"
       ],
       "Annotation": "Этот город окружают сто синих фонарей. В этом городе нельзя ни есть, ни пить, а без оберега тебя разорвут на части ночные монстры. В этом городе существует одно правило: пока ты выигрываешь — ты жив. Добро пожаловать в мир оживших кайданов — японских историй ужасов! Сражайся за свою жизнь каждый день. Выбирай, кто из игроков поневоле погибнет сегодня. И помни: самое страшное произойдет, КОГДА ПОГАСНЕТ ПОСЛЕДНИЙ ФОНАРЬ!",
       "Book Id": "201959407",
@@ -889,11 +988,15 @@
     {
       "Date": "2025-04",
       "Books": 2
+    },
+    {
+      "Date": "2025-05",
+      "Books": 2
     }
   ],
   "longest_book": {
-    "Title": "Джейн Эйр",
-    "Number of Pages": 666
+    "Title": "Книги Земноморья",
+    "Number of Pages": 1088
   },
   "shortest_book": {
     "Title": "Пять языков любви",
