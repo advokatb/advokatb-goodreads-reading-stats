@@ -1,8 +1,8 @@
 {
-  "total_books": 43,
-  "total_pages": 19622,
-  "avg_pages": 456.3,
-  "avg_rating": 4.72,
+  "total_books": 42,
+  "total_pages": 18919,
+  "avg_pages": 450.5,
+  "avg_rating": 4.71,
   "series_counts": {
     "Elantris": 1,
     "Mistborn": 2,
@@ -112,29 +112,6 @@
       "Days Spent": 5.0
     },
     {
-      "Title": "Le Comte de Monte-Cristo I",
-      "Author": "Alexandre Dumas",
-      "Additional Authors": "Gilbert Sigaux, Jean-Yves Tadié",
-      "Number of Pages": 703,
-      "Estimated Word Count": 193325,
-      "Date Read": null,
-      "Date Added": "2025-08-19",
-      "My Rating": 5,
-      "Series": null,
-      "Bookshelves": "",
-      "Bookshelves with positions": "",
-      "Exclusive Shelf": "read",
-      "ISBN": "",
-      "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=kRKnmb8TyHsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "Literary Criticism"
-      ],
-      "Annotation": "Tome I de II. « On fit encore quatre ou cinq pas en montant toujours, puis Dantès sentit qu'on le prenait par la tête et par les pieds et qu'on le balançait. « Une, dirent les fossoyeurs. - Deux. - Trois ! » En même temps, Dantès se sentit lancé, en effet, dans un vide énorme, traversant les airs comme un oiseau blessé, tombant, tombant toujours avec une épouvante qui lui glaçait le cœur. Quoique tiré en bas par quelque chose de pesant qui précipitait son vol rapide, il lui sembla que cette chute durait un siècle. Enfin, avec un bruit épouvantable, il entra comme une flèche dans une eau glacée qui lui fit pousser un cri, étouffé à l'instant même par l'immersion. Dantès avait été lancé dans la mer, au fond de laquelle l'entraînait un boulet de trente-six attaché à ses pieds.La mer est le cimetière du château d'If. »",
-      "Book Id": "956323",
-      "Days Spent": null
-    },
-    {
       "Title": "Канашибари. Пока не погаснет последний фонарь. Том 3",
       "Author": "SHen Angelina SHen Veronika",
       "Additional Authors": "Вероника Шэн",
@@ -172,8 +149,8 @@
       "ISBN13": "9785389248502",
       "Cover URL": "http://books.google.com/books/content?id=VoLzEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Short Stories",
         "Фэнтези",
+        "Short Stories",
         "Epic Fantasy"
       ],
       "Annotation": "Космер — уникальная вселенная, созданная воображением одного из популярнейших авторов в жанре фэнтези. Здесь у каждого мира собственная магическая система. Здесь можно пешком перебираться с планеты на планету. Здесь разворачиваются изощренные, головокружительные сюжеты циклов-бестселлеров «Рожденный туманом», «Архив Буресвета», «Двурожденные», «Белый песок», а также романов «Элантрис» и «Локон с Изумрудного моря». По замыслу Сандерсона, полный цикл о космере составит не менее сорока книг. Повесть «Душа императора» была удостоена премии «Хьюго», а «Гранетанцор» — это новый мини-роман из цикла «Архив Буресвета».",
@@ -272,8 +249,8 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=mbChjwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Short Stories",
         "Фэнтези",
+        "Short Stories",
         "High Fantasy"
       ],
       "Annotation": "Also available in Arcanum Unbounded: The Cosmere Collection . \"This story was written specifically for the Mistborn Adventure Game, a tabletop RPG. Please keep in mind that the story was intended to help a GM bring his players up to speed on the world if they haven’t read the books. There are a few goodies for those who want to know more about Kelsier, but this story is not meant to stand wholly on its own.\" ~ Brandon Sanderson.",
@@ -297,9 +274,9 @@
       "ISBN13": "9781616960926",
       "Cover URL": "http://books.google.com/books/content?id=m6ziwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Novella",
         "Фэнтези",
-        "High Fantasy"
+        "High Fantasy",
+        "Novella"
       ],
       "Annotation": "Also available in Arcanum Unbounded: The Cosmere Collection . A heretic thief is the empire’s only hope in this fascinating tale that inhabits the same world as the popular novel, Elantris . Shai is a Forger, a foreigner who can flawlessly copy and re-create any item by rewriting its history with skillful magic. Condemned to death after trying to steal the emperor’s scepter, she is given one opportunity to save herself. Though her skill as a Forger is considered an abomination by her captors, Shai will attempt to create a new soul for the emperor, who is almost dead. Probing deeply into his life, she discovers Emperor Ashravan’s truest nature—and the opportunity to exploit it. Her only possible ally is one who is truly loyal to the emperor, but councilor Gaotona must overcome his prejudices to understand that Shai’s forgery is as much artistry as it is deception. Brimming with magic and political intrigue, this deftly woven fantasy delves into the essence of a living spirit.",
       "Book Id": "13578175",
@@ -322,8 +299,8 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=6uv-CwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Short Stories",
         "Фэнтези",
+        "Short Stories",
         "High Fantasy"
       ],
       "Annotation": "The following is a short story I wrote in the Elantris world back in January of 2006. At that point, Elantris had only been out in stores for about seven or eight months, but I actually hadn't written anything new on the story or world since 2000, when I'd finished the first draft of the original book. This story was originally posted for sale on Amazon.com ; once the contract with them ran out, I posted it on my website. There were always a few holes in the manuscript where I decided not to include viewpoints or sections of explanation in the name of streamlining, particularly at the end. In the back of my mind, I knew what happened. This story talks about one of those holes; it is meant to be read after you've finished the novel and takes place during the events of the climax. In the annotation, I've written a further explanation of why I wrote this piece. Some of you may find it interesting to read this ahead of time; I put it in the annotation, however, as I know others would rather enjoy the story without bias beforehand, then read my thoughts afterward. Either way, if you haven't read the novel Elantris, this contains major spoilers. Might I suggest reading the book first? This story won't work at all for you if you haven't. As always, thanks for reading!",
@@ -441,9 +418,9 @@
       "ISBN13": "9785448470974",
       "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Романтика",
         "Классика",
-        "Gothic"
+        "Gothic",
+        "Романтика"
       ],
       "Annotation": "Самый знаменитый роман английской писательницы Шарлотты Бронте (1816—1865) продолжает и в наше время волновать сердца миллионов. Умная и образованная героиня стала примером для многих поколений юных читательниц. События романа происходят в мрачном готическом замке в поместье Торнфильд, где раскрываются страшные тайны, а страстная любовь героев встречает на своем пути множество непреодолимых препятствий.",
       "Book Id": "40536979",
@@ -535,9 +512,9 @@
       "ISBN13": "",
       "Cover URL": "http://books.google.com/books/content?id=FBPK0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Романтика",
+        "Dark",
         "Dark Romance",
-        "Dark"
+        "Романтика"
       ],
       "Annotation": "Discover the serial killer romance series everyone is talking about! From the no.1 New York Times bestselling author of the genre-breaking international TikTok sensation Butcher & Blackbird and Leather & Lark comes the final book in the Ruinous Love Trilogy - a friends-with-benefits dark romantic comedy. Murder. Mayhem. And spice. Doctor Fionn Kane is running from a broken heart, one he hopes to mend in small-town Nebraska, far away from his almost-fiance and his derailed surgical career. It's a simpler head down, hard work, and absolutely no romantic relationships. He wants none of the circus he left behind in Boston. But then the real circus finds him. Motorcycle performer Rose Evans has spent a decade on the road with the Silveria Circus, and it suits her just fine, especially when she has the urge to indulge in a little murder when she's not in the spotlight. But when a kill goes awry and she ends up with an injured leg, Rose finds herself stuck in Nebraska, at the home of the adorably nerdy town doctor. The problem is, not every broken heart can be sewn back together. . . . And the longer you stay in one place, the more likely your ghosts are to catch up. *** Friends with benefits Small town romance Fish out of water Forced proximity Hurt/care Touch her and die",
       "Book Id": "127616032",
@@ -560,9 +537,9 @@
       "ISBN13": "9780349441580",
       "Cover URL": "http://books.google.com/books/content?id=wipj0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Романтика",
+        "Dark",
         "Dark Romance",
-        "Dark"
+        "Романтика"
       ],
       "Annotation": "Contract killer Lachlan Kane wants a quiet life working in his leather studio and forgetting all about his traumatic past. But when he botches a job for his boss’s biggest client, Lachlan knows he’ll never claw his way out of the underworld. At least, not until songbird Lark Montague offers him a deal: use his skills to hunt down a killer and she’ll find a way to secure his freedom. The catch? He has to marry her first. And they can’t stand each other. Indie singer-songwriter Lark is the sunshine and glitter that burns through every cloud and clings to every crevice that Lachlan Kane tries to hide inside. The surly older brother of her best friend’s soulmate, Lachlan thinks she’s just a privileged princess, but Lark has plenty of secrets hiding in the shadows of her bright light. With her formidable family in a tailspin and her best friend’s happiness on the line, she’s willing to make a vow to the man she’s determined to hate, no matter how tempting the broody assassin might be. As Lachlan and Lark navigate the dark world that binds them together, it becomes impossible to discern their fake marriage from a real one. But it’s not just familiar dangers that haunt them. There’s another phantom lurking on their doorstep. And this one has come for blood.",
       "Book Id": "127611580",
@@ -585,9 +562,9 @@
       "ISBN13": "9785042068430",
       "Cover URL": "http://books.google.com/books/content?id=FM0UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Романтика",
+        "Dark",
         "Dark Romance",
-        "Dark"
+        "Романтика"
       ],
       "Annotation": "Он — суровый и безжалостный, как палач. Она — яркая и свободолюбивая, как птичка. Каждый август они встречаются, чтобы сыграть в смертельную игру. Потому что они – охотники за головами, и у каждого — свой почерк. Когда мрачное прошлое начинает угрожать их жизням, герои понимают: чтобы выжить, им придется стать союзниками. Но можно ли любить того, кто держит нож за спиной?",
       "Book Id": "227899155",
@@ -610,9 +587,9 @@
       "ISBN13": "9785389166943",
       "Cover URL": "http://books.google.com/books/content?id=EA5ayLbvYakC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Dragons",
         "Классика",
-        "Фэнтези"
+        "Фэнтези",
+        "Dragons"
       ],
       "Annotation": "Впервые полное собрание историй о Земноморье издаются в одном иллюстрированном томе. Этот роскошный однотомник издан в ознаменование пятидесятилетия со дня выхода «Волшебника Земноморья»; в него включены все романы и рассказы о Земноморье, написанные Урсулой Ле Гуин. Сборник полностью иллюстрирован – в нем более пятидесяти цветных и черно-белых иллюстраций, выполненных художником Чарльзом Вессом, лауреатом Всемирной премии фантастов. Это поистине последнее и окончательное слово Ле Гуин о Земноморье. В сборнике вы найдете: — оба первых рассказа о Земноморье: «Правило имен» и «Освобождающее заклятье»; — все шесть романов о Земноморье: «Волшебник Земноморья», «Гробницы Атуана», «На последнем берегу», «Техану», «Сказания Земноморья», «На иных ветрах»; — последний горький рассказ Ле Гуин о Геде и Тенар «Свет домашнего очага»; — последний, нигде не публиковавшийся ранее рассказ «Дочь Одрена»; — прочитанную писательницей в 1992 году в Оксфорде лекцию «Земноморье, пересмотренное и исправленное»; — предисловие Урсулы Ле Гуин, где она представляет Земноморье новым читателям и приветствует тех, кто снова и снова возвращается на эти волшебные острова. Истории о Земноморье всякий раз восторженно оценивались критиками и читателями и воспринимались как очередная триумфальная победа писательницы в литературе. Роман «Гробницы Атуана» был удостоен медали Ньюбери; роман «На последнем берегу» — Национальной литературной премии; роман «Техану» — премии «Небьюла»; а роман «На иных ветрах» — Всемирной премии фантастов.",
       "Book Id": "49217991",
@@ -706,9 +683,9 @@
       "ISBN13": "9785041859183",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1717535231i/208460125.jpg",
       "Genres": [
-        "Детектив",
         "Триллер",
-        "Детективный триллер"
+        "Детективный триллер",
+        "Детектив"
       ],
       "Annotation": "Изощренный, умный и стремительный роман о мести, одержимости и… идеальном убийстве. От автора бестселлеров New York Times. Смесь «Исчезнувшей» и «Незнакомцев в поезде». Ложь, скрывающая ложь Саймон и Вики Добиас — богатая, благополучная семья из Чикаго. Он — уважаемый преподаватель права, она — защитница жертв домашнего насилия. Спокойная, счастливая семейная жизнь. Но на самом деле все абсолютно не так, как кажется. На поверхности остается лишь то, что они хотят показать людям. И один из них вполне может оказаться убийцей… Когда блестящую светскую львицу Лорен Бетанкур находят повешенной, тайная жизнь четы Добиас выходит на свет. Их бурные романы на стороне… Трастовый фонд Саймона в двадцать один миллион долларов, срок погашения которого вот-вот наступит… Многолетняя обида Вики и ее одержимость местью… Это лишь вершина айсберга, и она будет иметь самые разрушительные последствия. Но хотя и Вики, и Саймон — лжецы, кто именно кого обманывает? К тому же, под этим слоем лицемерия скрывается еще одна ложь. Поистине чудовищная…",
       "Book Id": "208460125",
@@ -754,9 +731,9 @@
       "ISBN13": "",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355947770i/17157096.jpg",
       "Genres": [
-        "Романтика",
+        "Эротика",
         "Классика",
-        "Эротика"
+        "Романтика"
       ],
       "Annotation": "With Story of O, this classic erotic book is the most famous French underground novel of the late 20th century, a work of seductive literary merit. It appears an autobiographical novel by a French Foreign Service diplomat's wife. It opens as Emmanuelle flys from London to rejoin her husband in Bangkok. Compelled by an overnight passenger seated beside her, her irrepressible nature opens vistas of sensual possibility. She moves easily from her spouse's arms to intimacies with his business associates' wives & to further explorations in which subtle erotic aesthetics are fully expounded & enacted. Selling millions of copies since a clandestine French publication, Emmanuelle shows a woman's progress from unconscious to profoundly conscious sexuality.",
       "Book Id": "17157096",
@@ -779,9 +756,9 @@
       "ISBN13": "9781250767523",
       "Cover URL": "http://books.google.com/books/content?id=qY-tEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Детектив",
+        "Япония",
         "Криминал",
-        "Япония"
+        "Детектив"
       ],
       "Annotation": "From the acclaimed author of Malice and Newcomer , a confounding murder in Tokyo is connected to the mystery of the disappearance and death of Detective Kaga's own mother. A decade ago, Tokyo Police Detective Kyoichiro Kaga went to collect the ashes of his recently deceased mother. Years before, she ran away from her husband and son without explanation or any further contact, only to die alone in an apartment far away, leaving her estranged son with many unanswered questions. Now in Tokyo, Michiko Oshitani is found dead many miles from home. Strangled to death, left in the bare apartment rented under a false name by a man who has disappeared without a trace. Oshitani lived far away in Sendai, with no known connection to Tokyo - and neither her family or friends have any idea why she would have gone there. Hers is the second strangulation death in that approximate area of Tokyo - the other was a homeless man, killed and his body burned in a tent by the river. As the police search through Oshitani's past for any clue that might shed some light, one of the detectives reaches out to Detective Kaga for advice. As the case unfolds an unexpected connective emerges between the murder (or murders) now and the long ago case of the missing mother of Detective Kaga. The Final Curtain , one of Keigo Higashino's most acclaimed mysteries, brings the story of Detective Kaga to a surprising conclusion in a series of rich, surprising twists.",
       "Book Id": "65213104",
@@ -804,9 +781,9 @@
       "ISBN13": "9781250767509",
       "Cover URL": "http://books.google.com/books/content?id=fCdlEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Детектив",
+        "Япония",
         "Криминал",
-        "Япония"
+        "Детектив"
       ],
       "Annotation": "In the latest from international bestselling author Keigo Higashino, Tokyo Police Detective Kaga is faced with a very public murder that doesn't quite add up, a prime suspect unable to defend himself, and pressure from the highest levels for a quick solution. In the Nihonbashi district of Tokyo an unusual statue of a Japanese mythic beast - a kirin - stands guard over the district from the classic Nihonbashi bridge. In the evening, a man who appears to be very drunk staggers onto the bridge and collapses right under the statue of the winged beast. The patrolman who sees this scene unfold goes to rouse the man, only to discover that the man has not passed out, he is dead; that he was not drunk, he was stabbed in the chest. However, where he died was not where the crime was committed - the key to solving the crime is to find out where he was attacked and why he made such a superhuman effort to carry himself to the Nihonbashi Bridge. That same night, a young man named Yashima is injured in a car accident while attempting to flee from the police. Found on him is the wallet of the murdered man. Tokyo Police Detective Kyoichiro Kaga is assigned to the team investigating the murder - and must bring his skills to bear to uncover what actually happened that night on the Nihonbashi bridge. What, if any, connection is there between the murdered man and Yashima, the young man caught with his wallet? Kaga's investigation takes him down dark roads and into the unknown past to uncover what really happened and why. A Death in Tokyo is another mind-bending mystery from the modern master of classic crime, finalist for both an Edgar Award and a CWA Dagger, the internationally bestselling Keigo Higashino.",
       "Book Id": "59808174",
@@ -829,9 +806,9 @@
       "ISBN13": "9781250067869",
       "Cover URL": "http://books.google.com/books/content?id=S6xvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Детектив",
+        "Япония",
         "Криминал",
-        "Япония"
+        "Детектив"
       ],
       "Annotation": "Detective Kyoichiro Kaga of the Tokyo Police Department has just been transferred to a new precinct in the Nihonbashi area of Tokyo. Newly arrived, but with a great deal of experience, Kaga is promptly assigned to the team investigating the murder of a woman. But the more he investigates, the greater number of potential suspects emerges. It isn’t long before it seems nearly all the people living and working in the business district of Nihonbashi have a motive for murder. To prevent the murderer from eluding justice, Kaga must unravel all the secrets surrounding a complicated life. Buried somewhere in the woman’s past, in her family history, and the last few days of her life is the clue that will lead to the murderer. From the international bestseller Keigo Higashino, author of The Devotion of Suspect X , comes one of his finest works of crime fiction yet.",
       "Book Id": "33602102",
@@ -854,9 +831,9 @@
       "ISBN13": "9781250035608",
       "Cover URL": "http://books.google.com/books/content?id=ZGBnBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Детектив",
+        "Япония",
         "Криминал",
-        "Япония"
+        "Детектив"
       ],
       "Annotation": "From the bestselling Japanese author of The Devotion of Suspect X comes Malice, the most acclaimed novel in Higashino's outstanding Detective Kaga series. Acclaimed bestselling novelist Kunihiko Hidaka is found brutally murdered in his home on the night before he's planning to leave Japan and relocate to Vancouver. His body is found in his office, in a locked room, within his locked house, by his wife and his best friend, both of whom have rock solid alibis. Or so it seems. Police Detective Kyochiro Kaga recognizes Hidaka's best friend from years ago when they were both teachers. Kaga joined the police force while Nonoguchi became a writer, though with not nearly the success of his friend Hidaka. When Kaga suspects something is a little bit off with Nonoguchi's statement, he investigates further, searching Nonoguchi's apartment. There he finds evidence that shows that the two writers' relationship was very different than the two claimed... In a brilliantly realized tale of cat and mouse, the detective and the writer battle over the truth of the past and how events that led to the murder really unfolded. Which one of the two writers was ultimately guilty of malice?",
       "Book Id": "20613611",
@@ -879,8 +856,8 @@
       "ISBN13": "9785171125844",
       "Cover URL": "http://books.google.com/books/content?id=XqF-DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Один мёртвый поезд. Один мёртвый город. Одна неделя, чтобы спасти мёртвый мир.",
       "Book Id": "43195781",
@@ -903,9 +880,9 @@
       "ISBN13": "9785170878444",
       "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "Genres": [
-        "Городское фэнтези",
+        "Ужасы",
         "Фэнтези",
-        "Ужасы"
+        "Городское фэнтези"
       ],
       "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
       "Book Id": "23753355",
@@ -949,11 +926,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5170981317",
       "ISBN13": "9785170981311",
-      "Cover URL": "http://books.google.com/books/content?id=2WpIEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": "http://books.google.com/books/content?id=0bx8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
         "Зомби",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Один плохой полицейский. Один мёртвый полицейский. Одна неделя, чтобы спасти весь мир. Впервые знаменитый российский писатель Сергей Лукьяненко решил написать книгу в популярном жанре зомби апокалипсиса. Однако, как всегда, автор выбрал свой уникальный, путь. Зомби Лукьяненко - вернее, кваzи - разумные, и оттого, гораздо более опасные.",
       "Book Id": "31327431",
@@ -1022,8 +999,8 @@
       "ISBN13": "9785353113171",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1737024919i/223689131.jpg",
       "Genres": [
-        "Молодёжная литература",
-        "Азиатское фэнтези"
+        "Азиатское фэнтези",
+        "Молодёжная литература"
       ],
       "Annotation": "Долгожданный корейский роман-искушение в жанре feel good (книга хорошего настроения). Роман написан в лучших традициях бестселлеров «Книжная кухня» и «Прачечная, стирающая печали». Издание станет отличным подарком всем поклонникам современной прозы, азиатского фэнтези и young adult (молодежной литературы). Говорят, что ровно в 6 часов 6 минут 6 секунд на одной из улиц Сеула появится загадочный ресторан. Говорят, внутри вас встретит демон, который выглядит точь-в-точь как вы. Говорят, если добудете ему рецепт души того счастливчика, чью жизнь вы мечтаете прожить, то демон исполнит ваше желание. Звезда дорам, купающаяся в любви поклонников; золотой мальчик, делающий головокружительн",
       "Book Id": "223689131",
@@ -1092,9 +1069,9 @@
       "ISBN13": "9785699157440",
       "Cover URL": "http://books.google.com/books/content?id=3PdyEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Молодёжная литература",
         "Классика",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Молодёжная литература"
       ],
       "Annotation": "Сорок лет назад это считалось фантастикой. Сорок лет назад это читалось как фантастика. Исследующая и расширяющая границы жанра, жадно впитывающая всевозможные новейшие веяния, примеряющая общечеловеческое лицо, отважно игнорирующая каинову печать \"жанрового гетто\". Сейчас это воспринимается как одно из самых человечных произведений новейшего времени, как роман пронзительной психологической силы, как филигранное развитие темы любви и ответственности. Не зря вышедшую уже в 1990-е книгу воспоминаний Киз назвал \"Элджернон, Чарли и я\".",
       "Book Id": "6139677",
@@ -1140,9 +1117,9 @@
       "ISBN13": "9785386145408",
       "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Детектив",
         "Триллер",
-        "Криминал"
+        "Криминал",
+        "Детектив"
       ],
       "Annotation": "Интернет. Бездушная аудитория. Анонимность. Теперь каждый может выпустить на волю внутреннего зверя. И если вы оказались его целью — вам не спастись. Младшая сестра Нга-Йи покончила с собой, но девушка не верит, что это было самоубийство. В погоне за правдой она объединяется с таинственным N — хакером, специалистом по кибербезопасности и манипулированию человеческим сознанием. Вместе героям предстоит раскрыть самые грязные секреты Гонконга. Онлайн-платформа, где кто-то распускает ужасные слухи о сестре Нга-Йи. Сексуальный маньяк. Даркнет. Китайские триады. Настоящая личность N. Все как-то связано. Но готова ли Нга-Йи к правде?",
       "Book Id": "59222769",
@@ -1211,8 +1188,8 @@
       "ISBN13": "9785171163013",
       "Cover URL": "http://books.google.com/books/content?id=TfqeDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Шесть галактических цивилизаций. Пять погибших планет. Четверо учёных из разных миров. Три звёздные системы. Два космических корабля. И одна большая беда для всей Вселенной.",
       "Book Id": "46067196",
@@ -1374,8 +1351,8 @@
       "ISBN13": "9785171389888",
       "Cover URL": "http://books.google.com/books/content?id=e7M8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "Genres": [
-        "Фэнтези",
-        "Научная фантастика"
+        "Научная фантастика",
+        "Фэнтези"
       ],
       "Annotation": "Ктулху. В этом романе нет Ктулху. А все остальное, пожалуй, тут есть. Ах да, еще в нем нет Интернета, его запретили Инсеки! И Луны нет, поскольку они раздробили ее на куски. Над Землей теперь Лунное кольцо с двумя самыми большими осколками - Селеной и Дианой. Но все уже привыкли. К тому же теперь есть кристаллики, за которые Продавцы могут продать что угодно. Хотя бы и Джоконду. Или две Джоконды, обе настоящие, такие же, как в Лувре. Довольно доброе начало апокалипсиса, правда?",
       "Book Id": "58688819",
