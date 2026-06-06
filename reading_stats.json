@@ -1,43 +1,965 @@
 {
-  "total_books": 52,
-  "total_pages": 26858,
-  "avg_pages": 516.5,
+  "total_books": 85,
+  "total_pages": 43102,
+  "avg_pages": 507.1,
   "avg_rating": 4.75,
   "series_counts": {
+    "Buttons": 1,
+    "Cormoran Strike": 7,
     "Elantris": 1,
-    "Mistborn": 2,
+    "Mistborn": 4,
     "The Ruinous Love Trilogy": 3,
     "Архив Буресвета": 2,
     "Голодные игры": 1,
+    "Двурожденные": 1,
     "Изменённые": 4,
-    "Канашибари": 2,
+    "Канашибари": 4,
     "Кваzи": 2,
+    "Корморан Страйк": 1,
+    "Небесное воинство": 1,
     "Соглашение": 3
   },
-  "books_2025": 46,
+  "books_2025": 51,
   "book_list": [
+    {
+      "Title": "Аэропорт",
+      "Author": "Arthur Hailey",
+      "Additional Authors": "Артур Хейли",
+      "Number of Pages": 480,
+      "Estimated Word Count": 132000,
+      "Date Read": null,
+      "Date Added": "2026-06-05",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "currently-reading",
+      "Bookshelves with positions": "currently-reading (#1)",
+      "Exclusive Shelf": "currently-reading",
+      "ISBN": "5170245661",
+      "ISBN13": "9785170245666",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Suspense",
+        "Классика"
+      ],
+      "Annotation": "На борту самолета прогремел взрыв. Необходима срочная посадка? Аэропорт отрезан от окружающего мира снежной бурей - и посадка практически невозможна... Нет, это не детектив. Это - просто повседневная жизнь гигантского аэропорта. Своеобразного микромира, в котором люди работают, враждуют, ссорятся, рвутся к успеху. Это - просто один день из жизни АЭРОПОРТА...",
+      "Book Id": "12449778",
+      "Days Spent": null
+    },
+    {
+      "Title": "Девятый",
+      "Author": "Сергей Лукьяненко",
+      "Additional Authors": "Sergei Lukyanenko",
+      "Number of Pages": 320,
+      "Estimated Word Count": 88000,
+      "Date Read": "2026-06-04",
+      "Date Added": "2026-05-31",
+      "My Rating": 4,
+      "Series": "Небесное воинство",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5171829888",
+      "ISBN13": "9785171829889",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": "В этом мире космические истребители сражаются над кольцами Сатурна, а иное человечество отстаивает своё право на жизнь. Здесь ангелы знают всё, кроме человеческих мыслей. А мёртвые пилоты воскресают вновь и вновь, но не способны состариться. Это книга о доброте и жестокости, прошлом и будущем, вере и неверии, Боге и Вселенной, разуме и глупости. В общем, обо всём том, о чём лучше не писать.",
+      "Book Id": "247755742",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "Isles of the Emberdark",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 465,
+      "Estimated Word Count": 127875,
+      "Date Read": "2026-05-27",
+      "Date Added": "2026-05-23",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "1938570502",
+      "ISBN13": "9781938570506",
+      "Cover URL": null,
+      "Genres": [
+        "Fantasy fiction"
+      ],
+      "Annotation": "From #1 New York Times bestselling author Brandon Sanderson comes a legendary standalone novel that navigates the seas and the stars of a far-future Cosmere. Illustrated by Esther Hi’ilani Candari. All his life, Sixth of the Dusk has been a traditional trapper of Aviar—the supernatural birds his people bond with—on the deadly island of Patji. Then one fateful night he propels his people into a race to modernize before they can be conquered by the Ones Above, invaders from the stars who want to exploit the Aviar. But it’s a race they’re losing, and Dusk fears his people will lose themselves in the effort. When a chance comes to sail into the expanse of the emberdark beyond a mystical portal, Dusk sets off to find his people’s salvation with only a canoe, his birds, and all the grit and canniness of a Patji trapper. Elsewhere in the emberdark is a young dragon chained in human Starling of the starship Dynamic. She and her ragtag crew of exiles are deep in debt and on the brink of losing their freedom. So when she finds an ancient map to a hidden portal between the emberdark and the physical realm, she seizes the chance at a lucrative discovery. These unlikely allies might just be the solution to each other’s crisis. In their search for independence, Dusk and Starling face perilous bargains, poisonous politics, and the destructive echo of a dead god. Sanderson expands his thrilling novella “Sixth of the Dusk” into a mythic novel of legends, lore, and warring galactic superpowers.",
+      "Book Id": "210300489",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "Седьмой",
+      "Author": "Sergei Lukyanenko",
+      "Additional Authors": "Сергей Лукьяненко",
+      "Number of Pages": 0,
+      "Estimated Word Count": 0,
+      "Date Read": "2026-05-30",
+      "Date Added": "2026-05-28",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": "Это книга о космических кораблях и ангелах, о Земле и космосе, о жизни и смерти, о любви и предательстве, о детских вопросах и взрослых ответах. В общем - обо всём том, о чём только и стоит писать.",
+      "Book Id": "241178936",
+      "Days Spent": 2.0
+    },
+    {
+      "Title": "Озаренный Солнцем",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "Брендон Сандерсон, Мария Кантор, Мария Аль-Ради",
+      "Number of Pages": 499,
+      "Estimated Word Count": 137225,
+      "Date Read": "2026-05-23",
+      "Date Added": "2026-05-22",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389262530",
+      "ISBN13": "9785389262539",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Epic Fantasy",
+        "Научная фантастика"
+      ],
+      "Annotation": "Уже многие годы Скиталец вынужден бежать, спасаться от «Ночной бригады» — безжалостной армии наемников, управляющей легионами мертвецов. И ни один мир Космера не в силах дать ему надежное убежище. Чтобы путешествовать в этой вселенной, необходима инвеститура — энергия с магическими свойствами. Если исчерпать ее запас, можно застрять на какой-нибудь планете, и Скитальцу выпало несчастье стать пленником мира, чьи обитатели кочуют вместе с ночью. Потому что днем там выжить невозможно: солнце сжигает все, что способно гореть, и даже плавит камни. Скитальцу предстоит жестокая борьба — с яростной природой, с могущественным тираном и даже с собственным мучительным",
+      "Book Id": "219361415",
+      "Days Spent": 1.0
+    },
+    {
+      "Title": "Юми и укротитель кошмаров",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "Брендон Сандерсон, Юрий Павлов, Алия Чэнь",
+      "Number of Pages": 480,
+      "Estimated Word Count": 132000,
+      "Date Read": "2026-05-21",
+      "Date Added": "2026-05-19",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389246888",
+      "ISBN13": "9785389246881",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Научная фантастика",
+        "Романтика"
+      ],
+      "Annotation": "В стране, где родилась Юми, земля под ногами раскалена, а растения парят в воздухе. Юми — повелительница духов, ее удел — самоотверженное служение, каждый ее день состоит из множества утонченных ритуалов. Город, где живет Никаро, окружен таинственной Пеленой, из которой приходят кошмары — чудовищные сущности, питающиеся людскими переживаниями. Никаро — художник, способный с помощью живописи укрощать кошмары, лишать их убийственной силы. Однажды духи обращаются к Юми с просьбой освободить их, обещая, что в этом ей поможет герой. Но не предупреждают, что с героем — Никаро — придется обменяться телами! И как в омут с головой броситься в чужую реальность, полную загадок, тайн и чудес. С цветными иллюстрациями фэнтезийной художницы Алии Чэнь!",
+      "Book Id": "213912660",
+      "Days Spent": 2.0
+    },
+    {
+      "Title": "Локон с изумрудного моря",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "Брендон Сандерсон, Говард Лайон",
+      "Number of Pages": 480,
+      "Estimated Word Count": 132000,
+      "Date Read": null,
+      "Date Added": "2026-05-18",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389229231",
+      "ISBN13": "9785389229235",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Молодёжная литература",
+        "Романтика"
+      ],
+      "Annotation": "На планете, где в океанах не вода, а чрезвычайно опасные организмы, на острове посреди Изумрудного моря живет юноша, которому совсем не в радость его судьба — судьба единственного сына герцога, будущего наследника престола. И однажды Чарли приходится покинуть остров: отец увозит его на поиски знатной невесты, чтобы заключить выгодный династический брак. Прощаясь, Чарли обещает юной простолюдинке, в которую влюблен, вернуться и жениться именно на ней. Обещает — и не возвращается. Вместо него герцог привозит совсем другого юношу, своего дальнего родственника, которого и объявляет своим приемным сыном и наследником. Однако девушке все же удается выяснить, что Чарли был брошен в Полуночном море, самом опасном из двенадцати морей планеты. И теперь, чтобы отправиться к нему на выручку, мало нарушить строжайший запрет герцога покидать остров — необходимо изобрести способ его нарушить… С цветными иллюстрациями знаменитого фэнтезийного художника Говарда Лайона!",
+      "Book Id": "201693482",
+      "Days Spent": null
+    },
+    {
+      "Title": "Вітер та Істина",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "Ольга Пелешук, Костянтин Зотов",
+      "Number of Pages": 1536,
+      "Estimated Word Count": 422400,
+      "Date Read": "2026-05-15",
+      "Date Added": "2026-05-09",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "6171517453",
+      "ISBN13": "9786171517455",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Epic Fantasy",
+        "High Fantasy"
+      ],
+      "Annotation": "Місце злого бога Одіозума займає безжальний Тараванджіан. Світ поринає у хаос. Відчайдушні бої тривають усюди одночасно. Колишній вбивця Сет повинен очистити свою батьківщину Шиновар від влади Розствореного. Його супроводжує Каладін, водночас допомагаючи Сету боротися з власними демонами. Шаллан, Ренарін і Рлайн мають обмаль часу, аби розкрити таємниці Розствореної Ба-Адо-Мішрам та її причетність до поневолення раси співаків і вбивства їхніх спренів Променистими лицарями. А Далінар і Навані шукають перевагу над захисником Одіозума, яку можна знайти лише в Царстві духу, де пам'ять та імовірність злиті в єдиному танку хаосу. Доля всього космеру висить на волосині.",
+      "Book Id": "244981748",
+      "Days Spent": 6.0
+    },
+    {
+      "Title": "The Lost Metal",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 507,
+      "Estimated Word Count": 139425,
+      "Date Read": "2026-05-03",
+      "Date Added": "2026-04-28",
+      "My Rating": 5,
+      "Series": "Mistborn",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "0765391198",
+      "ISBN13": "9780765391193",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Epic Fantasy",
+        "High Fantasy"
+      ],
+      "Annotation": "Return to #1 New York Times bestseller Brandon Sanderson's Mistborn world of Scadrial as its second era, which began with The Alloy of Law , comes to its earth-shattering conclusion in The Lost Metal . For years, frontier lawman turned big-city senator Waxillium Ladrian has hunted the shadowy organization the Set—with his late uncle and his sister among their leaders—since they started kidnapping people with the power of Allomancy in their bloodlines. When Detective Marasi Colms and her partner, Wayne, find stockpiled weapons bound for the Outer City of Bilming, this opens a new lead. Conflict between the capital, Elendel, and the Outer Cities only favors the Set, and their tendrils now reach to the Elendel Senate—whose corruption Wax and his wife, Steris, have sought to expose—and Bilming is even more entangled. After Wax discovers a new type of explosive that can unleash unprecedented destruction and realizes that the Set must already have it, an immortal kandra serving Scadrial's god, Harmony, reveals that Bilming has fallen under the influence of another god: Trell, worshipped by the Set. And Trell isn't the only factor at play from the larger Cosmere—Marasi is recruited by offworlders with strange abilities who claim their goal is to protect Scadrial . . . at any cost. Wax must choose whether to set aside his rocky relationship with God and once again become the Sword that Harmony has groomed him to be. If no one steps forward to be the hero Scadrial needs, the planet and its millions of people will come to a sudden and calamitous ruin.",
+      "Book Id": "23947089",
+      "Days Spent": 5.0
+    },
+    {
+      "Title": "Браслеты Скорби",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "Брендон Сандерсон",
+      "Number of Pages": 494,
+      "Estimated Word Count": 135850,
+      "Date Read": "2026-04-28",
+      "Date Added": "2026-04-27",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Epic Fantasy",
+        "High Fantasy"
+      ],
+      "Annotation": "Прошло больше трехсот лет с тех пор, как мир возродился из пепла, и теперь в Эленделе царит прогресс, дарующий новые технологии: электричество, автомобили, фотографию. Но древние предания не забыты. Говорят, Браслеты Скорби — мифическая метапамять, принадлежавшая Вседержителю, — не были уничтожены в Пепельном Катаклизме, они все еще ждут своего часа. В столицу вернулся кандра-исследователь и принес изображения этой реликвии, с надписями на непонятном языке. Чтобы раскрыть тайну, Ваксиллиуму Ладриану и его друзьям предстоит отправиться в город Новый Серан, и очередное расследование позволит им глубже проникнуть в планы Круга, зловещего тайного общества.",
+      "Book Id": "40866404",
+      "Days Spent": 1.0
+    },
+    {
+      "Title": "Shadows of Self",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 376,
+      "Estimated Word Count": 103400,
+      "Date Read": "2026-04-26",
+      "Date Added": "2026-04-22",
+      "My Rating": 5,
+      "Series": "Mistborn",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "0765378558",
+      "ISBN13": "9780765378552",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "High Fantasy",
+        "Steampunk"
+      ],
+      "Annotation": "From #1 New York Times bestselling author Brandon Sanderson, the Mistborn series is a heist story of political intrigue and magical, martial-arts action. Three hundred years after the events of the Mistborn trilogy, Scadrial is now on the verge of modernity, with railroads to supplement the canals, electric lighting in the streets and the homes of the wealthy, and the first steel-framed skyscrapers racing for the clouds. When family obligations forced Waxillium Ladrian to forsake the frontier lands and return to the metropolis of his birth to take his place as head of a noble House, he little imagined that the crime-fighting skills acquired during twenty years in the dusty plains would be just as applicable in the big city. He soon learned that there too, just being a talented Twinborn — one who can use both Allomancy and Feruchemy, the dominant magical modes on Scadrial — would not suffice. This bustling, optimistic, but still shaky society will now face its first test by terrorism and assassination, crimes intended to stir up labor strife and religious conflict. Wax, his eccentric sidekick Wayne, and brilliant, beautiful young Marasi, now officially part of the constabulary, must unravel the conspiracy before civil strife can stop Scadrial’s progress in its tracks.",
+      "Book Id": "16065004",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "Allomancer Jak and the Pits of Eltania",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 40,
+      "Estimated Word Count": 11000,
+      "Date Read": "2026-04-22",
+      "Date Added": "2026-04-22",
+      "My Rating": 4,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "High Fantasy",
+        "Short Stories"
+      ],
+      "Annotation": "Also available in Arcanum Unbounded: The Cosmere Collection .",
+      "Book Id": "33357675",
+      "Days Spent": 0.0
+    },
+    {
+      "Title": "Сплав закона",
+      "Author": "Brandon Sanderson",
+      "Additional Authors": "",
+      "Number of Pages": 415,
+      "Estimated Word Count": 114125,
+      "Date Read": "2026-04-21",
+      "Date Added": "2026-04-19",
+      "My Rating": 5,
+      "Series": "Двурожденные",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389127897",
+      "ISBN13": "9785389127890",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "High Fantasy",
+        "Steampunk"
+      ],
+      "Annotation": "Когда-то Герой Веков спас заваленный пеплом мир от гибели и вернул ему солнечный свет. Теперь здесь властвует прогресс: горят электрические лампы, мчатся поезда и тянутся ввысь небоскребы. В центре мира — великий город Элендель, откуда двадцать лет назад Ваксиллиум Ладриан сбежал в далекое Дикоземье, чтобы начать жизнь заново. Теперь, понеся тяжелую утрату, он снова все меняет — возвращается в столицу, из законника становится лордом, главой благородного Дома. Но если можно убрать верные револьверы в сундук, вспомнить о хороших манерах и отказаться от ночных приключений, то старые привычки и старых друзей забыть нельзя. Тем более что в Эленделе орудует знаменит",
+      "Book Id": "35658534",
+      "Days Spent": 2.0
+    },
+    {
+      "Title": "Проект «Аве Мария»",
+      "Author": "Andy Weir",
+      "Additional Authors": "Энди Вейер, Ольга Акопян",
+      "Number of Pages": 575,
+      "Estimated Word Count": 158125,
+      "Date Read": "2026-04-18",
+      "Date Added": "2026-04-16",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5171360081",
+      "ISBN13": "9785171360085",
+      "Cover URL": null,
+      "Genres": [
+        "Научная фантастика",
+        "Space",
+        "Фэнтези"
+      ],
+      "Annotation": "Райланд Грейс приходит в себя на борту космического корабля. Он не помнит своего имени и понятия не имеет, как здесь оказался. Единственное, что он знает наверняка, это то, что он спал, а сейчас проснулся и компанию ему составляет парочка мертвецов. Воспоминания приходят обрывочными картинками... Похоже, когда-то он работал школьным учителем, а потом... черт, да что же случилось потом? Наконец восстановив череду произошедших событий, Райланд приходит в ужас от грандиозности вверенной ему задачи — предотвратить вымирание человеческого рода. Эта сверхсложная миссия — билет в один конец, и на Землю ему уже не вернуться. И помощи, похоже, ждать неоткуда…",
+      "Book Id": "59483154",
+      "Days Spent": 2.0
+    },
+    {
+      "Title": "The Hallmarked Man",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "Robert Glenister",
+      "Number of Pages": 32,
+      "Estimated Word Count": 8800,
+      "Date Read": "2026-04-15",
+      "Date Added": "2026-04-11",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "Listening time 31 hours and 7 minutes. The eighth book sees Strike and Robin take the case of identifying a dismembered corpse discovered in the vault of a silver shop. The police initially believe it to be that of a convicted armed robber – but not everyone agrees with that theory… A gripping, wonderfully complex novel which takes Strike and Robin’s story to a new level, The Hallmarked Man is an unmissable read for any fan of this unique series.",
+      "Book Id": "210081845",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "The Running Grave",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "J.K. Rowling",
+      "Number of Pages": 960,
+      "Estimated Word Count": 264000,
+      "Date Read": "2026-04-10",
+      "Date Added": "2026-04-04",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "0316572101",
+      "ISBN13": "9780316572101",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "In the seventh installment in the Strike series, Cormoran and Robin must rescue a man ensnared in the trap of a dangerous cult. Private Detective Cormoran Strike is contacted by a worried father whose son, Will, has gone to join a religious cult in the depths of the Norfolk countryside. The Universal Humanitarian Church is, on the surface, a peaceable organization that campaigns for a better world. Yet Strike discovers that beneath the surface there are deeply sinister undertones, and unexplained deaths. In order to try to rescue Will, Strike's business partner, Robin Ellacott, decides to infiltrate the cult, and she travels to Norfolk to live incognito among its members. But in doing so, she is unprepared for the dangers that await her there or for the toll it will take on her. . . Utterly pulse-pounding, The Running Grave moves Strike's and Robin's story forward in this epic, unforgettable seventh installment of the series.",
+      "Book Id": "139399948",
+      "Days Spent": 6.0
+    },
+    {
+      "Title": "The Ink Black Heart",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "",
+      "Number of Pages": 1391,
+      "Estimated Word Count": 382525,
+      "Date Read": "2026-04-04",
+      "Date Added": "2026-03-28",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "0316473537",
+      "ISBN13": "9780316473538",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "This installment in the highly acclaimed, internationally bestselling Strike series finds Cormoran and Robin ensnared in another winding, wicked case. When frantic, disheveled Edie Ledwell appears in the office begging to speak to her, private detective Robin Ellacott doesn’t know quite what to make of the situation. The co-creator of a popular cartoon, The Ink Black Heart, Edie is being persecuted by a mysterious online figure who goes by the pseudonym of Anomie. Edie is desperate to uncover Anomie’s true identity. Robin decides that the agency can’t help with this—and thinks nothing more of it until a few days later, when she reads the shocking news that Edie has been tasered and then murdered in Highgate Cemetery, the location of The Ink Black Heart. Robin and her business partner, Cormoran Strike, become drawn into the quest to uncover Anomie’s true identity. But with a complex web of online aliases, business interests and family conflicts to navigate, Strike and Robin find themselves embroiled in a case that stretches their powers of deduction to the limits – and which threatens them in new and horrifying ways . . .",
+      "Book Id": "60144955",
+      "Days Spent": 7.0
+    },
+    {
+      "Title": "Дурная кровь",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "Роберт Гэлбрейт, Елена  Петрова",
+      "Number of Pages": 960,
+      "Estimated Word Count": 264000,
+      "Date Read": "2026-03-27",
+      "Date Added": "2026-03-14",
+      "My Rating": 5,
+      "Series": "Корморан Страйк",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389188365",
+      "ISBN13": "9785389188365",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "Корморан Страйк навещает родных в Корнуолле. Там к частному детективу, вновь попавшему на первые полосы газет после того, как он поймал Шеклуэллского Потрошителя и раскрыл убийство министра культуры Джаспера Чизуэлла, обращается незнакомая женщина и просит найти ее мать, пропавшую при загадочных обстоятельствах в 1974 году. Страйку никогда еще не доводилось расследовать «висяки», тем более сорокалетней выдержки; шансы на успех почти нулевые. Но он заинтригован таинственным исчезновением молодого доктора Марго Бамборо и берется за дело, которое оказывается, пожалуй, самым головоломным в его практике. Со своей верной помощницей Робин Эллакотт, успевшей стать в их агентстве полноправным партнером, Страйк разыскивает неуловимых очевидцев и опрашивает ненадежных свидетелей, ищет подходы к сидящему четвертое десятилетие за решеткой маньяку-убийце, с отвращением осваивает гадание по картам Таро и астрологические премудрости — и постепенно убеждается, что даже дела настолько давние могут быть смертельно опасны…",
+      "Book Id": "56098498",
+      "Days Spent": 13.0
+    },
+    {
+      "Title": "Lethal White",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "",
+      "Number of Pages": 650,
+      "Estimated Word Count": 178750,
+      "Date Read": "2026-03-13",
+      "Date Added": "2026-03-05",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "0316422770",
+      "ISBN13": "9780316422772",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "When Billy, a troubled young man, comes to private eye Cormoran Strike's office to ask for his help investigating a crime he thinks he witnessed as a child, Strike is left deeply unsettled. While Billy is obviously mentally distressed, and cannot remember many concrete details, there is something sincere about him and his story. But before Strike can question him further, Billy bolts from his office in a panic. Trying to get to the bottom of Billy's story, Strike and Robin Ellacott — once his assistant, now a partner in the agency — set off on a twisting trail that leads them through the backstreets of London, into a secretive inner sanctum within Parliament, and to a beautiful but sinister manor house deep in the countryside. And during this labyrinthine investigation, Strike's own life is far from straightforward: his newfound fame as a private eye means he can no longer operate behind the scenes as he once did. Plus, his relationship with his former assistant is more fraught than it ever has been — Robin is now invaluable to Strike in the business, but their personal relationship is much, much trickier than that. The most epic Robert Galbraith novel yet, Lethal White is both a gripping mystery and a page-turning next instalment in the ongoing story of Cormoran Strike and Robin Ellacott.",
+      "Book Id": "42283287",
+      "Days Spent": 8.0
+    },
+    {
+      "Title": "На службе зла",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "Роберт Гэлбрейт, Ellena Petrova, Елена  Петрова",
+      "Number of Pages": 544,
+      "Estimated Word Count": 149600,
+      "Date Read": "2026-03-05",
+      "Date Added": "2026-03-01",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389112202",
+      "ISBN13": "9785389112209",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Детектив",
+        "Криминал"
+      ],
+      "Annotation": "Робин Эллакотт получает с курьером таинственный пакет - в котором обнаруживается отрезанная женская нога. Ее начальник, частный детектив Корморан Страйк, не так удивлен - но встревожен не меньше. В его прошлом есть четыре возможных кандидатуры на личность отправителя - и каждый из четверых способен на немыслимую жестокость. Полиция сосредоточивает усилия на поиске одного из этих четверых - но Страйк чем дальше, тем больше уверен, что именно этот подозреваемый ни при чем. Вдвоем с Робин они вынуждены взять дело в свои руки и погрузиться в пучины исковерканной психики остальных троих подозреваемых. Но таинственный убийца наносит новые удары, и Страйк с Робин понимают, что их время на исходе... «На службе зла» - дьявольски увлекательный роман-загадка с множеством неожиданных сюжетных поворотов, а также - история мужчины и женщины, пребывающих на перепутье как в профессиональном плане, так и в том, что касается личных отношений.",
+      "Book Id": "33260044",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "«Франкенштейн» Мэри Шелли",
+      "Author": "Georges Bess",
+      "Additional Authors": "",
+      "Number of Pages": 208,
+      "Estimated Word Count": 57200,
+      "Date Read": "2026-02-24",
+      "Date Added": "2026-02-17",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5001160731",
+      "ISBN13": "9785001160731",
+      "Cover URL": null,
+      "Genres": [
+        "Comics",
+        "Graphic Novels",
+        "Ужасы"
+      ],
+      "Annotation": "Графическая адаптация «Франкенштейна» Мэри Шелли Доктор Франкенштейн мечтал выйти за рамки жизни и побороть смерть, но жестоко поплатился за безрассудство. Трагичная история Прометея XIX века и созданного им монстра стала культовым сюжетом мировой литературы, к переосмыслению которого современные авторы и художники возвращаются снова и снова. Жорж Бесс, настоящий мастер черно-белой графики, ярко передает драматизм знаменитой истории и увлекает читателя в ее готический мир, чтобы еще раз задаться вопросом о сущности человека, границах его возможностей и задуматься о последствиях игры с природой. Жорж Бесс — культовый художник европейского комиксного возрождения 1970-1980-х годов, знаменитый благодаря работе с известным сценаристом и режиссером Алехандро Ходоровски.",
+      "Book Id": "216052455",
+      "Days Spent": 7.0
+    },
+    {
+      "Title": "Канашибари. Пока не погаснет последний фонарь. Том 4",
+      "Author": "Ангелина Шэн",
+      "Additional Authors": "Вероника Шэн, GOSUTO",
+      "Number of Pages": 510,
+      "Estimated Word Count": 140250,
+      "Date Read": "2026-02-17",
+      "Date Added": "2026-02-06",
+      "My Rating": 5,
+      "Series": "Канашибари",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5353117360",
+      "ISBN13": "9785353117360",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": "Четвертый, финальный том суперпопулярного азиатского фэнтези с элементами хоррора и мистики. В мире «КАНАШИБАРИ» оживают старинные японские мифы и самые страшные ночные кошмары. Погас последний фонарь. Но надежда еще горит. Ты выбрался из мира канашибари, но ёкаи прорвались вслед за тобой. Демоны рыщут по ночному Токио. Они идут на свет человеческих душ и не остановятся, пока не погасят их все. Бежать некуда. Просить помощи бесполезно. Чтобы выжить, придется сыграть с демоном синего фонаря в последнюю игру. Прими вызов Ао-андона – поставь на кон свою жизнь. Снова. И помни: тьма не вечна, даже когда погас последний фонарь.",
+      "Book Id": "246825162",
+      "Days Spent": 11.0
+    },
+    {
+      "Title": "Хозяйка Шварцвальда",
+      "Author": "Уна Харт",
+      "Additional Authors": "",
+      "Number of Pages": 448,
+      "Estimated Word Count": 123200,
+      "Date Read": "2026-02-05",
+      "Date Added": "2026-01-20",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5041759944",
+      "ISBN13": "9785041759940",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Germany"
+      ],
+      "Annotation": "Германия, 21 декабря 1601 года. В городе Оффенбурге народ собирается на площади в предвкушении казни. Эльзу Гвиннер, жену пекаря, признали виновной в колдовстве, и теперь ее ждет костер. Но что будет с ее семилетней дочерью, из-за признания которой осудили Эльзу? Отправится ли она тоже в огонь? Нет, если ее заметил Кристоф Вагнер, ученик доктора Фауста, колдун, продавший душу дьяволу. Он страстно желает передать кому-нибудь драгоценные знания своего учителя. А кто лучше подойдет на эту роль, чем девочка, от которой все отвернулись, малолетняя ведьма и преступница, предавшая свою мать?",
+      "Book Id": "137632460",
+      "Days Spent": 16.0
+    },
+    {
+      "Title": "Портрет Дориана Грея",
+      "Author": "Oscar Wilde",
+      "Additional Authors": "Оскар Уайльд",
+      "Number of Pages": 320,
+      "Estimated Word Count": 88000,
+      "Date Read": "2026-02-05",
+      "Date Added": "2026-01-26",
+      "My Rating": 4,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Ужасы",
+        "Gothic",
+        "Классика"
+      ],
+      "Annotation": "Оскар Уайльд (1854 - 1900) - английский писатель, поэт, драматург и эссеист, неподражаемый мастер парадокса, яркая во всех отношениях личность. Искусство он провозглашал важнейшей ценностью, и именно доказательству значимости искусства в жизни человека посвящен его роман \"Портрет Дориана Грея\" - история о неувядающей красоте юноши, который ради сохранения молодости пошел на сделку с совестью.",
+      "Book Id": "17748517",
+      "Days Spent": 10.0
+    },
+    {
+      "Title": "Если все кошки в мире исчезнут",
+      "Author": "Genki Kawamura",
+      "Additional Authors": "Гэнки Кавамура, Т.Л. Платонова",
+      "Number of Pages": 180,
+      "Estimated Word Count": 49500,
+      "Date Read": "2026-01-19",
+      "Date Added": "2026-01-17",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5041244529",
+      "ISBN13": "9785041244521",
+      "Cover URL": null,
+      "Genres": [
+        "Science"
+      ],
+      "Annotation": "Дни молодого почтальона сочтены. Оторванный от своей семьи и живущий один со своим котом Капустой, он не был готов к страшному диагнозу: жить ему осталось всего несколько месяцев. Но прежде чем он сможет привести свои дела в порядок, появляется дьявол с очень необычным предложением. Темная сила обещает продлить умирающему жизнь, но в обмен за каждый дополнительный день одна вещь в мире будет исчезать бесследно... С каждым исчезающим предметом почтальон размышляет о жизни, которую он прожил, о своих радостях и сожалениях, а также о людях, которых он любил и потерял.",
+      "Book Id": "220990462",
+      "Days Spent": 2.0
+    },
+    {
+      "Title": "Ґудзики та страждання. Книга 3",
+      "Author": "Пенелопа Скай",
+      "Additional Authors": "Андрій Яремчук",
+      "Number of Pages": 291,
+      "Estimated Word Count": 80025,
+      "Date Read": "2026-01-16",
+      "Date Added": "2026-01-12",
+      "My Rating": 3,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "6171509205",
+      "ISBN13": "9786171509207",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": "Перл завжди вважала: коли випадає шанс бігти — біжи. Тож після успішної втечі від людей Бонса вона повертається до Нью-Йорка, ходить на роботу і щосили вдає, ніби Кроу Барчетті ніколи не існувало. Кроу, здавалося б, зовсім не прагне її знайти, навіть не телефонує протягом декількох тижнів, і Перл розуміє, що це крапка в їхніх стосунках. Допоки одного разу, повернувшись додому, дівчина не знаходить на столі такі знайомі ґудзики...",
+      "Book Id": "220221311",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "Ґудзики та ненависть. Книга 2",
+      "Author": "Пенелопа Скай",
+      "Additional Authors": "Інна Паненко",
+      "Number of Pages": 265,
+      "Estimated Word Count": 72875,
+      "Date Read": "2026-01-12",
+      "Date Added": "2026-01-09",
+      "My Rating": 4,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "6171507490",
+      "ISBN13": "9786171507494",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": "Dark romance з атмосферою красуні та чудовиська! Перл уже зібрала 275 ґудзиків — цих маленьких шматочків майбутньої свободи... Тим часом Кроу, здається, завоював її серце. Кроу не готовий так просто попрощатися з дівчиною, але вона й сама більше не впевнена, чого насправді хоче — піти чи залишитись. Усе ускладнюється, коли Бонс — психопат, який колись купив Перл на аукціоні, — намагається повернути її в рабство. Боротьба Перл буде тривалою. Та лише їй обирати, з ким боротися і за що саме.",
+      "Book Id": "211986470",
+      "Days Spent": 3.0
+    },
+    {
+      "Title": "Граф Монте-Кристо. Том 2",
+      "Author": "Alexandre Dumas",
+      "Additional Authors": "Александр Дюма",
+      "Number of Pages": 608,
+      "Estimated Word Count": 167200,
+      "Date Read": "2025-08-23",
+      "Date Added": "2025-08-19",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Историческая проза",
+        "France",
+        "Классика"
+      ],
+      "Annotation": "Edmond Dantès, le commandant du Pharaon, fiancé à la belle Mercédès, a vu ses espérances brisées. Plus de vingt ans après son inique emprisonnement, de retour parmi les vivants, il est enfin prêt à accomplir sa vengeance, sans relâche ni pitié. De ses ennemis, il a tout appris. D'Europe en Orient, exhumant leurs crimes l'un après l'autre, il a retrouvé les comploteurs sans scrupule qui jurèrent sa perte. Le baron Danglars, ancien commis aux écritures devenu riche banquier. Monsieur de Villefort, substitut devenu procureur du roi. Le comte Fernand de Morcerf, désormais pair de France, et mari de Mercédès ! Sous le masque du comte de Monte-Cristo, Dantès a juré leur déshonneur, leur ruine et leur mort... Mais peut-il à bon droit se substituer à la divine Providence ? Ne serait-il pas plus grand justicier s'il était magnanime ? Telle est aussi la question que pose le livre le plus humain d'Alexandre Dumas.",
+      "Book Id": "60300408",
+      "Days Spent": 4.0
+    },
+    {
+      "Title": "Граф Монте-Кристо. Том 1",
+      "Author": "Alexandre Dumas",
+      "Additional Authors": "Александр Дюма",
+      "Number of Pages": 640,
+      "Estimated Word Count": 176000,
+      "Date Read": "2025-08-19",
+      "Date Added": "2025-09-02",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "",
+      "ISBN13": "",
+      "Cover URL": null,
+      "Genres": [
+        "Историческая проза",
+        "France",
+        "Классика"
+      ],
+      "Annotation": "Púsose Dantés en pie y mirando hacia donde parecía encaminarse la lancha divisó en la oscuridad a cien toesas ante sí la negra y ardua roca en que se alza con un pedernal el sombrío castillo de If.",
+      "Book Id": "60212264",
+      "Days Spent": -14.0
+    },
+    {
+      "Title": "Пуговицы и кружева",
+      "Author": "Penelope Sky",
+      "Additional Authors": "Пенелопа Скай",
+      "Number of Pages": 358,
+      "Estimated Word Count": 98450,
+      "Date Read": "2026-01-08",
+      "Date Added": "2026-01-05",
+      "My Rating": 4,
+      "Series": "Buttons",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5386135805",
+      "ISBN13": "9785386135805",
+      "Cover URL": null,
+      "Genres": [
+        "Dark",
+        "Dark Romance",
+        "Романтика"
+      ],
+      "Annotation": "Цена моей свободы - 365 пуговиц. Я не могу купить их - только заслужить. Но для этого мне придется подчиниться воле самого жестокого и прекрасного мужчины в моей жизни, который хочет только одного - меня.",
+      "Book Id": "53701957",
+      "Days Spent": 3.0
+    },
+    {
+      "Title": "Девочка, которая любила Тома Гордона",
+      "Author": "Stephen  King",
+      "Additional Authors": "Виктор Вебер, Стивен Кинг",
+      "Number of Pages": 317,
+      "Estimated Word Count": 87175,
+      "Date Read": "2026-01-04",
+      "Date Added": "2025-12-30",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5170030681",
+      "ISBN13": "9785170030682",
+      "Cover URL": null,
+      "Genres": [
+        "Триллер",
+        "Suspense",
+        "Ужасы"
+      ],
+      "Annotation": "Когда над лесом сгущается мрак, с ним вместе приходит СТРАХ. Страх, который парализует волю и сводит горло. Во тьме оживает все самое ужасное, о чем боишься даже подумать. Из тьмы выходят ночные кошмары – и внезапно становятся явью. Сквозь тьму, сквозь ад ночного леса бредет заблудившаяся девочка – ив спину ей дышит кромешный ужас. Неоткуда ждать помощи. Новинка от короля \"ужасов\"!",
+      "Book Id": "5023596",
+      "Days Spent": 5.0
+    },
+    {
+      "Title": "Тринадцатая сказка",
+      "Author": "Diane Setterfield",
+      "Additional Authors": "Диана Сеттерфилд",
+      "Number of Pages": 464,
+      "Estimated Word Count": 127600,
+      "Date Read": "2025-12-30",
+      "Date Added": "2025-12-24",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5998500067",
+      "ISBN13": "9785998500060",
+      "Cover URL": null,
+      "Genres": [
+        "Историческая проза",
+        "Детектив",
+        "Gothic"
+      ],
+      "Annotation": "«Тринадцатая сказка» Дианы Сеттерфилд — признанный шедевр современной английской прозы, книга, открывшая для широкой публики жанр «неоготики» и заставившая англо-американских критиков заговорить о возвращении золотого века британского романа, овеянного именами Шарлотты и Эмили Бронте и Дафны Дю Морье. Дебютный роман скромной учительницы, права на который были куплены за небывалые для начинающего автора деньги (800 тысяч фунтов за британское издание, миллион долларов — за американское), обогнал по продажам бестселлеры последних лет, был моментально переведен на несколько десятков языков и удостоился от рецензентов почетного имени «новой „Джейн Эйр“». Маргарет Ли работает в букинистической лавке своего отца. Современности она предпочитает Диккенса и сестер Бронте. Тем больше удивление Маргарет, когда она получает от самой знаменитой писательницы наших дней Виды Винтер предложение стать ее биографом. Ведь ничуть не меньше, чем своими книгами, мисс Винтер знаменита тем, что еще не сказала ни одному интервьюеру ни слова правды. И вот перед Маргарет, оказавшейся в стенах мрачного, населенного призраками прошлого особняка, разворачивается в буквальном смысле слова готическая история сестер-близнецов, которая странным образом перекликается с ее личной историей и постепенно подводит к разгадке тайны, сводившей с ума многие поколения читателей, — тайне «Тринадцатой сказки»…",
+      "Book Id": "11007007",
+      "Days Spent": 6.0
+    },
+    {
+      "Title": "Шелкопряд",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "Елена  Петрова",
+      "Number of Pages": 480,
+      "Estimated Word Count": 132000,
+      "Date Read": "2025-12-23",
+      "Date Added": "2025-12-15",
+      "My Rating": 5,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389067363",
+      "ISBN13": "9785389067363",
+      "Cover URL": null,
+      "Genres": [
+        "Amputees"
+      ],
+      "Annotation": "После исчезновения писателя Оуэна Куайна его жена обращается к частному сыщику Корморану Страйку. Полагая, что муж просто скрывается от родных, как случалось уже не раз, Леонора Куайн поручает Страйку найти беглеца и вернуть в лоно семьи. Но в ходе расследования Страйк понимает, что дело обстоит куда серьезнее, чем кажется Леоноре. Оуэн Куайн забрал с собой рукопись нового романа, где выставил в неприглядном свете едва ли не всех своих знакомых, включая весьма известных и влиятельных лиц. Писатель сломает их судьбы, если не откажется от публикации. Неудивительно, что многие хотели бы заставить его умолкнуть. Вскоре Страйк выясняет, что Куайн стал жертвой чудовищного убийства. Теперь необходимо просчитать мотивы неслыханно жестокого, изощренного преступника. Увлекательный детектив с неожиданными поворотами сюжета, \"Шелкопряд\" - второе произведение из цикла романов о Корморане Страйке и его решительной помощнице Робин Эллакотт.",
+      "Book Id": "23611559",
+      "Days Spent": 8.0
+    },
+    {
+      "Title": "Зов кукушки",
+      "Author": "Robert Galbraith",
+      "Additional Authors": "Роберт Гэлбрейт, Елена  Петрова",
+      "Number of Pages": 480,
+      "Estimated Word Count": 132000,
+      "Date Read": "2025-12-14",
+      "Date Added": "2025-12-06",
+      "My Rating": 4,
+      "Series": "Cormoran Strike",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5389067355",
+      "ISBN13": "9785389067356",
+      "Cover URL": null,
+      "Genres": [
+        "Afghan War, 2001-"
+      ],
+      "Annotation": "Когда скандально известная топ-модель, упав с заснеженного балкона своего пентхауса, разбивается насмерть, все решают, что это самоубийство. Но брат девушки не может смириться с таким выводом и обращается к услугам частного сыщика по имени Корморан Страйк. Страйк прошел войну, пострадал физически и душевно; жизнь его несется под откос. Теперь он рассчитывает закрыть хотя бы финансовую брешь, однако расследование оборачивается коварной ловушкой. Углубляясь в запутанную историю юной звезды, Страйк приоткрывает тайную изнанку событий - и сам движется навстречу смертельной опасности... Захватывающий, отточенный сюжет разворачивается на фоне Лондона, от тихих улиц благопристойного Мэйфера до обшарпанных пабов Ист-Энда и круглосуточно бурлящего Сохо. ЗОВ КУКУШКИ - незаурядный и заслуженно популярный роман, в котором впервые появляется Корморан Страйк. Это также первое произведение Дж.К.Роулинг, созданное в детективном жанре и подписанное именем Роберта Гэлбрейта.",
+      "Book Id": "20636069",
+      "Days Spent": 8.0
+    },
+    {
+      "Title": "Fearless",
+      "Author": "Lauren  Roberts",
+      "Additional Authors": "",
+      "Number of Pages": 593,
+      "Estimated Word Count": 163075,
+      "Date Read": null,
+      "Date Added": "2025-12-06",
+      "My Rating": 0,
+      "Series": "The Powerless Trilogy",
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#11)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "1665955465",
+      "ISBN13": "9781665955461",
+      "Cover URL": null,
+      "Genres": [
+        "Молодёжная литература"
+      ],
+      "Annotation": "She fled as a betrayer. She returned as a bride-to-be. Ordinary-born Paedyn Gray was prepared for a death sentence, not a proposal. After killing the king, marriage to his son, Kitt, was the last thing she—or the kingdom—expected. But with her role as queen, Paedyn would have the chance to unite Ilya and create a kingdom where Ordinaries live alongside Elites without fear. With a decision looming, Paedyn battles between her head, her heart, and the hidden trials she now faces. Through it all, Kai Azer fights to call her his, even if it means defying his king. Are vows strong enough to unite a kingdom? Or will betrayal break them? The choice between sacrifice and self has never been more difficult . . . or deadly. The final installment in the epic and sizzling fantasy romance trilogy that's taken the world by storm.",
+      "Book Id": "214151222",
+      "Days Spent": null
+    },
+    {
+      "Title": "Alchemy of Secrets",
+      "Author": "Stephanie Garber",
+      "Additional Authors": "",
+      "Number of Pages": 324,
+      "Estimated Word Count": 89100,
+      "Date Read": null,
+      "Date Added": "2025-12-06",
+      "My Rating": 0,
+      "Series": "Alchemy of Secrets",
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#10)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "125078915X",
+      "ISBN13": "9781250789150",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Romantasy",
+        "Романтика"
+      ],
+      "Annotation": "It starts with a class in an old movie theater. Folklore 517: Local Legends and Urban Myths, taught by a woman called the Professor. Most students believe the Professor’s stories are just fiction, but Holland St. James has always been convinced that magic is real. When she tracks down a local legend named the Watch Man, who can supposedly tell you when you’ll die, the world finally makes sense. Except that the Watch Man tells her she will die at midnight tomorrow unless she finds an ancient object called the Alchemical Heart. With the clock ticking, Holland is pulled deeper into this magical world in the heart of Los Angeles—and into the path of a magnetic stranger. Everything about him feels like a bad idea, but he promises Holland that her sister sent him to protect her. As they chase clues and stories that take them closer to the Alchemical Heart, Holland realizes everyone in this intoxicating new world is lying to her, even this stranger. And if she can’t figure out whom to trust, not even the Alchemical Heart will save her.",
+      "Book Id": "222706197",
+      "Days Spent": null
+    },
+    {
+      "Title": "Bury Our Bones in the Midnight Soil",
+      "Author": "V.E. Schwab",
+      "Additional Authors": "",
+      "Number of Pages": 535,
+      "Estimated Word Count": 147125,
+      "Date Read": null,
+      "Date Added": "2025-12-06",
+      "My Rating": 0,
+      "Series": null,
+      "Bookshelves": "to-read",
+      "Bookshelves with positions": "to-read (#9)",
+      "Exclusive Shelf": "to-read",
+      "ISBN": "1250320526",
+      "ISBN13": "9781250320520",
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Историческая проза",
+        "Ужасы"
+      ],
+      "Annotation": "From V. E. Schwab, the #1 New York Times bestselling author of The Invisible Life of Addie LaRue : a new genre-defying novel about immortality and hunger. This is a story about hunger. 1532. Santo Domingo de la Calzada. A young girl grows up wild and wily—her beauty is only outmatched by her dreams of escape. But María knows she can only ever be a prize, or a pawn, in the games played by men. When an alluring stranger offers an alternate path, María makes a desperate choice. She vows to have no regrets. This is a story about love. 1827. London. A young woman lives an idyllic but cloistered life on her family’s estate, until a moment of forbidden intimacy sees her shipped off to London. Charlotte’s tender heart and seemingly impossible wishes are swept away by an invitation from a beautiful widow—but the price of freedom is higher than she could have imagined. This is a story about rage. 2019. Boston. College was supposed to be her chance to be someone new. That’s why Alice moved halfway across the world, leaving her old life behind. But after an out-of-character one-night stand leaves her questioning her past, her present, and her future, Alice throws herself into the hunt for answers . . . and revenge. This is a story about life— how it ends, and how it starts.",
+      "Book Id": "213263148",
+      "Days Spent": null
+    },
+    {
+      "Title": "День триффидов",
+      "Author": "John Wyndham",
+      "Additional Authors": "Джон Уиндем",
+      "Number of Pages": 928,
+      "Estimated Word Count": 255200,
+      "Date Read": "2025-12-05",
+      "Date Added": "2025-12-02",
+      "My Rating": 5,
+      "Series": null,
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
+      "ISBN": "5699351485",
+      "ISBN13": "9785699351480",
+      "Cover URL": null,
+      "Genres": [
+        "Научная фантастика"
+      ],
+      "Annotation": "Классик мировой фантастики британский писатель Джон Уиндем вошел в наше чтение еще в 60-е годы прошлого века благодаря блестящему переводу романа \"День триффидов\", выполненному Аркадием и Борисом Стругацкими и поданному ими под скромным псевдонимом \"С. Бережков\". В своих романах писатель лоб в лоб сталкивает человечество с глобальными катастрофами, грозящими непредсказуемыми последствиями. Главная задача людей при этом - выжить и остаться людьми. В сборник вошло лучшее из созданного писателем. Содержание: День триффидов Кукушки Мидвича Кракен пробуждается Куколки Чокки",
+      "Book Id": "8070245",
+      "Days Spent": 3.0
+    },
     {
       "Title": "Гордость и предубеждение",
       "Author": "Jane Austen",
       "Additional Authors": "Джейн Остен, Иммануэль Маршак",
       "Number of Pages": 382,
       "Estimated Word Count": 105050,
-      "Date Read": null,
+      "Date Read": "2025-12-01",
       "Date Added": "2025-11-23",
-      "My Rating": 0,
+      "My Rating": 5,
       "Series": null,
-      "Bookshelves": "currently-reading",
-      "Bookshelves with positions": "currently-reading (#1)",
-      "Exclusive Shelf": "currently-reading",
+      "Bookshelves": "",
+      "Bookshelves with positions": "",
+      "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "9785170166282",
-      "Cover URL": "http://books.google.com/books/content?id=5ZFEX5msS6UC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Литературные сборники"
       ],
       "Annotation": "Эта книга была самой любимой для многих поколений женщин всего мира. Ею зачитывались в аристократических гостиных, литературных салонах и сельских усадьбах, ее прятали от родителей гимназистки, для которых роман Джейн Остен становился буквально «школой жизни». И сейчас эта книга, навеки вошедшая в золотой фонд мировой литературы, не утратила ни капли своего неподражаемого очарования, изысканности и блеска… --ast.ru",
       "Book Id": "17566513",
-      "Days Spent": null
+      "Days Spent": 8.0
     },
     {
       "Title": "Ритм войны. Том 2",
@@ -54,11 +976,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389202619",
       "ISBN13": "9785389202610",
-      "Cover URL": "http://books.google.com/books/content?id=7iJJEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "High Fantasy",
+        "Фэнтези",
         "Adult",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Ценой немалых усилий Далинар Холин создает коалицию монархов, способную противостоять в войне за Рошар жестокости и коварству Приносящих пустоту. Но победа остается лишь зыбкой мечтой, ведь врагам помогает могущественное божество, а среди друзей скрываются предатели. Адолин и Шаллан отправляются в мир спренов, чтобы заручиться помощью союзников, рискуя в случае неуспеха обречь все человечество на гибель. Они еще не знают, что главное сражение вскоре развернется в городе-башне Уритиру и его исход будет зависеть не от военной мощи противоборствующих сторон, а от их стойкости, решимости и проницательности. Впервые на русском!",
       "Book Id": "59451065",
@@ -79,11 +1001,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389202600",
       "ISBN13": "9785389202603",
-      "Cover URL": "http://books.google.com/books/content?id=3SJJEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "High Fantasy",
+        "Фэнтези",
         "Adult",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Ценой немалых усилий Далинар Холин создает коалицию монархов, способную противостоять в войне за Рошар жестокости и коварству Приносящих пустоту. Но победа остается лишь зыбкой мечтой, ведь врагам помогает могущественное божество, а среди друзей скрываются предатели. Адолин и Шаллан отправляются в мир спренов, чтобы заручиться помощью союзников, рискуя в случае неуспеха обречь все человечество на гибель. Они еще не знают, что главное сражение вскоре развернется в городе-башне Уритиру и его исход будет зависеть не от военной мощи противоборствующих сторон, а от их стойкости, решимости и проницательности. Впервые на русском!",
       "Book Id": "59451064",
@@ -104,9 +1026,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=CeCuAVgRGCsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Drama"
+        "School",
+        "Историческая проза",
+        "Классика"
       ],
       "Annotation": "Повесть Джона Стейнбека, опубликованная в 1937 году, рассказывающая трагическую историю двух работяг во время Великой депрессии в Калифорнии и касающаяся таких понятий, как мечты, вина и сочувствие. Книга основана на личном опыте Стейнбека, работавшего в сельском хозяйстве в 1920-е годы. Название взято из стихотворения Роберта Бёрнса «К полевой мыши, разорённой моим плугом» (англ. To A Mouse, on Turning Her Up in Her Nest, with the Plough)",
       "Book Id": "17213392",
@@ -127,11 +1051,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=c88HEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Действие повести разворачивается между событиями третьего и четвертого томов «Архива буресвета». Рисн, владелица «Странствующего паруса» − жемчужины тайленского флота, принимает деловое предложение Навани Холин. Королева Уритиру хочет отправить исследовательскую экспедицию в Акину – легендарную столицу погибшей Аймиа. У Рисн есть свой интерес в этой поездке. Ее ларкин чахнет с каждым днем, и она надеется, что на родине Чири-Чири станет лучше. Вместе с тайленцами в путешествие отправляются ветробегуны Лопен и Уйо, ревнительница Рушу и дочь Камня Струна.",
       "Book Id": "57908617",
@@ -152,9 +1076,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=YQ6XoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Отцы и дочери"
+        "Историческая проза",
+        "School",
+        "Классика"
       ],
       "Annotation": "События, описанные в книге, происходят в 30-е годы в штате Алабама. Однако точность показа жизни американской провинции, глубина изображения характеров как взрослых героев, так и детей делают эту книгу интересной и злободневной и в наши дни.",
       "Book Id": "54565949",
@@ -175,11 +1101,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389161416",
       "ISBN13": "9785389161412",
-      "Cover URL": "http://books.google.com/books/content?id=0QemtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Предсказанная Буря бурь обрушилась на мир, вызвав новое Опустошение и вынудив человечество еще раз столкнуться с древним врагом — Приносящими пустоту; их жажду мести подпитывает злобное божество. Теперь будущее зависит только от Далинара Холина, чьи измученные сражениями войска нашли приют в древнем городе Уритиру. Но в стенах оплота Сияющих рыцарей хранятся мрачные секреты, а кровавые тайны прошлого самого Далинара мешают остальным властителям поверить в благородство его помыслов. Час нового испытания близок, однако прежде героям предстоит совершить немало странствий по просторам Рошара и выстоять в битве с темной стороной собственной души.",
       "Book Id": "44715414",
@@ -200,11 +1126,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=2_NrDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Действие повести разворачивается между событиями второго и третьего томов «Архива буресвета». Неугомонной Лифт наскучила сытая жизнь в Азире, и она сбегает из дворца. Погоня за Мраком, который когда-то чуть ее не убил, приводит Лифт в Ташикк, в город Йеддо, выстроенный в каменных расселинах. Мрак и его подручные разыскивают здесь человека с необычными способностями. Но почему Лифт преследует Мрака? Только ли потому, что хочет съесть его завтрак?",
       "Book Id": "39441761",
@@ -225,11 +1151,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389135628",
       "ISBN13": "9785389135628",
-      "Cover URL": "http://books.google.com/books/content?id=sE4sDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Вопреки ожиданиям врагов, Каладин Благословенный Бурей не умер рабом, но возглавил личную гвардию великого князя, и теперь на его плечах лежит обязанность защищать самого короля. Убийца в Белом вновь сеет смерть по всему Рошару, шаг за шагом приближаясь к главной цели — Далинару Холину. Шаллан Давар ставит перед собой самую амбициозную цель из всех возможных: предотвратить возвращение Приносящих пустоту, за которым должна последовать гибель всего мира. А в это время в сердце Расколотых равнин паршенди, уставшие от многолетней войны, делают роковой выбор и обращаются за помощью к той самой силе, от которой некогда бежали их предки.",
       "Book Id": "36557307",
@@ -250,11 +1176,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389099427",
       "ISBN13": "9785389099425",
-      "Cover URL": "http://books.google.com/books/content?id=QVn-CgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Первый роман эпопеи «Архив Буресвета» в новом переводе. Масштабная сага погружает читателя в удивительный мир, не уступающий мирам Р. Р. Толкиена, Р. Джордана и Р. Сальваторе. Уникальная флора и фауна, тщательно продуманное политическое устройство и богатая духовная культура – здесь нет ничего случайного. Рошар — мир во власти великих бурь, сметающих все живое на своем пути. Но есть и то, что страшнее любой великой бури, – это истинное опустошение. Одно лишь его ожидание меняет судьбы целых народов. Сумеют ли люди сплотиться перед лицом страшной угрозы? Найдется ли тот, для кого древняя клятва — жизнь прежде смерти, сила прежде слабости, путь прежде цели — станет чем-то большим, нежели просто слова?",
       "Book Id": "30843909",
@@ -262,7 +1188,7 @@
     },
     {
       "Title": "11/22/63",
-      "Author": "Stephen        King",
+      "Author": "Stephen  King",
       "Additional Authors": "",
       "Number of Pages": 849,
       "Estimated Word Count": 233475,
@@ -275,36 +1201,15 @@
       "Exclusive Shelf": "read",
       "ISBN": "1451627289",
       "ISBN13": "9781451627282",
-      "Cover URL": "http://books.google.com/books/content?id=2miSngEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Time Travel",
         "Научная фантастика",
-        "Историческая проза"
+        "Историческая проза",
+        "Time Travel"
       ],
       "Annotation": "On November 22, 1963, three shots rang out in Dallas, President Kennedy died, and the world changed. What if you could change it back? Stephen King’s heart-stoppingly dramatic new novel is about a man who travels back in time to prevent the JFK assassination—a thousand page tour de force. Following his massively successful novel Under the Dome, King sweeps readers back in time to another moment—a real life moment—when everything went wrong: the JFK assassination. And he introduces readers to a character who has the power to change the course of history. Jake Epping is a thirty-five-year-old high school English teacher in Lisbon Falls, Maine, who makes extra money teaching adults in the GED program. He receives an essay from one of the students—a gruesome, harrowing first person story about the night 50 years ago when Harry Dunning’s father came home and killed his mother, his sister, and his brother with a hammer. Harry escaped with a smashed leg, as evidenced by his crooked walk. Not much later, Jake’s friend Al, who runs the local diner, divulges a secret: his storeroom is a portal to 1958. He enlists Jake on an insane—and insanely possible—mission to try to prevent the Kennedy assassination. So begins Jake’s new life as George Amberson and his new world of Elvis and JFK, of big American cars and sock hops, of a troubled loner named Lee Harvey Oswald and a beautiful high school librarian named Sadie Dunhill, who becomes the love of Jake’s life—a life that transgresses all the normal rules of time. A tribute to a simpler era and a devastating exercise in escalating suspense, 11/22/63 is Stephen King at his epic best.",
       "Book Id": "10644930",
       "Days Spent": 5.0
-    },
-    {
-      "Title": "Граф Монте-Кристо. Том 1",
-      "Author": "Alexandre Dumas",
-      "Additional Authors": "Александр Дюма",
-      "Number of Pages": 640,
-      "Estimated Word Count": 176000,
-      "Date Read": "2025-08-19",
-      "Date Added": "2025-09-02",
-      "My Rating": 0,
-      "Series": null,
-      "Bookshelves": "",
-      "Bookshelves with positions": "",
-      "Exclusive Shelf": "read",
-      "ISBN": "",
-      "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=xOhACwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [],
-      "Annotation": null,
-      "Book Id": "60212264",
-      "Days Spent": -14.0
     },
     {
       "Title": "Убийца войн",
@@ -321,56 +1226,36 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=A5RteM-rsycC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Среди причудливых миров Космера есть один, где правят странные боги — ожившие мертвецы, или возвращенные. Прекрасные и молодые, они бессмертны и не помнят прошлой жизни. Для поддержании жизни им нужен дох — неуловимая субстанция, которая наполняет мир красками и обостряет чувства. Дох есть у каждого человека; боги предпочитают забирать его у детей. Таковы порядки в Халландрене — государстве, погрязшем в роскоши и распутстве. Там правит таинственный Бог-король. Он много лет не знал войн, но скоро все должно измениться. Кто-то разжигает конфликт, стремясь столкнуть Халландрен с холодным горным Идрисом, что неизбежно повлечет за собой Панвойну.",
       "Book Id": "40541639",
       "Days Spent": 4.0
     },
     {
-      "Title": "Граф Монте-Кристо. Том 2",
-      "Author": "Alexandre Dumas",
-      "Additional Authors": "Александр Дюма",
-      "Number of Pages": 608,
-      "Estimated Word Count": 167200,
-      "Date Read": "2025-08-23",
-      "Date Added": "2025-08-19",
-      "My Rating": 5,
-      "Series": null,
-      "Bookshelves": "",
-      "Bookshelves with positions": "",
-      "Exclusive Shelf": "read",
-      "ISBN": "",
-      "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=b1IcEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "Классика"
-      ],
-      "Annotation": null,
-      "Book Id": "60300408",
-      "Days Spent": 4.0
-    },
-    {
       "Title": "Канашибари. Пока не погаснет последний фонарь. Том 3",
-      "Author": "SHen Angelina SHen Veronika",
+      "Author": "Ангелина Шэн",
       "Additional Authors": "Вероника Шэн",
       "Number of Pages": 475,
       "Estimated Word Count": 130625,
       "Date Read": "2025-08-13",
       "Date Added": "2025-08-07",
       "My Rating": 5,
-      "Series": null,
+      "Series": "Канашибари",
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
       "ISBN": "5353109864",
       "ISBN13": "9785353109860",
-      "Cover URL": "http://books.google.com/books/content?id=Ol54EQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [],
+      "Cover URL": null,
+      "Genres": [
+        "Фэнтези",
+        "Ужасы"
+      ],
       "Annotation": "\"Все дни и ночи, что ты проводишь в городе оживших кошмаров, тебе внушают: играй по правилам — и останешься в живых. Тебе врут. Ты умрешь, вы все умрете, когда игра подойдет к концу. Есть лишь один способ выжить — нарушить правила. Но чтобы исполнить свой безумный план и обыграть демонов, тебе придется протянуть руку заклятым врагам и простить тех, кого простить невозможно. Сразись со смертью в последний раз! Поставь все на кон. Ведь у тебя всего один шанс вырваться из этого мира, КОГДА ПОГАСНЕТ ПОСЛЕДНИЙ ФОНАРЬ!\"",
       "Book Id": "232193662",
       "Days Spent": 6.0
@@ -390,11 +1275,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389248503",
       "ISBN13": "9785389248502",
-      "Cover URL": "http://books.google.com/books/content?id=VoLzEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "Short Stories",
-        "Фэнтези"
+        "Short Stories"
       ],
       "Annotation": "Космер — уникальная вселенная, созданная воображением одного из популярнейших авторов в жанре фэнтези. Здесь у каждого мира собственная магическая система. Здесь можно пешком перебираться с планеты на планету. Здесь разворачиваются изощренные, головокружительные сюжеты циклов-бестселлеров «Рожденный туманом», «Архив Буресвета», «Двурожденные», «Белый песок», а также романов «Элантрис» и «Локон с Изумрудного моря». По замыслу Сандерсона, полный цикл о космере составит не менее сорока книг. Повесть «Душа императора» была удостоена премии «Хьюго», а «Гранетанцор» — это новый мини-роман из цикла «Архив Буресвета».",
       "Book Id": "208096282",
@@ -415,11 +1300,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "0765316897",
       "ISBN13": "9780765316899",
-      "Cover URL": "http://books.google.com/books/content?id=X9q_7-nWisgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "\"Description contains spoilers for previous book in the series\" Who is the Hero of Ages? To end the Final Empire and restore freedom, Vin killed the Lord Ruler. But as a result, the Deepness—the lethal form of the ubiquitous mists—is back, along with increasingly heavy ashfalls and ever more powerful earthquakes. Humanity appears to be doomed. Having escaped death at the climax of The Well of Ascension only by becoming a Mistborn himself, Emperor Elend Venture hopes to find clues left behind by the Lord Ruler that will allow him to save the world. Vin is consumed with guilt at having been tricked into releasing the mystic force known as Ruin from the Well. Ruin wants to end the world, and its near omniscience and ability to warp reality make stopping it seem impossible. Vin can't even discuss it with Elend lest Ruin learn their plans!",
       "Book Id": "2767793",
@@ -440,11 +1325,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "0765316889",
       "ISBN13": "9780765316882",
-      "Cover URL": "http://books.google.com/books/content?id=-EZHf7-jWAQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "\"Description contains spoilers for previous book in the series\" The impossible has been accomplished. The Lord Ruler—the man who claimed to be god incarnate and brutally ruled the world for a thousand years—has been vanquished. But Kelsier, the hero who masterminded that triumph, is dead too, and now the awesome task of building a new world has been left to his young protégé, Vin, the former street urchin who is now the most powerful Mistborn in the land, and to the idealistic young nobleman she loves. As Kelsier's protégé and slayer of the Lord Ruler she is now venerated by a budding new religion, a distinction that makes her intensely uncomfortable. Even more worrying, the mists have begun behaving strangely since the Lord Ruler died, and seem to harbor a strange vaporous entity that haunts her. Stopping assassins may keep Vin's Mistborn skills sharp, but it's the least of her problems. Luthadel, the largest city of the former empire, doesn't run itself, and Vin and the other members of Kelsier's crew, who lead the revolution, must learn a whole new set of practical and political skills to help. It certainly won't get easier with three armies - one of them composed of ferocious giants - now vying to conquer the city, and no sign of the Lord Ruler's hidden cache of atium, the rarest and most powerful allomantic metal. As the siege of Luthadel tightens, an ancient legend seems to offer a glimmer of hope. But even if it really exists, no one knows where to find the Well of Ascension or what manner of power it bestows.",
       "Book Id": "68429",
@@ -465,11 +1350,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389100417",
       "ISBN13": "9785389100411",
-      "Cover URL": "http://books.google.com/books/content?id=j0l7CAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Тысячу лет существует Последняя империя, управляемая бессмертным и неуязвимым лордом-правителем, единственным богом и властителем этого мира. Тысячу лет назад он победил в схватке неведомую Бездну, грозившую уничтожить все живое, и, получив огромную силу, поработил мир, вместо того чтобы освободить его. С тех пор с неба в Последней империи сыплется пепел, солнце — цвета крови, а ночью мир обволакивает таинственный туман, отбирающий у людей душу. Способен ли хоть один человек сокрушить всесильного императора? Да, отвечает Кельсер — вор, человек-легенда, совершивший в свое время попытку ограбить дворец самого лорда-правителя, сосланный за это на рудники и сумевши&",
       "Book Id": "27847423",
@@ -490,11 +1375,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=6uv-CwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "High Fantasy",
-        "Short Stories",
-        "Фэнтези"
+        "Short Stories"
       ],
       "Annotation": "Also available in Arcanum Unbounded: The Cosmere Collection . \"This story was written specifically for the Mistborn Adventure Game, a tabletop RPG. Please keep in mind that the story was intended to help a GM bring his players up to speed on the world if they haven’t read the books. There are a few goodies for those who want to know more about Kelsier, but this story is not meant to stand wholly on its own.\" ~ Brandon Sanderson.",
       "Book Id": "22823333",
@@ -515,11 +1400,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "1616960922",
       "ISBN13": "9781616960926",
-      "Cover URL": "http://books.google.com/books/content?id=m6ziwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Novella",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Also available in Arcanum Unbounded: The Cosmere Collection . A heretic thief is the empire’s only hope in this fascinating tale that inhabits the same world as the popular novel, Elantris . Shai is a Forger, a foreigner who can flawlessly copy and re-create any item by rewriting its history with skillful magic. Condemned to death after trying to steal the emperor’s scepter, she is given one opportunity to save herself. Though her skill as a Forger is considered an abomination by her captors, Shai will attempt to create a new soul for the emperor, who is almost dead. Probing deeply into his life, she discovers Emperor Ashravan’s truest nature—and the opportunity to exploit it. Her only possible ally is one who is truly loyal to the emperor, but councilor Gaotona must overcome his prejudices to understand that Shai’s forgery is as much artistry as it is deception. Brimming with magic and political intrigue, this deftly woven fantasy delves into the essence of a living spirit.",
       "Book Id": "13578175",
@@ -540,11 +1425,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=LXPq0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "High Fantasy",
-        "Short Stories",
-        "Фэнтези"
+        "Short Stories"
       ],
       "Annotation": "The following is a short story I wrote in the Elantris world back in January of 2006. At that point, Elantris had only been out in stores for about seven or eight months, but I actually hadn't written anything new on the story or world since 2000, when I'd finished the first draft of the original book. This story was originally posted for sale on Amazon.com ; once the contract with them ran out, I posted it on my website. There were always a few holes in the manuscript where I decided not to include viewpoints or sections of explanation in the name of streamlining, particularly at the end. In the back of my mind, I knew what happened. This story talks about one of those holes; it is meant to be read after you've finished the novel and takes place during the events of the climax. In the annotation, I've written a further explanation of why I wrote this piece. Some of you may find it interesting to read this ahead of time; I put it in the annotation, however, as I know others would rather enjoy the story without bias beforehand, then read my thoughts afterward. Either way, if you haven't read the novel Elantris, this contains major spoilers. Might I suggest reading the book first? This story won't work at all for you if you haven't. As always, thanks for reading!",
       "Book Id": "10852065",
@@ -565,11 +1450,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5352015823",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=73CcCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Epic Fantasy",
-        "High Fantasy",
-        "Фэнтези"
+        "High Fantasy"
       ],
       "Annotation": "Величественный Элантрис, город богов, средоточие магии, мудрости и несказанной красоты был подобен серебряному костру, горящему в вечности. Стать элантрийцем и уподобиться богам мог любой человек, которого касался шаод - таинственное преображение, наделяющее избранных волшебной силой. Вечность закончилась десять лет назад. Прекрасный город пал, а благословение шаода обернулось проклятием. Новая столица Арелона, маленький Каи, живет в тени черных стен Элантриса, стараясь не замечать города, ставшего резервацией для тех несчастных, кого по-прежнему забирает шаод. Но очередной жертвой оказывается Раоден, наследный принц Арелона…",
       "Book Id": "15699725",
@@ -590,11 +1475,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "1546171460",
       "ISBN13": "9781546171461",
-      "Cover URL": "http://books.google.com/books/content?id=7NDJ0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Молодёжная литература"
       ],
-      "Annotation": "When you’ve been set up to lose everything you love, what is there left to fight for? As the day dawns on the fiftieth annual Hunger Games, fear grips the districts of Panem. This year, in honor of the Quarter Quell, twice as many tributes will be taken from their homes. Back in District 12, Haymitch Abernathy is trying not to think too hard about his chances. All he cares about is making it through the day and being with the girl he loves. When Haymitch’s name is called, he can feel all his dreams break. He’s torn from his family and his love, shuttled to the Capitol with the three other District 12 tributes: a young friend who’s nearly a sister to him, a compulsive oddsmaker, and the most stuck-up girl in town. As the Games begin, Haymitch understands he’s been set up to fail. But there’s something in him that wants to fight . . . and have that fight reverberate far beyond the deadly arena.",
+      "Annotation": "When you've been set up to lose everything you love, what is there left to fight for? As the day dawns on the fiftieth annual Hunger Games, fear grips the districts of Panem. This year, in honor of the Quarter Quell, twice as many tributes will be taken from their homes. Back in District 12, Haymitch Abernathy is trying not to think too hard about his chances. All he cares about is making it through the day and being with the girl he loves. When Haymitch's name is called, he can feel all his dreams break. He's torn from his family and his love, shuttled to the Capitol with the three other District 12 tributes: a young friend who's nearly a sister to him, a compulsive oddsmaker, and the most stuck-up girl in town. As the Games begin, Haymitch understands he's been set up to fail. But there's something in him that wants to fight . . . and have that fight reverberate far beyond the deadly arena.",
       "Book Id": "214331246",
       "Days Spent": 3.0
     },
@@ -602,8 +1487,8 @@
       "Title": "The Ballad of Songbirds and Snakes",
       "Author": "Suzanne Collins",
       "Additional Authors": "",
-      "Number of Pages": 652,
-      "Estimated Word Count": 179300,
+      "Number of Pages": 541,
+      "Estimated Word Count": 148775,
       "Date Read": "2025-06-17",
       "Date Added": "2025-06-14",
       "My Rating": 5,
@@ -613,8 +1498,10 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=NrahDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
+        "Дистопия",
         "Молодёжная литература"
       ],
       "Annotation": "Ambition will fuel him. Competition will drive him. But power has its price. It is the morning of the reaping that will kick off the tenth annual Hunger Games. In the Capitol, eighteen-year-old Coriolanus Snow is preparing for his one shot at glory as a mentor in the Games. The once-mighty house of Snow has fallen on hard times, its fate hanging on the slender chance that Coriolanus will be able to outcharm, outwit, and outmaneuver his fellow students to mentor the winning tribute. The odds are against him. He's been given the humiliating assignment of mentoring the female tribute from District 12, the lowest of the low. Their fates are now completely intertwined -- every choice Coriolanus makes could lead to favor or failure, triumph or ruin. Inside the arena, it will be a fight to the death. Outside the arena, Coriolanus starts to feel for his doomed tribute... and must weigh his need to follow the rules against his desire to survive no matter what it takes.",
@@ -636,7 +1523,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "0439023513",
       "ISBN13": "9780439023511",
-      "Cover URL": "http://books.google.com/books/content?id=Iw_gHtk4ghYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Juvenile Fiction"
       ],
@@ -659,10 +1546,10 @@
       "Exclusive Shelf": "read",
       "ISBN": "5448470971",
       "ISBN13": "9785448470974",
-      "Cover URL": "http://books.google.com/books/content?id=qhmFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Романтика",
         "Gothic",
+        "Романтика",
         "Классика"
       ],
       "Annotation": "Самый знаменитый роман английской писательницы Шарлотты Бронте (1816—1865) продолжает и в наше время волновать сердца миллионов. Умная и образованная героиня стала примером для многих поколений юных читательниц. События романа происходят в мрачном готическом замке в поместье Торнфильд, где раскрываются страшные тайны, а страстная любовь героев встречает на своем пути множество непреодолимых препятствий.",
@@ -684,7 +1571,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "0439023491",
       "ISBN13": "9780439023498",
-      "Cover URL": "http://books.google.com/books/content?id=fsC7uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Large type books"
       ],
@@ -707,7 +1594,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "5170624638",
       "ISBN13": "9785170624638",
-      "Cover URL": "http://books.google.com/books/content?id=HFZnPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Литературные сборники"
       ],
@@ -730,11 +1617,11 @@
       "Exclusive Shelf": "stopped-reading",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=kpRax0VdR60C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Классика",
+        "Фэнтези",
         "Магический реализм",
-        "Фэнтези"
+        "Классика"
       ],
       "Annotation": "Одна из величайших книг ХХ века. Странная, поэтичная, причудливая история города Макондо, затерянного где-то в джунглях, – от сотворения до упадка. История рода Буэндиа – семьи, в которой чудеса столь повседневны, что на них даже не обращают внимания. Клан Буэндиа порождает святых и грешников, революционеров, героев и предателей, лихих авантюристов – и женщин, слишком прекрасных для обычной жизни. В нем кипят необычайные страсти – и происходят невероятные события. Однако эти невероятные события снова и снова становятся своеобразным \"волшебным зеркалом\", сквозь которое читателю является подлинная история Латинской Америки…",
       "Book Id": "6967700",
@@ -755,13 +1642,13 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=6qEPEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Романтика",
         "Dark",
-        "Dark Romance"
+        "Dark Romance",
+        "Романтика"
       ],
-      "Annotation": "Discover the serial killer romance series everyone is talking about! From the no.1 New York Times bestselling author of the genre-breaking international TikTok sensation Butcher & Blackbird and Leather & Lark comes the final book in the Ruinous Love Trilogy - a friends-with-benefits dark romantic comedy. Murder. Mayhem. And spice. Doctor Fionn Kane is running from a broken heart, one he hopes to mend in small-town Nebraska, far away from his almost-fiance and his derailed surgical career. It's a simpler head down, hard work, and absolutely no romantic relationships. He wants none of the circus he left behind in Boston. But then the real circus finds him. Motorcycle performer Rose Evans has spent a decade on the road with the Silveria Circus, and it suits her just fine, especially when she has the urge to indulge in a little murder when she's not in the spotlight. But when a kill goes awry and she ends up with an injured leg, Rose finds herself stuck in Nebraska, at the home of the adorably nerdy town doctor. The problem is, not every broken heart can be sewn back together. . . . And the longer you stay in one place, the more likely your ghosts are to catch up. *** Friends with benefits Small town romance Fish out of water Forced proximity Hurt/care Touch her and die",
+      "Annotation": "The final book in the Ruinous Love Trilogy - a friends-with-benefits dark romantic comedy. Murder. Mayhem. And spice. Doctor Fionn Kane is running from a broken heart, one he hopes to mend in small-town Nebraska, far away from his almost-fiance and his derailed surgical career. It's a simpler head down, hard work, and absolutely no romantic relationships. He wants none of the circus he left behind in Boston. But then the real circus finds him. Motorcycle performer Rose Evans has spent a decade on the road with the Silveria Circus, and it suits her just fine, especially when she has the urge to indulge in a little murder when she's not in the spotlight. But when a kill goes awry and she ends up with an injured leg, Rose finds herself stuck in Nebraska, at the home of the adorably nerdy town doctor. The problem is, not every broken heart can be sewn back together. ...And the longer you stay in one place, the more likely your ghosts are to catch up.",
       "Book Id": "127616032",
       "Days Spent": 2.0
     },
@@ -780,11 +1667,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "0349441588",
       "ISBN13": "9780349441580",
-      "Cover URL": "http://books.google.com/books/content?id=wipj0AEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Романтика",
         "Dark",
-        "Dark Romance"
+        "Dark Romance",
+        "Романтика"
       ],
       "Annotation": "Contract killer Lachlan Kane wants a quiet life working in his leather studio and forgetting all about his traumatic past. But when he botches a job for his boss’s biggest client, Lachlan knows he’ll never claw his way out of the underworld. At least, not until songbird Lark Montague offers him a deal: use his skills to hunt down a killer and she’ll find a way to secure his freedom. The catch? He has to marry her first. And they can’t stand each other. Indie singer-songwriter Lark is the sunshine and glitter that burns through every cloud and clings to every crevice that Lachlan Kane tries to hide inside. The surly older brother of her best friend’s soulmate, Lachlan thinks she’s just a privileged princess, but Lark has plenty of secrets hiding in the shadows of her bright light. With her formidable family in a tailspin and her best friend’s happiness on the line, she’s willing to make a vow to the man she’s determined to hate, no matter how tempting the broody assassin might be. As Lachlan and Lark navigate the dark world that binds them together, it becomes impossible to discern their fake marriage from a real one. But it’s not just familiar dangers that haunt them. There’s another phantom lurking on their doorstep. And this one has come for blood.",
       "Book Id": "127611580",
@@ -805,11 +1692,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5042068430",
       "ISBN13": "9785042068430",
-      "Cover URL": "http://books.google.com/books/content?id=FM0UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Романтика",
         "Dark",
-        "Dark Romance"
+        "Dark Romance",
+        "Романтика"
       ],
       "Annotation": "Он — суровый и безжалостный, как палач. Она — яркая и свободолюбивая, как птичка. Каждый август они встречаются, чтобы сыграть в смертельную игру. Потому что они – охотники за головами, и у каждого — свой почерк. Когда мрачное прошлое начинает угрожать их жизням, герои понимают: чтобы выжить, им придется стать союзниками. Но можно ли любить того, кто держит нож за спиной?",
       "Book Id": "227899155",
@@ -830,11 +1717,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389166949",
       "ISBN13": "9785389166943",
-      "Cover URL": "http://books.google.com/books/content?id=g1dNpEZf5YgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Dragons",
-        "Классика",
-        "Фэнтези"
+        "Классика"
       ],
       "Annotation": "Впервые полное собрание историй о Земноморье издаются в одном иллюстрированном томе. Этот роскошный однотомник издан в ознаменование пятидесятилетия со дня выхода «Волшебника Земноморья»; в него включены все романы и рассказы о Земноморье, написанные Урсулой Ле Гуин. Сборник полностью иллюстрирован – в нем более пятидесяти цветных и черно-белых иллюстраций, выполненных художником Чарльзом Вессом, лауреатом Всемирной премии фантастов. Это поистине последнее и окончательное слово Ле Гуин о Земноморье. В сборнике вы найдете: — оба первых рассказа о Земноморье: «Правило имен» и «Освобождающее заклятье»; — все шесть романов о Земноморье: «Волшебник Земноморья», «Гробницы Атуана», «На последнем берегу», «Техану», «Сказания Земноморья», «На иных ветрах»; — последний горький рассказ Ле Гуин о Геде и Тенар «Свет домашнего очага»; — последний, нигде не публиковавшийся ранее рассказ «Дочь Одрена»; — прочитанную писательницей в 1992 году в Оксфорде лекцию «Земноморье, пересмотренное и исправленное»; — предисловие Урсулы Ле Гуин, где она представляет Земноморье новым читателям и приветствует тех, кто снова и снова возвращается на эти волшебные острова. Истории о Земноморье всякий раз восторженно оценивались критиками и читателями и воспринимались как очередная триумфальная победа писательницы в литературе. Роман «Гробницы Атуана» был удостоен медали Ньюбери; роман «На последнем берегу» — Национальной литературной премии; роман «Техану» — премии «Небьюла»; а роман «На иных ветрах» — Всемирной премии фантастов.",
       "Book Id": "49217991",
@@ -855,11 +1742,9 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=rOQQUJz68q8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "Молодёжная литература"
-      ],
-      "Annotation": "NOT PUBLICATED Brandon Sanderson writes a \"State of the Sanderson\" each December to \"take a look back at [his] year and talk about the projects [he's] been working on.\" \"No updates from last year, I’m afraid. There was no intention to make progress on these this year. Once Alcatraz is wrapped up, I’ll turn my attention back to The Rithmatist as the last looming series that needs a wrapup that hasn’t gotten one … I know a lot of you keep waiting on Rithmatist news, and I feel bad having to give you the same news every year. (Yes, that paragraph above is the same one I put in the State of the Sanderson last year.) But the truth is, I really can’t work on this until at the very least Alcatraz is finished. A glimmer of light for you Rithmatist fans is this: my son just read the book, and he’s joined the crowd calling for me to do a sequel. So you have an in-house representative. STATUS: Keep Waiting. (Sorry again, again.)\" — Brandon Sanderson's website (The page is linked as the \"official url\" as non-GoodReads links aren't allowed in the description.)",
+      "Cover URL": null,
+      "Genres": [],
+      "Annotation": null,
       "Book Id": "17825280",
       "Days Spent": null
     },
@@ -880,7 +1765,9 @@
       "ISBN13": "9789669483256",
       "Cover URL": null,
       "Genres": [
-        "Fantasy fiction, Ukrainian"
+        "Фэнтези",
+        "Научная фантастика",
+        "Ukrainian Literature"
       ],
       "Annotation": "Отримати в спадок будинок — чим не мрія? Особливо якщо це справжній старовинний маєток, більше схожий на палац. От тільки не все з тим дарунком так безхмарно: дядько, який заповів Данилові своє майно, зник безвісти, а будиночок виявився з секретом. Обстежуючи нову домівку, Данило знагла провалився в чудернацьке місце, де в небі літають дирижаблі, по місту їздять монорельси, а хатню роботу виконують дивовижні парові машини. Що це — неймовірний сон чи паралельний стімпанк-світ?",
       "Book Id": "46049610",
@@ -901,11 +1788,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5389241878",
       "ISBN13": "9785389241879",
-      "Cover URL": "http://books.google.com/books/content?id=P3vcEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Steampunk",
+        "Фэнтези",
         "Молодёжная литература",
-        "Фэнтези"
+        "Steampunk"
       ],
       "Annotation": "Больше всего на свете Джоэл мечтает стать рифматистом. Почему? Да потому, что рифматисты обладают способностью оживлять двухмерные фигуры, начертанные мелом. А еще потому, что рифматисты — последняя надежда человечества в борьбе против диких меллингов, которые того и гляди прорвут оборону и уничтожат все живое. Однако не всем мечтам суждено сбыться. Сыну меловых дел мастера стать рифматистом не удалось. И теперь Джоэл может лишь с тоской наблюдать за студентами академии Армедиуса, изо дня в день практикующими магическое искусство, ради которого он готов на все. Но загадочные, внезапные исчезновения студентов дают Джоэлу шанс проявить себя, и вдруг его жизнь к",
       "Book Id": "200078422",
@@ -929,8 +1816,8 @@
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1717535231i/208460125.jpg",
       "Genres": [
         "Триллер",
-        "Детективный триллер",
-        "Детектив"
+        "Детектив",
+        "Детективный триллер"
       ],
       "Annotation": "Изощренный, умный и стремительный роман о мести, одержимости и… идеальном убийстве. От автора бестселлеров New York Times. Смесь «Исчезнувшей» и «Незнакомцев в поезде». Ложь, скрывающая ложь Саймон и Вики Добиас — богатая, благополучная семья из Чикаго. Он — уважаемый преподаватель права, она — защитница жертв домашнего насилия. Спокойная, счастливая семейная жизнь. Но на самом деле все абсолютно не так, как кажется. На поверхности остается лишь то, что они хотят показать людям. И один из них вполне может оказаться убийцей… Когда блестящую светскую львицу Лорен Бетанкур находят повешенной, тайная жизнь четы Добиас выходит на свет. Их бурные романы на стороне… Трастовый фонд Саймона в двадцать один миллион долларов, срок погашения которого вот-вот наступит… Многолетняя обида Вики и ее одержимость местью… Это лишь вершина айсберга, и она будет иметь самые разрушительные последствия. Но хотя и Вики, и Саймон — лжецы, кто именно кого обманывает? К тому же, под этим слоем лицемерия скрывается еще одна ложь. Поистине чудовищная…",
       "Book Id": "208460125",
@@ -953,9 +1840,9 @@
       "ISBN13": "",
       "Cover URL": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355947770i/17157096.jpg",
       "Genres": [
-        "Романтика",
         "Классика",
-        "Эротика"
+        "Эротика",
+        "Романтика"
       ],
       "Annotation": "With Story of O, this classic erotic book is the most famous French underground novel of the late 20th century, a work of seductive literary merit. It appears an autobiographical novel by a French Foreign Service diplomat's wife. It opens as Emmanuelle flys from London to rejoin her husband in Bangkok. Compelled by an overnight passenger seated beside her, her irrepressible nature opens vistas of sensual possibility. She moves easily from her spouse's arms to intimacies with his business associates' wives & to further explorations in which subtle erotic aesthetics are fully expounded & enacted. Selling millions of copies since a clandestine French publication, Emmanuelle shows a woman's progress from unconscious to profoundly conscious sexuality.",
       "Book Id": "17157096",
@@ -976,11 +1863,11 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "1250767520",
       "ISBN13": "9781250767523",
-      "Cover URL": "http://books.google.com/books/content?id=qY-tEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Криминал",
+        "Япония",
         "Детектив",
-        "Япония"
+        "Криминал"
       ],
       "Annotation": "From the acclaimed author of Malice and Newcomer , a confounding murder in Tokyo is connected to the mystery of the disappearance and death of Detective Kaga's own mother. A decade ago, Tokyo Police Detective Kyoichiro Kaga went to collect the ashes of his recently deceased mother. Years before, she ran away from her husband and son without explanation or any further contact, only to die alone in an apartment far away, leaving her estranged son with many unanswered questions. Now in Tokyo, Michiko Oshitani is found dead many miles from home. Strangled to death, left in the bare apartment rented under a false name by a man who has disappeared without a trace. Oshitani lived far away in Sendai, with no known connection to Tokyo - and neither her family or friends have any idea why she would have gone there. Hers is the second strangulation death in that approximate area of Tokyo - the other was a homeless man, killed and his body burned in a tent by the river. As the police search through Oshitani's past for any clue that might shed some light, one of the detectives reaches out to Detective Kaga for advice. As the case unfolds an unexpected connective emerges between the murder (or murders) now and the long ago case of the missing mother of Detective Kaga. The Final Curtain , one of Keigo Higashino's most acclaimed mysteries, brings the story of Detective Kaga to a surprising conclusion in a series of rich, surprising twists.",
       "Book Id": "65213104",
@@ -1001,11 +1888,11 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "1250767504",
       "ISBN13": "9781250767509",
-      "Cover URL": "http://books.google.com/books/content?id=fCdlEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Криминал",
+        "Япония",
         "Детектив",
-        "Япония"
+        "Криминал"
       ],
       "Annotation": "In the latest from international bestselling author Keigo Higashino, Tokyo Police Detective Kaga is faced with a very public murder that doesn't quite add up, a prime suspect unable to defend himself, and pressure from the highest levels for a quick solution. In the Nihonbashi district of Tokyo an unusual statue of a Japanese mythic beast - a kirin - stands guard over the district from the classic Nihonbashi bridge. In the evening, a man who appears to be very drunk staggers onto the bridge and collapses right under the statue of the winged beast. The patrolman who sees this scene unfold goes to rouse the man, only to discover that the man has not passed out, he is dead; that he was not drunk, he was stabbed in the chest. However, where he died was not where the crime was committed - the key to solving the crime is to find out where he was attacked and why he made such a superhuman effort to carry himself to the Nihonbashi Bridge. That same night, a young man named Yashima is injured in a car accident while attempting to flee from the police. Found on him is the wallet of the murdered man. Tokyo Police Detective Kyoichiro Kaga is assigned to the team investigating the murder - and must bring his skills to bear to uncover what actually happened that night on the Nihonbashi bridge. What, if any, connection is there between the murdered man and Yashima, the young man caught with his wallet? Kaga's investigation takes him down dark roads and into the unknown past to uncover what really happened and why. A Death in Tokyo is another mind-bending mystery from the modern master of classic crime, finalist for both an Edgar Award and a CWA Dagger, the internationally bestselling Keigo Higashino.",
       "Book Id": "59808174",
@@ -1026,11 +1913,11 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "1250067863",
       "ISBN13": "9781250067869",
-      "Cover URL": "http://books.google.com/books/content?id=S6xvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Криминал",
+        "Япония",
         "Детектив",
-        "Япония"
+        "Криминал"
       ],
       "Annotation": "Detective Kyoichiro Kaga of the Tokyo Police Department has just been transferred to a new precinct in the Nihonbashi area of Tokyo. Newly arrived, but with a great deal of experience, Kaga is promptly assigned to the team investigating the murder of a woman. But the more he investigates, the greater number of potential suspects emerges. It isn’t long before it seems nearly all the people living and working in the business district of Nihonbashi have a motive for murder. To prevent the murderer from eluding justice, Kaga must unravel all the secrets surrounding a complicated life. Buried somewhere in the woman’s past, in her family history, and the last few days of her life is the clue that will lead to the murderer. From the international bestseller Keigo Higashino, author of The Devotion of Suspect X , comes one of his finest works of crime fiction yet.",
       "Book Id": "33602102",
@@ -1051,13 +1938,13 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "1250035600",
       "ISBN13": "9781250035608",
-      "Cover URL": "http://books.google.com/books/content?id=ZGBnBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Криминал",
+        "Япония",
         "Детектив",
-        "Япония"
+        "Криминал"
       ],
-      "Annotation": "From the bestselling Japanese author of The Devotion of Suspect X comes Malice, the most acclaimed novel in Higashino's outstanding Detective Kaga series. Acclaimed bestselling novelist Kunihiko Hidaka is found brutally murdered in his home on the night before he's planning to leave Japan and relocate to Vancouver. His body is found in his office, in a locked room, within his locked house, by his wife and his best friend, both of whom have rock solid alibis. Or so it seems. Police Detective Kyochiro Kaga recognizes Hidaka's best friend from years ago when they were both teachers. Kaga joined the police force while Nonoguchi became a writer, though with not nearly the success of his friend Hidaka. When Kaga suspects something is a little bit off with Nonoguchi's statement, he investigates further, searching Nonoguchi's apartment. There he finds evidence that shows that the two writers' relationship was very different than the two claimed... In a brilliantly realized tale of cat and mouse, the detective and the writer battle over the truth of the past and how events that led to the murder really unfolded. Which one of the two writers was ultimately guilty of malice?",
+      "Annotation": "Acclaimed bestselling novelist Kunihiko Hidaka is found brutally murdered in his home on the night before he's planning to leave Japan and relocate to Vancouver. His body is found in his office, a locked room, within his locked house, by his wife and his best friend, both of whom have rock solid alibis. Or so it seems. At the crime scene, Police Detective Kyochiro Kaga recognizes Hidaka's best friend, Osamu Nonoguchi. Years ago when they were both teachers, they were colleagues at the same public school. Kaga went on to join the police force while Nonoguchi eventually left to become a full-time writer, though with not nearly the success of his friend Hidaka. As Kaga investigates, he eventually uncovers evidence that indicates that the two writers' relationship was very different that they claimed, that they were anything but best friends. But the question before Kaga isn't necessarily who, or how, but why. In a brilliantly realized tale of cat and mouse, the detective and the killer battle over the truth of the past and how events that led to the murder really unfolded. And if Kaga isn't able to uncover and prove why the murder was committed, then the truth may never come out. Malice is one of the bestselling―the most acclaimed―novel in Keigo Higashino's series featuring police detective Kyochiro Kaga, one of the most popular creations of the bestselling novelist in Asia.",
       "Book Id": "20613611",
       "Days Spent": null
     },
@@ -1100,11 +1987,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5170878443",
       "ISBN13": "9785170878444",
-      "Cover URL": "http://books.google.com/books/content?id=0ZdyvgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Городское фэнтези",
-        "Ужасы",
-        "Фэнтези"
+        "Ужасы"
       ],
       "Annotation": "Это последняя история о Светлом маге Антоне Городецком.",
       "Book Id": "23753355",
@@ -1125,7 +2012,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "5170981317",
       "ISBN13": "9785170981311",
-      "Cover URL": "http://books.google.com/books/content?id=YHneDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Научная фантастика",
         "Зомби",
@@ -1150,9 +2037,11 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5041857318",
       "ISBN13": "9785041857318",
-      "Cover URL": "http://books.google.com/books/content?id=tQ-rDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Biography & Autobiography"
+        "Триллер",
+        "Детектив",
+        "Ужасы"
       ],
       "Annotation": "Автор — признанный мастер стиля иямису, исследующего темные стороны человеческой души. Это одно из основных направлений в современном японском детективе. Четырехлетняя Манами, дочь учительницы Юко Моригути, погибла. Ее тело нашли в школьном бассейне. Трагедию признали несчастным случаем — мать не уследила за своим ребенком… Наступает последний день семестра — и последний день Юко на работе. Она собирает свой класс и рассказывает детям правду о том, что случилось. Смерть ее дочери — не случайность. Девочка была убита двумя учениками из этого класса. Юко знает об этом — и сегодня преподаст им последний урок. Урок поистине дьявольской мести… В этот день каждый будет вынужден сделать свое признание — и никто не останется безнаказанным… Это мастерски написанный, мощный, пронзительный роман о последствиях самых губительных болезней человека — страха, ненависти и одиночества.",
       "Book Id": "197463112",
@@ -1173,7 +2062,7 @@
       "Exclusive Shelf": "to-read",
       "ISBN": "5041907420",
       "ISBN13": "9785041907426",
-      "Cover URL": "http://books.google.com/books/content?id=l3SxDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Technology & Engineering"
       ],
@@ -1220,10 +2109,10 @@
       "Exclusive Shelf": "read",
       "ISBN": "5699157441",
       "ISBN13": "9785699157440",
-      "Cover URL": "http://books.google.com/books/content?id=NRWlitmahXkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Молодёжная литература",
         "Научная фантастика",
+        "Молодёжная литература",
         "Классика"
       ],
       "Annotation": "Сорок лет назад это считалось фантастикой. Сорок лет назад это читалось как фантастика. Исследующая и расширяющая границы жанра, жадно впитывающая всевозможные новейшие веяния, примеряющая общечеловеческое лицо, отважно игнорирующая каинову печать \"жанрового гетто\". Сейчас это воспринимается как одно из самых человечных произведений новейшего времени, как роман пронзительной психологической силы, как филигранное развитие темы любви и ответственности. Не зря вышедшую уже в 1990-е книгу воспоминаний Киз назвал \"Элджернон, Чарли и я\".",
@@ -1245,10 +2134,8 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=NJtZAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "Genres": [
-        "Психология"
-      ],
+      "Cover URL": null,
+      "Genres": [],
       "Annotation": "Как выразить любовь вашему спутнику. Любовь можно проявлять по-разному. Доктор Гэри Чепмен утверждает, что существует пять языков любви: Слова поощрения; Время; Подарки; Помощь; Прикосновения.Вы стараетесь показать супругу, что любите его, а он как будто ничего не замечает. Может быть, вы просто говорите на разных языках? Возможно, ваш муж хочет, чтобы вы ему посочувствовали, а вы вместо этого готовите вкусный ужин. Возможно, вашей жене хочется проводить с вами побольше времени, а роскошные букеты, которые вы преподносите каждый вечер, ей не нужны.В конце книги вы найдете руководство по обсуждению, которое поможет вам лучше разобраться в прочитанном.",
       "Book Id": "220278968",
       "Days Spent": 2.0
@@ -1268,7 +2155,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "504383479X",
       "ISBN13": "9785386145408",
-      "Cover URL": "http://books.google.com/books/content?id=kNZVEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Триллер",
         "Детектив",
@@ -1350,8 +2237,8 @@
     },
     {
       "Title": "Канашибари. Том 2",
-      "Author": "Вероника и Ангелина Шэн",
-      "Additional Authors": "",
+      "Author": "Ангелина Шэн",
+      "Additional Authors": "Вероника Шэн",
       "Number of Pages": 384,
       "Estimated Word Count": 105600,
       "Date Read": "2025-01-22",
@@ -1363,10 +2250,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "535310899X",
       "ISBN13": "9785353108993",
-      "Cover URL": "http://books.google.com/books/content?id=BqkzEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Молодёжная литература",
-        "Фэнтези"
+        "Ужасы"
       ],
       "Annotation": "Напряженная история о том, как выжить в игре, в которой невозможно обойтись без жертв. Здесь, как и в первой части, продолжают править бал демоны, страх и предательство, а правила становятся все более жестокими. Мир кайданов, в который попала Хината, неумолим: как бы ты ни был измучен, какие бы раны ни получил, каких бы близких людей ни потерял, ты обязан играть дальше. Отказ от игры — смерть. Проигрыш — смерть. Секундная слабость или паника — смерть. И Хината сражается, проходя один жестокий кайдан за другим. Но что, если самая большая опасность подстерегает ее не в иллюзорных мирах кайданов, а в реальности? Что, если игроки, которых Хината наконец-то готова назвать друзьями, не те, за кого себя выдают?",
       "Book Id": "218689887",
@@ -1374,8 +2262,8 @@
     },
     {
       "Title": "Канашибари. Том 1",
-      "Author": "Вероника и Ангелина Шэн",
-      "Additional Authors": "",
+      "Author": "Ангелина Шэн",
+      "Additional Authors": "Вероника Шэн",
       "Number of Pages": 392,
       "Estimated Word Count": 107800,
       "Date Read": "2025-01-19",
@@ -1387,11 +2275,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "535310823X",
       "ISBN13": "9785353108238",
-      "Cover URL": "http://books.google.com/books/content?id=Vo8JEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
+        "Фэнтези",
         "Молодёжная литература",
-        "Electronic books",
-        "Фэнтези"
+        "Electronic books"
       ],
       "Annotation": "Этот город окружают сто синих фонарей. В этом городе нельзя ни есть, ни пить, а без оберега тебя разорвут на части ночные монстры. В этом городе существует одно правило: пока ты выигрываешь — ты жив. Добро пожаловать в мир оживших кайданов — японских историй ужасов! Сражайся за свою жизнь каждый день. Выбирай, кто из игроков поневоле погибнет сегодня. И помни: самое страшное произойдет, КОГДА ПОГАСНЕТ ПОСЛЕДНИЙ ФОНАРЬ!",
       "Book Id": "201959407",
@@ -1412,10 +2300,11 @@
       "Exclusive Shelf": "read",
       "ISBN": "5864717312",
       "ISBN13": "9785864717318",
-      "Cover URL": "http://books.google.com/books/content?id=BaQwDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
-        "Медицина",
-        "Историческая проза"
+        "Историческая проза",
+        "Literary Fiction",
+        "Медицина"
       ],
       "Annotation": "Большой эпический роман, написанный одним из самых авторитетных врачей мира. \"Рассечение Стоуна\" - история любви длиною в жизнь, предательства и искупления, человеческой слабости и силы духа, изгнания и долгого возвращения к корням. В миссионерской больнице Адис-Абебы при трагических, истинно шекспировских, обстоятельствах рождаются два мальчика, два близнеца, сросшихся затылками, Марион и Шива. Рожденные прекрасной индийской монахиней от хирурга-англичанина, мальчики осиротели в первые часы жизни. Искусство и мужество врачей, разделивших их сразу после рождения, определило их жизнь и судьбу. Мэрион и Шива свяжут свою жизнь с медициной, но каждый пойдет своей дорогой. Их ждет удивительная, трагическая и полная невероятных событий судьба. Абсолютно счастливое детство и драматическая юность, поиски себя и своих корней, предательство и страстное желание искупить вину, любовь, похожая на наваждение, и ревность, изъедающая душу. И все это под сенью медицины. Что бы не происходило в жизни героев этого воистину большого романа, как бы не терзала их судьба, главным для них всегда оставалась хирургия - дело, ради которого они пришли в этот мир. Абрахам Вергезе - выдающий доктор, светило в области физиотерапии, один из самых авторитетных врачей Америки. Его первый роман стал большим событием, удивительная проникновенность и достоверность, глубочайшее знание профессии и великолепный литературный стиль позволяют назвать книгу Вергезе одним из самых значительных медицинских романов последнего столетия.",
       "Book Id": "45238710",
@@ -1436,7 +2325,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=l4mREAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [],
       "Annotation": "Мир не меняется в один миг. А иногда все победы могут оказаться поражениями. Вы же не думали, что все будет так просто -- придет Высший и наведет порядок?",
       "Book Id": "201229151",
@@ -1457,7 +2346,7 @@
       "Exclusive Shelf": "read",
       "ISBN": "",
       "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=N99jEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "Cover URL": null,
       "Genres": [
         "Научная фантастика"
       ],
@@ -1478,9 +2367,9 @@
       "Bookshelves": "",
       "Bookshelves with positions": "",
       "Exclusive Shelf": "read",
-      "ISBN": "",
-      "ISBN13": "",
-      "Cover URL": "http://books.google.com/books/content?id=e3tSEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "ISBN": "5885376026",
+      "ISBN13": "9785885376020",
+      "Cover URL": null,
       "Genres": [
         "Научная фантастика"
       ],
@@ -1561,6 +2450,34 @@
     {
       "Date": "2025-11",
       "Books": 2
+    },
+    {
+      "Date": "2025-12",
+      "Books": 5
+    },
+    {
+      "Date": "2026-01",
+      "Books": 5
+    },
+    {
+      "Date": "2026-02",
+      "Books": 4
+    },
+    {
+      "Date": "2026-03",
+      "Books": 3
+    },
+    {
+      "Date": "2026-04",
+      "Books": 8
+    },
+    {
+      "Date": "2026-05",
+      "Books": 6
+    },
+    {
+      "Date": "2026-06",
+      "Books": 1
     }
   ],
   "longest_book": {
@@ -1568,7 +2485,7 @@
     "Number of Pages": 1770
   },
   "shortest_book": {
-    "Title": "О мышах и людях",
+    "Title": "Седьмой",
     "Number of Pages": 0
   }
 }
